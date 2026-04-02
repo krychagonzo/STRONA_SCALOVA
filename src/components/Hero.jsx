@@ -11,8 +11,8 @@ export default function Hero() {
     let ctx = gsap.context(() => {
       // Left side texts start shifted to the right and down (towards true center)
       gsap.from('.hero-anim-left', {
-        x: '20vw',
-        y: '10vh',
+        x: 400,
+        y: 100,
         opacity: 0,
         filter: 'blur(15px)',
         duration: 3,
@@ -22,8 +22,8 @@ export default function Hero() {
       });
       // Right side text starts shifted to the left and up (towards true center)
       gsap.from('.hero-anim-right', {
-        x: '-20vw',
-        y: '-10vh',
+        x: -400,
+        y: -100,
         opacity: 0,
         filter: 'blur(15px)',
         duration: 3,
@@ -56,7 +56,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={comp} className="relative w-full h-[100dvh] overflow-hidden flex items-end">
+    <section ref={comp} className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-obsidian pointer-events-none">
         <video
@@ -72,7 +72,7 @@ export default function Hero() {
       </div>
 
       {/* Content - Centered */}
-      <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full flex flex-col items-center justify-center pt-10 md:pt-20">
+      <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full flex flex-col items-center justify-center">
         <div className="w-full max-w-[1920px] flex flex-col items-center">
           <div id="hero-content-wrapper" className="w-full flex flex-col select-none relative z-10">
             <span className="hero-anim-left self-start inline-block font-heading font-light text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase mb-6 md:mb-8 opacity-90">
