@@ -30,12 +30,7 @@ export default function Hero() {
         ease: 'power3.out',
         delay: 2.2
       });
-      // Pull texts to the front after they are mostly drawn (delay of 3.5s total)
-      gsap.to('#hero-content-wrapper', {
-        zIndex: 40,
-        duration: 0,
-        delay: 3.5
-      });
+
 
       // Front logo reacts to scroll (goes diagonally right and up)
       gsap.to('.front-logo-wrapper', {
@@ -74,7 +69,7 @@ export default function Hero() {
       {/* Content - Centered */}
       <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full flex flex-col items-center justify-center pt-10 md:pt-20">
         <div className="w-full max-w-[1920px] flex flex-col items-center">
-          <div id="hero-content-wrapper" className="w-full flex flex-col select-none relative z-10">
+          <div id="hero-content-wrapper" className="w-full flex flex-col select-none relative z-40">
             <span className="hero-anim-left self-start inline-block font-heading font-light text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase mb-6 md:mb-8 opacity-90">
                // AGENCJA SKALOWANIA BIZNESU
             </span>
