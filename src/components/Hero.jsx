@@ -79,14 +79,14 @@ export default function Hero() {
                // AGENCJA SKALOWANIA BIZNESU
             </span>
 
-            <span className="hero-anim-left self-start font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight drop-shadow-2xl">
+            <span className="hero-anim-left self-start font-heading font-light text-[clamp(2rem,8.5vw,9rem)] tracking-tight text-ivory/90 leading-tight drop-shadow-2xl">
               Skaluj biznes,
             </span>
 
             {/* Spacer imitating the previous cube height for layout balance */}
-            <div className="h-8 sm:h-12 md:h-20 lg:h-[4rem] xl:h-[6rem] w-full"></div>
+            <div className="h-[6vw] min-h-[2rem] max-h-[8rem] w-full"></div>
 
-            <span className="hero-anim-right self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right drop-shadow-2xl mt-4 md:mt-0">
+            <span className="hero-anim-right self-end font-heading font-light text-[clamp(2rem,8.5vw,9rem)] tracking-tight text-ivory leading-[0.9] text-right drop-shadow-2xl mt-4 md:mt-0">
               odzyskaj czas.
             </span>
           </div>
