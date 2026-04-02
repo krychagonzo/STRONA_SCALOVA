@@ -57,12 +57,12 @@ export default function FloatingCTA() {
   return (
     <div ref={comp} className="fixed bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-[60] pointer-events-auto">
       <button
-        className="group relative overflow-hidden rounded-sm font-heading font-bold uppercase tracking-wider text-xs md:text-sm pl-8 pr-1.5 py-1.5 md:pl-10 md:pr-2 md:py-2 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-2xl shadow-accent/20 border border-[#D4FF00]/50 hover:shadow-[0_0_30px_rgba(212,255,0,0.6)] hover:border-accent"
+        className="group relative overflow-hidden rounded-lg font-heading font-bold uppercase tracking-wider text-xs md:text-sm pl-8 pr-1.5 py-1.5 md:pl-10 md:pr-2 md:py-2 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-2xl shadow-accent/20 border border-[#D4FF00]/50 hover:shadow-[0_0_30px_rgba(212,255,0,0.6)] hover:border-accent"
         style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
       >
         <div className="absolute inset-0 w-full h-full bg-ivory origin-left -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></div>
         <span className="relative z-10 flex items-center gap-4 md:gap-6 whitespace-nowrap">
-          <span className="translate-y-[1px]">nowina odbierz telefon</span>
+          <span className="translate-y-[1px]">Zarezerwuj konsultację</span>
           <img src="/LOGO_BLACK.png" alt="Arrow" className="h-10 md:h-[48px] w-auto object-contain transition-transform duration-300 group-hover:translate-x-1" />
         </span>
       </button>

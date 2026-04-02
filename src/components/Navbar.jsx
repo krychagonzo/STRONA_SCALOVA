@@ -55,12 +55,12 @@ export default function Navbar() {
         <a href="#protocol" className="hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">Metodologia</a>
       </div>
       <button
-        className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-sm px-6 py-2 bg-accent text-obsidian transition-transform duration-300 hover:scale-[1.03] hover:-translate-y-[1px]"
+        className="group relative overflow-hidden rounded-lg font-heading font-bold uppercase tracking-wider text-sm px-6 py-2 bg-accent text-obsidian transition-transform duration-300 hover:scale-[1.03] hover:-translate-y-[1px]"
         style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
       >
         <div className="absolute inset-0 w-full h-full bg-ivory origin-left -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></div>
         <span className="relative z-10 flex items-center gap-2">
-          nowina odbierz telefon
+          Zarezerwuj konsultację
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
         </span>
       </button>

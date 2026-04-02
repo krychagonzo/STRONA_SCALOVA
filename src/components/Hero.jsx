@@ -14,21 +14,23 @@ export default function Hero() {
         x: '20vw',
         y: '10vh',
         opacity: 0,
-        filter: 'blur(15px)',
+        filter: 'blur(10px)', // Reduced from 15px
         duration: 3,
-        stagger: 0.2,
+        stagger: 0.1, // Faster stagger
         ease: 'power3.out',
-        delay: 2
+        delay: 2,
+        force3D: true
       });
       // Right side text starts shifted to the left and up (towards true center)
       gsap.from('.hero-anim-right', {
         x: '-20vw',
         y: '-10vh',
         opacity: 0,
-        filter: 'blur(15px)',
+        filter: 'blur(10px)', // Reduced from 15px
         duration: 3,
         ease: 'power3.out',
-        delay: 2.2
+        delay: 2.2,
+        force3D: true
       });
 
 
@@ -39,11 +41,14 @@ export default function Hero() {
         scale: 0.8,
         opacity: 0,
         ease: 'none',
+        force3D: true,
         scrollTrigger: {
           trigger: comp.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: true
+          scrub: 1, // Smooth scrub for premium fluid feel
+          fastScrollEnd: true,
+          preventOverlaps: true
         }
       });
     }, comp);
@@ -70,18 +75,18 @@ export default function Hero() {
       <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full flex flex-col items-center justify-center pt-10 md:pt-20">
         <div className="w-full max-w-[1920px] flex flex-col items-center">
           <div id="hero-content-wrapper" className="w-full flex flex-col select-none relative z-40">
-            <span className="hero-anim-left self-start inline-block font-heading font-light text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase mb-6 md:mb-8 opacity-90">
+            <span className="hero-anim-left gpu-accelerated self-start inline-block font-heading font-light text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase mb-6 md:mb-8 opacity-90">
                // AGENCJA SKALOWANIA BIZNESU
             </span>
 
-            <span className="hero-anim-left self-start font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight drop-shadow-2xl">
+            <span className="hero-anim-left gpu-accelerated self-start font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight">
               Skaluj biznes,
             </span>
 
             {/* Spacer imitating the previous cube height for layout balance */}
             <div className="h-8 sm:h-12 md:h-20 lg:h-[4rem] xl:h-[6rem] w-full"></div>
 
-            <span className="hero-anim-right self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right drop-shadow-2xl mt-4 md:mt-0">
+            <span className="hero-anim-right gpu-accelerated self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right mt-4 md:mt-0">
               odzyskaj czas.
             </span>
           </div>
@@ -91,7 +96,7 @@ export default function Hero() {
       </div>
 
       {/* Front Transparent Animation Layer - rendered over texts */}
-      <div className="front-logo-wrapper absolute inset-0 z-30 pointer-events-none">
+      <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
         <video
           autoPlay
           muted

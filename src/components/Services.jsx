@@ -155,7 +155,7 @@ export default function Services() {
                       </p>
 
                       <button
-                        className="self-start py-2.5 px-6 border border-slate/50 text-xs font-heading font-medium uppercase tracking-widest text-ivory/60 rounded-sm transition-all duration-500 group-hover:border-obsidian/30 group-hover:text-obsidian mt-auto relative z-10"
+                        className="self-start py-2.5 px-6 border border-slate/50 text-xs font-heading font-medium uppercase tracking-widest text-ivory/60 rounded-lg transition-all duration-500 group-hover:border-obsidian/30 group-hover:text-obsidian mt-auto relative z-10"
                       >
                         PODGLĄD
                       </button>
@@ -233,16 +233,16 @@ export default function Services() {
                   <div className="flex flex-col sm:flex-row gap-4 mt-auto">
                     <button
                       onClick={() => setSelectedService(null)}
-                      className="group py-4 px-8 bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-heading font-bold uppercase tracking-widest text-ivory/80 rounded-sm transition-all duration-300 hover:border-ivory/30 hover:bg-white/10 flex-1 sm:flex-none flex items-center justify-center gap-3 relative overflow-hidden"
+                      className="group py-4 px-8 bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-heading font-bold uppercase tracking-widest text-ivory/80 rounded-lg transition-all duration-300 hover:border-ivory/30 hover:bg-white/10 flex-1 sm:flex-none flex items-center justify-center gap-3 relative overflow-hidden"
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
                       WRÓC
                     </button>
                     <button
                       onClick={scrollToCTA}
-                      className="py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
+                      className="py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
                     >
-                      kutas dupa
+                      ZAREZERWUJ KONSULTACJĘ
                     </button>
                   </div>
                 </div>

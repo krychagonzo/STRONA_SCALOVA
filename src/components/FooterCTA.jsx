@@ -49,12 +49,12 @@ export default function FooterCTA() {
           </p>
 
           <button 
-            className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-xl px-12 py-5 bg-accent text-obsidian transition-transform duration-300 hover:scale-[1.03] hover:-translate-y-[2px] shadow-[0_0_40px_rgba(212,255,0,0.2)] mx-auto" 
+            className="group relative overflow-hidden rounded-lg font-heading font-bold uppercase tracking-wider text-xl px-12 py-5 bg-accent text-obsidian transition-transform duration-300 hover:scale-[1.03] hover:-translate-y-[2px] shadow-[0_0_40px_rgba(212,255,0,0.2)] mx-auto" 
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
             <div className="absolute inset-0 w-full h-full bg-ivory origin-left -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></div>
             <span className="relative z-10 flex items-center justify-center gap-4">
-              NOWINA ODBIERZ TELEFON
+              ZAREZERWUJ KONSULTACJĘ
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </span>
           </button>
