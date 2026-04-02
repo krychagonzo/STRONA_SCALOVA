@@ -11,8 +11,8 @@ export default function Hero() {
     let ctx = gsap.context(() => {
       // Left side texts start shifted to the right and down (towards true center)
       gsap.from('.hero-anim-left', {
-        x: 400,
-        y: 100,
+        x: '20vw',
+        y: '10vh',
         opacity: 0,
         filter: 'blur(15px)',
         duration: 3,
@@ -22,8 +22,8 @@ export default function Hero() {
       });
       // Right side text starts shifted to the left and up (towards true center)
       gsap.from('.hero-anim-right', {
-        x: -400,
-        y: -100,
+        x: '-20vw',
+        y: '-10vh',
         opacity: 0,
         filter: 'blur(15px)',
         duration: 3,
@@ -56,7 +56,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={comp} className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center">
+    <section ref={comp} className="relative w-full h-[100dvh] overflow-hidden flex items-end">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-obsidian pointer-events-none">
         <video
@@ -72,21 +72,21 @@ export default function Hero() {
       </div>
 
       {/* Content - Centered */}
-      <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full flex flex-col items-center justify-center">
+      <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full flex flex-col items-center justify-center pt-10 md:pt-20">
         <div className="w-full max-w-[1920px] flex flex-col items-center">
           <div id="hero-content-wrapper" className="w-full flex flex-col select-none relative z-10">
             <span className="hero-anim-left self-start inline-block font-heading font-light text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase mb-6 md:mb-8 opacity-90">
                // AGENCJA SKALOWANIA BIZNESU
             </span>
 
-            <span className="hero-anim-left self-start font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[9rem] tracking-tight text-ivory/90 leading-tight drop-shadow-2xl">
+            <span className="hero-anim-left self-start font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight drop-shadow-2xl">
               Skaluj biznes,
             </span>
 
-            {/* Stable vertical spacer */}
-            <div className="h-8 sm:h-12 md:h-20 lg:h-24 xl:h-28 w-full"></div>
+            {/* Spacer imitating the previous cube height for layout balance */}
+            <div className="h-8 sm:h-12 md:h-20 lg:h-[4rem] xl:h-[6rem] w-full"></div>
 
-            <span className="hero-anim-right self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] xl:text-[9rem] tracking-tight text-ivory leading-[0.9] text-right drop-shadow-2xl mt-4 md:mt-0">
+            <span className="hero-anim-right self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right drop-shadow-2xl mt-4 md:mt-0">
               odzyskaj czas.
             </span>
           </div>
