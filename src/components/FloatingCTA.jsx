@@ -62,7 +62,7 @@ export default function FloatingCTA() {
       >
         <div className="absolute inset-0 w-full h-full bg-ivory origin-left -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></div>
         <span className="relative z-10 flex items-center gap-4 md:gap-6 whitespace-nowrap">
-          <span className="translate-y-[1px]">kutas dupa</span>
+          <span className="translate-y-[1px]">Zarezerwuj konsultację</span>
           <img src="/LOGO_BLACK.png" alt="Arrow" className="h-10 md:h-[48px] w-auto object-contain transition-transform duration-300 group-hover:translate-x-1" />
         </span>
       </button>
