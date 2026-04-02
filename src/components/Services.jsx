@@ -108,7 +108,7 @@ export default function Services() {
           animate={{ opacity: selectedService !== null ? 0.2 : 1 }}
           transition={{ duration: 0.4 }}
         >
-          <h2 className="text-ivory text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-ivory text-3xl md:text-5xl font-light tracking-tight mb-4">
             OBSZARY NASZEGO WSPARCIA
           </h2>
           <p className="text-ivory/50 mt-6 text-sm max-w-2xl mx-auto normal-case tracking-normal">Nie doradzamy z boku. Instalujemy w Twojej firmie konkretne narzędzia i procesy – od nowoczesnego wizerunku po bezobsługową sprzedaż – które od pierwszego dnia pracują na Twój wynik.</p>
@@ -146,7 +146,7 @@ export default function Services() {
                         <Icon className="w-10 h-10" strokeWidth={1.5} />
                       </motion.div>
 
-                      <motion.h3 layoutId={`service-title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-bold text-lg mb-4 uppercase tracking-widest h-20 leading-tight">
+                      <motion.h3 layoutId={`service-title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-lg mb-4 uppercase h-20 leading-tight">
                         {service.title}
                       </motion.h3>
 
@@ -198,7 +198,7 @@ export default function Services() {
                   >
                     SEKCJA WDROŻENIOWA
                   </motion.div>
-                  <motion.h3 layoutId={`service-title-${selectedService}`} className="text-ivory font-heading font-black text-3xl md:text-5xl mb-8 uppercase tracking-widest text-balance leading-tight">
+                  <motion.h3 layoutId={`service-title-${selectedService}`} className="text-ivory font-heading font-light tracking-tight text-3xl md:text-5xl mb-8 uppercase text-balance leading-tight">
                     {servicesList[selectedService].title}
                   </motion.h3>
 

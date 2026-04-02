@@ -64,7 +64,7 @@ export default function Protocol() {
       <div className="absolute inset-x-0 top-0 bottom-[calc(clamp(350px,45vh,450px)+320px)] pointer-events-none z-20 flex justify-center">
         <div className="w-full max-w-6xl pt-32">
           <div className="sticky top-32 text-center uppercase tracking-widest font-heading drop-shadow-[0_4px_15px_rgba(10,10,10,0.9)]">
-            <h2 className="text-ivory text-3xl md:text-5xl font-bold mb-4">
+            <h2 className="text-ivory text-3xl md:text-5xl font-light tracking-tight mb-4">
               PROCES TRANSFORMACJI
             </h2>
           </div>
@@ -88,7 +88,7 @@ export default function Protocol() {
               <span className="font-heading font-light text-accent text-sm tracking-widest uppercase mb-2">
                 Faza {step.num}
               </span>
-              <h2 className="font-heading text-ivory text-4xl md:text-6xl font-bold uppercase leading-tight">
+              <h2 className="font-heading text-ivory text-4xl md:text-6xl font-light tracking-tight uppercase leading-tight">
                 {step.title}
               </h2>
               <p className="font-heading text-ivory/60 text-base md:text-lg max-w-2xl leading-relaxed mt-4 normal-case">

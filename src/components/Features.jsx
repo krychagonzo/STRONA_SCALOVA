@@ -24,16 +24,16 @@ export default function Features() {
     <section id="features" className="relative w-full py-32 px-6 bg-obsidian text-ivory flex justify-center z-10">
       <div className="max-w-3xl lg:max-w-5xl w-full">
         <div className="text-center mb-20 uppercase tracking-widest font-heading">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-ivory text-3xl md:text-5xl font-bold mb-4"
+            className="text-ivory text-3xl md:text-5xl font-light tracking-tight mb-4"
           >
             TWÓJ BIZNES <span className="text-accent ml-1">ZWALNIA?</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -45,7 +45,7 @@ export default function Features() {
         </div>
 
         <div className="relative">
-          <motion.div 
+          <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -60,7 +60,7 @@ export default function Features() {
                     <TrendingDown className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-bold uppercase text-ivory group-hover:text-accent transition">PRZEPALANE BUDŻETY</h2>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">PRZEPALANE BUDŻETY</h2>
                     <p className="text-sm text-ivory/50 font-light">Słabe kampanie Ads i brak optymalizacji to dziesiątki tysięcy złotych wyrzucane w błoto każdego miesiąca.</p>
                   </div>
                 </CardContent>
@@ -75,7 +75,7 @@ export default function Features() {
                     <Filter className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-bold uppercase text-ivory group-hover:text-accent transition">DZIURAWA SPRZEDAŻ</h2>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">DZIURAWA SPRZEDAŻ</h2>
                     <p className="text-sm text-ivory/50 font-light">Gorące leady uciekają do konkurencji, bo Twoje oferty i skrypty nie potrafią bezwzględnie domknąć transakcji.</p>
                   </div>
                 </CardContent>
@@ -90,7 +90,7 @@ export default function Features() {
                     <EyeOff className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-bold uppercase text-ivory group-hover:text-accent transition">DEFICYT AUTORYTETU</h2>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">DEFICYT AUTORYTETU</h2>
                     <p className="text-sm text-ivory/50 font-light">Tracisz zlecenia premium, bo Twojej marce brakuje unikalnej identyfikacji, profesjonalnego logo, nowoczesnego wideo czy wizualizacji 3D. Klienci z góry negocjują cenę, zamiast docenić Waszą jakość.</p>
                   </div>
                 </CardContent>
@@ -105,7 +105,7 @@ export default function Features() {
                     <Globe className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-bold uppercase text-ivory group-hover:text-accent transition">NIEWIDZIALNA MARKA</h2>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">NIEWIDZIALNA MARKA</h2>
                     <p className="text-sm text-ivory/50 font-light max-w-sm mx-auto">Klienci szukają Twoich usług w sieci, ale znajdują wyłącznie konkurencję. Brak nowoczesnej strony i strategii cyfrowej to dobrowolna rezygnacja z części rynku.</p>
                   </div>
                 </CardContent>
@@ -120,8 +120,8 @@ export default function Features() {
                     <Hourglass className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-bold uppercase text-ivory transition">RĘCZNE PROCESY</h2>
-                    <p className="text-sm text-ivory/50 font-light max-w-sm mx-auto">Twój zespół spala się na powtarzalnych zadaniach.<br/>Brak integracji systemów brutalnie hamuje skalowanie.</p>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory transition">RĘCZNE PROCESY</h2>
+                    <p className="text-sm text-ivory/50 font-light max-w-sm mx-auto">Twój zespół spala się na powtarzalnych zadaniach.<br />Brak integracji systemów brutalnie hamuje skalowanie.</p>
                   </div>
                 </CardContent>
               </Card>

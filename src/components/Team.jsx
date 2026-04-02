@@ -40,7 +40,7 @@ export default function Team() {
         
         {/* Section Header */}
         <div ref={headerRef} className="flex flex-col items-center text-center mb-16 md:mb-20 uppercase tracking-widest font-heading px-6">
-          <h2 className="text-ivory text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-ivory text-3xl md:text-5xl font-light tracking-tight mb-4">
             LUDZIE, KTÓRZY BUDUJĄ <span className="text-accent">PRZEWAGĘ.</span>
           </h2>
           <p className="text-ivory/50 mt-6 text-sm max-w-2xl mx-auto normal-case tracking-normal">
