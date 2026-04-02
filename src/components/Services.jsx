@@ -242,7 +242,7 @@ export default function Services() {
                       onClick={scrollToCTA}
                       className="py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
                     >
-                      ZAREZERWUJ KONSULTACJĘ
+                      kutas dupa
                     </button>
                   </div>
                 </div>
