@@ -17,6 +17,9 @@ export default {
         drama: ['"DM Serif Display"', 'serif'],
         data: ['"JetBrains Mono"', 'monospace'],
         sans: ['"Satoshi"', 'sans-serif'],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))',
       }
     },
   },
