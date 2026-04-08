@@ -28,14 +28,12 @@ export default function Philosophy() {
    return (
       <section id="proof" ref={sectionRef} className="relative w-full py-16 overflow-hidden bg-obsidian flex flex-col items-center">
          {/* Subtle Background Elements */}
-         <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] pointer-events-none"></div>
-         <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-slate/5 rounded-full blur-[120px] pointer-events-none"></div>
+
 
          <div className="relative z-10 w-full max-w-6xl mx-auto px-6">
 
-            {/* Header Section */}
             <div className="text-center mb-14 flex flex-col items-center">
-               <h2 className="fade-up-element font-heading font-light text-4xl sm:text-5xl md:text-6xl tracking-tight text-ivory drop-shadow-md uppercase leading-[1.05]">
+               <h2 className="fade-up-element text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
                   JEDEN SYSTEM. CZTERY FILARY.
                </h2>
             </div>
@@ -51,7 +49,7 @@ export default function Philosophy() {
                </div>
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
-                  <div className="absolute w-64 h-64 rounded-full bg-gradient-radial from-white/[0.07] to-transparent blur-2xl pointer-events-none"></div>
+                  <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
                   <img src="/SPRZEDAZ.png" alt="Sprzedaż" className="w-full max-w-xs relative z-10" />
                </div>
             </div>
@@ -67,7 +65,7 @@ export default function Philosophy() {
                </div>
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
-                  <div className="absolute w-64 h-64 rounded-full bg-gradient-radial from-white/[0.07] to-transparent blur-2xl pointer-events-none"></div>
+                  <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
                   <img src="/WIDOCZNOSC.png" alt="Widoczność w Sieci" className="w-full max-w-xs relative z-10" />
                </div>
             </div>
@@ -83,7 +81,7 @@ export default function Philosophy() {
                </div>
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
-                  <div className="absolute w-64 h-64 rounded-full bg-gradient-radial from-white/[0.07] to-transparent blur-2xl pointer-events-none"></div>
+                  <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
                   <img src="/AUTOMATYZACJA.png" alt="Automatyzacje" className="w-full max-w-xs relative z-10" />
                </div>
             </div>
@@ -110,7 +108,7 @@ export default function Philosophy() {
                </div>
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
-                  <div className="absolute w-64 h-64 rounded-full bg-gradient-radial from-white/[0.07] to-transparent blur-2xl pointer-events-none"></div>
+                  <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
                   <img src="/MARKETING.png" alt="Marketing" className="w-full max-w-xs relative z-10" />
                </div>
             </div>

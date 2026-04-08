@@ -29,7 +29,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-ivory text-3xl md:text-5xl font-light tracking-tight mb-4"
+            className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase"
           >
             TWÓJ BIZNES <span className="text-accent ml-1">ZWALNIA?</span>
           </motion.h2>

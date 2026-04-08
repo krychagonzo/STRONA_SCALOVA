@@ -20,6 +20,7 @@ function App() {
       <LogoCloud />
       <Features />
       <ScalingDefinition />
+      <div className="h-32 md:h-48 w-full" />
       <Philosophy />
       <Services />
       <Protocol />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import InteractiveDotGrid from './ui/InteractiveDotGrid';
 import { Globe, Megaphone, MonitorPlay, Settings, TrendingUp, Cpu, Palette, Phone } from 'lucide-react';
 
 const servicesList = [
@@ -66,14 +67,22 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
+      staggerChildren: 0.15
+    }
+  },
+  exit: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: 1
     }
   }
 };
 
 const item = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.3 } }
 };
 
 export default function Services() {
@@ -88,6 +97,15 @@ export default function Services() {
     }
   }, [selectedService]);
 
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const logoY = useTransform(scrollYProgress, [0, 1], [-150, -850]);
+  const logoRotate = useTransform(scrollYProgress, [0, 1], [-5, 15]);
+
   const scrollToCTA = () => {
     const ctaSection = document.getElementById('footer-cta');
     if (ctaSection) {
@@ -96,159 +114,201 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="w-full bg-[linear-gradient(to_bottom,transparent_0%,#0c0c0c_15%,#0c0c0c_85%,transparent_100%)] py-32 px-6 flex justify-center relative overflow-x-hidden">
+    <section 
+      id="services" 
+      ref={sectionRef} 
+      className="w-full bg-[linear-gradient(to_bottom,#1a1a1a_0%,#0c0c0c_100%)] py-32 px-6 flex justify-center relative overflow-x-hidden"
+      style={{ 
+        maskImage: 'linear-gradient(to bottom, transparent, black 300px, black calc(100% - 150px), transparent)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 300px, black calc(100% - 150px), transparent)'
+      }}
+    >
+      {/* Interactive Radial Dot Matrix Background */}
+      <div className="absolute inset-0 flex justify-center w-full h-full z-0 opacity-40">
+        <div 
+          className="w-full h-full"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent), linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent), linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
+            WebkitMaskComposite: 'source-in',
+            maskComposite: 'intersect'
+          }}
+        >
+          <div
+            className="w-full h-full"
+            style={{
+              maskImage: 'radial-gradient(ellipse 60% 60% at center, transparent 35%, black 65%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at center, transparent 35%, black 65%)'
+            }}
+          >
+            <InteractiveDotGrid />
+          </div>
+        </div>
+      </div>
 
 
-
-      <div className="max-w-[1440px] w-full flex flex-col items-center flex-1 relative z-[2]">
+      <div className="max-w-[1640px] w-full flex flex-col items-center flex-1 relative z-[2]">
 
         {/* Header - ukrywa się powoli gdy jesteśmy w detalach */}
         <motion.div
-          className="text-center mb-16 uppercase tracking-widest font-heading px-6"
+          className="w-full px-6 md:px-12 mb-16 uppercase tracking-widest font-heading flex flex-col items-center text-center"
           animate={{ opacity: selectedService !== null ? 0.2 : 1 }}
           transition={{ duration: 0.4 }}
         >
-          <h2 className="text-ivory text-3xl md:text-5xl font-light tracking-tight mb-4">
-            OBSZARY NASZEGO WSPARCIA
-          </h2>
-          <p className="text-ivory/50 mt-6 text-sm max-w-2xl mx-auto normal-case tracking-normal">Nie doradzamy z boku. Instalujemy w Twojej firmie konkretne narzędzia i procesy – od nowoczesnego wizerunku po bezobsługową sprzedaż – które od pierwszego dnia pracują na Twój wynik.</p>
+          <div className="w-full relative flex flex-col justify-center items-center min-h-[100px] lg:min-h-[140px] mb-8 lg:mb-12">
+            <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] relative z-10 pointer-events-none w-full uppercase">
+              OBSZARY NASZEGO WSPARCIA
+            </h2>
+            <motion.img 
+              src="/LOGO_3D.png" 
+              alt="" 
+              style={{ y: logoY, rotate: logoRotate }}
+              className="absolute -right-20 md:-right-32 lg:-right-48 top-[75%] -translate-y-1/2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] h-auto z-0 pointer-events-none opacity-20 md:opacity-40 lg:opacity-100 object-contain" 
+            />
+          </div>
+          <p className="text-ivory/70 mt-6 text-base md:text-lg xl:text-xl max-w-4xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
+            Nie doradzamy z boku. Instalujemy w Twojej firmie konkretne narzędzia i procesy – od nowoczesnego wizerunku po bezobsługową sprzedaż – które od pierwszego dnia pracują na Twój wynik.
+          </p>
         </motion.div>
 
         {/* Dynamiczny Kontener - Animacja Przejścia */}
         <div ref={containerRef} className="relative w-full flex-1 flex flex-col justify-center items-center">
-          <AnimatePresence mode="wait">
-            {selectedService === null ? (
-              // GRID VIEW
-              <motion.div
-                key="grid"
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-50px" }}
-                exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-2 lg:px-4"
-              >
-                {servicesList.map((service, idx) => {
-                  const Icon = service.icon;
-                  return (
-                    <motion.div
-                      layoutId={`service-card-${idx}`}
-                      key={idx}
-                      variants={item}
-                      className="group h-full w-full rounded-none border border-slate/50 bg-[#131313] shadow-xl p-8 flex flex-col transition-all duration-500 hover:bg-accent hover:border-obsidian/20 relative overflow-hidden cursor-pointer"
-                      onClick={() => setSelectedService(idx)}
-                    >
-                      {/* Ikona SVG (Lucide) */}
-                      <motion.div
-                        layoutId={`service-icon-${idx}`}
-                        className="mb-8 text-ivory/40 group-hover:text-obsidian/70 transition-all duration-500"
-                      >
-                        <Icon className="w-10 h-10" strokeWidth={1.5} />
-                      </motion.div>
+          <div className="relative w-full">
+            
+            {/* BAZOWA SIATKA (W TLE) */}
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-6 md:px-12 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
+              {servicesList.map((service, idx) => {
+                const Icon = service.icon;
+                const isSelected = selectedService === idx;
+                const isHidden = selectedService !== null && !isSelected;
 
-                      <motion.h3 layoutId={`service-title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-lg mb-4 uppercase h-20 leading-tight">
+                return (
+                  <motion.div
+                    layoutId={`wrapper-${idx}`}
+                    key={`base-card-${idx}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: isHidden ? 0 : isSelected ? 0 : 1, y: 0 }}
+                    transition={{ 
+                      duration: isHidden ? 0.2 : 0.4, 
+                      delay: isHidden ? idx * 0.04 : 0,
+                      layout: { duration: isSelected ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }
+                    }}
+                    className="group aspect-square w-full rounded-none border border-white/5 bg-[#0c0c0c] p-6 xl:p-8 flex flex-col justify-between hover:bg-accent hover:border-accent hover:-translate-y-2 cursor-pointer transition-all duration-500 overflow-hidden relative"
+                    onClick={() => setSelectedService(idx)}
+                  >
+                    <div className="flex flex-col">
+                      <motion.div layoutId={`icon-${idx}`} className="mb-8 text-ivory/40 group-hover:text-obsidian transition-all duration-500">
+                        <Icon className="w-10 h-10 xl:w-12 xl:h-12" strokeWidth={1.5} />
+                      </motion.div>
+                      <motion.h3 layoutId={`title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-xl md:text-2xl xl:text-[28px] uppercase leading-tight relative z-10">
                         {service.title}
                       </motion.h3>
+                    </div>
 
-                      <p className="font-heading text-ivory/50 group-hover:text-obsidian/80 text-xs leading-relaxed h-16 transition-colors duration-500">
-                        {service.desc}
-                      </p>
-
-                      <button
-                        className="self-start py-2.5 px-6 border border-slate/50 text-xs font-heading font-medium uppercase tracking-widest text-ivory/60 rounded-lg transition-all duration-500 group-hover:border-obsidian/30 group-hover:text-obsidian mt-auto relative z-10"
-                      >
-                        PODGLĄD
-                      </button>
-                    </motion.div>
-                  )
-                })}
-              </motion.div>
-            ) : (
-              // EXPANDED DETAILS VIEW
-              <motion.div
-                layoutId={`service-card-${selectedService}`}
-                key="details"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full relative rounded-none p-8 md:p-14 lg:p-20 flex flex-col md:flex-row gap-12 lg:gap-24 transition-all shadow-[0_0_80px_rgba(212,255,0,0.08)_inset] overflow-hidden"
-                style={{
-                  background: "rgba(20, 20, 20, 0.4)",
-                  backdropFilter: "blur(16px)",
-                  WebkitBackdropFilter: "blur(16px)",
-                  borderTop: "1px solid rgba(212,255,0,0.3)",
-                  borderLeft: "1px solid rgba(212,255,0,0.3)"
-                }}
-              >
-                {/* Ozdobne cyber-linie w narożnikach pełnego okna */}
-                <div className="absolute top-0 right-0 w-[1px] h-32 bg-gradient-to-b from-accent/0 via-accent/60 to-accent/0"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-[1px] bg-gradient-to-r from-accent/0 via-accent/60 to-accent/0"></div>
-
-                {/* Lewa kolumna: tytuł i checkmarki */}
-                <div className="flex-1 flex flex-col relative z-10">
-                  <motion.div layoutId={`service-icon-${selectedService}`} className="mb-6 md:mb-10 text-accent drop-shadow-[0_0_15px_rgba(212,255,0,0.6)]">
-                    {React.createElement(servicesList[selectedService].icon, { className: "w-14 h-14", strokeWidth: 1.5 })}
+                    <div className="flex items-center gap-2 text-ivory/30 group-hover:text-obsidian transition-all duration-500 mt-8 relative z-10 transition-transform group-hover:translate-x-1">
+                      <span className="font-heading text-[10px] tracking-[0.3em] uppercase">WIĘCEJ</span>
+                      <div className="w-6 h-[1px] bg-current"></div>
+                    </div>
                   </motion.div>
+                )
+              })}
+            </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0, transition: { delay: 0.1 } }}
-                    className="font-heading font-light text-accent/80 text-xs tracking-[0.2em] mb-4 border border-accent/20 bg-accent/5 inline-block self-start px-3 py-1"
+            {/* OVERLAY: POWIĘKSZONY KAFELEK */}
+            <AnimatePresence>
+              {selectedService !== null && (
+                <motion.div
+                  layoutId={`wrapper-${selectedService}`}
+                  className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 p-8 md:p-14 lg:p-20 flex flex-col md:flex-row gap-12 lg:gap-24 shadow-[0_0_80px_rgba(212,255,0,0.08)_inset] overflow-hidden"
+                  transition={{ layout: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }}
+                  style={{
+                    background: "rgba(12, 12, 12, 0.95)",
+                    backdropFilter: "blur(24px)",
+                    WebkitBackdropFilter: "blur(24px)",
+                    borderTop: "1px solid rgba(255,255,255,0.05)",
+                    borderLeft: "1px solid rgba(255,255,255,0.05)",
+                  }}
+                >
+                  <motion.div 
+                    initial={{ opacity: 0 }} 
+                    animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.3 } }}
+                    exit={{ opacity: 0, transition: { duration: 0 } }}
+                    className="w-full flex justify-between flex-col md:flex-row gap-12 lg:gap-24 relative z-10"
                   >
-                    SEKCJA WDROŻENIOWA
-                  </motion.div>
-                  <motion.h3 layoutId={`service-title-${selectedService}`} className="text-ivory font-heading font-light tracking-tight text-3xl md:text-5xl mb-8 uppercase text-balance leading-tight">
-                    {servicesList[selectedService].title}
-                  </motion.h3>
+                    {/* Ozdobne cyber-linie w narożnikach */}
+                    <div className="absolute -top-20 -right-20 w-[1px] h-32 bg-gradient-to-b from-accent/0 via-accent/60 to-accent/0"></div>
+                    <div className="absolute -bottom-20 -left-20 w-32 h-[1px] bg-gradient-to-r from-accent/0 via-accent/60 to-accent/0"></div>
 
-                  <div className="flex flex-col gap-5 border-t border-slate/40 pt-8 mt-auto">
-                    {servicesList[selectedService].features.map((feat, fIdx) => (
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 + (fIdx * 0.1) }}
-                        key={fIdx}
-                        className="flex items-center gap-4 text-base font-heading font-medium text-ivory/90"
-                      >
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="text-accent shrink-0 drop-shadow-[0_0_8px_rgba(212,255,0,0.4)]">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span>{feat}</span>
+                    {/* Lewa kolumna: logotyp, title, checkmarki */}
+                    <div className="flex-1 flex flex-col relative z-10">
+                      <motion.div layoutId={`icon-${selectedService}`} className="mb-6 md:mb-10 text-accent drop-shadow-[0_0_15px_rgba(212,255,0,0.6)]">
+                        {React.createElement(servicesList[selectedService].icon, { className: "w-14 h-14", strokeWidth: 1.5 })}
                       </motion.div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Prawa kolumna: Rozbudowany opis + przyciski */}
-                <div className="flex-[1.2] flex flex-col justify-center relative z-10 pt-4 md:pt-[104px]">
-                  <div className="mb-14">
-                    <h4 className="font-heading font-bold text-xl text-ivory mb-6 tracking-wide uppercase border-l-2 border-accent pl-4">Opis Obszaru Operacyjnego</h4>
-                    <p className="font-sans text-ivory/70 text-lg md:text-[19px] leading-relaxed text-balance">
-                      {servicesList[selectedService].extendedDesc}
-                    </p>
-                  </div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0, transition: { delay: 0.4 } }}
+                        className="font-heading font-light text-accent/80 text-xs tracking-[0.2em] mb-4 border border-accent/20 bg-accent/5 inline-block self-start px-3 py-1"
+                      >
+                        SEKCJA WDROŻENIOWA
+                      </motion.div>
+                      
+                      <motion.h3 layoutId={`title-${selectedService}`} className="text-ivory font-heading font-light tracking-tight text-3xl md:text-5xl mb-8 uppercase text-balance leading-tight">
+                        {servicesList[selectedService].title}
+                      </motion.h3>
 
-                  {/* Przyciski Akcji */}
-                  <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                    <button
-                      onClick={() => setSelectedService(null)}
-                      className="group py-4 px-8 bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-heading font-bold uppercase tracking-widest text-ivory/80 rounded-lg transition-all duration-300 hover:border-ivory/30 hover:bg-white/10 flex-1 sm:flex-none flex items-center justify-center gap-3 relative overflow-hidden"
+                      <div className="flex flex-col gap-5 border-t border-slate/40 pt-8 mt-auto">
+                        {servicesList[selectedService].features.map((feat, fIdx) => (
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.4 + (fIdx * 0.1) }}
+                            key={fIdx}
+                            className="flex items-center gap-4 text-base font-heading font-medium text-ivory/90"
+                          >
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="text-accent shrink-0 drop-shadow-[0_0_8px_rgba(212,255,0,0.4)]">
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>{feat}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Prawa kolumna: Rozbudowany opis + przyciski */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
+                        className="flex-[1.2] flex flex-col justify-center relative z-10 pt-4 md:pt-[104px]"
                     >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
-                      WRÓC
-                    </button>
-                    <button
-                      onClick={scrollToCTA}
-                      className="py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
-                    >
-                      ZAREZERWUJ KONSULTACJĘ
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                      <div className="mb-14">
+                        <h4 className="font-heading font-bold text-xl text-ivory mb-6 tracking-wide uppercase border-l-2 border-accent pl-4">Opis Obszaru Operacyjnego</h4>
+                        <p className="font-sans text-ivory/70 text-lg md:text-[19px] leading-relaxed text-balance">
+                          {servicesList[selectedService].extendedDesc}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setSelectedService(null); }}
+                          className="group py-4 px-8 bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-heading font-bold uppercase tracking-widest text-ivory/80 rounded-lg transition-all duration-300 hover:border-ivory/30 hover:bg-white/10 flex-1 sm:flex-none flex items-center justify-center gap-3 relative overflow-hidden"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
+                          WRÓĆ
+                        </button>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
+                          className="py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
+                        >
+                          ZAREZERWUJ KONSULTACJĘ
+                        </button>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
       </div>
