@@ -298,9 +298,10 @@ export default function Services() {
                         </button>
                         <button
                           onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
-                          className="py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
+                          className="group relative overflow-hidden py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
                         >
-                          ZAREZERWUJ KONSULTACJĘ
+                          <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none"></div>
+                          <span className="relative z-10">ZAREZERWUJ KONSULTACJĘ</span>
                         </button>
                       </div>
                     </motion.div>

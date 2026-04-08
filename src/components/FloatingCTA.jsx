@@ -60,6 +60,7 @@ export default function FloatingCTA() {
         className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-xs md:text-sm pl-8 pr-1.5 py-0.5 md:pl-10 md:pr-2 md:py-1 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.1] shadow-2xl shadow-accent/20 border border-accent/50"
         style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
       >
+        <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none"></div>
         <span className="relative z-10 flex items-center gap-4 md:gap-8 whitespace-nowrap">
           <span className="translate-y-[1px]">Zarezerwuj konsultację</span>
           <img src="/LOGO_BLACK.png" alt="Arrow" className="h-10 md:h-[48px] scale-150 md:scale-[2] w-auto object-contain transition-transform duration-300 group-hover:translate-x-1" />
