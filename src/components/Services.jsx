@@ -5,59 +5,75 @@ import { Globe, Megaphone, MonitorPlay, Settings, TrendingUp, Cpu, Palette, Phon
 
 const servicesList = [
   {
-    title: "Platformy Web & AI Chatboty",
-    desc: "Nieziemsko szybkie witryny ze zintegrowanymi asystentami wyłapującymi leady 24/7.",
-    features: ["Błyskawiczne ładowanie UX/UI", "Autonomiczna kwalifikacja zapytań", "Architektura najwyższej konwersji"],
-    extendedDesc: "Projektujemy środowiska internetowe, które działają jak Twoi najlepsi handlowcy. Budujemy bezkompromisowe i szybkie platformy wyposażone w dedykowane modele AI. Asystent automatycznie opiekuje się odwiedzającymi, odpowiada na techniczne pytania i kwalifikuje leady, zamieniając stronę w maszynę do wyników.",
+    title: "Strona & AI-asystent",
+    tag: "Web",
+    desc: "Zamiast strony, która tylko wygląda — platforma, która pozyskuje leady 24/7, nawet gdy śpisz.",
+    extendedDesc: "Zamiast strony, która tylko wygląda — platforma, która pozyskuje leady 24/7, nawet gdy śpisz.",
+    features: ["Chatbot kwalifikuje zapytania", "Ładowanie poniżej 1,5s"],
+    metricContent: "Chatbot kwalifikuje zapytania zanim Ty je zobaczysz. Ładowanie <1,5s.",
     icon: Globe
   },
   {
-    title: "Kampanie reklamowe i posty organiczne",
-    desc: "Precyzyjnie celowane reklamy optymalizowane pod jak najwyższy zwrot (ROI).",
-    features: ["Maksymalizacja ROAS w Ads", "Retargeting wielokanałowy", "Budowa organicznego zaangażowania"],
-    extendedDesc: "Przepalamy kompromisy, nie budżety reklamowe. Tworzymy i bezwzględnie optymalizujemy kampanie w środowiskach Meta oraz Google. Jednocześnie spójnie prowadzimy kanały organiczne, trafiając wyłącznie do osób o najwyższej intencji zakupowej.",
+    title: "Kampanie & Organic",
+    tag: "Performance",
+    desc: "Zamiast budżetu wrzuconego w reklamę — każda złotówka śledzona do konkretnej sprzedaży.",
+    extendedDesc: "Zamiast budżetu wrzuconego w reklamę — każda złotówka śledzona do konkretnej sprzedaży.",
+    features: ["Optymalizacja pod ROAS", "Raporty co tydzień"],
+    metricContent: "Optymalizacja pod ROAS, nie pod kliknięcia. Raporty co tydzień.",
     icon: Megaphone
   },
   {
-    title: "Content & Kreacje wizualne",
-    desc: "Uderzające produkcje i grafiki budujące status niepodważalnego lidera.",
-    features: ["Profesjonalne wideo promocyjne", "Wysokiej klasy fotografia cyfrowa", "Content na media społecznościowe"],
-    extendedDesc: "Jeśli nie przykujesz uwagi klienta w 3 sekundy, tracisz go bezpowrotnie. Tworzymy absolutnie światowej klasy materiały wideo, spójny content reklamowy i wizualizacje, które w ułamku sekundy budują w podświadomości klienta autorytet, usprawiedliwiając rynkowe pozycjonowanie premium.",
+    title: "Content & Kreacje",
+    tag: "Wizerunek",
+    desc: "Zamiast postów 'dla algorytmu' — materiały, które ustawiają Cię jako oczywisty wybór w branży.",
+    extendedDesc: "Zamiast postów 'dla algorytmu' — materiały, które ustawiają Cię jako oczywisty wybór w branży.",
+    features: ["Pozycja eksperta", "Content oparty na danych"],
+    metricContent: "Pozycja eksperta budowana regularnym contentem opartym na danych.",
     icon: MonitorPlay
   },
   {
-    title: "Automatyzacje procesów wewnętrznych",
-    desc: "Połączenie rozproszonych aplikacji w jeden, bezbłędny, bezobsługowy organizm.",
-    features: ["Integracje API i Webhooks", "Eliminacja przepisywania danych", "Oszczędność tysięcy godzin rocznie"],
-    extendedDesc: "Zdejmij z zespołu żmudną, wyniszczającą pracę operacyjną. Tworzymy niewidzialne mosty systemowe. Faktury wysyłane z automatu? Leady automatycznie przypisywane do kalendarza CRM odpowiedniego handlowca? Wszystko procesowane jest 24/7 na backendzie.",
+    title: "Automatyzacje",
+    tag: "Operacje",
+    desc: "Zamiast 5 aplikacji, które ze sobą nie gadają — jeden system, który działa bez Twojego udziału.",
+    extendedDesc: "Zamiast 5 aplikacji, które ze sobą nie gadają — jeden system, który działa bez Twojego udziału.",
+    features: ["Łączymy CRM, faktury i raporty", "Pełna automatyzacja procesów"],
+    metricContent: "Łączymy CRM, faktury, powiadomienia i raporty w jedno.",
     icon: Settings
   },
   {
-    title: "Szkolenia sprzedażowe i optymalizacja ofert",
-    desc: "Edukacja zespołu i układanie ofert, podnoszące statystyki zamykanych transakcji.",
-    features: ["Skrypty i protokoły handlowe", "Warsztaty zamykania procesów", "Redesign ofert (Pitch Deck)"],
-    extendedDesc: "Szkolimy Twoje kadry do bezwzględnego egzekwowania celów finansowych. Dostarczamy twarde procedury rozmów B2B oraz strukturyzujemy proces przygotowywania ofert. Standardowy plik PDF zmieniamy w interaktywną pułapkę konwersyjną, której nikt nie odmówi.",
+    title: "Sprzedaż & Oferta",
+    tag: "Przychody",
+    desc: "Zamiast ofert, które 'pójdą do akceptacji' — pitch, który zamyka na pierwszym spotkaniu.",
+    extendedDesc: "Zamiast ofert, które 'pójdą do akceptacji' — pitch, który zamyka na pierwszym spotkaniu.",
+    features: ["Szkolenie handlowe zespołu", "Przebudowa oferty pod wyższy win-rate"],
+    metricContent: "Szkolenie + przebudowa oferty pod wyższy win-rate.",
     icon: TrendingUp
   },
   {
-    title: "Wdrażanie AI do firm",
-    desc: "Bezproblemowa implementacja sztucznej inteligencji napędzającej rynkową przewagę.",
-    features: ["Modele językowe LLM", "Chatboty asystenckie B2B", "Analiza big data na życzenie"],
-    extendedDesc: "Nie pozwól systemom opartym na sztucznej inteligencji stać się wyłącznie przewagą Twojej konkurencji. Wprowadzamy w Twoje szeregi potężne narzędzia AI, które redukują zapotrzebowanie na powtarzalną pracę operacyjną, tną koszty i pomagają analizować rynkowe wzorce.",
+    title: "AI w firmie",
+    tag: "Technologia",
+    desc: "Zamiast 'eksperymentowania z AI' — konkretne narzędzia działające w Twoich procesach od pierwszego tygodnia.",
+    extendedDesc: "Zamiast 'eksperymentowania z AI' — konkretne narzędzia działające w Twoich procesach od pierwszego tygodnia.",
+    features: ["Wdrożenie bez chaosu", "Twój zespół wie, jak używać AI"],
+    metricContent: "Wdrożenie bez chaosu. Twój zespół wie jak używać, nie tylko co to jest.",
     icon: Cpu
   },
   {
-    title: "Identyfikacje wizualne",
-    desc: "Księgi znaku i bezkompromisowy branding do pozycjonowania marek High-End.",
-    features: ["Unikalne, ponadczasowe logo", "Katalogi do spójności Brand Book", "Pełna kolorystyka i fonty"],
-    extendedDesc: "W świecie szybkich decyzji, profesjonalizm poznaje się po okładce. Opracowujemy totalną spójność wizualną całej firmy. Prestiżowy i surowy branding oddzielający na pierwszy rzut oka markę wybitną od amatorskiej konkurencji.",
+    title: "Identyfikacja wizualna",
+    tag: "Marka",
+    desc: "Zamiast logo, które 'jakoś wyglądało' — branding, który pozycjonuje Cię jako premium bez słowa wyjaśnienia.",
+    extendedDesc: "Zamiast logo, które 'jakoś wyglądało' — branding, który pozycjonuje Cię jako premium bez słowa wyjaśnienia.",
+    features: ["Pełna księga znaku", "Wytyczne dla każdego touchpointu"],
+    metricContent: "Pełna księga znaku + wytyczne dla każdego touchpointu.",
     icon: Palette
   },
   {
     title: "Złoty numer",
-    desc: "Bezpośredni i natychmiastowo zapadający w pamięć kluczowy punkt styku z marką.",
-    features: ["Zapamiętywalność numeru VIP", "Budowa natychmiastowej wielkości", "Zaufanie w B2B"],
-    extendedDesc: "Złote, powtarzalne numery telefoniczne są ułamkiem budowania monumentalnego wizerunku wielkiej stabilnej firmy. Klienci intuicyjnie bardziej ufają organizacjom, które pod każdym możliwym względem komunikacyjnym okazują rzetelność, profesjonalizm i dbają o prestiż na pierwszej linii frontu.",
+    tag: "Rozpoznawalność",
+    desc: "Zamiast numeru, który nikt nie pamięta — jeden numer, który zostaje w głowie od pierwszego kontaktu.",
+    extendedDesc: "Zamiast numeru, który nikt nie pamięta — jeden numer, który zostaje w głowie od pierwszego kontaktu.",
+    features: ["Kluczowy punkt styku z marką", "Zapada w pamięć błyskawicznie"],
+    metricContent: "Kluczowy punkt styku z marką. Zapada w pamięć, zanim klient zdąży zapisać kontakt.",
     icon: Phone
   }
 ];
@@ -157,7 +173,7 @@ export default function Services() {
         >
           <div className="w-full relative flex flex-col justify-center items-center min-h-[100px] lg:min-h-[140px] mb-8 lg:mb-12">
             <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] relative z-10 pointer-events-none w-full uppercase">
-              OBSZARY NASZEGO WSPARCIA
+              Co wdrażamy w Twojej firmie.
             </h2>
             <motion.img 
               src="/LOGO_3D.png" 

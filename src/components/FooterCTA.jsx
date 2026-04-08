@@ -42,10 +42,10 @@ export default function FooterCTA() {
         {/* Big CTA Content */}
         <section className="max-w-4xl mx-auto text-center sticky top-[15%] pb-40 z-10">
             <h2 className="title-anim font-heading font-light text-4xl md:text-5xl lg:text-[6rem] text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
-                Gotowy na <span className="text-accent underline decoration-ivory/20 underline-offset-[12px]">skalowanie?</span>
+                Przestań walczyć z rynkiem. Zainstaluj system, który go <span className="text-accent underline decoration-ivory/20 underline-offset-[12px]">zdominuje.</span>
             </h2>
             <p className="description-anim font-sans text-lg md:text-xl text-ivory/60 mb-12 max-w-2xl mx-auto leading-relaxed">
-                Zarezerwuj 20-minutową, konkretną konsultację strategiczną i dowiedz się, co dokładnie blokuje Twój wzrost.
+                Nie czekaj! Umów bezpłatną konsultację, aby dowiedzieć się, gdzie tracisz czas i uciekają Twoi klienci.
             </p>
 
           <button
@@ -54,7 +54,7 @@ export default function FooterCTA() {
           >
             <div className="absolute inset-0 w-full h-full bg-white/20 origin-left -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></div>
             <span className="relative z-10 flex items-center justify-center gap-4">
-              ZAREZERWUJ KONSULTACJĘ
+              ODBIERZ BEZPŁATNY PLAN DZIAŁANIA
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
             </span>
           </button>

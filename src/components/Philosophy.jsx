@@ -44,7 +44,7 @@ export default function Philosophy() {
                   <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Filar 01</span>
                   <h3 className="font-heading font-light text-5xl md:text-6xl mb-6 text-ivory drop-shadow-md uppercase tracking-tight">Sprzedaż</h3>
                   <p className="font-sans text-lg text-ivory/60 leading-relaxed">
-                     Gotowe lejki i skrypty sprzedażowe, które 24/7 zamieniają zebrany ruch w domknięte transakcje.
+                     Gotowe lejki i skrypty sprzedażowe, które 24/7 zamieniają potencjalnych klientów w domknięte transakcje.
                   </p>
                </div>
 
@@ -60,7 +60,7 @@ export default function Philosophy() {
                   <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Filar 02</span>
                   <h3 className="font-heading font-light text-5xl md:text-6xl mb-6 text-ivory drop-shadow-md uppercase tracking-tight">Widoczność w Sieci</h3>
                   <p className="font-sans text-lg text-ivory/60 leading-relaxed">
-                     Prestiżową platformę internetową i wizerunek, który natychmiastowo pozycjonuje Cię jako lidera.
+                     Strona i wizerunek, które robią pierwsze wrażenie za Ciebie — i sprawiają, że klient przychodzi już przekonany.
                   </p>
                </div>
 
@@ -76,7 +76,7 @@ export default function Philosophy() {
                   <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Filar 03</span>
                   <h3 className="font-heading font-light text-5xl md:text-6xl mb-6 text-ivory drop-shadow-md uppercase tracking-tight">Automatyzacje</h3>
                   <p className="font-sans text-lg text-ivory/60 leading-relaxed">
-                     Inteligentne systemy AI i ułożony CRM, które na zawsze uwalniają firmę od pożeraczy czasu.
+                     Inteligentne systemy AI i ułożony CRM. Zero powtarzalnych zadań, 100% kontroli nad firmą.
                   </p>
                </div>
 

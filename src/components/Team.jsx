@@ -41,10 +41,10 @@ export default function Team() {
         {/* Section Header */}
         <div ref={headerRef} className="flex flex-col items-center text-center mb-16 md:mb-20 uppercase tracking-widest font-heading px-6">
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
-            LUDZIE, KTÓRZY BUDUJĄ <span className="text-accent">PRZEWAGĘ.</span>
+            Zespół, dla którego Twój wynik jest jedyną miarą sukcesu.
           </h2>
           <p className="text-ivory/50 mt-6 text-sm max-w-2xl mx-auto normal-case tracking-normal">
-            Przestań polegać na przypadkowych podwykonawcach. Oddajesz swój biznes w ręce zintegrowanego zespołu inżynierów WWW, specjalistów od AI i strategów B2B, którzy wspólnie realizują jeden, przemyślany protokół.
+            W Scalovie uznajemy tylko jedną miarę sukcesu— czy Twoja firma jest dziś lepsza niż wczoraj.
           </p>
         </div>
 

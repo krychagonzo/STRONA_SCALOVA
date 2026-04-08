@@ -31,7 +31,7 @@ export default function Features() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase"
           >
-            TWÓJ BIZNES <span className="text-accent ml-1">ZWALNIA?</span>
+            TWÓJ BIZNES <span className="text-accent ml-1">TRACI. KAŻDEGO DNIA.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -40,7 +40,7 @@ export default function Features() {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-ivory/50 mt-6 text-sm max-w-2xl mx-auto normal-case tracking-normal"
           >
-            Skalowanie operacji biznesowych przy użyciu wyłącznie zasobów ludzkich i analogowych procesów ma swoje granice. Zidentyfikuj kluczowe luki operacyjne i wizerunkowe, które każdego dnia hamują ekspansję i pochłaniają kapitał.
+            Każda firma osiąga moment, w którym samo dokładanie ludzi i godzin przestaje przynosić efekty. To właśnie wtedy ukryte luki operacyjne i wizerunkowe zaczynają kosztować najwięcej.
           </motion.p>
         </div>
 
@@ -60,8 +60,8 @@ export default function Features() {
                     <TrendingDown className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">PRZEPALANE BUDŻETY</h2>
-                    <p className="text-sm text-ivory/50 font-light">Słabe kampanie Ads i brak optymalizacji to dziesiątki tysięcy złotych wyrzucane w błoto każdego miesiąca.</p>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">PRZEPALONY BUDŻET</h2>
+                    <p className="text-sm text-ivory/50 font-light">Twoje kampanie działają — ale nikt nie sprawdza czy zarabiają. Co miesiąc dziesiątki tysięcy złotych idą w reklamy, które nie zwracają ani złotówki.</p>
                   </div>
                 </CardContent>
               </Card>
@@ -75,8 +75,8 @@ export default function Features() {
                     <Filter className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">DZIURAWA SPRZEDAŻ</h2>
-                    <p className="text-sm text-ivory/50 font-light">Gorące leady uciekają do konkurencji, bo Twoje oferty i skrypty nie potrafią bezwzględnie domknąć transakcji.</p>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">LEADY, KTÓRE UCIEKAJĄ</h2>
+                    <p className="text-sm text-ivory/50 font-light">Ktoś się zainteresował, wypełnił formularz, napisał. I zniknął. Nie do konkurencji — Ty go po prostu zgubiłeś. Zła oferta, za wolna odpowiedź, brak follow-upu.</p>
                   </div>
                 </CardContent>
               </Card>
@@ -90,8 +90,8 @@ export default function Features() {
                     <EyeOff className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">DEFICYT AUTORYTETU</h2>
-                    <p className="text-sm text-ivory/50 font-light">Tracisz zlecenia premium, bo Twojej marce brakuje unikalnej identyfikacji, profesjonalnego logo, nowoczesnego wideo czy wizualizacji 3D. Klienci z góry negocjują cenę, zamiast docenić Waszą jakość.</p>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">MARKA, KTÓREJ NIE WIDAĆ</h2>
+                    <p className="text-sm text-ivory/50 font-light">Klienci szukają tego co sprzedajesz — i trafiają do konkurencji. Nie dlatego, że są lepsi. Dlatego, że ich widać, a Ciebie nie.</p>
                   </div>
                 </CardContent>
               </Card>
@@ -105,8 +105,8 @@ export default function Features() {
                     <Globe className="m-auto size-10 text-accent opacity-90" strokeWidth={1} />
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
-                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">NIEWIDZIALNA MARKA</h2>
-                    <p className="text-sm text-ivory/50 font-light max-w-sm mx-auto">Klienci szukają Twoich usług w sieci, ale znajdują wyłącznie konkurencję. Brak nowoczesnej strony i strategii cyfrowej to dobrowolna rezygnacja z części rynku.</p>
+                    <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory group-hover:text-accent transition">WYGLĄD, KTÓRY KOSZTUJE</h2>
+                    <p className="text-sm text-ivory/50 font-light max-w-sm mx-auto">Zanim powiesz słowo, klient już ocenił Twoją markę. Amatorskie logo, przestarzała strona, brak spójności — i zaczyna negocjować cenę zamiast kupować.</p>
                   </div>
                 </CardContent>
               </Card>
@@ -121,7 +121,7 @@ export default function Features() {
                   </div>
                   <div className="relative z-10 space-y-3 text-center pt-6">
                     <h2 className="text-lg font-heading font-light tracking-tight uppercase text-ivory transition">RĘCZNE PROCESY</h2>
-                    <p className="text-sm text-ivory/50 font-light max-w-sm mx-auto">Twój zespół spala się na powtarzalnych zadaniach.<br />Brak integracji systemów brutalnie hamuje skalowanie.</p>
+                    <p className="text-sm text-ivory/50 font-light max-w-sm mx-auto">Twoi ludzie robią ręcznie to, co można zautomatyzować. Kopiują, przeklejają, przypominają, raportują. Płacisz za czas, który nie tworzy żadnej wartości.</p>
                   </div>
                 </CardContent>
               </Card>

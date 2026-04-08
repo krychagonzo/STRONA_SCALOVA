@@ -3,23 +3,18 @@ import React, { useState } from 'react';
 const steps = [
   {
     num: "01",
-    title: "Audyt i diagnoza firmy",
-    desc: "Rozkładamy Twój obecny model na czynniki pierwsze. Identyfikujemy przestarzałe procesy, dziury w sprzedaży i przepalane budżety, które obecnie blokują Twój wzrost."
+    title: "Zaczynamy od środka.",
+    desc: "Analizujemy Twój model biznesowy, procesy sprzedażowe i marketing — i wskazujemy dokładnie gdzie firma traci czas i pieniądze."
   },
   {
     num: "02",
-    title: "Przedstawienie rozwiązań",
+    title: "Plan i strategia",
     desc: "Prezentujemy konkretny plan działania. Pokazujemy, jak nowa strona, identyfikacja wizualna, celne reklamy i zautomatyzowana sprzedaż zwiększą Twoje przychody."
   },
   {
     num: "03",
-    title: "Wdrożenie i szkolenie",
-    desc: "Instalujemy gotowy ekosystem w Twojej firmie. Wdrażamy wszystkie technologie, uruchamiamy marketing i prowadzimy twarde szkolenia dla Twojego zespołu. Przekazujemy gotowy system, byście od razu mogli zacząć dominować."
-  },
-  {
-    num: "04",
-    title: "Skalowanie wyników",
-    desc: "Monitorujemy wyniki i stale optymalizujemy kampanie. Analizujemy dane, przeprowadzamy testy A/B i rozbudowujemy systemy, by skutecznie maksymalizować zwrot z inwestycji (ROI)."
+    title: "Wdrożenie i przekazanie",
+    desc: "Instalujemy wszystko w Twojej firmie. Technologie, procesy, marketing — uruchamiamy i szkolimy zespół. Wychodzisz z gotowym systemem, który działa od pierwszego dnia."
   }
 ];
 

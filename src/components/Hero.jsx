@@ -89,6 +89,9 @@ export default function Hero() {
             <span className="hero-anim-right gpu-accelerated self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right mt-4 md:mt-0">
               odzyskaj czas.
             </span>
+            <p className="hero-anim-left gpu-accelerated self-center mt-12 md:mt-16 text-center text-ivory/70 text-sm md:text-base font-sans max-w-xl">
+              Przeprowadzamy audyt, usprawniamy firmy od środka, budujemy ich pozycję na zewnątrz.
+            </p>
           </div>
 
 
