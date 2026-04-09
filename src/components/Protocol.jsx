@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -20,11 +24,30 @@ const steps = [
 
 export default function Protocol() {
   const [activeStep, setActiveStep] = useState(0);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: 'top 40%', 
+        end: 'bottom 60%',
+        onUpdate: (self) => {
+          const index = Math.min(Math.floor(self.progress * steps.length), steps.length - 1);
+          setActiveStep(Math.max(0, index));
+        }
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="protocol" className="relative w-full bg-obsidian py-32 md:py-48 px-4 md:px-8 flex flex-col items-center select-none">
+    <section ref={containerRef} id="protocol" className="relative w-full bg-obsidian py-32 md:py-48 px-4 md:px-8 flex flex-col items-center select-none">
       <div className="w-full max-w-[1400px]">
-        <div className="mb-20 md:mb-32 text-center uppercase tracking-widest font-heading px-6">
+        <div className="mb-20 md:mb-32 text-center uppercase tracking-widest font-heading px-6 flex flex-col items-center">
+          <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
+            Metodologia
+          </span>
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
             PROCES TRANSFORMACJI
           </h2>

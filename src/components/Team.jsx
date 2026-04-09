@@ -29,6 +29,7 @@ export default function Team() {
 
   return (
     <section 
+      id="team"
       ref={sectionRef} 
       className="relative w-full py-24 md:py-32 bg-obsidian overflow-hidden"
     >
@@ -40,6 +41,9 @@ export default function Team() {
         
         {/* Section Header */}
         <div ref={headerRef} className="flex flex-col items-center text-center mb-16 md:mb-20 uppercase tracking-widest font-heading px-6">
+          <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
+            Zespół
+          </span>
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
             Zespół, dla którego Twój wynik jest jedyną miarą sukcesu.
           </h2>

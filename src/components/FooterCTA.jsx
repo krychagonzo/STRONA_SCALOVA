@@ -41,7 +41,7 @@ export default function FooterCTA() {
 
         {/* Big CTA Content */}
         <section className="max-w-4xl mx-auto text-center sticky top-[15%] pb-40 z-10">
-            <h2 className="title-anim font-heading font-light text-4xl md:text-5xl lg:text-[6rem] text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
+            <h2 className="title-anim font-heading font-light text-3xl md:text-4xl lg:text-6xl text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
                 Przestań walczyć z rynkiem. Zainstaluj system, który go <span className="text-accent underline decoration-ivory/20 underline-offset-[12px]">zdominuje.</span>
             </h2>
             <p className="description-anim font-sans text-lg md:text-xl text-ivory/60 mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -88,9 +88,11 @@ export default function FooterCTA() {
           <div>
             <h4 className="font-heading font-semibold text-ivory mb-4 opacity-90 uppercase tracking-widest text-xs">Nawigacja</h4>
             <ul className="flex flex-col gap-3 font-heading text-sm text-ivory/50">
-              <li><a href="#features" className="hover:text-accent transition-colors">Korzyści</a></li>
+              <li><a href="#features" className="hover:text-accent transition-colors">Bariery</a></li>
               <li><a href="#philosophy" className="hover:text-accent transition-colors">Podejście</a></li>
+              <li><a href="#services" className="hover:text-accent transition-colors">Usługi</a></li>
               <li><a href="#protocol" className="hover:text-accent transition-colors">Metodologia</a></li>
+              <li><a href="#team" className="hover:text-accent transition-colors">Zespół</a></li>
             </ul>
           </div>
 

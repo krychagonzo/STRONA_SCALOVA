@@ -50,17 +50,25 @@ export default function Navbar() {
         {/* Invisible spacer to keep flex layout intact */}
         <div className="h-6 w-36 md:w-56 opacity-0 pointer-events-none"></div>
       </a>
-      <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex gap-24 lg:gap-36 xl:gap-48 font-heading text-sm text-ivory/80 uppercase tracking-widest font-light tracking-tight pointer-events-auto">
+      <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex gap-8 lg:gap-16 xl:gap-20 font-heading text-sm text-ivory/80 uppercase tracking-widest font-light tracking-tight pointer-events-auto">
         <a href="#features" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
-          Korzyści
+          Bariery
           <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
         </a>
         <a href="#philosophy" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
           Podejście
           <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
         </a>
+        <a href="#services" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+          Usługi
+          <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
+        </a>
         <a href="#protocol" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
           Metodologia
+          <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
+        </a>
+        <a href="#team" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+          Zespół
           <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
         </a>
 
