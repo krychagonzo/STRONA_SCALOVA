@@ -85,3 +85,14 @@ html {
   transform-style: preserve-3d;
   -webkit-font-smoothing: subpixel-antialiased;
 }
+
+/* Hero bottom glow — subtle breathing pulse */
+@keyframes hero-glow-pulse {
+  0%   { opacity: 0.0; }
+  50%  { opacity: 1.0; }
+  100% { opacity: 0.0; }
+}
+
+.hero-glow-layer {
+  animation: hero-glow-pulse 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}

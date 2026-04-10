@@ -135,8 +135,8 @@ export default function Services() {
       ref={sectionRef} 
       className="w-full bg-[linear-gradient(to_bottom,#1a1a1a_0%,#0c0c0c_100%)] py-32 px-6 flex justify-center relative overflow-x-hidden"
       style={{ 
-        maskImage: 'linear-gradient(to bottom, transparent, black 300px, black calc(100% - 150px), transparent)',
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 300px, black calc(100% - 150px), transparent)'
+        maskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)'
       }}
     >
       {/* Interactive Radial Dot Matrix Background */}
@@ -168,22 +168,24 @@ export default function Services() {
         {/* Header - ukrywa się powoli gdy jesteśmy w detalach */}
         <motion.div
           className="w-full px-6 md:px-12 mb-16 uppercase tracking-widest font-heading flex flex-col items-center text-center"
-          animate={{ opacity: selectedService !== null ? 0.2 : 1 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
-          <div className="w-full relative flex flex-col justify-center items-center min-h-[100px] lg:min-h-[140px] mb-8 lg:mb-12">
-            <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Usługi</span>
-            <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] relative z-10 pointer-events-none w-full uppercase">
-              Co wdrażamy w Twojej firmie.
-            </h2>
+          <div className="w-full relative flex flex-col justify-center items-center min-h-[100px] lg:min-h-[140px] mb-3 lg:mb-4">
+            <div className="relative z-30 flex flex-col items-center isolate">
+              <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Usługi</span>
+              <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
+                Co wdrażamy w Twojej firmie.
+              </h2>
+            </div>
             <motion.img 
-              src="/LOGO_3D.png" 
+              src="/LOGO_3D_2.png" 
               alt="" 
               style={{ y: logoY, rotate: logoRotate }}
               className="absolute -right-20 md:-right-32 lg:-right-48 top-[75%] -translate-y-1/2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] h-auto z-0 pointer-events-none opacity-20 md:opacity-40 lg:opacity-100 object-contain" 
             />
           </div>
-          <p className="text-ivory/70 mt-6 text-base md:text-lg xl:text-xl max-w-4xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
+          <p className="text-ivory/70 mt-2 text-base md:text-lg xl:text-xl max-w-4xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
             Nie doradzamy z boku. Instalujemy w Twojej firmie konkretne narzędzia i procesy – od nowoczesnego wizerunku po bezobsługową sprzedaż – które od pierwszego dnia pracują na Twój wynik.
           </p>
         </motion.div>
@@ -193,7 +195,7 @@ export default function Services() {
           <div className="relative w-full">
             
             {/* BAZOWA SIATKA (W TLE) */}
-            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-6 md:px-12 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-12 md:px-24 lg:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
               {servicesList.map((service, idx) => {
                 const Icon = service.icon;
                 const isSelected = selectedService === idx;
