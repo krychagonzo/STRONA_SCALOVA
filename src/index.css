@@ -54,6 +54,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Scroll offset for nav links */
+#features,
+#philosophy,
+#protocol,
+#team {
+  /* Zostawia ładny 10px margines od navbara na wielkie paddingi */
+  scroll-margin-top: 10px;
+}
+
+#services {
+  /* Agresywne zjechanie dla usługi, omijające padding */
+  scroll-margin-top: -100px;
+}
+
 /* Custom hide scrollbar for horizontal lists */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

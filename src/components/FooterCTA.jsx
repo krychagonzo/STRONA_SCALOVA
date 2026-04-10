@@ -68,11 +68,11 @@ export default function FooterCTA() {
       <footer className="w-full bg-[#0E0E0E] rounded-none px-8 pt-16 pb-8 z-10 relative">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
-            <h3 className="font-heading font-light text-3xl text-ivory mb-4 tracking-tight uppercase">
-              <a href="/" className="hover:text-accent transition-colors">
-                Scalova
+            <div className="mb-6 md:mb-10">
+              <a href="/" className="block">
+                <img src="/logo.png" alt="Scalova Logo" className="h-20 md:h-24 w-auto object-contain scale-110 md:scale-125 origin-left hover:brightness-110 transition-all" />
               </a>
-            </h3>
+            </div>
             <p className="font-heading text-sm text-ivory/50 max-w-sm mb-6">Wdrożenie do biznesu technologii AI, automatyzacja procesów i bezkompromisowe wyskalowanie firmy.</p>
 
             {/* System Status */}

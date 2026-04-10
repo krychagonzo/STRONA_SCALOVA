@@ -195,7 +195,7 @@ export default function Services() {
           <div className="relative w-full">
             
             {/* BAZOWA SIATKA (W TLE) */}
-            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-12 md:px-24 lg:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-12 md:px-24 lg:px-48 xl:px-64 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
               {servicesList.map((service, idx) => {
                 const Icon = service.icon;
                 const isSelected = selectedService === idx;

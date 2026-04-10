@@ -31,8 +31,8 @@ const problems = [
 
 export default function Features() {
   return (
-    <section id="features" className="relative w-full bg-obsidian py-32 md:py-48 px-4 md:px-8 flex flex-col items-center select-none z-10">
-      <div className="w-full max-w-[1400px]">
+    <section id="features" className="relative w-full bg-obsidian py-20 md:py-28 px-4 md:px-8 flex flex-col items-center select-none z-10">
+      <div className="w-full max-w-[1100px]">
         <div className="mb-20 md:mb-32 text-center uppercase tracking-widest font-heading px-6 flex flex-col items-center">
           <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
             Bariery
