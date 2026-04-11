@@ -78,8 +78,7 @@ export default function FooterCTA() {
             {/* System Status */}
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-sm border border-slate/50 bg-[#0E0E0E]">
               <div className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-sm bg-accent opacity-75"></span>
-                <span className="relative inline-flex rounded-sm h-3 w-3 bg-accent"></span>
+                <span className="inline-flex rounded-sm h-3 w-3 bg-accent"></span>
               </div>
               <span className="font-data text-xs text-ivory/60 tracking-wider">SYSTEM OPERATIONAL</span>
             </div>
@@ -100,8 +99,8 @@ export default function FooterCTA() {
             <h4 className="font-heading font-semibold text-ivory mb-4 opacity-90 uppercase tracking-widest text-xs">Kontakt</h4>
             <ul className="flex flex-col gap-3 font-heading text-sm text-ivory/50">
               <li><a href="#" className="hover:text-accent transition-colors">contact@scalova.com</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">+48 000 000 000</a></li>
-              <li>Warszawa, Polska</li>
+              <li><a href="#" className="hover:text-accent transition-colors">61 830 00 00</a></li>
+              <li>Poznań, Polska</li>
             </ul>
           </div>
         </div>
