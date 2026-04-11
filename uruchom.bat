@@ -28,7 +28,7 @@ exit /b
 echo [INFO] Brak wymaganych plików (np. pakietu vite).
 echo Trwa pobieranie wymaganych plikow do uruchomienia strony...
 echo Moze to chwile potrwac, prosze czekac...
-call npm install
+call npm install --legacy-peer-deps
 echo.
 goto start_server
 
