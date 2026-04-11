@@ -54,6 +54,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Scroll offset for nav links */
+#features,
+#philosophy,
+#protocol,
+#team {
+  /* Zostawia ładny 10px margines od navbara na wielkie paddingi */
+  scroll-margin-top: 10px;
+}
+
+#services {
+  /* Agresywne zjechanie dla usługi, omijające padding */
+  scroll-margin-top: -100px;
+}
+
 /* Custom hide scrollbar for horizontal lists */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -84,4 +98,15 @@ html {
   perspective: 1000px;
   transform-style: preserve-3d;
   -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Hero bottom glow — subtle breathing pulse */
+@keyframes hero-glow-pulse {
+  0%   { opacity: 0.0; }
+  50%  { opacity: 1.0; }
+  100% { opacity: 0.0; }
+}
+
+.hero-glow-layer {
+  animation: hero-glow-pulse 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }

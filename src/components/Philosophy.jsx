@@ -26,11 +26,11 @@ export default function Philosophy() {
    }, []);
 
    return (
-      <section id="philosophy" ref={sectionRef} className="relative w-full py-16 overflow-hidden bg-obsidian flex flex-col items-center">
+      <section id="philosophy" ref={sectionRef} className="relative w-full py-12 overflow-hidden bg-obsidian flex flex-col items-center">
          {/* Subtle Background Elements */}
 
 
-         <div className="relative z-10 w-full max-w-6xl mx-auto px-6">
+         <div className="relative z-10 w-full max-w-4xl mx-auto px-6">
 
             <div className="text-center mb-14 flex flex-col items-center">
                <span className="fade-up-element font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">

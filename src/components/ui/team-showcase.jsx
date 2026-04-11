@@ -69,7 +69,7 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[110px] h-[120px] sm:w-[130px] sm:h-[140px] md:w-[155px] md:h-[165px]"
+              className="w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] md:w-[155px] md:h-[155px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -82,7 +82,7 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[122px] h-[132px] sm:w-[145px] sm:h-[155px] md:w-[172px] md:h-[182px]"
+              className="w-[122px] h-[122px] sm:w-[145px] sm:h-[145px] md:w-[172px] md:h-[172px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -95,7 +95,7 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[115px] h-[125px] sm:w-[136px] sm:h-[146px] md:w-[162px] md:h-[172px]"
+              className="w-[115px] h-[115px] sm:w-[136px] sm:h-[136px] md:w-[162px] md:h-[162px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -129,7 +129,7 @@ function PhotoCard({ member, className, hoveredId, onHover }) {
   return (
     <div
       className={cn(
-        'overflow-hidden rounded-xl cursor-pointer flex-shrink-0 transition-opacity duration-500',
+        'overflow-hidden rounded-none cursor-pointer flex-shrink-0 transition-opacity duration-500',
         className,
         isDimmed ? 'opacity-40' : 'opacity-100',
       )}
