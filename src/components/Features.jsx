@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const problems = [
   {
@@ -29,9 +29,13 @@ const problems = [
 ];
 
 export default function Features() {
+  const [activeStep, setActiveStep] = useState(-1);
+
   return (
     <section id="features" className="relative w-full bg-obsidian py-20 md:py-28 px-4 md:px-8 flex flex-col items-center select-none z-10">
       <div className="w-full max-w-[1100px]">
+
+        {/* NAGŁÓWEK SEKCJI */}
         <div className="mb-20 md:mb-32 text-center uppercase tracking-widest font-heading px-6 flex flex-col items-center">
           <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
             Bariery
@@ -44,53 +48,57 @@ export default function Features() {
           </p>
         </div>
 
-        {/* LISTA STATYCZNA */}
-        <div className="flex flex-col border-t border-white/20 relative">
+        {/* LISTA AKORDEONOWA */}
+        <div className="flex flex-col border-t border-white/20">
           {problems.map((problem, index) => {
+            const isActive = activeStep === index;
             return (
-              <div
-                key={index}
-                className="border-b border-white/20 overflow-hidden hover:bg-white/[0.01] transition-colors duration-500"
-              >
+              <div key={index} className="border-b border-white/20">
+
+                {/* WIERSZ — nagłówek, zawsze widoczny */}
                 <div
-                  className="group flex w-full items-start pt-2 md:pt-4 pb-2 md:pb-4 px-2 md:px-8"
+                  onClick={() => setActiveStep(isActive ? -1 : index)}
+                  className={`group flex w-full cursor-pointer items-center gap-4 md:gap-6 py-3 md:py-4 px-2 md:px-6 transition-colors duration-300 ${isActive ? 'bg-white/[0.02]' : 'hover:bg-white/[0.01]'}`}
                 >
-                  {/* IKONA */}
-                  <div className="w-[30%] md:w-[35%] pl-1 md:pl-0 flex items-start justify-center md:justify-start">
-                    <div 
-                      className="bg-current w-[50px] h-[50px] md:w-[80px] md:h-[80px] text-ivory/60 group-hover:text-accent transition-colors duration-700" 
-                      style={{ 
-                        maskImage: `url(${problem.icon})`, 
-                        WebkitMaskImage: `url(${problem.icon})`,
-                        maskSize: 'contain',
-                        WebkitMaskSize: 'contain',
-                        maskPosition: 'center',
-                        WebkitMaskPosition: 'center',
-                        maskRepeat: 'no-repeat',
-                        WebkitMaskRepeat: 'no-repeat'
-                      }} 
-                    />
-                  </div>
+                  {/* IKONA — mała, zawsze widoczna */}
+                  <div
+                    className={`flex-shrink-0 w-[28px] h-[28px] md:w-[36px] md:h-[36px] transition-all duration-500 ${isActive ? 'text-accent scale-[1.8]' : 'text-white/30 group-hover:text-white/50 scale-100'}`}
+                    style={{
+                      maskImage: `url(${problem.icon})`,
+                      WebkitMaskImage: `url(${problem.icon})`,
+                      maskSize: 'contain',
+                      WebkitMaskSize: 'contain',
+                      maskPosition: 'center',
+                      WebkitMaskPosition: 'center',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskRepeat: 'no-repeat',
+                      backgroundColor: 'currentColor',
+                    }}
+                  />
 
-                  {/* ZAWARTOŚĆ PRAWA STRONA */}
-                  <div className="w-[70%] md:w-[65%] flex justify-between items-start pt-2 md:pt-4">
-                    <div className="flex flex-col pr-4 mt-0 md:mt-1">
-                      <h3 className="font-heading text-lg md:text-3xl uppercase tracking-widest text-ivory/60 group-hover:text-ivory transition-colors duration-500 font-light">
-                        {problem.title}
-                      </h3>
+                  {/* TYTUŁ */}
+                  <h3 className={`flex-1 text-center font-heading text-xl md:text-3xl uppercase tracking-widest font-light transition-colors duration-500 ${isActive ? 'text-ivory' : 'text-ivory/60 group-hover:text-ivory/90'}`}>
+                    {problem.title}
+                  </h3>
 
-                      <div class="mt-2 md:mt-3">
-                        <p className="font-heading text-ivory/70 text-xs md:text-sm lg:text-base leading-relaxed max-w-2xl font-light normal-case">
-                          {problem.desc}
-                        </p>
-                      </div>
-                    </div>
+                  {/* PRZYCISK +/− */}
+                  <div className={`flex-shrink-0 w-7 h-7 md:w-9 md:h-9 border rounded-full flex items-center justify-center text-base md:text-lg font-light transition-colors duration-500 ${isActive ? 'border-accent text-accent' : 'border-white/20 text-white/40 group-hover:border-white/50 group-hover:text-white/70'}`}>
+                    {isActive ? '−' : '＋'}
                   </div>
                 </div>
+
+                {/* ROZWIJANY OPIS */}
+                <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <p className="font-heading text-ivory/60 text-sm md:text-base leading-relaxed font-light normal-case px-2 md:px-6 pb-5 md:pb-7 text-center mx-auto max-w-3xl">
+                    {problem.desc}
+                  </p>
+                </div>
+
               </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );
