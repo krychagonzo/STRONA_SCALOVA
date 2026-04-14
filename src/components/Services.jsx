@@ -218,7 +218,7 @@ export default function Services() {
           <div className="relative w-full">
             
             {/* BAZOWA SIATKA (W TLE) */}
-            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-12 md:px-24 lg:px-48 xl:px-64 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
               {servicesList.map((service, idx) => {
                 const isSelected = selectedService === idx;
                 const isHidden = selectedService !== null && !isSelected;
@@ -246,9 +246,14 @@ export default function Services() {
                       </motion.h3>
                     </div>
 
-                    <div className="flex items-center gap-2 text-ivory/30 group-hover:text-obsidian transition-all duration-500 mt-8 relative z-10 transition-transform group-hover:translate-x-1">
-                      <span className="font-heading text-[10px] tracking-[0.3em] uppercase">WIĘCEJ</span>
-                      <div className="w-6 h-[1px] bg-current"></div>
+                    <div className="flex items-center justify-between w-full mt-auto pt-6 border-t border-white/5 group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
+                      <div className="flex items-center gap-3 text-ivory/40 group-hover:text-obsidian transition-all duration-500 transition-transform group-hover:translate-x-1">
+                        <span className="font-heading text-[10px] tracking-[0.3em] uppercase">WIĘCEJ</span>
+                        <div className="w-8 h-[1px] bg-current"></div>
+                      </div>
+                      <div className="w-8 h-8 rounded-full border border-white/10 group-hover:border-obsidian/20 flex items-center justify-center text-ivory/30 group-hover:text-obsidian transition-all duration-500">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                      </div>
                     </div>
                   </motion.div>
                 )
