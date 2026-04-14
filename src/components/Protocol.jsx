@@ -49,7 +49,7 @@ export default function Protocol() {
                   {/* NUMER */}
                   <div className="w-[30%] md:w-[35%] pl-1 md:pl-0">
                     <span 
-                       className={`font-heading text-[110px] md:text-[250px] leading-[0.75] font-bold uppercase transition-colors duration-700 ${isActive ? 'text-accent' : 'text-accent/30 group-hover:text-accent/60'}`}
+                       className={`font-heading text-[110px] md:text-[250px] leading-[0.75] font-light uppercase transition-colors duration-700 ${isActive ? 'text-accent' : 'text-accent/30 group-hover:text-accent/60'}`}
                     >
                       {step.num}
                     </span>

@@ -11,7 +11,7 @@ const servicesList = [
     extendedDesc: "Zamiast strony, która tylko wygląda — platforma, która pozyskuje leady 24/7, nawet gdy śpisz.",
     features: ["Chatbot kwalifikuje zapytania", "Ładowanie poniżej 1,5s"],
     metricContent: "Chatbot kwalifikuje zapytania zanim Ty je zobaczysz. Ładowanie <1,5s.",
-    icon: Globe
+    icon: "/SEKCJA_USLUGI/IKONA_STRONA_AI.svg"
   },
   {
     title: "Kampanie & Organic",
@@ -20,16 +20,16 @@ const servicesList = [
     extendedDesc: "Zamiast budżetu wrzuconego w reklamę — każda złotówka śledzona do konkretnej sprzedaży.",
     features: ["Optymalizacja pod ROAS", "Raporty co tydzień"],
     metricContent: "Optymalizacja pod ROAS, nie pod kliknięcia. Raporty co tydzień.",
-    icon: Megaphone
+    icon: "/SEKCJA_USLUGI/IKONA_KAMPANIE_ORGANIC.svg"
   },
   {
-    title: "Content & Kreacje",
+    title: "Statyczne treści wizualne",
     tag: "Wizerunek",
     desc: "Zamiast postów 'dla algorytmu' — materiały, które ustawiają Cię jako oczywisty wybór w branży.",
     extendedDesc: "Zamiast postów 'dla algorytmu' — materiały, które ustawiają Cię jako oczywisty wybór w branży.",
     features: ["Pozycja eksperta", "Content oparty na danych"],
     metricContent: "Pozycja eksperta budowana regularnym contentem opartym na danych.",
-    icon: MonitorPlay
+    icon: "/SEKCJA_USLUGI/IKONA_STATYCZNE_TRESCI_WIZ.svg"
   },
   {
     title: "Automatyzacje",
@@ -38,7 +38,7 @@ const servicesList = [
     extendedDesc: "Zamiast 5 aplikacji, które ze sobą nie gadają — jeden system, który działa bez Twojego udziału.",
     features: ["Łączymy CRM, faktury i raporty", "Pełna automatyzacja procesów"],
     metricContent: "Łączymy CRM, faktury, powiadomienia i raporty w jedno.",
-    icon: Settings
+    icon: "/SEKCJA_USLUGI/IKONA_AUTOMATYZACJE.svg"
   },
   {
     title: "Sprzedaż & Oferta",
@@ -47,7 +47,7 @@ const servicesList = [
     extendedDesc: "Zamiast ofert, które 'pójdą do akceptacji' — pitch, który zamyka na pierwszym spotkaniu.",
     features: ["Szkolenie handlowe zespołu", "Przebudowa oferty pod wyższy win-rate"],
     metricContent: "Szkolenie + przebudowa oferty pod wyższy win-rate.",
-    icon: TrendingUp
+    icon: "/SEKCJA_USLUGI/IKONA_SPRZEDAZ_OFERTA.svg"
   },
   {
     title: "AI w firmie",
@@ -56,16 +56,16 @@ const servicesList = [
     extendedDesc: "Zamiast 'eksperymentowania z AI' — konkretne narzędzia działające w Twoich procesach od pierwszego tygodnia.",
     features: ["Wdrożenie bez chaosu", "Twój zespół wie, jak używać AI"],
     metricContent: "Wdrożenie bez chaosu. Twój zespół wie jak używać, nie tylko co to jest.",
-    icon: Cpu
+    icon: "/SEKCJA_USLUGI/IKONA_AI_FIRMA.svg"
   },
   {
-    title: "Identyfikacja wizualna",
+    title: "Ruchome treści wizualne",
     tag: "Marka",
     desc: "Zamiast logo, które 'jakoś wyglądało' — branding, który pozycjonuje Cię jako premium bez słowa wyjaśnienia.",
     extendedDesc: "Zamiast logo, które 'jakoś wyglądało' — branding, który pozycjonuje Cię jako premium bez słowa wyjaśnienia.",
     features: ["Pełna księga znaku", "Wytyczne dla każdego touchpointu"],
     metricContent: "Pełna księga znaku + wytyczne dla każdego touchpointu.",
-    icon: Palette
+    icon: "/SEKCJA_USLUGI/IKONA_RUCHOME_TRESCI_WIZUALNE.svg"
   },
   {
     title: "Złoty numer",
@@ -74,9 +74,32 @@ const servicesList = [
     extendedDesc: "Zamiast numeru, który nikt nie pamięta — jeden numer, który zostaje w głowie od pierwszego kontaktu.",
     features: ["Kluczowy punkt styku z marką", "Zapada w pamięć błyskawicznie"],
     metricContent: "Kluczowy punkt styku z marką. Zapada w pamięć, zanim klient zdąży zapisać kontakt.",
-    icon: Phone
+    icon: "/SEKCJA_USLUGI/IKONA_ZLOTY_NUMER.svg"
   }
 ];
+
+const RenderIcon = ({ icon, className, strokeWidth = 1.5 }) => {
+  if (typeof icon === 'string') {
+    return (
+      <div 
+        className={`${className} bg-current`} 
+        style={{ 
+          maskImage: `url(${icon})`, 
+          WebkitMaskImage: `url(${icon})`,
+          maskSize: 'contain',
+          WebkitMaskSize: 'contain',
+          maskPosition: 'center',
+          WebkitMaskPosition: 'center',
+          maskRepeat: 'no-repeat',
+          WebkitMaskRepeat: 'no-repeat'
+        }} 
+      />
+    );
+  }
+  
+  const IconComponent = icon;
+  return <IconComponent className={className} strokeWidth={strokeWidth} />;
+};
 
 const container = {
   hidden: { opacity: 0 },
@@ -197,7 +220,6 @@ export default function Services() {
             {/* BAZOWA SIATKA (W TLE) */}
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-12 md:px-24 lg:px-48 xl:px-64 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
               {servicesList.map((service, idx) => {
-                const Icon = service.icon;
                 const isSelected = selectedService === idx;
                 const isHidden = selectedService !== null && !isSelected;
 
@@ -216,8 +238,8 @@ export default function Services() {
                     onClick={() => setSelectedService(idx)}
                   >
                     <div className="flex flex-col">
-                      <motion.div layoutId={`icon-${idx}`} className="mb-8 text-ivory/40 group-hover:text-obsidian transition-all duration-500">
-                        <Icon className="w-10 h-10 xl:w-12 xl:h-12" strokeWidth={1.5} />
+                      <motion.div layoutId={`icon-${idx}`} className="mb-8 text-ivory/50 group-hover:text-obsidian transition-all duration-500">
+                        <RenderIcon icon={service.icon} className="w-16 h-16 xl:w-20 xl:h-20" strokeWidth={1.5} />
                       </motion.div>
                       <motion.h3 layoutId={`title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-xl md:text-2xl xl:text-[28px] uppercase leading-tight relative z-10">
                         {service.title}
@@ -260,8 +282,8 @@ export default function Services() {
 
                     {/* Lewa kolumna: logotyp, title, checkmarki */}
                     <div className="flex-1 flex flex-col relative z-10">
-                      <motion.div layoutId={`icon-${selectedService}`} className="mb-6 md:mb-10 text-accent drop-shadow-[0_0_15px_rgba(212,255,0,0.6)]">
-                        {React.createElement(servicesList[selectedService].icon, { className: "w-14 h-14", strokeWidth: 1.5 })}
+                      <motion.div layoutId={`icon-${selectedService}`} className="mb-6 md:mb-10 text-ivory/60 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+                        <RenderIcon icon={servicesList[selectedService].icon} className="w-20 h-20 md:w-24 md:h-24" strokeWidth={1.5} />
                       </motion.div>
 
                       <motion.div

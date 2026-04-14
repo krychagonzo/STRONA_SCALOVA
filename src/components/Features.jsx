@@ -1,29 +1,28 @@
 import React from 'react';
-import { TrendingDown, Filter, EyeOff, Globe, Hourglass } from 'lucide-react';
 
 const problems = [
   {
-    Icon: TrendingDown,
+    icon: "/SEKCJA_BARIERY/IKONY_PRZEPALANY_BUDZET.svg",
     title: "Przepalony budżet",
     desc: "Twoje kampanie działają — ale nikt nie sprawdza czy zarabiają. Co miesiąc dziesiątki tysięcy złotych idą w reklamy, które nie zwracają ani złotówki."
   },
   {
-    Icon: Filter,
+    icon: "/SEKCJA_BARIERY/IKONY_LEADY.svg",
     title: "Leady, które uciekają",
     desc: "Ktoś się zainteresował, wypełnił formularz, napisał. I zniknął. Nie do konkurencji — Ty go po prostu zgubiłeś. Zła oferta, za wolna odpowiedź, brak follow-upu."
   },
   {
-    Icon: EyeOff,
+    icon: "/SEKCJA_BARIERY/IKONY_MARKA.svg",
     title: "Marka, której nie widać",
     desc: "Klienci szukają tego co sprzedajesz — i trafiają do konkurencji. Nie dlatego, że są lepsi. Dlatego, że ich widać, a Ciebie nie."
   },
   {
-    Icon: Globe,
+    icon: "/SEKCJA_BARIERY/IKONY_WYGLAD.svg",
     title: "Wygląd, który kosztuje",
     desc: "Zanim powiesz słowo, klient już ocenił Twoją markę. Amatorskie logo, przestarzała strona, brak spójności — i zaczyna negocjować cenę zamiast kupować."
   },
   {
-    Icon: Hourglass,
+    icon: "/SEKCJA_BARIERY/IKONY_RECZNE_PROCESY.svg",
     title: "Ręczne procesy",
     desc: "Twoi ludzie robią ręcznie to, co można zautomatyzować. Kopiują, przeklejają, przypominają, raportują. Płacisz za czas, który nie tworzy żadnej wartości."
   }
@@ -48,7 +47,6 @@ export default function Features() {
         {/* LISTA STATYCZNA */}
         <div className="flex flex-col border-t border-white/20 relative">
           {problems.map((problem, index) => {
-            const IconComponent = problem.Icon;
             return (
               <div
                 key={index}
@@ -59,9 +57,18 @@ export default function Features() {
                 >
                   {/* IKONA */}
                   <div className="w-[30%] md:w-[35%] pl-1 md:pl-0 flex items-start justify-center md:justify-start">
-                    <IconComponent
-                      className="w-[70px] h-[70px] md:w-[120px] md:h-[120px] text-accent/30 group-hover:text-accent transition-colors duration-700"
-                      strokeWidth={0.6}
+                    <div 
+                      className="bg-current w-[50px] h-[50px] md:w-[80px] md:h-[80px] text-ivory/60 group-hover:text-accent transition-colors duration-700" 
+                      style={{ 
+                        maskImage: `url(${problem.icon})`, 
+                        WebkitMaskImage: `url(${problem.icon})`,
+                        maskSize: 'contain',
+                        WebkitMaskSize: 'contain',
+                        maskPosition: 'center',
+                        WebkitMaskPosition: 'center',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskRepeat: 'no-repeat'
+                      }} 
                     />
                   </div>
 
