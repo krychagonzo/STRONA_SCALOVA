@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import InteractiveDotGrid from './ui/InteractiveDotGrid';
 import { Globe, Megaphone, MonitorPlay, Settings, TrendingUp, Cpu, Palette, Phone } from 'lucide-react';
@@ -7,72 +8,88 @@ const servicesList = [
   {
     title: "Strona & AI-asystent",
     tag: "Web",
-    desc: "Zamiast strony, która tylko wygląda — platforma, która pozyskuje leady 24/7, nawet gdy śpisz.",
-    extendedDesc: "Zamiast strony, która tylko wygląda — platforma, która pozyskuje leady 24/7, nawet gdy śpisz.",
-    features: ["Chatbot kwalifikuje zapytania", "Ładowanie poniżej 1,5s"],
+    slug: "/uslugi/strona-ai",
+    areaLabel: "INFRASTRUKTURA POZYSKIWANIA LEADÓW",
+    desc: "Zamiast strony, która tylko wygląda - platforma, która pozyskuje leady 24/7, nawet gdy śpisz.",
+    extendedDesc: "Większość stron firmowych istnieje tylko po to, żeby istnieć.\n\nTwoja będzie pracować - kwalifikować zapytania, zbierać dane kontaktowe i odpowiadać na pytania klientów o 3 w nocy.\n\nProjektujemy platformy, które ładują się w mniej niż 1,5 sekundy i zamieniają ruch w realne leady, zanim Ty zdążysz otworzyć skrzynkę mailową.",
+    features: ["Strona ładuje się w <1,5s - poniżej progu porzuceń", "Chatbot zbiera i kwalifikuje leady zanim Ty otworzysz maila"],
     metricContent: "Chatbot kwalifikuje zapytania zanim Ty je zobaczysz. Ładowanie <1,5s.",
     icon: "/SEKCJA_USLUGI/IKONA_STRONA_AI.svg"
   },
   {
     title: "Kampanie & Organic",
     tag: "Performance",
-    desc: "Zamiast budżetu wrzuconego w reklamę — każda złotówka śledzona do konkretnej sprzedaży.",
-    extendedDesc: "Zamiast budżetu wrzuconego w reklamę — każda złotówka śledzona do konkretnej sprzedaży.",
-    features: ["Optymalizacja pod ROAS", "Raporty co tydzień"],
+    slug: "/uslugi/kampanie",
+    areaLabel: "TWÓJ SILNIK WZROSTU",
+    desc: "Zamiast budżetu wrzuconego w reklamę - każda złotówka śledzona do konkretnej sprzedaży.",
+    extendedDesc: "Większość agencji optymalizuje pod kliknięcia. My optymalizujemy pod pieniądze.\n\nKażda kampania jest śledzona do sprzedaży, nie do zasięgu.\n\nŁączymy płatną dystrybucję z organicznym wzrostem - żeby każda złotówka pracowała na wynik, a nie na wykres, którym można się pochwalić na spotkaniu.",
+    features: ["Każda złotówka budżetu śledzona do konkretnej sprzedaży", "Płatna dystrybucja i organiczny zasięg w jednej strategii"],
     metricContent: "Optymalizacja pod ROAS, nie pod kliknięcia. Raporty co tydzień.",
     icon: "/SEKCJA_USLUGI/IKONA_KAMPANIE_ORGANIC.svg"
   },
   {
     title: "Statyczne treści wizualne",
     tag: "Wizerunek",
-    desc: "Zamiast postów 'dla algorytmu' — materiały, które ustawiają Cię jako oczywisty wybór w branży.",
-    extendedDesc: "Zamiast postów 'dla algorytmu' — materiały, które ustawiają Cię jako oczywisty wybór w branży.",
-    features: ["Pozycja eksperta", "Content oparty na danych"],
+    slug: "/uslugi/statyczne-tresci",
+    areaLabel: "SYSTEM BUDOWANIA AUTORYTETU",
+    desc: "Zamiast postów 'dla algorytmu' - materiały, które ustawiają Cię jako oczywisty wybór w branży.",
+    extendedDesc: "Algorytmy faworyzują regularność. Klienci faworyzują wiarygodność.\n\nTworzymy statyczne treści wizualne, które robią jedno i drugie jednocześnie - budują Twoją pozycję eksperta i są projektowane pod konkretne formaty dystrybucji.\n\nNie produkujemy contentu dla samego contentu. Każdy materiał ma cel: zaufanie, zasięg albo sprzedaż.",
+    features: ["Content projektowany pod cel - nie pod algorytm", "Spójna estetyka eksperta we wszystkich kanałach"],
     metricContent: "Pozycja eksperta budowana regularnym contentem opartym na danych.",
     icon: "/SEKCJA_USLUGI/IKONA_STATYCZNE_TRESCI_WIZ.svg"
   },
   {
     title: "Automatyzacje",
     tag: "Operacje",
-    desc: "Zamiast 5 aplikacji, które ze sobą nie gadają — jeden system, który działa bez Twojego udziału.",
-    extendedDesc: "Zamiast 5 aplikacji, które ze sobą nie gadają — jeden system, który działa bez Twojego udziału.",
-    features: ["Łączymy CRM, faktury i raporty", "Pełna automatyzacja procesów"],
+    slug: "/uslugi/automatyzacje",
+    areaLabel: "TWÓJ BEZOSOBOWY BACK-OFFICE",
+    desc: "Zamiast 5 aplikacji, które ze sobą nie gadają - jeden system, który działa bez Twojego udziału.",
+    extendedDesc: "Większość firm traci codziennie godziny na ręczne przepisywanie danych między aplikacjami, które nigdy nie były zaprojektowane do współpracy.\n\nAudytujemy Twoje procesy, identyfikujemy punkty tarcia i budujemy system, który łączy CRM, fakturowanie i raportowanie w jeden sprawnie działający przepływ.\n\nBez programistów, bez chaosu, od pierwszego tygodnia.",
+    features: ["CRM, faktury i raporty w jednym automatycznym przepływie", "Zero ręcznej pracy przy powtarzalnych procesach"],
     metricContent: "Łączymy CRM, faktury, powiadomienia i raporty w jedno.",
     icon: "/SEKCJA_USLUGI/IKONA_AUTOMATYZACJE.svg"
   },
   {
     title: "Sprzedaż & Oferta",
     tag: "Przychody",
-    desc: "Zamiast ofert, które 'pójdą do akceptacji' — pitch, który zamyka na pierwszym spotkaniu.",
-    extendedDesc: "Zamiast ofert, które 'pójdą do akceptacji' — pitch, który zamyka na pierwszym spotkaniu.",
-    features: ["Szkolenie handlowe zespołu", "Przebudowa oferty pod wyższy win-rate"],
+    slug: "/uslugi/sprzedaz",
+    areaLabel: "PRZEBUDOWA PROCESU ZAMYKANIA",
+    desc: "Zamiast ofert, które 'pójdą do akceptacji' - pitch, który zamyka na pierwszym spotkaniu.",
+    extendedDesc: "Słaba oferta to nie problem graficzny - to problem struktury argumentacji.\n\nPrzebudowujemy Twój pitch od podstaw: zaczynamy od zrozumienia, dlaczego klienci kupują (albo nie), a kończymy na materiale handlowym i przeszkolonym zespole, który wie jak go używać.\n\nEfekt: wyższy win-rate przy tych samych leadach.",
+    features: ["Oferta przepisana pod psychologię decyzji zakupowych", "Zespół handlowy przeszkolony z mierzalnym efektem"],
     metricContent: "Szkolenie + przebudowa oferty pod wyższy win-rate.",
     icon: "/SEKCJA_USLUGI/IKONA_SPRZEDAZ_OFERTA.svg"
   },
   {
     title: "AI w firmie",
     tag: "Technologia",
-    desc: "Zamiast 'eksperymentowania z AI' — konkretne narzędzia działające w Twoich procesach od pierwszego tygodnia.",
-    extendedDesc: "Zamiast 'eksperymentowania z AI' — konkretne narzędzia działające w Twoich procesach od pierwszego tygodnia.",
-    features: ["Wdrożenie bez chaosu", "Twój zespół wie, jak używać AI"],
+    slug: "/uslugi/ai-w-firmie",
+    areaLabel: "TWOJA PRZEWAGA TECHNOLOGICZNA",
+    desc: "Zamiast 'eksperymentowania z AI' - konkretne narzędzia działające w Twoich procesach od pierwszego tygodnia.",
+    extendedDesc: "Dziewięć na dziesięć firm 'eksperymentuje z AI' przez rok i wraca do Excela.\n\nWdrażamy konkretne narzędzia dopasowane do Twoich procesów - od automatyzacji komunikacji z klientami, przez analizę danych, po asystentów dla Twojego zespołu.\n\nBez miesięcy szkoleń, bez przestojów. Twój zespół zaczyna używać AI produktywnie od pierwszego tygodnia.",
+    features: ["Narzędzia AI dopasowane do Twoich procesów - nie szablonowe", "Zespół produktywny z AI od pierwszego tygodnia"],
     metricContent: "Wdrożenie bez chaosu. Twój zespół wie jak używać, nie tylko co to jest.",
     icon: "/SEKCJA_USLUGI/IKONA_AI_FIRMA.svg"
   },
   {
     title: "Ruchome treści wizualne",
     tag: "Marka",
-    desc: "Zamiast logo, które 'jakoś wyglądało' — branding, który pozycjonuje Cię jako premium bez słowa wyjaśnienia.",
-    extendedDesc: "Zamiast logo, które 'jakoś wyglądało' — branding, który pozycjonuje Cię jako premium bez słowa wyjaśnienia.",
-    features: ["Pełna księga znaku", "Wytyczne dla każdego touchpointu"],
+    slug: "/uslugi/ruchome-tresci",
+    areaLabel: "TWOJA FABRYKA UWAGI",
+    desc: "Zamiast materiałów 'do wrzucenia' - wideo, które zatrzymuje kciuk i zostaje w głowie.",
+    extendedDesc: "W świecie krótkiej uwagi wideo jest walutą.\n\nTworzymy ruchome treści wizualne - od reelsów i shortów po animacje produktowe - które zatrzymują kciuk w połowie przewijania i sprawiają, że marka zapada w pamięć, zanim klient zdąży pomyśleć 'skip'.\n\nKażdy materiał zoptymalizowany pod konkretny format i cel dystrybucji.",
+    features: ["Reelsy, shorty i animacje zoptymalizowane pod każdą platformę", "Scenariusze pisane pod psychologię zatrzymania uwagi"],
     metricContent: "Pełna księga znaku + wytyczne dla każdego touchpointu.",
     icon: "/SEKCJA_USLUGI/IKONA_RUCHOME_TRESCI_WIZUALNE.svg"
   },
   {
     title: "Złoty numer",
     tag: "Rozpoznawalność",
-    desc: "Zamiast numeru, który nikt nie pamięta — jeden numer, który zostaje w głowie od pierwszego kontaktu.",
-    extendedDesc: "Zamiast numeru, który nikt nie pamięta — jeden numer, który zostaje w głowie od pierwszego kontaktu.",
-    features: ["Kluczowy punkt styku z marką", "Zapada w pamięć błyskawicznie"],
+    slug: "/uslugi/zloty-numer",
+    areaLabel: "TWÓJ PUNKT KONTAKTU Z RYNKIEM",
+    desc: "Zamiast numeru, który nikt nie pamięta - jeden numer, który zostaje w głowie od pierwszego kontaktu.",
+    extendedDesc: "Telefon nadal jest najszybszym mostem między klientem a sprzedażą.\n\nZłoty numer to narzędzie sprzedażowe, które klient pamięta bez zapisywania w kontaktach.\n\nPomagamy wybrać, zarejestrować i wdrożyć numer, który wzmacnia rozpoznawalność przy każdym touchpoincie - billboardzie, reklamie, wizytówce.",
+    features: ["Numer, który klient pamięta bez zapisywania w kontaktach", "Rozpoznawalność marki wzmocniona przy każdym touchpoincie"],
     metricContent: "Kluczowy punkt styku z marką. Zapada w pamięć, zanim klient zdąży zapisać kontakt.",
     icon: "/SEKCJA_USLUGI/IKONA_ZLOTY_NUMER.svg"
   }
@@ -328,10 +345,14 @@ export default function Services() {
                         className="flex-[1.2] flex flex-col justify-center relative z-10 pt-4 md:pt-[104px]"
                     >
                       <div className="mb-14">
-                        <h4 className="font-heading font-bold text-xl text-ivory mb-6 tracking-wide uppercase border-l-2 border-accent pl-4">Opis Obszaru Operacyjnego</h4>
-                        <p className="font-sans text-ivory/70 text-lg md:text-[19px] leading-relaxed text-balance">
-                          {servicesList[selectedService].extendedDesc}
-                        </p>
+                        <h4 className="font-heading font-bold text-xl text-ivory mb-6 tracking-wide uppercase border-l-2 border-accent pl-4">{servicesList[selectedService].areaLabel}</h4>
+                        <div className="flex flex-col gap-4">
+                          {servicesList[selectedService].extendedDesc.split('\n\n').map((para, i) => (
+                            <p key={i} className="font-sans text-ivory/70 text-lg md:text-[19px] leading-relaxed">
+                              {para}
+                            </p>
+                          ))}
+                        </div>
                       </div>
 
                       <div className="flex flex-col sm:flex-row gap-4 mt-auto">
@@ -342,13 +363,27 @@ export default function Services() {
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
                           WRÓĆ
                         </button>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
-                          className="group relative overflow-hidden py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
-                        >
-                          <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none"></div>
-                          <span className="relative z-10">ZAREZERWUJ KONSULTACJĘ</span>
-                        </button>
+                        {servicesList[selectedService].slug ? (
+                          <Link
+                            to={servicesList[selectedService].slug}
+                            onClick={(e) => e.stopPropagation()}
+                            className="group relative overflow-hidden py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center flex items-center justify-center gap-3"
+                          >
+                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none" />
+                            <span className="relative z-10 flex items-center gap-3">
+                              DOWIEDZ SIĘ WIĘCEJ
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                            </span>
+                          </Link>
+                        ) : (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
+                            className="group relative overflow-hidden py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
+                          >
+                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none" />
+                            <span className="relative z-10">ZAREZERWUJ KONSULTACJĘ</span>
+                          </button>
+                        )}
                       </div>
                     </motion.div>
                   </motion.div>

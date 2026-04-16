@@ -5,6 +5,15 @@ import FloatingCTA from './components/FloatingCTA';
 import FooterCTA from './components/FooterCTA';
 import ConsultationModal from './components/ConsultationModal';
 
+import StronaAI from './pages/StronaAI';
+import Kampanie from './pages/Kampanie';
+import StatyczneTresci from './pages/StatyczneTresci';
+import Automatyzacje from './pages/Automatyzacje';
+import SprzedazOferta from './pages/SprzedazOferta';
+import AIwFirmie from './pages/AIwFirmie';
+import RuchomeTresci from './pages/RuchomeTresci';
+import ZlotyNumer from './pages/ZlotyNumer';
+
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Career from './pages/Career';
@@ -31,6 +40,15 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/do-lacz-do-nas" element={<Career />} />
+          
+          <Route path="/uslugi/strona-ai" element={<StronaAI onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/uslugi/kampanie" element={<Kampanie onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/uslugi/statyczne-tresci" element={<StatyczneTresci onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/uslugi/automatyzacje" element={<Automatyzacje onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/uslugi/sprzedaz" element={<SprzedazOferta onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/uslugi/ai-w-firmie" element={<AIwFirmie onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/uslugi/ruchome-tresci" element={<RuchomeTresci onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/uslugi/zloty-numer" element={<ZlotyNumer onOpenModal={() => setModalOpen(true)} />} />
         </Routes>
       </div>
 
