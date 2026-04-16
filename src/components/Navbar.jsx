@@ -113,56 +113,53 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Fullscreen Overlay Menu */}
+      {/* Backdrop */}
       <div 
-        className="fixed inset-0 z-[55] bg-obsidian flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
-        style={{
-           clipPath: isMenuOpen ? 'circle(150% at 100% 0)' : 'circle(0% at 100% 0)',
-           pointerEvents: isMenuOpen ? 'auto' : 'none'
-        }}
-      >
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+        className={`fixed inset-0 z-[54] bg-[#000000]/60 backdrop-blur-md transition-opacity duration-500 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
 
-        <ul className="flex flex-col items-center gap-12 sm:gap-16 relative z-10 w-full mt-12 pb-12">
-          {navLinks.map((link, idx) => (
-            <li key={idx} className="overflow-hidden">
-               <Link 
-                 to={link.path}
-                 className="group relative flex text-5xl sm:text-6xl md:text-7xl lg:text-[100px] font-heading font-light uppercase tracking-tighter text-ivory transition-colors duration-500 will-change-transform inline-block group overflow-hidden"
-                 onMouseEnter={(e) => {
-                   const textEl = e.currentTarget.querySelector('.menu-text-normal');
-                   const hoverEl = e.currentTarget.querySelector('.menu-text-hover');
-                   if(textEl) textEl.style.transform = 'translateY(-100%)';
-                   if(hoverEl) hoverEl.style.transform = 'translateY(0)';
-                 }}
-                 onMouseLeave={(e) => {
-                   const textEl = e.currentTarget.querySelector('.menu-text-normal');
-                   const hoverEl = e.currentTarget.querySelector('.menu-text-hover');
-                   if(textEl) textEl.style.transform = 'translateY(0)';
-                   if(hoverEl) hoverEl.style.transform = 'translateY(100%)';
-                 }}
-               >
-                 <div className="relative overflow-hidden w-full h-full pb-2">
-                   <div className="menu-text-normal transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] w-full text-center">
-                     {link.name}
-                   </div>
-                   <div className="menu-text-hover absolute top-0 left-0 w-full text-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full text-accent" aria-hidden="true">
-                     {link.name}
-                   </div>
-                 </div>
-               </Link>
-            </li>
-          ))}
-        </ul>
-        
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 text-ivory/40">
-           <div className="flex gap-8">
-              <a href="#" className="hover:text-ivory transition-colors">Instagram</a>
-              <a href="#" className="hover:text-ivory transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-ivory transition-colors">Facebook</a>
+      {/* Side Drawer Menu */}
+      <div 
+        className={`fixed top-0 right-0 z-[55] w-[85%] sm:w-[450px] h-[100dvh] bg-[#0c0c0c]/40 backdrop-blur-2xl border-l border-white/5 flex flex-col overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <svg className="absolute inset-0 w-full h-full opacity-[0.06] mix-blend-overlay pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+          <filter id="menuNoise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
+          </filter>
+          <rect width="100%" height="100%" filter="url(#menuNoise)"/>
+        </svg>
+
+        <div className="flex-1 flex flex-col px-8 sm:px-14 pt-32 pb-12 relative z-10 overflow-y-auto w-full">
+           <span className="font-heading text-[10px] text-ivory/30 tracking-[0.3em] uppercase mb-12 block border-l-2 border-accent/30 pl-4">
+             MENU
+           </span>
+           
+           <ul className="flex flex-col items-start gap-0 w-full border-t border-white/5">
+             {navLinks.map((link, idx) => (
+               <li key={idx} className="w-full relative group/menu-item border-b border-white/5">
+                  <Link 
+                    to={link.path}
+                    className="relative flex items-center w-full py-8 text-2xl sm:text-3xl font-heading uppercase text-ivory/80 transition-colors duration-500 z-10"
+                    onClick={() => setTimeout(() => setIsMenuOpen(false), 100)}
+                  >
+                    <span className="relative group-hover/menu-item:text-accent transition-colors duration-500 font-light tracking-widest block">
+                       {link.name}
+                       <img src="/ROG.png" alt="" className="absolute -top-1 sm:-top-2 -right-5 sm:-right-6 w-3 h-3 sm:w-4 sm:h-4 opacity-0 group-hover/menu-item:opacity-100 transition-opacity duration-300" />
+                    </span>
+                  </Link>
+               </li>
+             ))}
+           </ul>
+           
+           <div className="mt-auto pt-16 flex flex-col gap-6 text-ivory/40">
+              <span className="font-heading text-[10px] tracking-[0.2em] uppercase text-ivory/30">Szybki Kontakt</span>
+              <div className="flex gap-6 font-sans text-xs uppercase tracking-widest text-ivory/60">
+                 <a href="#" className="hover:text-accent transition-colors">Instagram</a>
+                 <a href="#" className="hover:text-accent transition-colors">LinkedIn</a>
+                 <a href="#" className="hover:text-accent transition-colors">Facebook</a>
+              </div>
            </div>
-           <p className="text-xs uppercase tracking-widest font-heading text-center">Projekt i Realizacja Scalova</p>
         </div>
       </div>
     </>
