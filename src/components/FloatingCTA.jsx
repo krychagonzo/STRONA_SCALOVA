@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function FloatingCTA() {
+export default function FloatingCTA({ onOpenModal }) {
   const comp = useRef(null);
 
   useEffect(() => {
@@ -57,6 +57,7 @@ export default function FloatingCTA() {
   return (
     <div ref={comp} className="fixed bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-[60] pointer-events-auto">
       <button
+        onClick={onOpenModal}
         className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-sm md:text-base pl-8 pr-4 py-3 md:pl-10 md:pr-6 md:py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.1] shadow-2xl shadow-accent/20 border border-accent/50"
         style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
       >

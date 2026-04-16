@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function FooterCTA() {
+export default function FooterCTA({ onOpenModal }) {
   return (
     <div id="footer-cta" className="w-full bg-[#0E0E0E] flex flex-col items-center">
 
@@ -49,6 +49,7 @@ export default function FooterCTA() {
             </p>
 
           <button
+            onClick={onOpenModal}
             className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-xl px-12 py-5 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.05] shadow-[0_0_40px_rgba(212,255,0,0.2)] hover:shadow-[0_0_60px_rgba(212,255,0,0.5)] mx-auto"
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
