@@ -37,14 +37,14 @@ export default function Features() {
       <div className="w-full max-w-[1100px]">
 
         {/* NAGŁÓWEK SEKCJI */}
-        <div className="mb-20 md:mb-32 text-center uppercase tracking-widest font-heading px-6 flex flex-col items-center">
+        <div className="mb-10 md:mb-16 text-center uppercase tracking-widest font-heading px-6 flex flex-col items-center">
           <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
             Bariery
           </span>
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
             TWÓJ BIZNES <span className="text-accent">TRACI KAŻDEGO DNIA.</span>
           </h2>
-          <p className="text-ivory/50 mt-6 text-sm max-w-2xl mx-auto normal-case tracking-normal">
+          <p className="text-ivory/60 mt-6 text-base md:text-lg max-w-2xl mx-auto normal-case tracking-normal leading-relaxed">
             Każda firma osiąga moment, w którym samo dokładanie ludzi i godzin przestaje przynosić efekty. To właśnie wtedy ukryte luki operacyjne i wizerunkowe zaczynają kosztować najwięcej.
           </p>
         </div>

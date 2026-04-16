@@ -44,7 +44,7 @@ export default function FooterCTA({ onOpenModal }) {
             <h2 className="title-anim font-heading font-light text-3xl md:text-4xl lg:text-6xl text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
                 Przestań walczyć z rynkiem. Zainstaluj system, który go <span className="text-accent underline decoration-ivory/20 underline-offset-[12px]">zdominuje.</span>
             </h2>
-            <p className="description-anim font-sans text-lg md:text-xl text-ivory/60 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="description-anim font-sans text-base md:text-lg text-ivory/60 mb-12 max-w-2xl mx-auto leading-relaxed">
                 Nie czekaj! Umów bezpłatną konsultację, aby dowiedzieć się, gdzie tracisz czas i uciekają Twoi klienci.
             </p>
 
@@ -74,15 +74,8 @@ export default function FooterCTA({ onOpenModal }) {
                 <img src="/logo.png" alt="Scalova Logo" className="h-20 md:h-24 w-auto object-contain scale-110 md:scale-125 origin-left hover:brightness-110 transition-all" />
               </a>
             </div>
-            <p className="font-heading text-sm text-ivory/50 max-w-sm mb-6">Wdrożenie do biznesu technologii AI, automatyzacja procesów i bezkompromisowe wyskalowanie firmy.</p>
 
-            {/* System Status */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-sm border border-slate/50 bg-[#0E0E0E]">
-              <div className="relative flex h-3 w-3">
-                <span className="inline-flex rounded-sm h-3 w-3 bg-accent"></span>
-              </div>
-              <span className="font-data text-xs text-ivory/60 tracking-wider">SYSTEM OPERATIONAL</span>
-            </div>
+
           </div>
 
           <div>

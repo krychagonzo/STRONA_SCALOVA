@@ -208,7 +208,7 @@ export default function Services() {
               className="absolute -right-20 md:-right-32 lg:-right-48 top-[75%] -translate-y-1/2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] h-auto z-0 pointer-events-none opacity-20 md:opacity-40 lg:opacity-100 object-contain" 
             />
           </div>
-          <p className="text-ivory/70 mt-2 text-base md:text-lg xl:text-xl max-w-4xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
+          <p className="text-ivory/60 mt-4 text-base md:text-lg max-w-3xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
             Nie doradzamy z boku. Instalujemy w Twojej firmie konkretne narzędzia i procesy – od nowoczesnego wizerunku po bezobsługową sprzedaż – które od pierwszego dnia pracują na Twój wynik.
           </p>
         </motion.div>
