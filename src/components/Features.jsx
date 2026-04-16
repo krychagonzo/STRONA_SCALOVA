@@ -4,23 +4,23 @@ import React, { useState } from 'react';
 const problems = [
   {
     icon: "/SEKCJA_BARIERY/IKONY_PRZEPALANY_BUDZET.svg",
-    title: "Przepalony budżet",
-    desc: "Twoje kampanie działają — ale nikt nie sprawdza czy zarabiają. Co miesiąc dziesiątki tysięcy złotych idą w reklamy, które nie zwracają ani złotówki."
+    title: "Przepalone budżety,",
+    desc: "Twoje kampanie działają - ale nikt nie sprawdza czy zarabiają. Co miesiąc dziesiątki tysięcy złotych idą w reklamy, które nie zwracają ani złotówki."
   },
   {
     icon: "/SEKCJA_BARIERY/IKONY_LEADY.svg",
-    title: "Leady, które uciekają",
-    desc: "Ktoś się zainteresował, wypełnił formularz, napisał. I zniknął. Nie do konkurencji — Ty go po prostu zgubiłeś. Zła oferta, za wolna odpowiedź, brak follow-upu."
+    title: "Tracisz gorące leady,",
+    desc: "Ktoś się zainteresował, wypełnił formularz, napisał. I zniknął. Nie do konkurencji - Ty go po prostu zgubiłeś. Zła oferta, za wolna odpowiedź, brak follow-upu."
   },
   {
     icon: "/SEKCJA_BARIERY/IKONY_MARKA.svg",
-    title: "Marka, której nie widać",
-    desc: "Klienci szukają tego co sprzedajesz — i trafiają do konkurencji. Nie dlatego, że są lepsi. Dlatego, że ich widać, a Ciebie nie."
+    title: "Szukają Ciebie,",
+    desc: "Klienci szukają tego co sprzedajesz - i trafiają do konkurencji. Nie dlatego, że są lepsi. Dlatego, że ich widać, a Ciebie nie."
   },
   {
     icon: "/SEKCJA_BARIERY/IKONY_WYGLAD.svg",
-    title: "Wygląd, który kosztuje",
-    desc: "Zanim powiesz słowo, klient już ocenił Twoją markę. Amatorskie logo, przestarzała strona, brak spójności — i zaczyna negocjować cenę zamiast kupować."
+    title: "Klienci negocjują,",
+    desc: "Zanim powiesz słowo, klient już ocenił Twoją markę. Amatorskie logo, przestarzała strona, brak spójności - i zaczyna negocjować cenę zamiast kupować."
   },
   {
     icon: "/SEKCJA_BARIERY/IKONY_RECZNE_PROCESY.svg",
@@ -50,51 +50,47 @@ export default function Features() {
         </div>
 
         {/* LISTA AKORDEONOWA */}
-        <div className="flex flex-col border-t border-white/20">
+        <div className="flex flex-col border-t border-white/10">
           {problems.map((problem, index) => {
             const isActive = activeStep === index;
             return (
-              <div key={index} className="border-b border-white/20">
-
-                {/* WIERSZ — nagłówek, zawsze widoczny */}
+              <div key={index} className="border-b border-white/10">
                 <div
                   onClick={() => setActiveStep(isActive ? -1 : index)}
-                  className={`group flex w-full cursor-pointer items-center gap-4 md:gap-6 py-3 md:py-4 px-2 md:px-6 transition-colors duration-300 ${isActive ? 'bg-white/[0.02]' : 'hover:bg-white/[0.01]'}`}
+                  className={`group flex w-full cursor-pointer items-center gap-4 py-8 md:py-10 px-4 xl:px-8 transition-colors duration-300 ${isActive ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'}`}
                 >
-                  {/* IKONA — mała, zawsze widoczna */}
+                  {/* IKONA MASKOWANA */}
                   <div
-                    className={`flex-shrink-0 w-[28px] h-[28px] md:w-[36px] md:h-[36px] transition-all duration-500 ${isActive ? 'text-accent scale-[1.8]' : 'text-white/30 group-hover:text-white/50 scale-100'}`}
+                    className={`flex-shrink-0 w-7 h-7 md:w-9 md:h-9 transition-colors duration-500 mr-2 md:mr-4 ${isActive ? 'bg-accent' : 'bg-ivory/30 group-hover:bg-accent/60'}`}
                     style={{
-                      maskImage: `url(${problem.icon})`,
-                      WebkitMaskImage: `url(${problem.icon})`,
+                      maskImage: `url('${problem.icon}')`,
+                      WebkitMaskImage: `url('${problem.icon}')`,
                       maskSize: 'contain',
                       WebkitMaskSize: 'contain',
                       maskPosition: 'center',
                       WebkitMaskPosition: 'center',
                       maskRepeat: 'no-repeat',
-                      WebkitMaskRepeat: 'no-repeat',
-                      backgroundColor: 'currentColor',
+                      WebkitMaskRepeat: 'no-repeat'
                     }}
                   />
 
                   {/* TYTUŁ */}
-                  <h3 className={`flex-1 text-center font-heading text-xl md:text-3xl uppercase tracking-widest font-light transition-colors duration-500 ${isActive ? 'text-ivory' : 'text-ivory/60 group-hover:text-ivory/90'}`}>
+                  <h3 className={`flex-1 text-left font-heading text-2xl lg:text-[28px] tracking-tight uppercase transition-colors duration-500 px-2 md:px-4 ${isActive ? 'text-ivory' : 'text-ivory/70 group-hover:text-ivory'}`}>
                     {problem.title}
                   </h3>
 
-                  {/* PRZYCISK +/− */}
-                  <div className={`flex-shrink-0 w-7 h-7 md:w-9 md:h-9 border rounded-full flex items-center justify-center text-base md:text-lg font-light transition-colors duration-500 ${isActive ? 'border-accent text-accent' : 'border-white/20 text-white/40 group-hover:border-white/50 group-hover:text-white/70'}`}>
+                  {/* PRZYCISK INTERAKTYWNY */}
+                  <div className={`flex-shrink-0 w-10 h-10 border border-white/10 flex items-center justify-center text-xl font-light transition-all duration-500 ${isActive ? 'border-accent text-accent bg-accent/5' : 'text-ivory/40 group-hover:border-accent/40 group-hover:text-accent'}`}>
                     {isActive ? '−' : '＋'}
                   </div>
                 </div>
 
                 {/* ROZWIJANY OPIS */}
-                <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="font-heading text-ivory/60 text-sm md:text-base leading-relaxed font-light normal-case px-2 md:px-6 pb-5 md:pb-7 text-center mx-auto max-w-3xl">
+                <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <p className="font-sans text-ivory/60 text-base md:text-[17px] xl:text-[19px] leading-relaxed font-light normal-case pl-16 md:pl-[5.5rem] pr-4 xl:pr-32 pb-10 md:pb-12 text-balance">
                     {problem.desc}
                   </p>
                 </div>
-
               </div>
             );
           })}

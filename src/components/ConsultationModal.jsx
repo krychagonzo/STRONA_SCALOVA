@@ -116,7 +116,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
                   Porozmawiajmy o<br />Twoim biznesie
                 </h2>
                 <p className="mt-4 text-ivory/50 text-sm leading-relaxed font-sans">
-                  Zostaw dane — skontaktujemy się w ciągu 24h i umówimy bezpłatną konsultację. Podczas rozmowy przeanalizujemy Twój biznes i pokażemy, co konkretnie można usprawnić.
+                  Zostaw dane - skontaktujemy się w ciągu 24h i umówimy bezpłatną konsultację. Podczas rozmowy przeanalizujemy Twój biznes i pokażemy, co konkretnie można usprawnić.
                 </p>
               </div>
 

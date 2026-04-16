@@ -226,7 +226,7 @@ export default function Services() {
             />
           </div>
           <p className="text-ivory/60 mt-4 text-base md:text-lg max-w-3xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
-            Nie doradzamy z boku. Instalujemy w Twojej firmie konkretne narzędzia i procesy – od nowoczesnego wizerunku po bezobsługową sprzedaż – które od pierwszego dnia pracują na Twój wynik.
+            Nie doradzamy z boku. Instalujemy w Twojej firmie konkretne narzędzia i procesy - od nowoczesnego wizerunku po bezobsługową sprzedaż - które od pierwszego dnia pracują na Twój wynik.
           </p>
         </motion.div>
 

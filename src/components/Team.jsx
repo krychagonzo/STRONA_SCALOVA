@@ -47,8 +47,8 @@ export default function Team() {
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
             Zespół, dla którego Twój wynik jest jedyną miarą sukcesu.
           </h2>
-          <p className="text-ivory/60 mt-6 text-base md:text-lg max-w-2xl mx-auto normal-case tracking-normal leading-relaxed">
-            W Scalovie uznajemy tylko jedną miarę sukcesu— czy Twoja firma jest dziś lepsza niż wczoraj.
+          <p className="text-ivory/60 mt-4 text-base md:text-lg max-w-2xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
+            W Scalovie uznajemy tylko jedną miarę sukcesu - czy Twoja firma jest dziś lepsza niż wczoraj.
           </p>
         </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function FooterCTA({ onOpenModal }) {
   return (
@@ -81,11 +82,12 @@ export default function FooterCTA({ onOpenModal }) {
           <div>
             <h4 className="font-heading font-semibold text-ivory mb-4 opacity-90 uppercase tracking-widest text-xs">Nawigacja</h4>
             <ul className="flex flex-col gap-3 font-heading text-sm text-ivory/50">
-              <li><a href="#features" className="hover:text-accent transition-colors">Bariery</a></li>
-              <li><a href="#philosophy" className="hover:text-accent transition-colors">Podejście</a></li>
-              <li><a href="#services" className="hover:text-accent transition-colors">Usługi</a></li>
-              <li><a href="#protocol" className="hover:text-accent transition-colors">Metodologia</a></li>
-              <li><a href="#team" className="hover:text-accent transition-colors">Zespół</a></li>
+              <li><a href="/#features" className="hover:text-accent transition-colors">Bariery</a></li>
+              <li><a href="/#philosophy" className="hover:text-accent transition-colors">Podejście</a></li>
+              <li><a href="/#services" className="hover:text-accent transition-colors">Usługi</a></li>
+              <li><a href="/#protocol" className="hover:text-accent transition-colors">Metodologia</a></li>
+              <li><a href="/#team" className="hover:text-accent transition-colors">Zespół</a></li>
+              <li><Link to="/faq" className="hover:text-accent transition-colors">FAQ</Link></li>
             </ul>
           </div>
 

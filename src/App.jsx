@@ -17,6 +17,7 @@ import ZlotyNumer from './pages/ZlotyNumer';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Career from './pages/Career';
+import FAQ from './pages/FAQ';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/do-lacz-do-nas" element={<Career />} />
+          <Route path="/faq" element={<FAQ />} />
           
           <Route path="/uslugi/strona-ai" element={<StronaAI onOpenModal={() => setModalOpen(true)} />} />
           <Route path="/uslugi/kampanie" element={<Kampanie onOpenModal={() => setModalOpen(true)} />} />

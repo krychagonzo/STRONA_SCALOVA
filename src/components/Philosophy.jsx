@@ -62,9 +62,9 @@ export default function Philosophy() {
                <div className="w-full md:w-5/12 max-w-lg">
                   <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Filar 02</span>
                   <h3 className="font-heading font-light text-5xl md:text-6xl mb-6 text-ivory drop-shadow-md uppercase tracking-tight">Widoczność w Sieci</h3>
-                  <p className="font-sans text-lg text-ivory/60 leading-relaxed">
-                     Strona i wizerunek, które robią pierwsze wrażenie za Ciebie — i sprawiają, że klient przychodzi już przekonany.
-                  </p>
+                  <span className="text-xl md:text-2xl lg:text-[26px] font-heading font-light text-ivory block mt-8 leading-relaxed max-w-xl mx-auto md:mx-0">
+                     Strona i wizerunek, które robią pierwsze wrażenie za Ciebie - i sprawiają, że klient przychodzi już przekonany.
+                  </span>
                </div>
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">

@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 const steps = [
   {
     num: "01",
-    title: "Zaczynamy od środka.",
-    desc: "Analizujemy Twój model biznesowy, procesy sprzedażowe i marketing — i wskazujemy dokładnie gdzie firma traci czas i pieniądze."
+    title: "Diagnoza systemu.",
+    desc: "Analizujemy Twój model biznesowy, procesy sprzedażowe i marketing - i wskazujemy dokładnie gdzie firma traci czas i pieniądze."
   },
   {
     num: "02",
@@ -13,8 +13,8 @@ const steps = [
   },
   {
     num: "03",
-    title: "Wdrożenie i przekazanie",
-    desc: "Instalujemy wszystko w Twojej firmie. Technologie, procesy, marketing — uruchamiamy i szkolimy zespół. Wychodzisz z gotowym systemem, który działa od pierwszego dnia."
+    title: "Transfer.",
+    desc: "Instalujemy wszystko w Twojej firmie. Technologie, procesy, marketing - uruchamiamy i szkolimy zespół. Wychodzisz z gotowym systemem, który działa od pierwszego dnia."
   }
 ];
 

@@ -5,27 +5,27 @@ const BENEFITS = [
   {
     title: "Pasja",
     desc: "Miłość do tworzenia i ciągłego doskonalenia napędza wszystko, co robimy, nadając każdemu projektowi unikalny charakter. Wchodzimy w stan 'flow'.",
-    icon: <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    icon: "/KARIERA/IKONY_PASJA.svg"
   },
   {
     title: "Kreatywność",
     desc: "Innowacje biorą się z otwartego umysłu. Ciekawość i luz inspirują nas do nieszablonowego myślenia z dala od utartych, standardowych ścieżek.",
-    icon: <><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5 M9 18h6 M10 22h4" /></>
+    icon: "/KARIERA/IKONY_KREATYWNOSC.svg"
   },
   {
     title: "Współpraca",
     desc: "Razem zawsze osiągamy więcej. Różnorodne talenty i wspólne doświadczenia sprawiają, że nieustannie się rozwijamy. Gramy do jednej bramki.",
-    icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" /><circle cx="9" cy="7" r="4" /></>
+    icon: "/KARIERA/IKONY_WSPOLPRACA.svg"
   },
   {
     title: "Profesjonalizm",
     desc: "Dążymy do najwyższej jakości w każdym detalu. Rzetelność i terminowość to priorytety, a skupienie i dyscyplina dają nam ogromną satysfakcję.",
-    icon: <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></>
+    icon: "/KARIERA/IKONY_PROFESJONALIZM.svg"
   },
   {
     title: "Innowacyjność",
     desc: "Sięgamy po najnowsze narzędzia i rozwiązania. Optymalizujemy i automatyzujemy. Wyprzedzanie trendów leży w naszym ścisłym DNA.",
-    icon: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    icon: "/KARIERA/IKONY_INNOWACYJNOSC.svg"
   }
 ];
 
@@ -70,49 +70,53 @@ export default function Career() {
       {/* UNIFIED CAREER SECTION */}
       <section className="w-full pt-40 md:pt-48 pb-24 md:pb-32 px-4 md:px-6 flex flex-col items-center relative z-10 overflow-hidden">
         <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-6 block text-center">
-           Dołącz Do Nas
+           Kariera
         </span>
         
-        {/* Kontener wyznaczający szerokość całości kaskadowo z wielkością napisu KARIERA */}
-        <div className="inline-flex flex-col items-stretch max-w-full mx-auto">
-          <h1 className="text-ivory text-[50px] sm:text-[70px] md:text-[110px] lg:text-[150px] xl:text-[200px] 2xl:text-[240px] font-heading font-bold tracking-tighter leading-[0.8] uppercase text-center whitespace-nowrap select-none">
-            KARIERA
+        {/* Kontener wyznaczający szerokość całości kaskadowo z wielkością napisu DOŁĄCZ DO NAS */}
+        <div className="inline-flex flex-col items-stretch max-w-[95vw] overflow-hidden sm:max-w-full mx-auto">
+          <h1 className="text-ivory text-[36px] sm:text-[48px] md:text-[72px] lg:text-[100px] xl:text-[130px] 2xl:text-[160px] font-heading font-bold tracking-tighter leading-[0.8] uppercase text-center whitespace-nowrap select-none">
+            DOŁĄCZ DO NAS
           </h1>
 
-          <div className="w-full flex justify-center mt-6 md:mt-8 px-2">
-            <p className="font-sans text-xs sm:text-sm md:text-sm text-ivory/60 max-w-[700px] leading-relaxed text-center">
-              Tworzymy miejsce, w którym digital marketing płynnie łączy się z nowymi technologiami i automatyzacją. Jeśli chcesz realnie wpływać na rozwój firm w internecie, a przy tym pracować w świetnej atmosferze – dobrze trafiłeś. Zobacz, co napędza nas każdego dnia:
+          <div className="w-full flex justify-center mt-10 md:mt-14 px-4">
+            <p className="font-sans text-base sm:text-lg md:text-xl xl:text-[22px] text-ivory/60 max-w-[900px] leading-[1.6] text-center text-balance block">
+              Tworzymy miejsce, w którym digital marketing płynnie łączy się z nowymi technologiami i automatyzacją. Jeśli chcesz realnie wpływać na rozwój firm w internecie, a przy tym pracować w świetnej atmosferze - dobrze trafiłeś. Zobacz, co napędza nas każdego dnia:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 mx-auto lg:grid-cols-5 gap-4 md:gap-8 lg:gap-12 w-full mt-10 md:mt-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 mx-auto gap-4 md:gap-8 xl:gap-12 w-full mt-20 md:mt-32 lg:mt-40 pb-8">
             {BENEFITS.map((benefit, idx) => (
-               <div 
+               <div
                  key={idx}
-                 className="group relative flex flex-col items-start justify-between bg-[#0c0c0c] rounded-none p-4 md:p-6 lg:p-5 xl:p-6 border border-white/5 overflow-hidden transition-all duration-500 hover:-translate-y-2 w-full aspect-square"
+                 className="group relative flex flex-col justify-start transition-all duration-500 hover:-translate-y-1 w-full"
                >
-                 <div className="absolute top-3 left-3 text-[9px] text-ivory/20 font-sans opacity-50 group-hover:opacity-100 transition-opacity">
-                    {String(idx).padStart(2, '0')}
+                 <div className="absolute top-0 right-0 font-mono text-xs text-ivory/20 group-hover:text-accent/50 transition-colors">
+                    {String(idx + 1).padStart(2, '0')}
                  </div>
 
-                 <div className="w-8 h-8 md:w-12 md:h-12 mt-2 bg-obsidian border border-white/10 flex items-center justify-center text-ivory/40 group-hover:text-accent group-hover:border-accent/40 transition-all duration-500 rounded-none">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 md:w-5 md:h-5">
-                       {benefit.icon}
-                    </svg>
+                 <div className="flex flex-col items-start w-full pointer-events-none mt-2 lg:mt-0">
+                    <div 
+                       className="w-12 h-12 md:w-16 md:h-16 xl:w-20 xl:h-20 bg-ivory/50 group-hover:bg-accent transition-colors duration-500"
+                       style={{
+                         maskImage: `url('${benefit.icon}')`,
+                         maskSize: 'contain',
+                         maskPosition: 'left center',
+                         maskRepeat: 'no-repeat',
+                         WebkitMaskImage: `url('${benefit.icon}')`,
+                         WebkitMaskSize: 'contain',
+                         WebkitMaskPosition: 'left center',
+                         WebkitMaskRepeat: 'no-repeat'
+                       }}
+                    />
                  </div>
                  
-                 <div className="mt-4 w-full z-10">
-                   <h3 className="font-heading text-sm md:text-base lg:text-[15px] xl:text-lg text-ivory uppercase tracking-widest mb-1.5 font-light group-hover:text-accent transition-colors duration-500">
-                     {benefit.title}
-                   </h3>
-                   <p className="font-sans text-ivory/50 text-[10px] md:text-xs leading-relaxed line-clamp-4">
+                 <div className="w-full z-10 mt-6 lg:mt-8">
+                   <h3 className="text-2xl xl:text-[28px] tracking-tighter uppercase font-heading font-normal text-ivory group-hover:text-accent transition-colors duration-500 mb-4 break-words leading-none">{benefit.title}</h3>
+                   <p className="font-sans text-sm xl:text-[15px] leading-relaxed text-ivory/60 transition-colors">
                      {benefit.desc}
                    </p>
                  </div>
-
-                 {/* Glow element */}
-                 <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/[0.03] transition-colors duration-500 pointer-events-none" />
-                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 border border-accent/20 transition-all duration-500 pointer-events-none z-20" />
                </div>
             ))}
           </div>

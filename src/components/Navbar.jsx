@@ -51,7 +51,8 @@ export default function Navbar() {
   const navLinks = [
     { name: "Strona Główna", path: "/" },
     { name: "Portfolio", path: "/portfolio" },
-    { name: "Dołącz do nas", path: "/do-lacz-do-nas" }
+    { name: "Dołącz do nas", path: "/do-lacz-do-nas" },
+    { name: "FAQ", path: "/faq" }
   ];
 
   return (
@@ -87,11 +88,17 @@ export default function Navbar() {
               <a href="#protocol" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                 Metodologia <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
               </a>
+              <a href="#team" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+                Zespół <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
+              </a>
             </>
           ) : (
              <>
                <Link to="/" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                   Strona Główna <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
+               </Link>
+               <Link to="/faq" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+                  FAQ <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
                </Link>
              </>
           )}
