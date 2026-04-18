@@ -2,8 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Navbar from '../components/Navbar';
-import FooterCTA from '../components/FooterCTA';
+import SubServices from '../components/SubServices';
+import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+
+const subServices = [
+  { title: "Dobór optymalnego numeru", desc: "Analizujemy dostępne numery i dobieramy ten, który najłatwiej zapamiętać w kontekście Twojej branży i rynku. Wzorzec, rytm i fonetyka mają znaczenie - dobry numer to element marki." },
+  { title: "Rejestracja i konfiguracja", desc: "Zajmujemy się całą administracją - rejestracja, umowy z operatorem, przeniesienie jeśli masz istniejący numer do zastąpienia. Ty nie dzwonisz do żadnego operatora." },
+  { title: "Integracja z centralą telefoniczną", desc: "Podpinamy numer do Twojego obecnego systemu telefonicznego lub wdrażamy nowe rozwiązanie. Bez przerwy w odbieraniu połączeń, bez chaosu technicznego." },
+  { title: "Wdrożenie w materiałach reklamowych", desc: "Plan i projekt wizualny wdrożenia numeru: strona, reklamy, wizytówki, samochody firmowe, billboardy. Każdy touchpoint zaplanowany." },
+  { title: "Analityka połączeń", desc: "Śledzenie skąd przychodzą połączenia, godziny szczytowe i czas oczekiwania. Wiesz które kanały generują telefony, a które tylko kliknięcia - konkretne dane do optymalizacji." },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,11 +59,11 @@ export default function ZlotyNumer({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
-      <Navbar />
 
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-40 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(212,255,0,0.05) 0%, transparent 70%)' }} />
-        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,255,0,0.4) 50%, transparent)' }} />
+        <div className="absolute inset-0 pointer-events-none">
+          <ServiceHeroCanvas />
+        </div>
         <div className="max-w-[1400px] mx-auto w-full">
           <div className="hero-line flex items-center gap-3 mb-10">
             <Link to="/" className="font-mono text-[10px] tracking-[0.25em] uppercase text-ivory/30 hover:text-accent transition-colors">Strona główna</Link>
@@ -64,12 +72,26 @@ export default function ZlotyNumer({ onOpenModal }) {
             <span className="text-ivory/20 font-mono text-[10px]">/</span>
             <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-accent">Złoty numer</span>
           </div>
-          <p className="hero-line font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">// ROZPOZNAWALNOŚĆ / KONTAKT</p>
-          <h1 className="hero-line font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory mb-8 uppercase">
-            Numer, który klient<br />
+          <div className="hero-line relative flex items-center justify-between w-full mb-8 md:mb-12">
+            <h1 className="relative z-10 w-full md:w-[75%] font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory uppercase">
+              Numer, który klient<br />
             pamięta<br />
-            <span className="text-accent">bez zapisywania.</span>
-          </h1>
+            <span className="text-ivory">bez zapisywania.</span>
+            </h1>
+            <div 
+              className="absolute right-[-10%] md:right-0 top-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] bg-white/[0.03] pointer-events-none z-0"
+              style={{
+                maskImage: `url('${'/SEKCJA_USLUGI/IKONA_ZLOTY_NUMER.svg'}')`,
+                WebkitMaskImage: `url('${'/SEKCJA_USLUGI/IKONA_ZLOTY_NUMER.svg'}')`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskPosition: 'right center',
+                WebkitMaskPosition: 'right center',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat'
+              }}
+            />
+          </div>
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
             Telefon nadal jest najszybszym mostem między klientem a sprzedażą. Złoty numer to narzędzie sprzedażowe, które wzmacnia rozpoznawalność marki przy każdym touchpoincie - billboardzie, reklamie, wizytówce.
           </p>
@@ -100,7 +122,7 @@ export default function ZlotyNumer({ onOpenModal }) {
       <section className="w-full py-28 px-6 md:px-16 xl:px-32">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">// PROBLEM</p>
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">PROBLEM</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight max-w-3xl">
               Klient chce zadzwonić.<br />
               <span className="text-ivory/40">Ale nie pamięta numeru.</span><br />
@@ -119,10 +141,18 @@ export default function ZlotyNumer({ onOpenModal }) {
         </div>
       </section>
 
+      {/* CO ŚWIADCZYMY */}
+      <SubServices
+        eyebrow="Usługi w ramach kategorii"
+        heading={<>CO <span className="text-accent">ŚWIADCZYMY.</span></>}
+        description="Każda z poniższych usług może być realizowana osobno lub jako element kompleksowego wdrożenia - w zależności od etapu, na którym jest Twoja firma."
+        items={subServices}
+      />
+
       <section className="w-full py-28 px-6 md:px-16 xl:px-32 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">// CO DOSTAJESZ</p>
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO DOSTAJESZ</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
               Numer. Wdrożenie. Analityka.<br />Kompletne rozwiązanie.
             </h2>
@@ -142,7 +172,7 @@ export default function ZlotyNumer({ onOpenModal }) {
       <section id="jak-dzialamy" className="w-full py-28 px-6 md:px-16 xl:px-32">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">// JAK DZIAŁAMY</p>
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
               Od wyboru numeru<br />do pełnego wdrożenia.
             </h2>
@@ -172,7 +202,7 @@ export default function ZlotyNumer({ onOpenModal }) {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(212,255,0,0.04) 0%, transparent 70%)' }} />
         <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,255,0,0.3) 50%, transparent)' }} />
         <div className="max-w-[1400px] mx-auto text-center">
-          <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">// GOTOWY NA ZMIANĘ?</p>
+          <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">GOTOWY NA ZMIANĘ?</p>
           <h2 className="font-heading font-light text-3xl md:text-5xl lg:text-6xl text-ivory uppercase tracking-tight leading-tight mb-6">
             Daj klientom powód,<br />
             <span className="text-accent">żeby zadzwonili.</span>
@@ -186,8 +216,6 @@ export default function ZlotyNumer({ onOpenModal }) {
           </button>
         </div>
       </section>
-
-      <FooterCTA onOpenModal={onOpenModal} />
     </div>
   );
 }

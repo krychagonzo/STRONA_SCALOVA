@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function FooterCTA({ onOpenModal }) {
+export default function FooterCTA({ onOpenModal, hideCta = false }) {
   return (
     <div id="footer-cta" className="w-full bg-[#0E0E0E] flex flex-col items-center">
 
-      {/* Top Part (Dots + CTA + Bottom Line) */}
+      {!hideCta && (
       <div className="relative w-full flex flex-col items-center justify-center pt-24 min-h-[500px]">
 
         {/* Background Dot Matrix Wrapper */}
@@ -65,6 +65,7 @@ export default function FooterCTA({ onOpenModal }) {
         {/* Full-width Line Separator directly under CTA block */}
         <div className="w-full relative z-10 bg-slate/30 h-[1px]"></div>
       </div>
+      )}
 
       {/* Footer Area */}
       <footer className="w-full bg-[#0E0E0E] rounded-none px-8 pt-16 pb-8 z-10 relative">
@@ -104,7 +105,7 @@ export default function FooterCTA({ onOpenModal }) {
         <div className="max-w-7xl mx-auto pt-8 border-t border-slate/30 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-heading text-xs text-ivory/40">© {new Date().getFullYear()} Scalova. Wszelkie prawa zastrzeżone.</p>
           <div className="flex gap-4 font-heading text-xs text-ivory/40">
-            <a href="#" className="hover:text-ivory transition-colors">Polityka Prywatności</a>
+            <Link to="/polityka-prywatnosci" className="hover:text-ivory transition-colors">Polityka Prywatności</Link>
             <a href="#" className="hover:text-ivory transition-colors">Regulamin</a>
           </div>
         </div>

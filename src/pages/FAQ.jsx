@@ -1,25 +1,152 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+// Bayer 4x4 ordered dithering matrix, normalized to [-1, 1]
+const BAYER4 = [
+   0,  8,  2, 10,
+  12,  4, 14,  6,
+   3, 11,  1,  9,
+  15,  7, 13,  5,
+].map(v => (v / 16 - 0.5) * 2);
+
+function FAQCanvas() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d', { colorSpace: 'srgb' });
+
+    const DURATION_MS = 2500;  // smooth transition
+    const GLOW_FINAL  = 0.50;  // resting intensity
+
+    const BR = 14, BG = 14, BB = 14;   // base #0E0E0E
+    const GR = 42, GG = 42, GB = 42;   // glow #2a2a2a (gray)
+
+    const drawAt = (glowT, w, h) => {
+      const imageData = ctx.createImageData(w, h);
+      const data = imageData.data;
+      const cx = w * 0.5;
+      const cy = 0; // ellipse_at_top
+      const rx = w * 0.75; 
+      const ry = 1200; 
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const i = (y * w + x) * 4;
+          const dither = BAYER4[(y & 3) * 4 + (x & 3)];
+          const dx = (x - cx) / rx;
+          const dy = (y - cy) / ry;
+          const t  = Math.min(Math.sqrt(dx * dx + dy * dy), 1.0);
+          const ss = 1 - t * t * (3 - 2 * t); // smoothstep
+          const alpha = ss * glowT;
+          const r = BR + (GR - BR) * alpha;
+          const g = BG + (GG - BG) * alpha;
+          const b = BB + (GB - BB) * alpha;
+          const n = dither * 2;
+          data[i]     = Math.min(255, Math.max(0, r + n));
+          data[i + 1] = Math.min(255, Math.max(0, g + n));
+          data[i + 2] = Math.min(255, Math.max(0, b + n));
+          data[i + 3] = 255;
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    };
+
+    let w = canvas.offsetWidth;
+    let h = canvas.offsetHeight;
+    canvas.width  = w;
+    canvas.height = h;
+
+    let currentGlow = 0;
+    drawAt(currentGlow, w, h);
+
+    let rafId = null;
+    let startTs = null;
+
+    const animate = (ts) => {
+      if (!startTs) startTs = ts;
+      const p = Math.min((ts - startTs) / DURATION_MS, 1.0);
+      const eased = -(Math.cos(Math.PI * p) - 1) / 2;
+      currentGlow = eased * GLOW_FINAL;
+      drawAt(currentGlow, w, h);
+      if (p < 1.0) rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
+
+    const ro = new ResizeObserver(() => {
+      w = canvas.offsetWidth;
+      h = canvas.offsetHeight;
+      canvas.width  = w;
+      canvas.height = h;
+      drawAt(currentGlow, w, h);
+    });
+    ro.observe(canvas);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      ro.disconnect();
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full"
+      style={{ display: 'block' }}
+    />
+  );
+}
 
 const FAQS = [
   {
-    q: "Jak długo trwa wdrożenie systemu platformy i automatyzacji?",
-    a: "Standardowo pełen proces od audytu po wdrożenie 'live' zamyka się w 4-8 tygodniach, zależnie od wybranego zakresu infrastruktury. Pracujemy jednak modułowo, co oznacza, że pierwsze efekty i asystentów jesteśmy w stanie uruchomić znacznie szybciej, bez przerywania Twojej bieżącej pracy."
+    q: "Jak mogę sprawdzić, czy Wasze zaplecza pasują do mojej branży?",
+    a: ""
+  },
+  {
+    q: "Jak wyceniane są Wasze usługi?",
+    a: "Nie mamy sztywnych, szablonowych cenników, ponieważ każdy biznes wymaga innej dźwigni. Pracujemy w modelu projektowym (np. wdrożenie konkretnego systemu AI) lub w modelu stałego partnerstwa (retajner). Zarezerwuj bezpłatną, sesję strategiczną – po krótkiej rozmowie będziemy w stanie określić widełki budżetowe adekwatne do poziomu, na który zamierzasz wprowadzić swoją markę."
+  },
+  {
+    q: "Dla jakich firm wasze usługi przynoszą najlepsze efekty?",
+    a: "Największą wartość dostarczamy markom, które osiągnęły już rynkowy sukces, ale czują, że ich dalszy rozwój wyhamował. Często spotykamy się z sytuacją, w której firma ma świetny produkt, jednak jej pracownicy tracą zbyt wiele czasu na żmudne, powtarzalne zadania. Właścicielom brakuje przestrzeni na myślenie strategiczne, a koszty prowadzenia działalności rosną szybciej niż same przychody. Rozumiemy te wyzwania. Nasze rozwiązania tworzymy z myślą o firmach, które chcą rozwijać się mądrze – zwiększając skalę swojego biznesu bez konieczności ciągłego zatrudniania nowych osób. Z powodzeniem wspieramy w tym branżę e-commerce, sektor B2B oraz firmy usługowe."
   },
   {
     q: "Czy potrzebuję programistów lub eksperckiej wiedzy w zespole?",
-    a: "Kompletnie nie. Budujemy nasze systemy w myśl zasady 'bezobsługowego back-office'. Twoim naczelnym zadaniem jest wyłącznie zamykanie wygenerowanych leadów. Cała integracja techniczna, od stron po automatyzacje API i szkolenie AI-asystenta, leży bezkompromisowo po naszej stronie."
+    a: ""
   },
   {
-    q: "Czym tak właściwie jest AI-asystent i w czym przypomina człowieka?",
-    a: "To zaawansowany duży model językowy (LLM) brutalnie wytrenowany na procedurach, polityce i cennikach Twojej firmy. To nie jest zwykły bot z prostym drzewem decyzyjnym 'tak/nie'. Utrzymuje on gładką, sprzedażową konwersację z klientem, rozbija drobne obiekcje i zapisuje potencjalne deale prosto w dedykowanym CRM o dowolnej porze."
+    q: "Czy sztuczna inteligencja nie sprawi, że moja marka straci \"ludzką twarz\"?",
+    a: "To jeden z największych mitów. AI nie zastępuje empatii – AI uwalnia czas, byś mógł być bardziej empatyczny dla kluczowych klientów. Maszyny wykonują powtarzalną czarną robotę, analizują dane i personalizują komunikaty w ułamku sekundy, podczas gdy Ty i Twój zespół możecie skupić się na budowaniu prawdziwych, ludzkich relacji tam, gdzie to najbardziej potrzebne."
   },
   {
-    q: "Na czym dokładnie polega optymalizacja budżetów 'pod sprzedaż'?",
-    a: "Większość tradycyjnych agencji fetyszyzuje zasięgi oraz tanie tzw. 'kliki'. Nas to kompletnie nie interesuje. Instalujemy w Twojej infrastrukturze bezwzględny system śledzenia każdego wygenerowanego leada z kampanii. Jeśli kreacja, niezależnie od estetyki, nie sprowadza gotówki na Twoje konto we wskazany sposób – ucinamy jej budżet i przestawiamy wektor."
+    q: "Czym tak właściwie jest AI-asystent i jaką może pełnić funkcje na mojej stronie?",
+    a: "To zaawansowany duży model językowy (LLM) wytrenowany na procedurach, polityce i cennikach Twojej firmy. To nie jest zwykły bot z prostym drzewem decyzyjnym 'tak/nie'. Utrzymuje on gładką, sprzedażową konwersację z klientem, rozbija drobne obiekcje i zapisuje potencjalne deale prosto w dedykowanym CRM o dowolnej porze."
   },
   {
-    q: "Jak mogę sprawdzić, czy Wasze zaplecza pasują do mojej branży?",
-    a: "Zasady brutalnej i systemowej sprzedaży są na ogół niezmienne – proces prowadzenia uwagi z chłodnego kontaktu do sprawnie sfinalizowanego deala wygląda tak samo w sprzedaży deweloperskiej, branży technologicznej czy na etapie skalowania B2B. Oceniamy rentowność już po pierwszej fazie – jeśli systemy nie mają u Ciebie sensu ekonomicznego, po prostu odmówimy podjęcia współpracy."
+    q: "Czym jest landing page a czym Witryna firmowa?",
+    a: "Landing Page to Twój najlepszy handlowiec. Ma jeden cel: złapać klienta za rękę, opowiedzieć mu o jednym konkretnym produkcie i doprowadzić do zakupu lub zostawienia kontaktu. Nie ma rozpraszaczy, nie ma menu. Prowadzi prosto do kasy.\n\nRozbudowana witryna firmowa (Cyfrowa centrala) to główna siedziba Twojej firmy. To biuro, w którym klient może pospacerować, wejść do działu „O nas”, zajrzeć do gabloty z „Case study”, przeczytać firmowego bloga i poznać całą historię marki. Tu budujesz relację i zaufanie na lata."
+  },
+  {
+    q: "Jakiego rodzaju materiały wizualne tworzycie?",
+    a: "Zajmujemy się pełnym spektrum kreacji konwertującej:\n• Wideo sprzedażowe i rolki (Reels/TikTok) zoptymalizowane pod algorytmy.\n• Wysokiej klasy fotografia produktowa i wizerunkowa.\n• Zasoby graficzne do kampanii reklamowych, w których wykorzystujemy również AI do błyskawicznego testowania setek wariantów (A/B testing) dla maksymalnej konwersji."
+  },
+  {
+    q: "Czym jest VR i jak może mi pomóc?",
+    a: ""
+  },
+  {
+    q: "Co realnie zyskuję dzięki profesjonalnej identyfikacji wizualnej? Czy to tylko \"ładne logo\"?",
+    a: ""
+  },
+  {
+    q: "Jak animacja może wpłynąc na moją firmę?",
+    a: ""
+  },
+  {
+    q: "Czy animacja to rozwiązanie tylko do pozyskiwania klientów, czy pomoże mi również zoptymalizować procesy wewnątrz firmy?",
+    a: "Traktowanie animacji wyłącznie jako \"ładnego obrazka do reklamy\" to marnowanie jej największego potencjału biznesowego. Jako agencja wdrażająca automatyzacje, patrzymy na motion design i explainer video dwutorowo: to narzędzie, które na zewnątrz generuje przychody, a wewnątrz firmy drastycznie tnie koszty operacyjne.\n\nNasi klienci wykorzystują tworzone przez nas materiały na trzech kluczowych frontach:\n\nNa zewnątrz (Skalowanie Sprzedaży): Jeśli Twój produkt lub usługa są skomplikowane, ściana tekstu natychmiast odstraszy potencjalnego klienta. Animacja w 30-60 sekund przekłada zawiłe procesy na język prostych korzyści. Zatrzymuje uwagę w social mediach, buduje wizerunek marki premium i płynnie wprowadza ruch do Twojego lejka sprzedażowego.\n\nWewnątrz (Automatyzacja Onboardingu i HR): Zamiast odrywać kluczowych managerów od pracy, by po raz setny tłumaczyli nowemu pracownikowi procedury, korzystasz z wewnętrznych wideo instrukcji. Nowy członek zespołu szybciej przyswaja wiedzę, informacje są zawsze zestandaryzowane, a Twoja firma oszczędza setki godzin pracy najdroższych specjalistów.\n\nObsługa Klienta i FAQ (Redukcja Kosztów Wsparcia): Krótkie animacje produktowe i tzw. wideo-instrukcje zdejmują ciężar z Twojego działu obsługi klienta. Kiedy użytkownik ma problem, nasz zautomatyzowany system wysyła mu przystępny explainer, rozwiązując sprawę bez angażowania człowieka."
   }
 ];
 
@@ -29,8 +156,10 @@ export default function FAQ() {
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center pb-32">
       {/* AMBIENT GRADIENT & ANTI-BANDING NOISE */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden h-[150vh]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[1200px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0">
+          <FAQCanvas />
+        </div>
         <svg className="absolute inset-0 w-full h-full opacity-[0.05] mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
           <filter id="faqNoise">
             <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
@@ -47,7 +176,7 @@ export default function FAQ() {
         
         <div className="inline-flex flex-col items-stretch max-w-[95vw] overflow-hidden sm:max-w-full mx-auto">
           <h1 className="text-ivory text-[50px] sm:text-[70px] md:text-[100px] lg:text-[140px] xl:text-[180px] 2xl:text-[220px] font-heading font-bold tracking-tighter leading-[0.8] uppercase text-center whitespace-nowrap select-none">
-            PYTANIA (FAQ)
+            FAQ
           </h1>
 
           <div className="w-full flex justify-center mt-10 md:mt-14 px-4">
@@ -87,7 +216,7 @@ export default function FAQ() {
 
                 {/* ROZWIJANY KONTENT OPISU */}
                 <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="font-sans text-ivory/60 text-base md:text-[17px] xl:text-[19px] leading-relaxed font-light normal-case pl-16 md:pl-24 pr-4 xl:pr-32 pb-10 md:pb-12 text-balance">
+                  <p className="font-sans text-ivory/60 text-base md:text-[17px] xl:text-[19px] leading-relaxed font-light normal-case pl-16 md:pl-24 pr-4 xl:pr-32 pb-10 md:pb-12 text-balance whitespace-pre-wrap">
                     {faq.a}
                   </p>
                 </div>

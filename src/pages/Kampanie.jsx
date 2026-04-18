@@ -2,8 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Navbar from '../components/Navbar';
-import FooterCTA from '../components/FooterCTA';
+import SubServices from '../components/SubServices';
+import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+
+const subServices = [
+  { title: "Meta Ads (Facebook & Instagram)", desc: "Kampanie w ekosystemie Meta zoptymalizowane pod ROAS, nie pod zasięg. Precyzyjne targetowanie, testowanie kreacji i skalowanie budżetów na tym co faktycznie generuje sprzedaż." },
+  { title: "Google Ads (Search & Display)", desc: "Kampanie w wyszukiwarce i sieci reklamowej Google. Łapiemy klientów w momencie, gdy aktywnie szukają Twojego produktu - z pełnym śledzeniem konwersji do sprzedaży." },
+  { title: "LinkedIn Ads", desc: "Kampanie B2B celowane w konkretne stanowiska, branże i wielkości firm. Idealne do generowania leadów w sektorze profesjonalnym, gdzie precyzja targetowania jest kluczowa." },
+  { title: "Content organiczny (Social Media)", desc: "Strategia i produkcja contentu budującego zasięg bez płatnej dystrybucji. Każdy post ma cel - sprzedaż, zasięg lub pozycja eksperta. Regularność zaplanowana na miesiące do przodu." },
+  { title: "Konfiguracja trackingu konwersji", desc: "Pełne wdrożenie pikseli, API konwersji i śledzenia server-side. Wiesz dokładnie która kampania przyniosła przychód, a która tylko kliknięcia - każda złotówka rozliczona." },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,12 +59,12 @@ export default function Kampanie({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
-      <Navbar />
 
       {/* HERO */}
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-40 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(212,255,0,0.05) 0%, transparent 70%)' }} />
-        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,255,0,0.4) 50%, transparent)' }} />
+        <div className="absolute inset-0 pointer-events-none">
+          <ServiceHeroCanvas />
+        </div>
 
         <div className="max-w-[1400px] mx-auto w-full">
           <div className="hero-line flex items-center gap-3 mb-10">
@@ -67,13 +75,27 @@ export default function Kampanie({ onOpenModal }) {
             <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-accent">Kampanie & Organic</span>
           </div>
 
-          <p className="hero-line font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">// PERFORMANCE / ORGANIC</p>
 
-          <h1 className="hero-line font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory mb-8 uppercase">
-            Reklamy,<br />
-            które <span className="text-accent">zarabiają.</span><br />
+          <div className="hero-line relative flex items-center justify-between w-full mb-8 md:mb-12">
+            <h1 className="relative z-10 w-full md:w-[75%] font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory uppercase">
+              Reklamy,<br />
+            które <span className="text-ivory">zarabiają.</span><br />
             Nie wyglądają.
-          </h1>
+            </h1>
+            <div 
+              className="absolute right-[-10%] md:right-0 top-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] bg-white/[0.03] pointer-events-none z-0"
+              style={{
+                maskImage: `url('${'/SEKCJA_USLUGI/IKONA_KAMPANIE_ORGANIC.svg'}')`,
+                WebkitMaskImage: `url('${'/SEKCJA_USLUGI/IKONA_KAMPANIE_ORGANIC.svg'}')`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskPosition: 'right center',
+                WebkitMaskPosition: 'right center',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat'
+              }}
+            />
+          </div>
 
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
             Każda kampania śledzona do sprzedaży, nie do kliknięć. Łączymy płatną dystrybucję z organicznym wzrostem - żeby każda złotówka pracowała na wynik, a nie na slajd w prezentacji.
@@ -108,7 +130,7 @@ export default function Kampanie({ onOpenModal }) {
       <section className="w-full py-28 px-6 md:px-16 xl:px-32">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">// PROBLEM</p>
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">PROBLEM</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight max-w-3xl">
               Większość budżetów reklamowych<br />
               <span className="text-ivory/40">finansuje agencji raporty,</span><br />
@@ -127,11 +149,19 @@ export default function Kampanie({ onOpenModal }) {
         </div>
       </section>
 
+      {/* CO ŚWIADCZYMY */}
+      <SubServices
+        eyebrow="Usługi w ramach kategorii"
+        heading={<>CO <span className="text-accent">ŚWIADCZYMY.</span></>}
+        description="Każda z poniższych usług może być realizowana osobno lub jako element kompleksowego wdrożenia - w zależności od etapu, na którym jest Twoja firma."
+        items={subServices}
+      />
+
       {/* DELIVERABLES */}
       <section className="w-full py-28 px-6 md:px-16 xl:px-32 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">// CO DOSTAJESZ</p>
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO DOSTAJESZ</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
               Pełny system dystrybucji.<br />Mierzalny od pierwszego dnia.
             </h2>
@@ -152,7 +182,7 @@ export default function Kampanie({ onOpenModal }) {
       <section id="jak-dzialamy" className="w-full py-28 px-6 md:px-16 xl:px-32">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">// JAK DZIAŁAMY</p>
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
               Od audytu do kampanii<br />generującej przychód.
             </h2>
@@ -183,7 +213,7 @@ export default function Kampanie({ onOpenModal }) {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(212,255,0,0.04) 0%, transparent 70%)' }} />
         <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,255,0,0.3) 50%, transparent)' }} />
         <div className="max-w-[1400px] mx-auto text-center">
-          <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">// GOTOWY NA ZMIANĘ?</p>
+          <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">GOTOWY NA ZMIANĘ?</p>
           <h2 className="font-heading font-light text-3xl md:text-5xl lg:text-6xl text-ivory uppercase tracking-tight leading-tight mb-6">
             Przestań zgadywać.<br />
             <span className="text-accent">Zacznij optymalizować pod dane.</span>
@@ -197,8 +227,6 @@ export default function Kampanie({ onOpenModal }) {
           </button>
         </div>
       </section>
-
-      <FooterCTA onOpenModal={onOpenModal} />
     </div>
   );
 }

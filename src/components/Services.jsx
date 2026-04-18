@@ -268,8 +268,8 @@ export default function Services() {
                         <span className="font-heading text-[10px] tracking-[0.3em] uppercase">WIĘCEJ</span>
                         <div className="w-8 h-[1px] bg-current"></div>
                       </div>
-                      <div className="w-8 h-8 rounded-full border border-white/10 group-hover:border-obsidian/20 flex items-center justify-center text-ivory/30 group-hover:text-obsidian transition-all duration-500">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                      <div className="w-9 h-9 border border-white/10 group-hover:border-obsidian/30 flex items-center justify-center text-lg font-light text-ivory/30 group-hover:text-obsidian transition-all duration-500">
+                        ＋
                       </div>
                     </div>
                   </motion.div>
@@ -358,7 +358,7 @@ export default function Services() {
                       <div className="flex flex-col sm:flex-row gap-4 mt-auto">
                         <button
                           onClick={(e) => { e.stopPropagation(); setSelectedService(null); }}
-                          className="group py-4 px-8 bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-heading font-bold uppercase tracking-widest text-ivory/80 rounded-lg transition-all duration-300 hover:border-ivory/30 hover:bg-white/10 flex-1 sm:flex-none flex items-center justify-center gap-3 relative overflow-hidden"
+                          className="group py-4 px-8 bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-heading font-bold uppercase tracking-widest text-ivory/80 transition-all duration-300 hover:border-ivory/30 hover:bg-white/10 flex-1 sm:flex-none flex items-center justify-center gap-3 relative overflow-hidden"
                         >
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
                           WRÓĆ

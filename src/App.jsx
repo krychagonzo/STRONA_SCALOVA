@@ -18,6 +18,8 @@ import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Career from './pages/Career';
 import FAQ from './pages/FAQ';
+import PolitykaPrywatnosci from './pages/PolitykaPrywatnosci';
+
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -51,12 +53,16 @@ function AppContent() {
           <Route path="/uslugi/ai-w-firmie" element={<AIwFirmie onOpenModal={() => setModalOpen(true)} />} />
           <Route path="/uslugi/ruchome-tresci" element={<RuchomeTresci onOpenModal={() => setModalOpen(true)} />} />
           <Route path="/uslugi/zloty-numer" element={<ZlotyNumer onOpenModal={() => setModalOpen(true)} />} />
+          <Route path="/polityka-prywatnosci" element={<PolitykaPrywatnosci />} />
+
         </Routes>
       </div>
 
-      {location.pathname !== '/do-lacz-do-nas' && (
-        <FooterCTA onOpenModal={() => setModalOpen(true)} />
-      )}
+      {location.pathname !== '/do-lacz-do-nas' && (() => {
+        const hideCtaRoutes = location.pathname === '/polityka-prywatnosci' || location.pathname.startsWith('/uslugi/');
+        return <FooterCTA onOpenModal={() => setModalOpen(true)} hideCta={hideCtaRoutes} />;
+      })()}
+
       {location.pathname === '/' && <FloatingCTA onOpenModal={() => setModalOpen(true)} />}
       <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </main>

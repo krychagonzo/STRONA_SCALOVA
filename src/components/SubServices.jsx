@@ -1,43 +1,30 @@
 import React, { useState } from 'react';
 
-const steps = [
-  {
-    num: "01",
-    title: "Diagnoza systemu.",
-    desc: "Analizujemy Twój model biznesowy, procesy sprzedażowe i marketing - i wskazujemy dokładnie gdzie firma traci czas i pieniądze."
-  },
-  {
-    num: "02",
-    title: "Plan i strategia.",
-    desc: "Prezentujemy konkretny plan działania. Pokazujemy, jak nowa strona, identyfikacja wizualna, celne reklamy i zautomatyzowana sprzedaż zwiększą Twoje przychody."
-  },
-  {
-    num: "03",
-    title: "Transfer.",
-    desc: "Instalujemy wszystko w Twojej firmie. Technologie, procesy, marketing - uruchamiamy i szkolimy zespół. Wychodzisz z gotowym systemem, który działa od pierwszego dnia."
-  }
-];
-
-export default function Protocol() {
+export default function SubServices({ eyebrow, heading, description, items }) {
   const [activeStep, setActiveStep] = useState(-1);
 
   return (
-    <section id="protocol" className="relative w-full bg-obsidian py-20 md:py-28 px-4 md:px-8 flex flex-col items-center select-none z-10">
+    <section className="relative w-full bg-obsidian py-20 md:py-28 px-4 md:px-8 flex flex-col items-center select-none z-10">
       <div className="w-full max-w-[1100px]">
 
         {/* NAGŁÓWEK SEKCJI */}
         <div className="mb-10 md:mb-16 text-center uppercase tracking-widest font-heading px-6 flex flex-col items-center">
           <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
-            Metodologia
+            {eyebrow}
           </span>
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
-            PROCES TRANSFORMACJI
+            {heading}
           </h2>
+          {description && (
+            <p className="text-ivory/60 mt-6 text-base md:text-lg max-w-2xl mx-auto normal-case tracking-normal leading-relaxed">
+              {description}
+            </p>
+          )}
         </div>
 
         {/* LISTA AKORDEONOWA */}
         <div className="flex flex-col border-t border-white/10">
-          {steps.map((step, index) => {
+          {items.map((item, index) => {
             const isActive = activeStep === index;
             return (
               <div key={index} className="border-b border-white/10">
@@ -46,13 +33,13 @@ export default function Protocol() {
                   className={`group flex w-full cursor-pointer items-center gap-4 py-8 md:py-10 px-4 xl:px-8 transition-colors duration-300 ${isActive ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'}`}
                 >
                   {/* NUMER */}
-                  <div className={`flex-shrink-0 font-heading font-light text-4xl md:text-5xl leading-none w-16 md:w-20 transition-colors duration-500 ${isActive ? 'text-accent' : 'text-ivory/20 group-hover:text-accent/50'}`}>
-                    {step.num}
+                  <div className={`flex-shrink-0 font-mono text-sm uppercase tracking-widest transition-colors duration-500 mr-2 md:mr-4 ${isActive ? 'text-accent' : 'text-ivory/30 group-hover:text-accent/60'}`}>
+                    {String(index + 1).padStart(2, '0')}
                   </div>
 
                   {/* TYTUŁ */}
                   <h3 className={`flex-1 text-left font-heading text-2xl lg:text-[28px] tracking-tight uppercase transition-colors duration-500 px-2 md:px-4 ${isActive ? 'text-ivory' : 'text-ivory/70 group-hover:text-ivory'}`}>
-                    {step.title}
+                    {item.title}
                   </h3>
 
                   {/* PRZYCISK INTERAKTYWNY */}
@@ -64,7 +51,7 @@ export default function Protocol() {
                 {/* ROZWIJANY OPIS */}
                 <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
                   <p className="font-sans text-ivory/60 text-base md:text-[17px] xl:text-[19px] leading-relaxed font-light normal-case pl-16 md:pl-[5.5rem] pr-4 xl:pr-32 pb-10 md:pb-12 text-balance">
-                    {step.desc}
+                    {item.desc}
                   </p>
                 </div>
               </div>
