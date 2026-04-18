@@ -106,7 +106,7 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
           <p className="font-heading text-xs text-ivory/40">© {new Date().getFullYear()} Scalova. Wszelkie prawa zastrzeżone.</p>
           <div className="flex gap-4 font-heading text-xs text-ivory/40">
             <Link to="/polityka-prywatnosci" className="hover:text-ivory transition-colors">Polityka Prywatności</Link>
-            <a href="#" className="hover:text-ivory transition-colors">Regulamin</a>
+            <Link to="/regulamin" className="hover:text-ivory transition-colors">Regulamin</Link>
           </div>
         </div>
       </footer>

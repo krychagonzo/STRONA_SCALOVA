@@ -19,6 +19,7 @@ import Portfolio from './pages/Portfolio';
 import Career from './pages/Career';
 import FAQ from './pages/FAQ';
 import PolitykaPrywatnosci from './pages/PolitykaPrywatnosci';
+import Regulamin from './pages/Regulamin';
 
 
 const ScrollToTop = () => {
@@ -54,12 +55,13 @@ function AppContent() {
           <Route path="/uslugi/ruchome-tresci" element={<RuchomeTresci onOpenModal={() => setModalOpen(true)} />} />
           <Route path="/uslugi/zloty-numer" element={<ZlotyNumer onOpenModal={() => setModalOpen(true)} />} />
           <Route path="/polityka-prywatnosci" element={<PolitykaPrywatnosci />} />
+          <Route path="/regulamin" element={<Regulamin />} />
 
         </Routes>
       </div>
 
       {location.pathname !== '/do-lacz-do-nas' && (() => {
-        const hideCtaRoutes = location.pathname === '/polityka-prywatnosci' || location.pathname.startsWith('/uslugi/');
+        const hideCtaRoutes = location.pathname === '/polityka-prywatnosci' || location.pathname === '/regulamin' || location.pathname.startsWith('/uslugi/');
         return <FooterCTA onOpenModal={() => setModalOpen(true)} hideCta={hideCtaRoutes} />;
       })()}
 
