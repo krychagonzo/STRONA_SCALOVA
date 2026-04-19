@@ -277,59 +277,84 @@ export default function Services() {
               })}
             </div>
 
-            {/* OVERLAY: POWIĘKSZONY KAFELEK */}
+            {/* OVERLAY: POWIĘKSZONY KAFELEK — Proposal B "Command Center" */}
             <AnimatePresence>
               {selectedService !== null && (
                 <motion.div
                   layoutId={`wrapper-${selectedService}`}
-                  className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 p-8 md:p-14 lg:p-20 flex flex-col md:flex-row gap-12 lg:gap-24 shadow-[0_0_80px_rgba(212,255,0,0.08)_inset] overflow-hidden"
+                  className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 overflow-hidden"
                   transition={{ layout: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }}
                   style={{
-                    background: "rgba(12, 12, 12, 0.95)",
+                    background: "rgba(12, 12, 12, 0.97)",
                     backdropFilter: "blur(24px)",
                     WebkitBackdropFilter: "blur(24px)",
-                    borderTop: "1px solid rgba(255,255,255,0.05)",
-                    borderLeft: "1px solid rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.05)",
+                    boxShadow: "0 0 80px rgba(201,168,76,0.04) inset",
                   }}
                 >
-                  <motion.div 
-                    initial={{ opacity: 0 }} 
+                  {/* WATERMARK: ta sama ikona serwisu — duża, w tle */}
+                  <div
+                    className="absolute pointer-events-none"
+                    style={{
+                      top: '-20px',
+                      left: '-20px',
+                      width: '300px',
+                      height: '300px',
+                      background: 'rgba(250,248,245,0.055)',
+                      maskImage: `url(${servicesList[selectedService].icon})`,
+                      WebkitMaskImage: `url(${servicesList[selectedService].icon})`,
+                      maskSize: 'contain',
+                      WebkitMaskSize: 'contain',
+                      maskPosition: 'center',
+                      WebkitMaskPosition: 'center',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskRepeat: 'no-repeat',
+                    }}
+                  />
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.3 } }}
                     exit={{ opacity: 0, transition: { duration: 0 } }}
-                    className="w-full flex justify-between flex-col md:flex-row gap-12 lg:gap-24 relative z-10"
+                    className="relative z-10 w-full flex flex-col md:flex-row md:min-h-[620px]"
                   >
-                    {/* Ozdobne cyber-linie w narożnikach */}
-                    <div className="absolute -top-20 -right-20 w-[1px] h-32 bg-gradient-to-b from-accent/0 via-accent/60 to-accent/0"></div>
-                    <div className="absolute -bottom-20 -left-20 w-32 h-[1px] bg-gradient-to-r from-accent/0 via-accent/60 to-accent/0"></div>
+                    {/* LEWA KOLUMNA — 1/3 */}
+                    <div className="md:w-[38%] p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative">
 
-                    {/* Lewa kolumna: logotyp, title, checkmarki */}
-                    <div className="flex-1 flex flex-col relative z-10">
-                      <motion.div layoutId={`icon-${selectedService}`} className="mb-6 md:mb-10 text-ivory/60 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]">
-                        <RenderIcon icon={servicesList[selectedService].icon} className="w-20 h-20 md:w-24 md:h-24" strokeWidth={1.5} />
+                      {/* Mała aktywna ikona */}
+                      <motion.div layoutId={`icon-${selectedService}`} className="mb-8 text-ivory/60">
+                        <RenderIcon icon={servicesList[selectedService].icon} className="w-14 h-14 md:w-16 md:h-16" strokeWidth={1.5} />
                       </motion.div>
 
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0, transition: { delay: 0.4 } }}
-                        className="font-heading font-light text-accent/80 text-xs tracking-[0.2em] mb-4 border border-accent/20 bg-accent/5 inline-block self-start px-3 py-1"
+                      {/* Numer seryjny + tag */}
+                      <div className="flex items-center gap-4 mb-5">
+                        <span className="font-mono text-accent text-[11px] tracking-[0.25em]">
+                          {String(selectedService + 1).padStart(2, '0')} / 08
+                        </span>
+                        <span className="font-mono text-ivory/30 text-[10px] tracking-[0.2em] uppercase border border-white/10 px-2 py-0.5">
+                          {servicesList[selectedService].tag}
+                        </span>
+                      </div>
+
+                      {/* Tytuł */}
+                      <motion.h3
+                        layoutId={`title-${selectedService}`}
+                        className="text-ivory font-heading font-bold tracking-tighter text-2xl md:text-3xl lg:text-[2.2rem] uppercase leading-[0.95] text-balance"
                       >
-                        SEKCJA WDROŻENIOWA
-                      </motion.div>
-                      
-                      <motion.h3 layoutId={`title-${selectedService}`} className="text-ivory font-heading font-light tracking-tight text-3xl md:text-5xl mb-8 uppercase text-balance leading-tight">
                         {servicesList[selectedService].title}
                       </motion.h3>
 
-                      <div className="flex flex-col gap-5 border-t border-slate/40 pt-8 mt-auto">
+                      {/* Checkmarki */}
+                      <div className="flex flex-col gap-4 border-t border-white/5 pt-7 mt-auto">
                         {servicesList[selectedService].features.map((feat, fIdx) => (
                           <motion.div
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.4 + (fIdx * 0.1) }}
+                            transition={{ delay: 0.45 + (fIdx * 0.1) }}
                             key={fIdx}
-                            className="flex items-center gap-4 text-base font-heading font-medium text-ivory/90"
+                            className="flex items-start gap-3 text-sm font-heading text-ivory/55"
                           >
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="text-accent shrink-0 drop-shadow-[0_0_8px_rgba(212,255,0,0.4)]">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" className="text-accent shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(201,168,76,0.5)]">
                               <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <span>{feat}</span>
@@ -338,38 +363,38 @@ export default function Services() {
                       </div>
                     </div>
 
-                    {/* Prawa kolumna: Rozbudowany opis + przyciski */}
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
-                        className="flex-[1.2] flex flex-col justify-center relative z-10 pt-4 md:pt-[104px]"
+                    {/* PRAWA KOLUMNA — 2/3 */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0, transition: { delay: 0.45 } }}
+                      className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-end"
                     >
-                      <div className="mb-14">
-                        <h4 className="font-heading font-bold text-xl text-ivory mb-6 tracking-wide uppercase border-l-2 border-accent pl-4">{servicesList[selectedService].areaLabel}</h4>
-                        <div className="flex flex-col gap-4">
-                          {servicesList[selectedService].extendedDesc.split('\n\n').map((para, i) => (
-                            <p key={i} className="font-sans text-ivory/70 text-lg md:text-[19px] leading-relaxed">
-                              {para}
-                            </p>
-                          ))}
-                        </div>
+                      {/* Dolna część: label + skrócony opis — przyklejone do dołu */}
+                      <div className="mb-8">
+                        <h4 className="font-heading font-bold text-[11px] uppercase tracking-[0.3em] text-ivory/80 mb-6 pl-4 border-l-2 border-accent">
+                          {servicesList[selectedService].areaLabel}
+                        </h4>
+                        <p className="font-sans text-ivory/65 text-lg md:text-xl leading-relaxed">
+                          {servicesList[selectedService].desc}
+                        </p>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+                      {/* Przyciski */}
+                      <div className="flex flex-col sm:flex-row gap-3 pt-8 border-t border-white/5">
                         <button
                           onClick={(e) => { e.stopPropagation(); setSelectedService(null); }}
-                          className="group py-4 px-8 bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-heading font-bold uppercase tracking-widest text-ivory/80 transition-all duration-300 hover:border-ivory/30 hover:bg-white/10 flex-1 sm:flex-none flex items-center justify-center gap-3 relative overflow-hidden"
+                          className="group py-4 px-8 bg-white/5 border border-white/10 text-[11px] font-heading font-bold uppercase tracking-widest text-ivory/70 transition-all duration-300 hover:border-ivory/20 hover:bg-white/10 flex items-center justify-center gap-3"
                         >
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
                           WRÓĆ
                         </button>
                         {servicesList[selectedService].slug ? (
                           <Link
                             to={servicesList[selectedService].slug}
                             onClick={(e) => e.stopPropagation()}
-                            className="group relative overflow-hidden py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center flex items-center justify-center gap-3"
+                            className="group relative overflow-hidden py-4 px-10 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:-translate-y-0.5 flex-1 text-center flex items-center justify-center gap-3"
                           >
-                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none" />
+                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
                             <span className="relative z-10 flex items-center gap-3">
                               DOWIEDZ SIĘ WIĘCEJ
                               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
@@ -378,9 +403,9 @@ export default function Services() {
                         ) : (
                           <button
                             onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
-                            className="group relative overflow-hidden py-4 px-8 bg-accent text-obsidian text-sm font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] hover:-translate-y-1 flex-1 sm:flex-[2] text-center"
+                            className="group relative overflow-hidden py-4 px-10 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:-translate-y-0.5 flex-1 text-center"
                           >
-                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none" />
+                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
                             <span className="relative z-10">ZAREZERWUJ KONSULTACJĘ</span>
                           </button>
                         )}

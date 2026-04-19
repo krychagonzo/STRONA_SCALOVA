@@ -4,22 +4,22 @@ import React, { useState } from 'react';
 const problems = [
   {
     icon: "/SEKCJA_BARIERY/IKONY_PRZEPALANY_BUDZET.svg",
-    title: "Przepalone budżety,",
+    title: "Przepalone budżety",
     desc: "Twoje kampanie działają - ale nikt nie sprawdza czy zarabiają. Co miesiąc dziesiątki tysięcy złotych idą w reklamy, które nie zwracają ani złotówki."
   },
   {
     icon: "/SEKCJA_BARIERY/IKONY_LEADY.svg",
-    title: "Tracisz gorące leady,",
+    title: "Utracone leady",
     desc: "Ktoś się zainteresował, wypełnił formularz, napisał. I zniknął. Nie do konkurencji - Ty go po prostu zgubiłeś. Zła oferta, za wolna odpowiedź, brak follow-upu."
   },
   {
     icon: "/SEKCJA_BARIERY/IKONY_MARKA.svg",
-    title: "Szukają Ciebie,",
+    title: "Niewidzialność w sieci",
     desc: "Klienci szukają tego co sprzedajesz - i trafiają do konkurencji. Nie dlatego, że są lepsi. Dlatego, że ich widać, a Ciebie nie."
   },
   {
     icon: "/SEKCJA_BARIERY/IKONY_WYGLAD.svg",
-    title: "Klienci negocjują,",
+    title: "Słaba pozycja cenowa",
     desc: "Zanim powiesz słowo, klient już ocenił Twoją markę. Amatorskie logo, przestarzała strona, brak spójności - i zaczyna negocjować cenę zamiast kupować."
   },
   {
@@ -42,7 +42,7 @@ export default function Features() {
             Bariery
           </span>
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
-            TWÓJ BIZNES <span className="text-accent">TRACI KAŻDEGO DNIA.</span>
+            PIĘĆ LUK, PRZEZ KTÓRE <span className="text-accent">ROSNĄ TWOI KONKURENCI.</span>
           </h2>
           <p className="text-ivory/60 mt-6 text-base md:text-lg max-w-2xl mx-auto normal-case tracking-normal leading-relaxed">
             Każda firma osiąga moment, w którym samo dokładanie ludzi i godzin przestaje przynosić efekty. To właśnie wtedy ukryte luki operacyjne i wizerunkowe zaczynają kosztować najwięcej.
