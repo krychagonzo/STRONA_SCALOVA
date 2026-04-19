@@ -161,7 +161,7 @@ export default function Kampanie({ onOpenModal }) {
       <section className="w-full py-28 px-6 md:px-16 xl:px-32 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO DOSTAJESZ</p>
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO ZYSKUJESZ</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
               Pełny system dystrybucji.<br />Mierzalny od pierwszego dnia.
             </h2>

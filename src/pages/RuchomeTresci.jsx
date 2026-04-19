@@ -6,29 +6,30 @@ import SubServices from '../components/SubServices';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
-  { title: "Reels & Shorts", desc: "Krótkie formy wideo zoptymalizowane pod algorytmy Instagram, TikTok i YouTube Shorts. Hak w pierwszych 2 sekundach, wartość w środku, CTA na końcu - każdy materiał pod zatrzymanie kciuka." },
-  { title: "Animacje produktowe i brandowe", desc: "Animacje prezentujące produkt, usługę lub markę w ruchu. Zatrzymują uwagę dłużej niż statyczny obraz, budują profesjonalny wizerunek i tłumaczą złożone koncepty w sekundach." },
-  { title: "Explainer video", desc: "Wideo wyjaśniające działanie produktu lub usługi w 30-60 sekund. Przekłada zawiłe procesy na język prostych korzyści - idealny format do landing page'ów, prezentacji i kampanii." },
-  { title: "Wideo na stronę i landing page", desc: "Hero video, testimoniale, demo produktu - wideo na stronie zwiększa czas spędzony i konwersję. Projektujemy pod cel sprzedażowy, nie pod estetykę samą w sobie." },
-  { title: "Scenariusze i strategia video", desc: "Każdy materiał ma zaplanowany scenariusz, format i platformę docelową. Strategia video na miesiące do przodu - regularność bez stresu last-minute i bez przerw." },
+  { title: "Animacje 2D i 3D", desc: "Ożywiamy idee, których nie da się uchwycić tradycyjną kamerą. Od subtelnego ruchu logo, który buduje profesjonalny charakter marki, po fotorealistyczne prezentacje produktów i przekroje techniczne. To idealne rozwiązanie, gdy chcesz pokazać wnętrze mechanizmu lub projekt, który jeszcze nie istnieje." },
+  { title: "Explainer Videos (Filmy instruktażowe)", desc: "Dobre wideo wyjaśniające to pomost między Twoją wiedzą a zrozumieniem klienta lub pracownika. Tworzymy krótkie formy, które w prosty, ludzki sposób tłumaczą nawet najbardziej zawiłe procesy - zarówno na zewnątrz, jak i wewnątrz organizacji." },
+  { title: "Social Media & Montaż Dynamiczny", desc: "W świecie krótkich form (Reels, TikTok, YouTube Shorts) liczą się pierwsze sekundy. Przygotujemy dla Ciebie materiały, które zatrzymują wzrok podczas szybkiego przewijania ekranu. Dbamy o rytm, napisy i efekty, które budują zasięgi oraz autentyczne zaangażowanie społeczności." },
+  { title: "Wirtualna Rzeczywistość (VR) i Interakcja", desc: "Zamiast opowiadać o projekcie, pozwól swoim klientom po prostu w nim być. Tworzymy cyfrowe przestrzenie, które można odwiedzić, zwiedzić i poczuć. To idealne narzędzie dla deweloperów, architektów i wizjonerów, którzy chcą skrócić dystans między pomysłem a decyzją zakupową." },
+  { title: "Motion Design w Interfejsach (UI)", desc: "Usprawniamy odbiór Twoich narzędzi cyfrowych. Projektujemy mikrowyraziste animacje dla stron www i aplikacji, które prowadzą użytkownika za rękę. To detal, który sprawia, że proces zakupu lub rejestracji staje się płynny i intuicyjny." },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
 
 const deliverables = [
-  { number: "01", title: "Strategia video i mapa formatów", desc: "Dobieramy formaty, platformy i częstotliwość do Twojej marki i grupy docelowej. Każdy kanał ma swoją logikę - nie wrzucamy wszędzie tego samego." },
-  { number: "02", title: "Scenariusze i skrypty", desc: "Piszemy scenariusze pod psychologię uwagi - hak w pierwszych 2 sekundach, wartość w środku, wezwanie do działania na końcu. Bez improwizacji na planie." },
-  { number: "03", title: "Produkcja reelsów i shortów", desc: "Nagrywamy lub obrabiamy materiał wideo pod pionowy format. Cięcia, napisy, muzyka, efekty - wszystko pod algorytm i zachowanie widza." },
-  { number: "04", title: "Animacje produktowe i brandowe", desc: "Animacje prezentujące produkt, usługę lub markę w ruchu. Zatrzymują uwagę dłużej niż statyczny obraz i budują profesjonalny wizerunek." },
-  { number: "05", title: "Wideo na stronę i landing page", desc: "Explainer video, hero video, testimoniale - wideo na stronie zwiększa czas spędzony i konwersję. Projektujemy pod cel, nie pod estetykę." },
-  { number: "06", title: "Miesięczny kalendarz publikacji", desc: "Planujemy co, kiedy i gdzie publikujemy. Dostajesz gotowe materiały z wyprzedzeniem - bez stresu last-minute i bez przerw w regularności." },
+  { number: "01", title: "Precyzyjny przekaz, który się nie męczy", desc: "Raz przygotowany film szkoleniowy lub prezentacja produktu będzie zawsze tak samo profesjonalna, niezależnie od tego, czy ogląda go pierwszy, czy setny odbiorca." },
+  { number: "02", title: "Autorytet budowany profesjonalizmem", desc: "Wysokiej jakości animacje i montaż stawiają Cię w rzędzie liderów. Klient widzi firmę, która dba o detale i inwestuje w najwyższą jakość komunikacji." },
+  { number: "03", title: "Uwolnienie zasobów ludzkich", desc: "Dzięki wideo instruktażowym Twój zespół może zająć się tworzeniem wartości, zamiast ciągłym powtarzaniem procedur. To realna oszczędność pieniędzy i energii." },
+  { number: "04", title: "Głębsza relacja z odbiorcą", desc: "Ruch i dźwięk angażują zmysły znacznie silniej niż statyczny obraz. Budujesz emocjonalną więź z klientem, która zamienia zwykłego widza w lojalnego partnera." },
+  { number: "05", title: "Zasięgi, które rosną organicznie", desc: "Algorytmy każdej platformy — od Instagram po LinkedIn — premiują wideo ponad wszystkie inne formaty. Jeden dobrze zaprojektowany materiał dociera do nowych odbiorców bez dodatkowego budżetu reklamowego." },
+  { number: "06", title: "Jeden materiał, wiele zastosowań", desc: "Animacja lub wideo wyprodukowane raz pracuje jednocześnie na stronie www, w social mediach, prezentacji sprzedażowej i procesie onboardingu. Inwestujesz raz — czerpiesz wielotorowo." },
 ];
 
 const steps = [
-  { num: "01", label: "STRATEGIA", title: "Dobieramy formaty i platformy do marki", desc: "Analizujemy Twoją grupę docelową i konkurencję. Ustalamy co produkować, gdzie publikować i jak często - zanim uruchomimy produkcję." },
-  { num: "02", label: "SCENARIUSZ", title: "Piszemy skrypty pod psychologię uwagi", desc: "Każdy materiał ma zaplanowany hak, wartość i CTA. Scenariusz zatwierdzasz przed realizacją - bez niespodzianek po nagraniu." },
-  { num: "03", label: "PRODUKCJA", title: "Nagrywamy, obrabiamy, optymalizujemy", desc: "Realizacja i postprodukcja pod konkretne formaty. Każdy materiał zoptymalizowany pod platformę, na której trafi do odbiorcy." },
-  { num: "04", label: "DYSTRYBUCJA", title: "Publikujemy i mierzymy efekty", desc: "Materiały wychodzą według harmonogramu. Co miesiąc analizujemy wyniki i uczymy się co zatrzymuje uwagę Twoich odbiorców najdłużej." },
+  { num: "01", label: "SCENARIUSZ I CEL", desc: "Ustalamy cel, grupę docelową i format. To fundament całej produkcji." },
+  { num: "02", label: "STORYBOARD", desc: "Rozrysowujemy kluczowe kadry. Akceptujesz strukturę przed startem produkcji." },
+  { num: "03", label: "PRODUKCJA", desc: "Realizacja dopasowana do marki — każdy kadr ma swoje uzasadnienie." },
+  { num: "04", label: "DŹWIĘK I SZLIF", desc: "Dobieramy warstwę dźwiękową, która nadaje całości kinowy charakter." },
+  { num: "05", label: "WDROŻENIE", desc: "Formaty pod każdą platformę — od ekranów po smartfony." },
 ];
 
 const stats = [
@@ -38,9 +39,12 @@ const stats = [
 ];
 
 const problems = [
-  { title: "Twoje wideo nikt nie ogląda do końca", desc: "Długi wstęp, brak haka, nudna realizacja. Algorytmy karzą niski czas oglądania - Twoje materiały przestają być promowane." },
-  { title: "Produkujesz sporadycznie i nieregularnie", desc: "Regularne publikowanie to klucz do algorytmów. Brak planu oznacza brak regularności, brak regularności oznacza brak zasięgów." },
-  { title: "Wideo wygląda nieprofesjonalnie", desc: "Zły dźwięk, brak cięć, nieczytelne napisy. Odbiorca porównuje Cię z profesjonalnymi twórcami i wychodzi po 3 sekundach." },
+  { title: "Tracisz czas na powtarzalne tłumaczenia", desc: "Czujesz, że połowę dnia spędzasz na wyjaśnianiu klientom lub nowym pracownikom tych samych zasad działania. Twoje słowa ulatują, a wideo zostaje i pracuje za Ciebie." },
+  { title: "Twoja oferta jest zbyt trudna do opisania tekstem", desc: "Masz innowacyjny produkt lub usługę, której nie da się streścić w dwóch zdaniach. Bez wizualizacji tracisz uwagę tych, którzy nie mają czasu na czytanie długich instrukcji." },
+  { title: "Marka wydaje się nieruchoma na tle konkurencji", desc: "W świecie zdominowanym przez wideo, statyczna obecność bywa odbierana jako brak nowoczesności. Brakuje Ci dynamiki, która ożywiłaby Twój przekaz i nadała mu ludzką twarz." },
+  { title: "Onboarding paraliżuje pracę zespołu", desc: "Każdy nowy pracownik to godziny pracy Twoich liderów poświęcone na szkolenia. Brakuje Ci standardu, który wprowadzałby ludzi w procesy bez Twojego ciągłego udziału." },
+  { title: "Sprzedajesz coś, czego nie można dotknąć", desc: "Usługi, oprogramowanie, projekty B2B - to kategorie, gdzie słowa nie wystarczą. Animacja lub wirtualna prezentacja pozwala klientowi poczuć wartość produktu, zanim podejmie decyzję." },
+  { title: "Twoje social media nie generują zaangażowania", desc: "Posty giną w feedzie, zasięgi spadają, komentarzy brak. Statyczne treści nie mają szans w algorytmach nastawionych na wideo. Potrzebujesz dynamiki, która zatrzymuje uwagę i buduje społeczność." },
 ];
 
 export default function RuchomeTresci({ onOpenModal }) {
@@ -74,9 +78,9 @@ export default function RuchomeTresci({ onOpenModal }) {
           </div>
           <div className="hero-line relative flex items-center justify-between w-full mb-8 md:mb-12">
             <h1 className="relative z-10 w-full md:w-[75%] font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory uppercase">
-              Wideo, które<br />
-            <span className="text-ivory">zatrzymuje kciuk</span><br />
-            i zostaje w głowie.
+              Obraz, który<br />
+              <span className="text-ivory">porusza</span><br />
+              i przekonuje.
             </h1>
             <div 
               className="absolute right-[-10%] md:right-0 top-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] bg-white/[0.03] pointer-events-none z-0"
@@ -93,7 +97,7 @@ export default function RuchomeTresci({ onOpenModal }) {
             />
           </div>
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
-            Tworzymy ruchome treści wizualne - od reelsów i shortów po animacje produktowe - które sprawiają, że marka zapada w pamięć, zanim klient zdąży pomyśleć "skip". Każdy materiał pod konkretny format i cel.
+            Dynamika obrazu pozwala przekazać emocje i dane w sposób, którego żaden tekst nie jest w stanie oddać. Projektujemy ruch, który ma cel — nie ozdobę.
           </p>
           <div className="hero-line flex flex-col sm:flex-row gap-4">
             <button onClick={onOpenModal} className="group relative overflow-hidden font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(212,255,0,0.15)] hover:shadow-[0_0_60px_rgba(212,255,0,0.35)]">
@@ -123,13 +127,14 @@ export default function RuchomeTresci({ onOpenModal }) {
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">PROBLEM</p>
-            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight max-w-3xl">
-              W świecie krótkiej uwagi<br />
-              <span className="text-ivory/40">złe wideo</span><br />
-              jest gorsze niż żadne.
+            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight max-w-3xl mb-6">
+              Gdzie Twoja firma traci energię i potencjał?
             </h2>
+            <p className="font-sans text-ivory/50 text-base md:text-lg max-w-2xl leading-relaxed">
+              Obraz dynamiczny to odpowiedź na konkretne wyzwania, z którymi mierzy się każdy rozwijający się biznes. Pomagamy Ci, gdy czujesz, że:
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ivory/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ivory/5">
             {problems.map((item, i) => (
               <div key={i} className="bg-[#0c0c0c] p-8 md:p-10 flex flex-col gap-4">
                 <div className="w-8 h-[2px] bg-accent" />
@@ -152,10 +157,13 @@ export default function RuchomeTresci({ onOpenModal }) {
       <section className="w-full py-28 px-6 md:px-16 xl:px-32 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO DOSTAJESZ</p>
-            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Fabryka uwagi.<br />Gotowa do pracy każdego miesiąca.
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO ZYSKUJESZ</p>
+            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight mb-6">
+              Realne zyski z dynamiki przekazu.
             </h2>
+            <p className="font-sans text-ivory/50 text-base md:text-lg max-w-2xl leading-relaxed">
+              Tworzymy treści, które stają się fundamentem Twojej komunikacji zewnętrznej i wewnętrznej. To coś więcej niż obraz - to sposób na skalowanie jakości i standardów Twojej firmy, który pozwala jej rezonować silniej, przy jednoczesnym odciążeniu zasobów, którymi dysponujesz.
+            </p>
           </div>
           <div className="deliverables-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ivory/5">
             {deliverables.map((d) => (
@@ -173,24 +181,20 @@ export default function RuchomeTresci({ onOpenModal }) {
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
-            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Od strategii do gotowych<br />materiałów w czterech krokach.
+            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight mb-6">
+              Nasza droga do Twojego obrazu.
             </h2>
+            <p className="font-sans text-ivory/50 text-base md:text-lg max-w-2xl leading-relaxed">
+              Proces tworzenia ruchomych treści dzielimy na kroki, które gwarantują, że efekt końcowy będzie dokładnie taki, jakiego potrzebuje Twój biznes.
+            </p>
           </div>
           <div className="steps-container flex flex-col">
             {steps.map((step) => (
-              <div key={step.num} className="step-row group flex flex-col md:flex-row gap-6 md:gap-16 py-10 border-t border-ivory/5 hover:border-accent/20 transition-colors duration-500">
-                <div className="flex items-start gap-6 md:w-64 shrink-0">
-                  <span className="font-mono text-accent/40 text-xs tracking-[0.2em] mt-1">{step.num}</span>
-                  <span className="font-mono text-ivory/30 text-[10px] tracking-[0.2em] uppercase mt-1">{step.label}</span>
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-heading text-ivory text-xl md:text-2xl uppercase tracking-tight mb-3 group-hover:text-accent transition-colors duration-300">{step.title}</h3>
-                  <p className="font-sans text-ivory/50 text-sm md:text-base leading-relaxed max-w-2xl">{step.desc}</p>
-                </div>
-                <div className="hidden md:flex items-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" className="text-ivory/10 group-hover:text-accent/40 transition-colors duration-300"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
-                </div>
+              <div key={step.num} className="step-row group flex items-center gap-8 md:gap-12 py-5 border-t border-ivory/5 hover:border-accent/20 transition-colors duration-300">
+                <span className="font-mono text-accent/30 text-[10px] tracking-[0.2em] shrink-0 w-6 text-right">{step.num}</span>
+                <h3 className="font-heading text-ivory text-base md:text-xl uppercase tracking-[0.12em] shrink-0 w-40 md:w-56 group-hover:text-accent transition-colors duration-300">{step.label}</h3>
+                <p className="font-sans text-ivory/40 text-sm leading-relaxed flex-1">{step.desc}</p>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" className="hidden md:block shrink-0 text-ivory/10 group-hover:text-accent/40 group-hover:-rotate-45 transition-all duration-300"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
               </div>
             ))}
             <div className="border-t border-ivory/5" />

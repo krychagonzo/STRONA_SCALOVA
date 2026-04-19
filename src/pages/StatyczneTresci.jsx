@@ -6,29 +6,30 @@ import SubServices from '../components/SubServices';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
-  { title: "Identyfikacja wizualna marki", desc: "Logo, paleta kolorów, typografia, system graficzny - cała tożsamość wizualna zaprojektowana pod spójność i profesjonalizm. Klient widzi markę premium zanim przeczyta pierwsze słowo." },
-  { title: "Projekty graficzne pod social media", desc: "Instagram, LinkedIn, Facebook - każdy format zaprojektowany pod specyfikę platformy i zachowanie jej użytkowników. Spójne, rozpoznawalne, konwertujące." },
-  { title: "Fotografia produktowa i wizerunkowa", desc: "Profesjonalna sesja zdjęciowa budująca wizerunek marki i prezentująca produkt w sposób, który sprzedaje. Bez stockowych zdjęć - autentyczność i jakość." },
-  { title: "Szablony brandowe do samodzielnego użytku", desc: "Zestaw szablonów w Twoich kolorach i fontach - możesz publikować sam bez angażowania grafika przy każdym poście. Pełna spójność wizualna bez stałych kosztów." },
-  { title: "Strategia contentowa i kalendarz", desc: "Definiujemy o czym, jak i do kogo mówisz. Miesięczny kalendarz z zaplanowanymi tematami, formatami i celami - regularność bez chaosu last-minute." },
+  { title: "Identyfikacja Wizualna i Rebranding", desc: "Tworzymy unikalny kod genetyczny Twojej firmy. Projektujemy logo, dobieramy typografię i kolorystykę, które tworzą spójny wizerunek lidera. Pomagamy też odświeżyć istniejące marki, aby nadążały za dynamicznie zmieniającym się rynkiem." },
+  { title: "Wizualizacje Produktów i Architektury (CGI)", desc: "Tworzymy obrazy, które wyprzedzają rzeczywistość. Perfekcyjne rendery 3D pozwalają sprzedawać produkty, zanim zjadą z linii produkcyjnej, lub prezentować inwestycje budowlane w fazie projektu. To jakość, która eliminuje kosztowne sesje zdjęciowe." },
+  { title: "Grafika Wspierana przez AI (Opcja ekonomiczna)", desc: "Wykorzystujemy potencjał sztucznej inteligencji, aby dostarczać unikalne ilustracje i obrazy w krótkim czasie. Rozwiązanie dla marek, które potrzebują wysokiej jakości contentu przy zachowaniu optymalnego budżetu." },
+  { title: "Design Sprzedażowy i Materiały Marketingowe", desc: "Wszystko, co wspiera domykanie transakcji. Projektujemy eleganckie katalogi, oferty PDF (Pitch Decks), skuteczne banery reklamowe oraz grafiki do mediów społecznościowych - każdy projekt pod czytelność i skuteczność komunikatu." },
+  { title: "Infografiki i Wizualizacja Danych", desc: "Przekładamy liczby na język korzyści. Tworzymy przejrzyste wykresy i schematy procesów, które w przystępny sposób pokazują Twoją skuteczność, wzrosty lub zasady działania usług. Kluczowe narzędzie w budowaniu wizerunku eksperta." },
+  { title: "Oznakowanie Przestrzeni i Eventów", desc: "Przenosimy Twoją markę do świata fizycznego. Projektujemy spójne systemy oznakowania biur, stoisk targowych i materiałów konferencyjnych. Twoja marka jest tak samo profesjonalna w sieci, jak i podczas bezpośredniego spotkania z klientem." },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
 
 const deliverables = [
-  { number: "01", title: "Audyt komunikacji wizualnej", desc: "Analizujemy obecny wizerunek, spójność i pozycję w stosunku do konkurencji. Wiemy co poprawić zanim zaczniemy tworzyć." },
-  { number: "02", title: "Strategia pozycjonowania eksperta", desc: "Definiujemy głos marki, tematykę i sposób komunikacji, który buduje autorytet - nie tylko obecność w sieci." },
-  { number: "03", title: "Miesięczny kalendarz contentowy", desc: "Każdy post zaplanowany z wyprzedzeniem - temat, format, platforma, cel. Regularność bez chaosu last-minute." },
-  { number: "04", title: "Projekty graficzne pod każdą platformę", desc: "Instagram, LinkedIn, Facebook - każdy format zaprojektowany pod specyfikę platformy i zachowanie jej użytkowników." },
-  { number: "05", title: "Szablony do samodzielnego użycia", desc: "Dostajesz zestaw szablonów w swoich kolorach i fontach - możesz publikować sam bez angażowania grafika przy każdym poście." },
-  { number: "06", title: "Analiza wyników i optymalizacja", desc: "Co miesiąc sprawdzamy co działa, co nie, i dostosowujemy strategię. Content, który się nie poprawia, to zmarnowany budżet." },
+  { number: "01", title: "Natychmiastowa czytelność marki", desc: "Klient od razu wie, z kim ma do czynienia. Profesjonalny wygląd skraca drogę od zainteresowania do decyzji o współpracy." },
+  { number: "02", title: "Wyższa postrzegana wartość usług", desc: "Firmy, które dbają o estetykę, mogą pozwolić sobie na wyższe marże. Jakość wizualna jest dla klienta sygnałem jakości Twojej pracy." },
+  { number: "03", title: "Sprawność operacyjna zespołu", desc: "Dzięki wizualizacji procesów wewnętrznych i standardów, Twoi pracownicy popełniają mniej błędów i szybciej adaptują się do nowych zadań." },
+  { number: "04", title: "Oszczędność czasu i budżetu", desc: "Dzięki CGI i AI dostarczamy materiały wizualne szybciej i taniej niż w przypadku tradycyjnych metod, zachowując przy tym najwyższą, światową jakość." },
+  { number: "05", title: "Spójna marka we wszystkich punktach styku", desc: "Od strony www i social mediów po materiały konferencyjne i oznakowanie przestrzeni. Klient, który spotyka Twoją markę wszędzie, za każdym razem odbiera ten sam sygnał: profesjonalizm i dbałość o detal." },
+  { number: "06", title: "Skuteczniejsze zamykanie transakcji", desc: "Dobrze zaprojektowana oferta lub Pitch Deck to cichy sprzedawca, który działa za Ciebie. Klient trzymający profesjonalne materiały w rękach podejmuje decyzję szybciej i z większym zaufaniem." },
 ];
 
 const steps = [
-  { num: "01", label: "AUDYT", title: "Mapujemy wizerunek i komunikację", desc: "Analizujemy każdy kanał, ton komunikacji i materiały graficzne. Wiemy gdzie jesteś i jak wyglądasz na tle konkurencji." },
-  { num: "02", label: "POZYCJONOWANIE", title: "Definiujemy głos i pozycję eksperta", desc: "Ustalamy o czym będziesz mówić, jak i do kogo. Strategia contentowa to nie harmonogram postów - to system budowania autorytetu." },
-  { num: "03", label: "PRODUKCJA", title: "Tworzymy materiały pod platformy i cele", desc: "Projektujemy i przygotowujemy materiały z wyprzedzeniem. Każdy element zatwierdzony zanim trafi do publikacji." },
-  { num: "04", label: "DYSTRYBUCJA", title: "Planujemy, analizujemy, iterujemy", desc: "Publikujemy według harmonogramu i mierzymy efekty. Co miesiąc raport z wnioskami i plan na kolejny okres." },
+  { num: "01", label: "ANALIZA I KONTEKST", title: "Rozumiemy, gdzie firma traci energię", desc: "Szukamy miejsc, gdzie obraz może pomóc — czy to w słabej sprzedaży, czy w niejasnych procesach wewnętrznych." },
+  { num: "02", label: "PROJEKTOWANIE", title: "Dobieramy formę do celu", desc: "Chcesz sprzedać projekt — tworzymy rendery 3D. Chcesz usprawnić pracę biura — tworzymy schematy i szablony dokumentów." },
+  { num: "03", label: "KREACJA", title: "Tworzymy z dbałością o precyzję", desc: "Tworzymy finalne grafiki, dbając o każdy piksel. Łączymy rzemiosło z nowoczesnymi technologiami." },
+  { num: "04", label: "IMPLEMENTACJA", title: "Wdrażamy i wspieramy", desc: "Pomagamy wdrożyć nowe materiały w życie firmy. Twój zespół wie jak ich używać, klienci zauważają nową jakość." },
 ];
 
 const stats = [
@@ -38,9 +39,12 @@ const stats = [
 ];
 
 const problems = [
-  { title: "Postujesz, ale nic z tego nie wynika", desc: "Regularność bez strategii to przepalanie czasu. Zasięgi małe, zaangażowanie zerowe, zero zapytań od klientów." },
-  { title: "Wyglądasz amatorsko na tle konkurencji", desc: "Niespójne grafiki, różne style, brak tożsamości wizualnej. Klient porównuje Cię z profesjonalną marką i wybiera tę drugą." },
-  { title: "Nie masz czasu na content", desc: "Prowadzisz firmę - content to zawsze ostatnia rzecz na liście. Albo wychodzi naprędce, albo nie wychodzi wcale." },
+  { title: "Poczucie bycia jednym z wielu", desc: "Twoja marka nie wyróżnia się na tle konkurencji, przez co klienci kierują się głównie ceną, a nie wartością Twojego brandu." },
+  { title: "Brak spójności w komunikacji", desc: "Inaczej wyglądasz w mediach społecznościowych, a inaczej w ofertach wysyłanych do klientów. Ten chaos buduje podwiadomy brak zaufania." },
+  { title: "Trudne do zrozumienia materiały wewnętrzne", desc: "Twoi pracownicy gubią się w gąszczu tekstu w instrukcjach i procedurach. Brakuje wizualnego przewodnika, który uprościłby ich codzienną pracę." },
+  { title: "Wysokie koszty i długi czas oczekiwania", desc: "Potrzebujesz profesjonalnych zdjęć produktów lub architektury, ale organizacja sesji zdjęciowych trwa tygodniami i pochłania ogromne budżety." },
+  { title: "Oferty i pitch decki, które nie zamykają sprzedaży", desc: "Wysyłasz świetną ofertę — i cisza. Materiały bez profesjonalnego projektu giną w skrzynce klienta. Elegancki Pitch Deck to różnica między 'przemyślę' a 'kiedy zaczynamy'." },
+  { title: "Twoje liczby imponują, ale nie przekonują", desc: "Masz doskonale wyniki, referencje i wzrosty — ale prezentowane w tabeli lub bloku tekstu nie robią wrażenia. Bez wizualizacji danych klient nie poczuje skali Twojego sukcesu." },
 ];
 
 export default function StatyczneTresci({ onOpenModal }) {
@@ -78,9 +82,9 @@ export default function StatyczneTresci({ onOpenModal }) {
 
           <div className="hero-line relative flex items-center justify-between w-full mb-8 md:mb-12">
             <h1 className="relative z-10 w-full md:w-[75%] font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory uppercase">
-              Pozycja eksperta.<br />
-            Budowana<br />
-            <span className="text-ivory">każdym postem.</span>
+              Twój wizerunek<br />
+              <span className="text-ivory">mówi,</span><br />
+              zanim Ty zaczniesz.
             </h1>
             <div 
               className="absolute right-[-10%] md:right-0 top-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] bg-white/[0.03] pointer-events-none z-0"
@@ -98,7 +102,7 @@ export default function StatyczneTresci({ onOpenModal }) {
           </div>
 
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
-            Tworzymy statyczne treści wizualne, które budują Twoją pozycję eksperta i są projektowane pod konkretne platformy i cele. Nie produkujemy contentu dla samego contentu - każdy materiał ma pracować na wynik.
+            Pierwsze wrażenie trwa ułamek sekundy i jest decyzją, której klient nie jest świadomy. Projektujemy identyfikacje, wizualizacje i materiały, które wygrywają ten moment — zawsze.
           </p>
 
           <div className="hero-line flex flex-col sm:flex-row gap-4">
@@ -131,13 +135,14 @@ export default function StatyczneTresci({ onOpenModal }) {
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">PROBLEM</p>
-            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight max-w-3xl">
-              Content bez strategii<br />
-              <span className="text-ivory/40">to czas i pieniądze</span><br />
-              wydane na nic.
+            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight max-w-3xl mb-6">
+              Gdzie Twój wizerunek traci pieniądze?
             </h2>
+            <p className="font-sans text-ivory/50 text-base md:text-lg max-w-2xl leading-relaxed">
+              Warstwa wizualna to pierwsze wrażenie, które klient wyrabia sobie w ciągu sekund. Rozpoznajemy go za każdym razem, gdy firma wygląda gorzej, niż działa:
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ivory/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ivory/5">
             {problems.map((item, i) => (
               <div key={i} className="bg-[#0c0c0c] p-8 md:p-10 flex flex-col gap-4">
                 <div className="w-8 h-[2px] bg-accent" />
@@ -161,10 +166,13 @@ export default function StatyczneTresci({ onOpenModal }) {
       <section className="w-full py-28 px-6 md:px-16 xl:px-32 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO DOSTAJESZ</p>
-            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              System contentowy gotowy<br />do pracy od pierwszego tygodnia.
+            <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO ZYSKUJESZ</p>
+            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight mb-6">
+              Statyczny design — trwałe aktywa Twojego biznesu.
             </h2>
+            <p className="font-sans text-ivory/50 text-base md:text-lg max-w-2xl leading-relaxed">
+              Statyczny design to inwestycja w trwałe aktywa Twojego biznesu. Dzięki niemu zyskujesz:
+            </p>
           </div>
           <div className="deliverables-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ivory/5">
             {deliverables.map((d) => (
@@ -183,9 +191,12 @@ export default function StatyczneTresci({ onOpenModal }) {
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
-            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Od audytu do spójnego<br />wizerunku eksperta.
+            <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight mb-6">
+              Nasza droga do Twojego wizerunku.
             </h2>
+            <p className="font-sans text-ivory/50 text-base md:text-lg max-w-2xl leading-relaxed">
+              Każdy projekt traktujemy jako proces porządkowania Twojej rzeczywistości biznesowej.
+            </p>
           </div>
           <div className="steps-container flex flex-col">
             {steps.map((step) => (
