@@ -86,10 +86,10 @@ const servicesList = [
     title: "Złoty numer",
     tag: "Rozpoznawalność",
     slug: "/uslugi/zloty-numer",
-    areaLabel: "TWÓJ PUNKT KONTAKTU Z RYNKIEM",
-    desc: "Zamiast numeru, który nikt nie pamięta - jeden numer, który zostaje w głowie od pierwszego kontaktu.",
+    areaLabel: "TWOJA LINIA PIERWSZEGO KONTAKTU",
+    desc: "Zamiast numeru, który gubi się w historii połączeń — jeden symbol, który klient wpisuje z pamięci.",
     extendedDesc: "Telefon nadal jest najszybszym mostem między klientem a sprzedażą.\n\nZłoty numer to narzędzie sprzedażowe, które klient pamięta bez zapisywania w kontaktach.\n\nPomagamy wybrać, zarejestrować i wdrożyć numer, który wzmacnia rozpoznawalność przy każdym touchpoincie - billboardzie, reklamie, wizytówce.",
-    features: ["Numer, który klient pamięta bez zapisywania w kontaktach", "Rozpoznawalność marki wzmocniona przy każdym touchpoincie"],
+    features: ["Numer, który klient pamięta bez zapisywania w kontaktach", "Rozpoznawalność marki wzmocniona na każdym kroku."],
     metricContent: "Kluczowy punkt styku z marką. Zapada w pamięć, zanim klient zdąży zapisać kontakt.",
     icon: "/SEKCJA_USLUGI/IKONA_ZLOTY_NUMER.svg"
   }

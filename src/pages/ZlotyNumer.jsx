@@ -93,7 +93,7 @@ export default function ZlotyNumer({ onOpenModal }) {
             />
           </div>
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
-            Telefon nadal jest najszybszym mostem między klientem a sprzedażą. Złoty numer to narzędzie sprzedażowe, które wzmacnia rozpoznawalność marki przy każdym touchpoincie - billboardzie, reklamie, wizytówce.
+            Telefon nadal jest najszybszym mostem między klientem a sprzedażą. Złoty numer to narzędzie sprzedażowe, które wzmacnia rozpoznawalność marki w każdym punkcie styku - billboardzie, reklamie, wizytówce.
           </p>
           <div className="hero-line flex flex-col sm:flex-row gap-4">
             <button onClick={onOpenModal} className="group relative overflow-hidden font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(212,255,0,0.15)] hover:shadow-[0_0_60px_rgba(212,255,0,0.35)]">
@@ -144,8 +144,8 @@ export default function ZlotyNumer({ onOpenModal }) {
       {/* CO ŚWIADCZYMY */}
       <SubServices
         eyebrow="Usługi w ramach kategorii"
-        heading={<>CO <span className="text-accent">ŚWIADCZYMY.</span></>}
-        description="Każda z poniższych usług może być realizowana osobno lub jako element kompleksowego wdrożenia - w zależności od etapu, na którym jest Twoja firma."
+        heading={<>CO <span className="text-accent">WDRAŻAMY.</span></>}
+        description="Każdą usługę możesz uruchomić osobno. Razem tworzą system bez luk."
         items={subServices}
       />
 

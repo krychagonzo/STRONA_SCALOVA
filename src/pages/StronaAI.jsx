@@ -255,8 +255,8 @@ export default function StronaAI({ onOpenModal }) {
       {/* ─── CO ŚWIADCZYMY ─── */}
       <SubServices
         eyebrow="Usługi w ramach kategorii"
-        heading={<>CO <span className="text-accent">ŚWIADCZYMY.</span></>}
-        description="Każda z poniższych usług może być realizowana osobno lub jako element kompleksowego wdrożenia - w zależności od etapu, na którym jest Twoja firma."
+        heading={<>CO <span className="text-accent">WDRAŻAMY.</span></>}
+        description="Każdą usługę możesz uruchomić osobno. Razem tworzą system bez luk."
         items={subServices}
       />
 
@@ -360,8 +360,8 @@ export default function StronaAI({ onOpenModal }) {
       {/* ─── CO ŚWIADCZYMY ─── */}
       <SubServices
         eyebrow="Usługi w ramach kategorii"
-        heading={<>CO <span className="text-accent">ŚWIADCZYMY.</span></>}
-        description="Każda z poniższych usług może być realizowana osobno lub jako element kompleksowego wdrożenia - w zależności od etapu, na którym jest Twoja firma."
+        heading={<>CO <span className="text-accent">WDRAŻAMY.</span></>}
+        description="Każdą usługę możesz uruchomić osobno. Razem tworzą system bez luk."
         items={subServices}
       />
 
