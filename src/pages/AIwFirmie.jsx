@@ -68,7 +68,7 @@ export default function AIwFirmie({ onOpenModal }) {
           <div className="hero-line flex items-center gap-3 mb-10">
             <Link to="/" className="font-mono text-[10px] tracking-[0.25em] uppercase text-ivory/30 hover:text-accent transition-colors">Strona główna</Link>
             <span className="text-ivory/20 font-mono text-[10px]">/</span>
-            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-ivory/30">Usługi</span>
+            <Link to="/#services" className="font-mono text-[10px] tracking-[0.25em] uppercase text-ivory/30 hover:text-accent transition-colors">Usługi</Link>
             <span className="text-ivory/20 font-mono text-[10px]">/</span>
             <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-accent">AI w firmie</span>
           </div>
