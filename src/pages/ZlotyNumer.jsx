@@ -6,35 +6,55 @@ import SubServices from '../components/SubServices';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
-  { title: "Dobór optymalnego numeru", desc: "Analizujemy dostępne numery i dobieramy ten, który najłatwiej zapamiętać w kontekście Twojej branży i rynku. Wzorzec, rytm i fonetyka mają znaczenie - dobry numer to element marki." },
-  { title: "Rejestracja i konfiguracja", desc: "Zajmujemy się całą administracją - rejestracja, umowy z operatorem, przeniesienie jeśli masz istniejący numer do zastąpienia. Ty nie dzwonisz do żadnego operatora." },
-  { title: "Integracja z centralą telefoniczną", desc: "Podpinamy numer do Twojego obecnego systemu telefonicznego lub wdrażamy nowe rozwiązanie. Bez przerwy w odbieraniu połączeń, bez chaosu technicznego." },
-  { title: "Wdrożenie w materiałach reklamowych", desc: "Plan i projekt wizualny wdrożenia numeru: strona, reklamy, wizytówki, samochody firmowe, billboardy. Każdy touchpoint zaplanowany." },
-  { title: "Analityka połączeń", desc: "Śledzenie skąd przychodzą połączenia, godziny szczytowe i czas oczekiwania. Wiesz które kanały generują telefony, a które tylko kliknięcia - konkretne dane do optymalizacji." },
+  {
+    title: "Spersonalizowany Złoty Numer",
+    desc: "Zaczynamy od audytu Twojej marki i specyfiki branży. Na tej podstawie dobieramy unikalny wzorzec cyfr, który fonetycznie i wizualnie wkleja się w pamięć Twojego idealnego klienta. To nie jest losowy wybór – to strategiczna decyzja wizerunkowa."
+  },
+  {
+    title: "Rejestracja, konfiguracja i przekazanie",
+    desc: "Przejmujemy 100% formalności. Reprezentujemy Cię przed operatorem telekomunikacyjnym, załatwiamy umowy, rejestrację i techniczne przypisanie numeru. Oszczędzasz czas i nerwy – dostajesz od nas numer gotowy do użycia."
+  },
+  {
+    title: "Integracja zaawansowanej centrali (IVR i Routing)",
+    desc: "Złoty numer to tylko front, pod spodem budujemy inteligentny silnik. Konfigurujemy profesjonalne zapowiedzi głosowe (IVR), okazjonalne komunikaty oraz precyzyjne przekierowania. Klient dzwoni na jeden prestiżowy numer, a system automatycznie kieruje połączenie na numery komórkowe Twoich handlowców."
+  },
+  {
+    title: "Strategiczne wdrożenie we wszystkich kanałach",
+    desc: "Gotowy system wypuszczamy w świat. Planujemy podmianę numeru we wszystkich Twoich punktach styku z klientem: strona www, wizytówka Google, social media, billboardy czy flota samochodowa. Zapewniamy płynne przejście – bez ryzyka utraty choćby jednego dzwoniącego leada podczas zmiany."
+  },
+  {
+    title: "System zaawansowanej analityki połączeń",
+    desc: "Oddajemy w Twoje ręce przejrzysty panel danych. Śledzisz czas trwania rozmów, precyzyjną liczbę połączeń przychodzących i wychodzących, obciążenie linii w godzinach szczytu oraz skuteczność poszczególnych handlowców. Masz wreszcie twarde dane do mierzenia ROI z kampanii i optymalizacji sprzedaży."
+  },
+  {
+    number: "+",
+    title: "OPCJA ROZSZERZONA: Automatyzacja CRM",
+    desc: "Dla firm stawiających na maksymalne skalowanie, oferujemy dodatkową integrację centrali telefonicznej z Twoim systemem CRM. Każde połączenie automatycznie otwiera kartę klienta, przypisuje leada do odpowiedniego handlowca i loguje historię kontaktu. Zero ręcznego przepisywania numerów i pełna kontrola nad procesem sprzedaży."
+  },
 ];
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const deliverables = [
-  { number: "01", title: "Dobór optymalnego numeru", desc: "Analizujemy dostępne numery i dobieramy ten, który najłatwiej zapamiętać w kontekście Twojej branży i rynku. Wzorzec, rytm i fonetyka mają znaczenie." },
-  { number: "02", title: "Rejestracja i przeniesienie numeru", desc: "Zajmujemy się całą administracją - rejestracja, umowy z operatorem, przeniesienie jeśli masz już istniejący numer do zastąpienia." },
-  { number: "03", title: "Integracja z systemem telefonicznym", desc: "Podpinamy numer do Twojego obecnego systemu telefonicznego lub wdrażamy nowe rozwiązanie - bez przerwy w odbieraniu połączeń." },
-  { number: "04", title: "Strategia wdrożenia w materiałach", desc: "Plan jak i gdzie wdrożyć numer: strona, reklamy, wizytówki, samochody firmowe, billboardy. Każdy touchpoint zaplanowany." },
-  { number: "05", title: "Projekt wizualny dla numeru", desc: "Graficzne opracowanie numeru do materiałów reklamowych - proporcje, czytelność, wyróżnienie. Numer, który widać z daleka i czyta się w sekundę." },
-  { number: "06", title: "Analityka połączeń", desc: "Śledzenie skąd przychodzą połączenia, godziny szczytowe i czas oczekiwania. Wiesz które kanały generują telefony, a które tylko kliknięcia." },
+  { number: "01", title: "Maksymalizacja konwersji z reklam", desc: "Twój marketing wreszcie zacznie w pełni zarabiać. Klienci natychmiast zapamiętują Złoty Numer z billboardu, radia czy samochodu firmowego, co drastycznie zwiększa liczbę dzwoniących. Eliminujesz u klienta barierę 'nie mam jak zapisać'." },
+  { number: "02", title: "Pewność, że każdy klient zostanie obsłużony", desc: "Dzięki inteligentnym przekierowaniom żaden telefon nie pozostanie bez odpowiedzi. Jeśli jedna linia jest zajęta, system automatycznie łączy dzwoniącego z kolejnym wolnym doradcą. Zapewniasz płynną komunikację bez 'głuchych telefonów' czy uciążliwych sygnałów zajętości." },
+  { number: "03", title: "Wizerunek lidera w branży", desc: "Prestiżowy ciąg cyfr i profesjonalne zapowiedzi na infolinii (IVR) budują autorytet od pierwszej sekundy. Klient, słysząc spersonalizowane powitanie, podświadomie czuje, że dzwoni do dużej, stabilnej i godnej zaufania firmy." },
+  { number: "04", title: "Kontrola nad budżetem", desc: "Dzięki analityce połączeń wiesz dokładnie, skąd dzwonią klienci. Przestajesz przepalać pieniądze na nietrafione kampanie. Widzisz czarno na białym, które reklamy generują prawdziwe rozmowy sprzedażowe." },
+  { number: "05", title: "Pełna delegacja i oszczędność czasu", desc: "Otrzymujesz gotowy do działania ekosystem bez angażowania własnych zasobów. Przejmujemy na siebie kontakt z operatorami, wszelkie formalności oraz kompleksową konfigurację techniczną. Twój zespół może skupić się na strategicznych celach biznesowych, podczas gdy my dbamy o każdy detal wdrożenia." },
+  { number: "06", title: "Skalowalność i porządek w zespole", desc: "Twój system telefoniczny rośnie razem z firmą. Dodanie nowego pracownika do kolejki to kwestia chwili. A dzięki wsparciu automatyzacji (jak integracja z CRM), zyskujesz pełną historię kontaktów i odciążasz zespół z ręcznego wklepywania numerów." },
 ];
 
 const steps = [
-  { num: "01", label: "ANALIZA", title: "Dobieramy numer pod Twoją markę i rynek", desc: "Analizujemy branżę, grupę docelową i istniejące materiały. Dobieramy numer, który jest łatwy do zapamiętania i spójny z wizerunkiem marki." },
-  { num: "02", label: "REJESTRACJA", title: "Rejestrujemy i konfigurujemy numer", desc: "Zajmujemy się całą administracją i konfiguracją techniczną. Ty nie musisz dzwonić do żadnego operatora - my to robimy za Ciebie." },
-  { num: "03", label: "INTEGRACJA", title: "Wdrażamy numer w systemach i materiałach", desc: "Podpinamy numer do Twojej centrali, aktualizujemy stronę i materiały. Numer zaczyna działać bez przerwy w komunikacji z klientami." },
-  { num: "04", label: "ANALITYKA", title: "Mierzymy efekty i optymalizujemy", desc: "Śledzimy skąd przychodzą połączenia. Wiesz które kanały napędzają telefony i możesz świadomie inwestować w najbardziej skuteczne." },
+  { num: "01", label: "ANALIZA / KONCEPCJA", title: "Audyt i strategia doboru numeru", desc: "Analizujemy Twoją branżę, specyfikę grupy docelowej oraz cele wizerunkowe. Na tej podstawie dobieramy unikalny wzorzec cyfr, który idealnie rezonuje z wizerunkiem Twojej marki i maksymalizuje łatwość zapamiętania." },
+  { num: "02", label: "ADMINISTRACJA / TECHNOLOGIA", title: "Kompleksowa realizacja i wdrożenie systemu", desc: "Przejmujemy całkowitą odpowiedzialność za formalności administracyjne i kontakt z operatorami. Jednocześnie realizujemy pełną konfigurację techniczną centrali (zapowiedzi IVR, inteligentny routing) oraz planowe wdrożenie numeru we wszystkich kanałach reklamowych i wizerunkowych, gwarantując ciągłość komunikacji." },
+  { num: "03", label: "SUKCES / WZROST", title: "Monitoring, analiza i optymalizacja wyników", desc: "Monitorujemy każdy aspekt ruchu telefonicznego w Twojej firmie. Dostarczamy precyzyjne dane o skuteczności kampanii, obciążeniu linii i efektywności zespołu. Masz w ręku twarde argumenty, by świadomie optymalizować koszty i procesy sprzedażowe." },
 ];
 
 const stats = [
   { stat: "67%", label: "klientów woli zadzwonić niż wypełnić formularz - telefon to najkrótszy most do sprzedaży" },
   { stat: "3,2x", label: "wyższy wskaźnik zapamiętywania mają złote numery w porównaniu do standardowych" },
-  { stat: "1 min", label: "potrzebuje klient na zapamiętanie dobrze dobranego złotego numeru bez zapisywania" },
+  { stat: "3 sek", label: "potrzebuje klient na zapamiętanie dobrze dobranego złotego numeru bez zapisywania" },
 ];
 
 const problems = [
@@ -145,7 +165,7 @@ export default function ZlotyNumer({ onOpenModal }) {
       <SubServices
         eyebrow="Usługi w ramach kategorii"
         heading={<>CO <span className="text-accent">WDRAŻAMY.</span></>}
-        description="Każdą usługę możesz uruchomić osobno. Razem tworzą system bez luk."
+        description="Każdą usługę uruchamiamy w sprawdzonym, chronologicznym procesie. Razem tworzą szczelny system sprzedażowy."
         items={subServices}
       />
 
@@ -154,7 +174,8 @@ export default function ZlotyNumer({ onOpenModal }) {
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO ZYSKUJESZ</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Numer. Wdrożenie. Analityka.<br />Kompletne rozwiązanie.
+              Nie sprzedajemy cyfr.<br />
+              <span className="text-accent">Wdrażamy system, który zwiększa sprzedaż.</span>
             </h2>
           </div>
           <div className="deliverables-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ivory/5">
@@ -174,7 +195,8 @@ export default function ZlotyNumer({ onOpenModal }) {
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Od wyboru numeru<br />do pełnego wdrożenia.
+              Od strategicznego wyboru<br />
+              <span className="text-accent/60">do pełnego wdrożenia.</span>
             </h2>
           </div>
           <div className="steps-container flex flex-col">

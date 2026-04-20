@@ -34,7 +34,7 @@ export default function SubServices({ eyebrow, heading, description, items }) {
                 >
                   {/* NUMER */}
                   <div className={`flex-shrink-0 font-mono text-sm uppercase tracking-widest transition-colors duration-500 mr-2 md:mr-4 ${isActive ? 'text-accent' : 'text-ivory/30 group-hover:text-accent/60'}`}>
-                    {String(index + 1).padStart(2, '0')}
+                  {item.number ?? String(index + 1).padStart(2, '0')}
                   </div>
 
                   {/* TYTUŁ */}
