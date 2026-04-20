@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
-import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
   { title: "Animacje 2D i 3D", desc: "Ożywiamy idee, których nie da się uchwycić tradycyjną kamerą. Od subtelnego ruchu logo, który buduje profesjonalny charakter marki, po fotorealistyczne prezentacje produktów i przekroje techniczne. To idealne rozwiązanie, gdy chcesz pokazać wnętrze mechanizmu lub projekt, który jeszcze nie istnieje." },
@@ -66,7 +65,16 @@ export default function RuchomeTresci({ onOpenModal }) {
 
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-40 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <ServiceHeroCanvas />
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover opacity-65"
+          >
+            <source src="/SEKCJA_RUCHOME_TRESCI_WIZUALNE/SHOWREEL.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-transparent" />
         </div>
         <div className="max-w-[1400px] mx-auto w-full">
           <div className="hero-line flex items-center gap-3 mb-10">
