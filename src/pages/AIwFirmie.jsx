@@ -7,6 +7,7 @@ import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
   { title: "Audyt gotowości firmy na AI", desc: "Analizujemy procesy, dane i narzędzia w Twojej firmie. Identyfikujemy gdzie AI przyniesie realny zwrot z inwestycji, a gdzie byłby tylko kosztem bez efektu. Konkretna mapa wdrożenia z wyceną ROI." },
+  { title: "Korporacyjna baza wiedzy AI", desc: "Budujemy dedykowany system AI zasilony kompletną wiedzą o Twojej firmie - strukturą organizacyjną, procesami, usługami, celami biznesowymi i historią decyzji. System działa jako stałe wsparcie strategiczne: identyfikuje priorytety, projektuje ścieżki do celów i diagnozuje bieżące wyzwania z głębokim zrozumieniem Twojego kontekstu. Precyzja niedostępna w żadnym generycznym narzędziu." },
   { title: "Asystenci AI dla zespołu", desc: "Każdy pracownik z własnym asystentem AI dopasowanym do jego roli - marketing, sprzedaż, obsługa klienta. Konfigurujemy, trenujemy i integrujemy z istniejącymi narzędziami zespołu." },
   { title: "Automatyzacja komunikacji z klientami", desc: "AI obsługuje zapytania, kwalifikuje leady i wysyła follow-upy automatycznie. Twój zespół zajmuje się klientami gotowymi do zakupu - reszta działa sama, 24/7." },
   { title: "Analiza danych i raportowanie AI", desc: "AI analizuje dane sprzedażowe, marketingowe i operacyjne w czasie rzeczywistym. Dostajesz wnioski i rekomendacje, nie surowe liczby do ręcznej interpretacji w Excelu." },
