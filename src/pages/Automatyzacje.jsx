@@ -6,11 +6,18 @@ import SubServices from '../components/SubServices';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
-  { title: "Automatyzacja procesów biznesowych", desc: "Mapujemy powtarzalne procesy i budujemy przepływy w Make/n8n, które wykonują je bez udziału człowieka. Wprowadzanie danych, generowanie dokumentów, synchronizacja narzędzi - maszyny robią to szybciej i bez błędów." },
-  { title: "Integracja CRM z ekosystemem narzędzi", desc: "Łączymy CRM z formularzami, e-mailem, fakturowaniem i raportowaniem w jeden sprawny przepływ. Dane zawsze aktualne, w jednym miejscu, bez ręcznego przepisywania między aplikacjami." },
-  { title: "Automatyczne fakturowanie i płatności", desc: "Faktury wystawiane automatycznie na podstawie zdarzeń w CRM. Przypomnienia o płatnościach, windykacja miękka - zero przeoczonych należności, zero ręcznej pracy księgowej." },
-  { title: "Systemy powiadomień i workflow", desc: "Właściwe osoby dostają właściwe informacje we właściwym czasie. Alerty o nowych leadach, statusach projektów i terminach - cały zespół zsynchronizowany bez spotkań." },
-  { title: "Automatyzacja komunikacji", desc: "Sekwencje e-mailowe, SMS-owe i follow-upy uruchamiane automatycznie po konkretnych zdarzeniach. Klient dostaje odpowiedź w sekundach - nie w godzinach." },
+  { title: "Automatyzacja procesów operacyjnych", desc: "Mapujemy każdy powtarzalny proces w firmie i programujemy automatyzacje, które działają w tle - cicho, niezawodnie, bez Twojego udziału. Twój zespół przestaje być maszyną do przepisywania danych i zaczyna robić to, za co naprawdę płacisz." },
+  { title: "Konfiguracja i optymalizacja CRM", desc: "CRM ma działać na Ciebie - nie spowalniać Twój zespół. Konfigurujemy go tak, aby wykorzystać pełen potencjał systemu: automatyczne przypisywanie leadów, uzupełnianie danych bez ręcznego wpisywania i widok pipeline'u, który daje realną kontrolę nad sprzedażą." },
+  { title: "Automatyczne fakturowanie i księgowość", desc: "Twoja księgowa nie powinna generować faktur ręcznie i przepisywać ich do systemu - powinna zajmować się optymalizacją podatkową. Automatyzujemy wystawianie, wysyłkę i windykację miękką faktur. Wdrażamy systemy OCR, które same odczytują i księgują dokumenty przychodzące." },
+  { title: "Zarządzanie zespołem i monitorowanie postępów", desc: "Automatyczne wyznaczanie zadań po zdarzeniach w CRM, alerty o blokadach, tygodniowe raporty generowane bez pytania. Każdy wie co ma robić, Ty widzisz w jednym miejscu co stoi - bez spotkań statusowych i arkuszy Excela." },
+  { title: "Automatyzacja komunikacji i follow-upów", desc: "Sekwencje e-mailowe, SMS-owe i follow-upy uruchamiane automatycznie po konkretnych zdarzeniach. Klient dostaje odpowiedź w sekundach - nie w godzinach." },
+  { title: "Automatyzacja umawiania rozmów sprzedażowych SMS", desc: "System, który sam wysyła SMS do leadów, odpowiada na pytania i umawia termin rozmowy z handlowcem - bez ingerencji człowieka. Twój pipeline zapełnia się, kiedy Ty śpisz." },
+  { title: "Reaktywacja utraconych leadów", desc: "Automatyczne sekwencje, które odświeżają kontakty, które milczą od 30, 60 lub 90 dni. Spersonalizowane wiadomości na podstawie historii - odzyskujesz leady, które uznałeś za martwe." },
+  { title: "Automatyczne oferty i wyceny", desc: "Klient wypełnia formularz - otrzymuje profesjonalną ofertę w ciągu minut, bez angażowania handlowca. Budujemy kalkulatory wycen, generatory PDF i ścieżki akceptacji, które skracają cykl sprzedaży i eliminują ręczną robotę z każdego zapytania." },
+  { title: "Automatyzacja postów w social media", desc: "Treści generowane i publikowane automatycznie według harmonogramu. Jeden brief raz w miesiącu - reszta dzieje się sama. Stała obecność w mediach bez angażowania zespołu." },
+  { title: "Automatyzacja artykułów i pozycjonowania SEO", desc: "System, który generuje artykuły pod określone słowa kluczowe, formatuje je i publikuje na stronie. Twój blog rośnie i przyciąga ruch organiczny - bez redaktora na etacie." },
+  { title: "Asystent skrzynki mailowej", desc: "AI czyta przychodzące maile, klasyfikuje je i przygotowuje spersonalizowane projekty odpowiedzi gotowe do wysyłki jednym kliknięciem. Obsługujesz skrzynkę 5x szybciej, bez utraty jakości." },
+  { title: "Automatyzacje na żądanie", desc: "Masz niestandardowy proces, który chcesz zautomatyzować? Analizujemy Twój przypadek i budujemy system skrojony dokładnie pod Twój workflow - niezależnie od złożoności i narzędzi, których używasz." },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
