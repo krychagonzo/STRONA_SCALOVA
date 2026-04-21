@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
+import ServicePageNav from '../components/ServicePageNav';
 
 const subServices = [
   { title: "Animacje 2D i 3D", desc: "Ożywiamy idee, których nie da się uchwycić tradycyjną kamerą. Od subtelnego ruchu logo, który buduje profesjonalny charakter marki, po fotorealistyczne prezentacje produktów i przekroje techniczne. To idealne rozwiązanie, gdy chcesz pokazać wnętrze mechanizmu lub projekt, który jeszcze nie istnieje." },
@@ -228,6 +229,7 @@ export default function RuchomeTresci({ onOpenModal }) {
           </button>
         </div>
       </section>
+      <ServicePageNav onOpenModal={onOpenModal} />
     </div>
   );
 }

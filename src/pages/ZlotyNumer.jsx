@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
+import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
@@ -238,6 +239,7 @@ export default function ZlotyNumer({ onOpenModal }) {
           </button>
         </div>
       </section>
+      <ServicePageNav onOpenModal={onOpenModal} />
     </div>
   );
 }

@@ -277,6 +277,21 @@ export default function Services() {
               })}
             </div>
 
+            {/* CLICK OUTSIDE BACKDROP */}
+            <AnimatePresence>
+              {selectedService !== null && (
+                <motion.div
+                  key="backdrop"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="fixed inset-0 z-40"
+                  onClick={() => setSelectedService(null)}
+                />
+              )}
+            </AnimatePresence>
+
             {/* OVERLAY: POWIĘKSZONY KAFELEK — Proposal B "Command Center" */}
             <AnimatePresence>
               {selectedService !== null && (
@@ -311,6 +326,7 @@ export default function Services() {
                       WebkitMaskRepeat: 'no-repeat',
                     }}
                   />
+
 
                   <motion.div
                     initial={{ opacity: 0 }}
