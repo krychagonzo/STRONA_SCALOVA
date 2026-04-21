@@ -8,7 +8,8 @@ import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 const subServices = [
   { title: "Meta Ads (Facebook & Instagram)", desc: "Kampanie w ekosystemie Meta zoptymalizowane pod ROAS, nie pod zasięg. Precyzyjne targetowanie, testowanie kreacji i skalowanie budżetów na tym co faktycznie generuje sprzedaż." },
   { title: "Google Ads (Search & Display)", desc: "Kampanie w wyszukiwarce i sieci reklamowej Google. Łapiemy klientów w momencie, gdy aktywnie szukają Twojego produktu - z pełnym śledzeniem konwersji do sprzedaży." },
-  { title: "LinkedIn Ads", desc: "Kampanie B2B celowane w konkretne stanowiska, branże i wielkości firm. Idealne do generowania leadów w sektorze profesjonalnym, gdzie precyzja targetowania jest kluczowa." },
+  { title: "YouTube Ads", desc: "Kampanie wideo w ekosystemie Google docierające do precyzyjnie określonych grup odbiorców. Format, który buduje markę i generuje konwersje tam, gdzie uwaga klienta jest najwyższa." },
+  { title: "Artykuły sponsorowane i Native Ads", desc: "Dzięki sieci partnerów i agencji mamy bezpośredni dostęp do największych portali branżowych i informacyjnych w Polsce. Twoja marka pojawia się tam, gdzie Twoi klienci czytają - nie jako baner, ale jako wartościowy content." },
   { title: "Content organiczny (Social Media)", desc: "Strategia i produkcja contentu budującego zasięg bez płatnej dystrybucji. Każdy post ma cel - sprzedaż, zasięg lub pozycja eksperta. Regularność zaplanowana na miesiące do przodu." },
   { title: "Konfiguracja trackingu konwersji", desc: "Pełne wdrożenie pikseli, API konwersji i śledzenia server-side. Wiesz dokładnie która kampania przyniosła przychód, a która tylko kliknięcia - każda złotówka rozliczona." },
 ];
@@ -19,7 +20,7 @@ const deliverables = [
   { number: "01", title: "Audyt obecnych kampanii i budżetu", desc: "Analizujemy historię wydatków, wyniki i trackingi. Identyfikujemy gdzie budżet się pali, a gdzie jest potencjał do skalowania." },
   { number: "02", title: "Strategia dystrybucji płatnej i organicznej", desc: "Definiujemy kanały, grupy docelowe, budżety i cele ROAS. Płatne i organiczne razem - nie osobno." },
   { number: "03", title: "Pełna konfiguracja śledzenia konwersji", desc: "Każde kliknięcie śledzone do sprzedaży. Wiesz dokładnie, która kampania przyniosła przychód, a która tylko ruch." },
-  { number: "04", title: "Kampanie Meta, Google lub LinkedIn", desc: "Stawiamy i prowadzimy kampanie na wybranych platformach. Optymalizacja pod ROAS, nie pod zasięg." },
+  { number: "04", title: "Kampanie Meta, Google, YouTube lub artykuły sponsorowane", desc: "Stawiamy i prowadzimy kampanie na wybranych platformach oraz negocjujemy placements na czołowych portalach w Polsce. Optymalizacja pod ROAS, nie pod zasięg." },
   { number: "05", title: "Strategia contentu organicznego", desc: "Regularny content budujący zasięg bez płatnej dystrybucji. Każdy post ma cel - sprzedaż, zasięg lub pozycja eksperta." },
   { number: "06", title: "Cotygodniowe raporty z wnioskami", desc: "Nie wykres z kliknięciami - raport z wnioskami i rekomendacjami. Zawsze wiesz co zmieniliśmy i dlaczego." },
 ];
