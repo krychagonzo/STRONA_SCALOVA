@@ -1,58 +1,33 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { PORTFOLIO_DATA } from '../data/portfolioData';
 
-const CATEGORIES = ["Wszystkie", "Animacja", "Grafika", "Automatyzacja", "Strony"];
-
-const PROJECTS = [
-  {
-    id: 1,
-    title: "Nura Health",
-    category: "Strony",
-    desc: "Platforma e-commerce generująca 14x ROAS, zbudowana z myślą o milisekundowych czasach ładowania i konwersji przewyższającej standardy branży.",
-    img: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=800&q=80"
-  },
-  {
-    id: 2,
-    title: "Cypher Security",
-    category: "Grafika",
-    desc: "Rebranding dla lidera cyberbezpieczeństwa. Rozpoznawalna, brutalistyczna estetyka i bezkompromisowe oparcie o dane wizualne.",
-    img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80"
-  },
-  {
-    id: 3,
-    title: "Lumine",
-    category: "Automatyzacja",
-    desc: "Kampania reklamowa z zautomatyzowanymi lejkami skierowana do segmentu ultra-premium. Optymalizacja lejków zaowocowała spadkiem CPL o 45%.",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
-  },
-  {
-    id: 4,
-    title: "Aura Aesthetics",
-    category: "Strony",
-    desc: "System rezerwacyjny połączony z wysoce estetyczną wizytówką kliniki. Efekt? Pełna automatyzacja kalendarza spotkań i napływ nowych leadów.",
-    img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80"
-  },
-  {
-    id: 5,
-    title: "Kinesis Lab",
-    category: "Animacja",
-    desc: "Produkcja ruchomych i statycznych treści wizualnych pod Meta Ads. Skrócenie cyklu decyzyjnego klientów o równe 43%.",
-    img: "https://images.unsplash.com/photo-1635830625698-3b9bd74671ca?w=800&q=80"
-  },
-  {
-    id: 6,
-    title: "Onyx Real Estate",
-    category: "Automatyzacja",
-    desc: "Budowa silnika analitycznego bazującego na No-Code i wdrożenie automatyzacji rynków dla agencji nieruchomości klasy A.",
-    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
-  }
+const CATEGORIES = [
+  "Wszystkie",
+  "STATYCZNE TREŚCI WIZUALNE",
+  "RUCHOME TREŚCI WIZUALNE",
+  "STRONA & AI ASYSTENT"
 ];
 
-export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState("Wszystkie");
+export const CATEGORY_ICONS = {
+  "STATYCZNE TREŚCI WIZUALNE": "/SEKCJA_USLUGI/IKONA_STATYCZNE_TRESCI_WIZ.svg",
+  "RUCHOME TREŚCI WIZUALNE": "/SEKCJA_USLUGI/IKONA_RUCHOME_TRESCI_WIZUALNE.svg",
+  "STRONA & AI ASYSTENT": "/SEKCJA_USLUGI/IKONA_STRONA_AI.svg"
+};
 
-  const filteredProjects = PROJECTS.filter(project => 
-    activeCategory === "Wszystkie" ? true : project.category === activeCategory
+export default function Portfolio() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const categoryFromUrl = searchParams.get('category');
+
+  const [activeCategory, setActiveCategory] = useState(
+    categoryFromUrl && CATEGORIES.includes(categoryFromUrl) ? categoryFromUrl : "Wszystkie"
+  );
+  const navigate = useNavigate();
+
+  const filteredProjects = PORTFOLIO_DATA.filter(project => 
+    activeCategory === "Wszystkie" ? true : project.categories?.includes(activeCategory)
   );
 
   return (
@@ -76,84 +51,103 @@ export default function Portfolio() {
         </span>
         
         {/* Kontener wyznaczający szerokość całości kaskadowo z wielkością napisu PORTFOLIO */}
-        <div className="inline-flex flex-col items-stretch max-w-full mx-auto">
-          <h1 className="text-ivory text-[45px] sm:text-[70px] md:text-[110px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] font-heading font-bold tracking-tighter leading-[0.8] uppercase text-center whitespace-nowrap select-none">
-            PORTFOLIO
+        <div className="inline-flex flex-col items-stretch max-w-full mx-auto px-4 md:px-0">
+          <h1 className="flex flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8 text-ivory text-[40px] sm:text-[60px] md:text-[90px] lg:text-[130px] xl:text-[160px] 2xl:text-[200px] font-heading font-bold tracking-tighter leading-[0.8] uppercase text-center whitespace-nowrap select-none">
+            <img src="/LOGO_WHITE.svg" alt="SCALOVA" className="h-[0.72em] w-auto opacity-100" />
+            <span>PORTFOLIO</span>
           </h1>
           
           {/* FILTER CATEGORIES */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1 md:gap-2 w-full mt-4 md:mt-8">
+          <div className="grid grid-cols-2 md:flex md:flex-row flex-wrap justify-center gap-1 md:gap-6 w-full mt-4 md:mt-8">
             {CATEGORIES.map((cat, idx) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`group relative flex flex-col items-center justify-center py-2 px-1 md:py-3 md:px-2 min-h-[40px] md:min-h-[50px] rounded-none font-heading text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-widest transition-all duration-500 border overflow-hidden ${
+                className={`group relative flex flex-col md:flex-row items-center justify-center p-2 md:py-3 md:px-4 md:gap-4 rounded-none font-heading text-[11px] sm:text-[13px] md:text-[15px] uppercase tracking-widest transition-all duration-500 bg-transparent outline-none ${
                   activeCategory === cat 
-                  ? 'bg-accent text-obsidian border-accent font-bold shadow-[0_0_20px_rgba(212,255,0,0.2)] z-10' 
-                  : 'bg-[#0c0c0c] text-ivory/60 border-white/5 hover:border-white/20 hover:-translate-y-0.5 hover:text-ivory'
+                  ? 'text-accent font-bold scale-105' 
+                  : 'text-ivory/40 hover:text-ivory hover:-translate-y-0.5'
                 }`}
               >
-                <div className="absolute top-1 left-1.5 text-[7px] sm:text-[8px] text-current/30 font-sans opacity-50 group-hover:opacity-100 transition-opacity">
-                   {String(idx).padStart(2, '0')}
-                </div>
-                <span className="relative z-10 text-center leading-tight mt-1 truncate max-w-full px-1">{cat}</span>
-                
-                {activeCategory !== cat && (
-                  <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/[0.03] transition-colors duration-500 pointer-events-none" />
+                {/* DECORATIVE TOP-RIGHT CORNER REVEAL */}
+                <div 
+                  className={`absolute top-0 right-0 w-3 h-3 md:w-3.5 md:h-3.5 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-current pointer-events-none ${
+                    activeCategory === cat 
+                    ? 'opacity-100 translate-x-0 translate-y-0' 
+                    : 'opacity-0 translate-x-1 -translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0'
+                  }`}
+                  style={{ WebkitMask: 'url(/ROG.png) no-repeat center', mask: 'url(/ROG.png) no-repeat center', WebkitMaskSize: 'contain', maskSize: 'contain' }}
+                />
+
+                {/* ICON */}
+                {cat !== "Wszystkie" && CATEGORY_ICONS[cat] && (
+                  <div 
+                    className="w-5 h-5 md:w-6 md:h-6 transition-colors duration-500 bg-current" 
+                    style={{ WebkitMask: `url(${CATEGORY_ICONS[cat]}) no-repeat center`, mask: `url(${CATEGORY_ICONS[cat]}) no-repeat center`, WebkitMaskSize: 'contain', maskSize: 'contain' }}
+                  />
                 )}
+                
+                <span className="relative z-10 text-center leading-tight mt-1 md:mt-0 max-w-full px-1">{cat}</span>
               </button>
             ))}
           </div>
 
           {/* PROJECT TILES (SQUARE & IN 3 COLUMNS MATCHING HEADER WIDTH) */}
-          <motion.div 
-             layout
-             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-2 w-full mt-10 md:mt-16"
-          >
-            <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={activeCategory}
+              initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+              animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+              exit={{ opacity: 0, filter: 'blur(10px)', y: -20 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-2 w-full mt-10 md:mt-16"
+            >
               {filteredProjects.map((project) => (
-                <motion.div
+                <div
                   key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ 
-                    layout: { type: "spring", stiffness: 250, damping: 25 },
-                    opacity: { duration: 0.2 },
-                    scale: { duration: 0.2 }
-                  }}
+                  onClick={() => navigate(`/portfolio/${project.id}`)}
                   className="group relative w-full aspect-square rounded-none overflow-hidden bg-[#0c0c0c] cursor-pointer isolate transform-gpu border border-white/5 hover:border-accent/40 transition-all duration-500"
                 >
-                  {/* INITIAL IMAGE */}
-                  <img 
-                    src={project.img} 
-                    alt={project.title} 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
-                    loading="lazy"
-                  />
+                  {/* INITIAL IMAGE / VIDEO */}
+                  {project.thumbnail.endsWith('.mp4') ? (
+                    <video 
+                      src={project.thumbnail} 
+                      autoPlay loop muted playsInline
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
+                    />
+                  ) : (
+                    <img 
+                      src={project.thumbnail} 
+                      alt={project.title} 
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
+                      loading="lazy"
+                    />
+                  )}
                   
-                  {/* DARK OVERLAY (Gets darker on hover) */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700 pointer-events-none" />
+                  {/* DARK OVERLAY (Shows only on hover to let image pop initially) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent opacity-0 group-hover:opacity-95 transition-opacity duration-700 pointer-events-none" />
 
                   {/* CONTENT REVEAL ON HOVER */}
-                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                     <div className="translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
-                       <span className="font-heading font-light text-accent text-[10px] md:text-[11px] tracking-[0.2em] uppercase mb-3 block opacity-80">
-                         {project.category}
-                       </span>
-                       <h3 className="font-heading text-2xl md:text-3xl lg:text-4xl text-ivory uppercase tracking-tighter mb-4 leading-tight group-hover:text-accent transition-colors duration-500">
+                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
+                     <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
+                       <div className="flex flex-row flex-wrap gap-3 mb-3">
+                         {project.categories?.map(c => (
+                           <div key={c} className="flex flex-row items-center gap-1.5">
+                              {CATEGORY_ICONS[c] && (
+                                <div 
+                                  className="w-3 h-3 md:w-3.5 md:h-3.5 bg-accent" 
+                                  style={{ WebkitMask: `url(${CATEGORY_ICONS[c]}) no-repeat center`, mask: `url(${CATEGORY_ICONS[c]}) no-repeat center`, WebkitMaskSize: 'contain', maskSize: 'contain' }}
+                                />
+                              )}
+                              <span className="font-heading font-light text-accent text-[8px] md:text-[9px] tracking-[0.2em] uppercase">
+                                {c}
+                              </span>
+                           </div>
+                         ))}
+                       </div>
+                       <h3 className="font-heading text-2xl md:text-3xl lg:text-4xl text-ivory uppercase tracking-tighter mb-2 leading-tight text-accent transition-colors duration-500">
                          {project.title}
                        </h3>
-                       
-                       {/* DESCRIPTION FADES IN */}
-                       <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
-                          <div className="overflow-hidden">
-                            <p className="font-sans text-ivory/60 text-xs md:text-sm leading-relaxed pt-2 w-full">
-                               {project.desc}
-                            </p>
-                          </div>
-                       </div>
                      </div>
                   </div>
 
@@ -161,10 +155,15 @@ export default function Portfolio() {
                   <div className="absolute inset-0 border border-white/5 pointer-events-none z-10" />
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 border border-accent/20 transition-all duration-500 pointer-events-none z-20" />
 
-                </motion.div>
+                  {/* TOP-RIGHT CORNER "ROG.png" INDICATOR */}
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none z-30">
+                    <img src="/ROG.png" alt="" className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert object-contain" />
+                  </div>
+
+                </div>
               ))}
-            </AnimatePresence>
-          </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
     </div>

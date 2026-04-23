@@ -106,7 +106,8 @@ export default function StatyczneTresci({ onOpenModal }) {
             Pierwsze wrażenie trwa ułamek sekundy i jest decyzją, której klient nie jest świadomy. Projektujemy identyfikacje, wizualizacje i materiały, które wygrywają ten moment — zawsze.
           </p>
 
-          <div className="hero-line flex flex-col sm:flex-row gap-4">
+          <div className="hero-line flex flex-col sm:flex-row flex-wrap gap-4 w-full">
+            <div className="flex flex-col sm:flex-row gap-4">
             <button onClick={onOpenModal} className="group relative overflow-hidden font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(212,255,0,0.15)] hover:shadow-[0_0_60px_rgba(212,255,0,0.35)]">
               <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
               <span className="relative z-10">UMÓW BEZPŁATNĄ KONSULTACJĘ</span>
@@ -115,6 +116,11 @@ export default function StatyczneTresci({ onOpenModal }) {
               JAK TO DZIAŁA
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:translate-y-1"><path d="M12 5v14m-7-7 7 7 7-7" /></svg>
             </a>
+            </div>
+            <Link to="/portfolio?category=STATYCZNE TREŚCI WIZUALNE" className="group sm:ml-auto font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 border border-ivory/10 text-ivory/60 hover:border-ivory/30 hover:text-ivory transition-all duration-300 flex items-center justify-center gap-3">
+              PORTFOLIO
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
+            </Link>
           </div>
         </div>
       </section>

@@ -25,12 +25,13 @@ const deliverables = [
 ];
 
 const steps = [
-  { num: "01", label: "SCENARIUSZ I CEL", desc: "Ustalamy cel, grupę docelową i format. To fundament całej produkcji." },
-  { num: "02", label: "STORYBOARD", desc: "Rozrysowujemy kluczowe kadry. Akceptujesz strukturę przed startem produkcji." },
-  { num: "03", label: "PRODUKCJA", desc: "Realizacja dopasowana do marki — każdy kadr ma swoje uzasadnienie." },
-  { num: "04", label: "DŹWIĘK I SZLIF", desc: "Dobieramy warstwę dźwiękową, która nadaje całości kinowy charakter." },
-  { num: "05", label: "WDROŻENIE", desc: "Formaty pod każdą platformę — od ekranów po smartfony." },
+  { num: "01", label: "SCENARIUSZ I CEL", title: "Definiujemy cel i grupę docelową", desc: "Ustalamy dokładnie, co materiał ma osiągnąć i do kogo mówić. To fundament, od którego zależy każda późniejsza decyzja produkcyjna." },
+  { num: "02", label: "STORYBOARD", title: "Rozrysowujemy strukturę przed produkcją", desc: "Kluczowe kadry i sekwencje powstają na papierze. Akceptujesz wizję, zanim ruszymy do realizacji — zero niespodzianek w podsumowaniu." },
+  { num: "03", label: "PRODUKCJA", title: "Realizacja dopasowana do Twojej marki", desc: "Każdy kadr, kolor i ruch jest celowy. Tworzymy materiał, który brzmi i wygląda jak Twoja marka — nie jak szablon." },
+  { num: "04", label: "DŹWIĘK I SZLIF", title: "Warstwa dźwiękowa i finalne detale", desc: "Dobieramy muzykę, lektora i efekty dźwiękowe, które nadają całości kinowy, profesjonalny charakter i wzmacniają przekaz." },
+  { num: "05", label: "WDROŻENIE", title: "Gotowe formaty pod każdą platformę", desc: "Dostarczamy pliki zoptymalizowane pod konkretne kanały — od YouTube i Reels po prezentacje sprzedażowe i strony www." },
 ];
+
 
 const stats = [
   { stat: "91%", label: "konsumentów chce oglądać więcej materiałów video od marek, które obserwują" },
@@ -108,7 +109,8 @@ export default function RuchomeTresci({ onOpenModal }) {
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
             Dynamika obrazu pozwala przekazać emocje i dane w sposób, którego żaden tekst nie jest w stanie oddać. Projektujemy ruch, który ma cel — nie ozdobę.
           </p>
-          <div className="hero-line flex flex-col sm:flex-row gap-4">
+          <div className="hero-line flex flex-col sm:flex-row flex-wrap gap-4 w-full">
+            <div className="flex flex-col sm:flex-row gap-4">
             <button onClick={onOpenModal} className="group relative overflow-hidden font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(212,255,0,0.15)] hover:shadow-[0_0_60px_rgba(212,255,0,0.35)]">
               <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
               <span className="relative z-10">UMÓW BEZPŁATNĄ KONSULTACJĘ</span>
@@ -117,6 +119,11 @@ export default function RuchomeTresci({ onOpenModal }) {
               JAK TO DZIAŁA
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:translate-y-1"><path d="M12 5v14m-7-7 7 7 7-7" /></svg>
             </a>
+            </div>
+            <Link to="/portfolio?category=RUCHOME TREŚCI WIZUALNE" className="group sm:ml-auto font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 border border-ivory/10 text-ivory/60 hover:border-ivory/30 hover:text-ivory transition-all duration-300 flex items-center justify-center gap-3">
+              PORTFOLIO
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -199,11 +206,18 @@ export default function RuchomeTresci({ onOpenModal }) {
           </div>
           <div className="steps-container flex flex-col">
             {steps.map((step) => (
-              <div key={step.num} className="step-row group flex items-center gap-8 md:gap-12 py-5 border-t border-ivory/5 hover:border-accent/20 transition-colors duration-300">
-                <span className="font-mono text-accent/30 text-[10px] tracking-[0.2em] shrink-0 w-6 text-right">{step.num}</span>
-                <h3 className="font-heading text-ivory text-base md:text-xl uppercase tracking-[0.12em] shrink-0 w-40 md:w-56 group-hover:text-accent transition-colors duration-300">{step.label}</h3>
-                <p className="font-sans text-ivory/40 text-sm leading-relaxed flex-1">{step.desc}</p>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" className="hidden md:block shrink-0 text-ivory/10 group-hover:text-accent/40 group-hover:-rotate-45 transition-all duration-300"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
+              <div key={step.num} className="step-row group flex flex-col md:flex-row gap-6 md:gap-16 py-10 border-t border-ivory/5 hover:border-accent/20 transition-colors duration-500">
+                <div className="flex items-start gap-6 md:w-64 shrink-0">
+                  <span className="font-mono text-accent/40 text-xs tracking-[0.2em] mt-1">{step.num}</span>
+                  <span className="font-mono text-ivory/30 text-[10px] tracking-[0.2em] uppercase mt-1">{step.label}</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading text-ivory text-xl md:text-2xl uppercase tracking-tight mb-3 group-hover:text-accent transition-colors duration-300">{step.title}</h3>
+                  <p className="font-sans text-ivory/50 text-sm md:text-base leading-relaxed max-w-2xl">{step.desc}</p>
+                </div>
+                <div className="hidden md:flex items-center">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" className="text-ivory/10 group-hover:text-accent/40 transition-colors duration-300"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
+                </div>
               </div>
             ))}
             <div className="border-t border-ivory/5" />

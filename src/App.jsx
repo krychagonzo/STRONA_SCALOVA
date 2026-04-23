@@ -16,6 +16,7 @@ import ZlotyNumer from './pages/ZlotyNumer';
 
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
+import PortfolioItem from './pages/PortfolioItem';
 import Career from './pages/Career';
 import FAQ from './pages/FAQ';
 import PolitykaPrywatnosci from './pages/PolitykaPrywatnosci';
@@ -52,6 +53,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio/:id" element={<PortfolioItem />} />
           <Route path="/do-lacz-do-nas" element={<Career />} />
           <Route path="/faq" element={<FAQ />} />
           
