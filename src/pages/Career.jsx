@@ -131,7 +131,7 @@ const BENEFITS = [
 const JOBS = [
   {
     id: 1,
-    title: "HANDLOWIEC",
+    title: "Sales Specialist / Closer",
     type: "B2B / ZDALNIE",
     desc: "Szukamy bezkompromisowego negocjatora (High-Ticket Closer) do sprzedaży kompleksowych ekosystemów cyfrowych z portfolio agencji. Oczekujemy biznesowego spojrzenia i swobodnego łączenia naszych kluczowych filarów: zaawansowanych stron www, kreacji wizualnych (wideo/statyka) oraz zautomatyzowanych procesów. Twoim celem będzie precyzyjne pozycjonowanie naszej przewagi rynkowej i domykanie inwestycji B2B na poziomie zarządczym. Pracujemy na mocnych, wyselekcjonowanych leadach z własnych kampanii. System prowizyjny bez górnego sufitu."
   },
@@ -255,7 +255,7 @@ export default function Career() {
                        </h3>
                     </div>
 
-                    <div className={`flex-shrink-0 w-8 h-8 md:w-10 md:h-10 border rounded-full flex items-center justify-center text-lg md:text-xl font-light transition-colors duration-500 ml-4 ${isActive ? 'border-accent text-accent' : 'border-white/20 text-white/40 group-hover:border-white/50 group-hover:text-white/80'}`}>
+                    <div className={`flex-shrink-0 w-8 h-8 md:w-10 md:h-10 border flex items-center justify-center text-lg md:text-xl font-light transition-colors duration-500 ml-4 ${isActive ? 'border-accent text-accent' : 'border-white/20 text-white/40 group-hover:border-white/50 group-hover:text-white/80'}`}>
                       {isActive ? '−' : '＋'}
                     </div>
                   </div>
