@@ -1,15 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function Navbar() {
   const navRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  const handleScrollTo = (e, targetId) => {
+    e.preventDefault();
+    const target = document.querySelector(targetId);
+    if (!target) return;
+    
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: {
+        y: target,
+        offsetY: targetId === '#services' ? -80 : 30
+      },
+      ease: "power3.inOut"
+    });
+  };
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -76,19 +92,19 @@ export default function Navbar() {
         <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex gap-8 lg:gap-11 xl:gap-16 font-heading text-sm text-ivory/80 uppercase tracking-widest font-light tracking-tight pointer-events-auto">
           {location.pathname === '/' ? (
             <>
-              <a href="#features" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+              <a href="#features" onClick={(e) => handleScrollTo(e, '#features')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                 Bariery <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
               </a>
-              <a href="#philosophy" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+              <a href="#philosophy" onClick={(e) => handleScrollTo(e, '#philosophy')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                 Podejście <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
               </a>
-              <a href="#services" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+              <a href="#services" onClick={(e) => handleScrollTo(e, '#services')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                 Usługi <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
               </a>
-              <a href="#protocol" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+              <a href="#protocol" onClick={(e) => handleScrollTo(e, '#protocol')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                 Metodologia <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
               </a>
-              <a href="#team" className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+              <a href="#team" onClick={(e) => handleScrollTo(e, '#team')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                 Zespół <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
               </a>
             </>

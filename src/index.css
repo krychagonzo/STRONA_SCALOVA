@@ -49,11 +49,6 @@
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Scroll offset for nav links */
 #features,
 #philosophy,

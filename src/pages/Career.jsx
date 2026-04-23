@@ -131,26 +131,21 @@ const BENEFITS = [
 const JOBS = [
   {
     id: 1,
-    title: "AI Automation Engineer",
-    type: "B2B / W PEŁNI ZDALNIE",
-    desc: "Projektowanie autonomicznych agentów AI, mapowanie procesów w Make/n8n oraz integracja zewnętrznych API (OpenAI, Anthropic). Oczekujemy analitycznego sznytu i brutalnej obsesji na punkcie skracania czasu ludzkiej pracy. Wymagane portfolio."
+    title: "HANDLOWIEC",
+    type: "B2B / ZDALNIE",
+    desc: "Szukamy bezkompromisowego negocjatora (High-Ticket Closer) do sprzedaży kompleksowych ekosystemów cyfrowych z portfolio agencji. Oczekujemy biznesowego spojrzenia i swobodnego łączenia naszych kluczowych filarów: zaawansowanych stron www, kreacji wizualnych (wideo/statyka) oraz zautomatyzowanych procesów. Twoim celem będzie precyzyjne pozycjonowanie naszej przewagi rynkowej i domykanie inwestycji B2B na poziomie zarządczym. Pracujemy na mocnych, wyselekcjonowanych leadach z własnych kampanii. System prowizyjny bez górnego sufitu."
   },
   {
     id: 2,
-    title: "Performance Media Buyer",
-    type: "B2B / W PEŁNI ZDALNIE",
-    desc: "Skalowanie budżetów rzędu min. 100k PLN w ekosystemie Meta Ads i Google Ads. Interesuje nas tylko generowanie wysokiego ROASu, a nie 'tanie kliknięcia'. Wynagrodzenie skalowane premią od wygenerowanego przez Ciebie zysku dla klientów."
-  },
-  {
-    id: 3,
-    title: "Creative Visual Designer",
-    type: "B2B / HYBRYDOWO (POZNAŃ)",
-    desc: "Odpowiedzialność za tworzenie statycznych i ruchomych kreacji konwertujących. Musisz 'czuć' kinową estetykę, rozumieć zasadę brutalizmu połączonego z minimalizmem, a także bardzo sprawnie posługiwać się środowiskiem Figma oraz After Effects."
+    title: "AI ARTIST",
+    type: "B2B / ZDALNIE",
+    desc: "Poszukujemy kreatywnego architekta wizualnego do tworzenia najwyższej jakości autorskich materiałów komercyjnych dla kampanii naszych klientów. Oczekujemy doskonałego wyczucia estetyki, biegłości w prompt engineeringu i dbałości o spójność opowiadanych historii. Jeśli cenisz sobie profesjonalizm, masz głowę pełną świeżych pomysłów i chcesz tworzyć angażujące projekty, z których wspólnie będziemy dumni – to idealnie trafiłeś. Zapewniamy świetną atmosferę i dużą przestrzeń do rozwoju Twoich talentów."
   }
 ];
 
 export default function Career() {
   const [activeAccordion, setActiveAccordion] = useState(-1);
+  const [applyingJobId, setApplyingJobId] = useState(null);
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center">
@@ -240,7 +235,15 @@ export default function Career() {
               return (
                 <div key={index} className="border-b border-white/10">
                   <div
-                    onClick={() => setActiveAccordion(isActive ? -1 : index)}
+                    onClick={() => {
+                      if (isActive) {
+                        setActiveAccordion(-1);
+                        setApplyingJobId(null);
+                      } else {
+                        setActiveAccordion(index);
+                        setApplyingJobId(null);
+                      }
+                    }}
                     className={`group flex w-full cursor-pointer items-center justify-between py-6 md:py-8 px-2 md:px-6 transition-colors duration-300 ${isActive ? 'bg-white/[0.02]' : 'hover:bg-white/[0.01]'}`}
                   >
                     <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-10">
@@ -257,15 +260,36 @@ export default function Career() {
                     </div>
                   </div>
 
-                  <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] flex flex-col md:flex-row gap-6 md:gap-12 px-2 md:px-6 ${isActive ? 'max-h-[500px] opacity-100 pb-8 md:pb-12' : 'max-h-0 opacity-0 pb-0'}`}>
-                    <p className="font-sans text-ivory/60 text-sm md:text-base leading-relaxed font-light normal-case flex-1">
-                      {job.desc}
-                    </p>
-                    <div className="flex-shrink-0 flex items-start">
-                       <button className="group relative overflow-hidden font-heading font-bold uppercase tracking-wider text-xs px-8 py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-[0_0_20px_rgba(212,255,0,0.15)] flex items-center gap-3">
-                         <span className="relative z-10 w-full text-center">APLIKUJ TERAZ</span>
-                       </button>
-                    </div>
+                  <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] flex flex-col md:flex-row gap-6 md:gap-12 px-2 md:px-6 ${isActive ? 'max-h-[800px] opacity-100 pt-6 md:pt-8 pb-8 md:pb-12' : 'max-h-0 opacity-0 pt-0 pb-0'}`}>
+                    {applyingJobId === job.id ? (
+                      <div className="w-full flex flex-col transition-all duration-500 opacity-100">
+                        <form className="w-full flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); alert('Zgłoszenie wysłane!'); setApplyingJobId(null); }}>
+                           <input type="text" placeholder="Imię i Nazwisko" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
+                           <input type="email" placeholder="Adres Email" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
+                           <input type="url" placeholder="Link do CV lub Portfolio (LinkedIn / Dysk)" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
+                           <textarea rows="3" placeholder="Wiadomość (dlaczego Ty?)" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none textarea-resize-none font-sans"></textarea>
+                           <div className="flex gap-4 items-center mt-2">
+                             <button type="submit" className="font-heading font-bold uppercase text-xs tracking-widest px-8 py-4 bg-accent text-obsidian hover:scale-[1.03] transition-all shadow-[0_0_20px_rgba(212,255,0,0.15)] flex-1 sm:flex-none">
+                               Wyślij
+                             </button>
+                             <button type="button" onClick={() => setApplyingJobId(null)} className="font-heading font-bold uppercase text-xs tracking-widest px-8 py-4 border border-white/20 text-ivory/50 hover:text-ivory hover:border-white/40 transition-all flex-1 sm:flex-none text-center">
+                               Anuluj
+                             </button>
+                           </div>
+                        </form>
+                      </div>
+                    ) : (
+                      <>
+                        <p className="font-sans text-ivory/60 text-sm md:text-base leading-relaxed font-light normal-case flex-1">
+                          {job.desc}
+                        </p>
+                        <div className="flex-shrink-0 flex items-start">
+                           <button onClick={(e) => { e.stopPropagation(); setApplyingJobId(job.id); }} className="group relative overflow-hidden font-heading font-bold uppercase tracking-wider text-xs px-8 py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-[0_0_20px_rgba(212,255,0,0.15)] flex items-center gap-3">
+                             <span className="relative z-10 w-full text-center">APLIKUJ TERAZ</span>
+                           </button>
+                        </div>
+                      </>
+                    )}
                   </div>
 
                 </div>

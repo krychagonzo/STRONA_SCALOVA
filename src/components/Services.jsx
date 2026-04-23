@@ -12,7 +12,7 @@ const servicesList = [
     areaLabel: "INFRASTRUKTURA POZYSKIWANIA LEADÓW",
     desc: "Zamiast strony, która tylko wygląda - platforma, która pozyskuje leady 24/7, nawet gdy śpisz.",
     extendedDesc: "Większość stron firmowych istnieje tylko po to, żeby istnieć.\n\nTwoja będzie pracować - kwalifikować zapytania, zbierać dane kontaktowe i odpowiadać na pytania klientów o 3 w nocy.\n\nProjektujemy platformy, które ładują się w mniej niż 1,5 sekundy i zamieniają ruch w realne leady, zanim Ty zdążysz otworzyć skrzynkę mailową.",
-    features: ["Strona ładuje się w <1,5s - poniżej progu porzuceń", "Chatbot zbiera i kwalifikuje leady zanim Ty otworzysz maila"],
+    features: ["Landing page", "Rozbudowana witryna firmowa", "AI-asystent na stronie", "Integracja z CRM i narzędziami", "Optymalizacja wydajności i SEO"],
     metricContent: "Chatbot kwalifikuje zapytania zanim Ty je zobaczysz. Ładowanie <1,5s.",
     icon: "/SEKCJA_USLUGI/IKONA_STRONA_AI.svg"
   },
@@ -23,7 +23,7 @@ const servicesList = [
     areaLabel: "TWÓJ SILNIK WZROSTU",
     desc: "Zamiast budżetu wrzuconego w reklamę - każda złotówka śledzona do konkretnej sprzedaży.",
     extendedDesc: "Większość agencji optymalizuje pod kliknięcia. My optymalizujemy pod pieniądze.\n\nKażda kampania jest śledzona do sprzedaży, nie do zasięgu.\n\nŁączymy płatną dystrybucję z organicznym wzrostem - żeby każda złotówka pracowała na wynik, a nie na wykres, którym można się pochwalić na spotkaniu.",
-    features: ["Każda złotówka budżetu śledzona do konkretnej sprzedaży", "Płatna dystrybucja i organiczny zasięg w jednej strategii"],
+    features: ["Meta Ads (Facebook & Instagram)", "Google Ads (Search & Display)", "YouTube Ads", "Artykuły sponsorowane i Native Ads", "Content organiczny"],
     metricContent: "Optymalizacja pod ROAS, nie pod kliknięcia. Raporty co tydzień.",
     icon: "/SEKCJA_USLUGI/IKONA_KAMPANIE_ORGANIC.svg"
   },
@@ -32,9 +32,9 @@ const servicesList = [
     tag: "Wizerunek",
     slug: "/uslugi/statyczne-tresci",
     areaLabel: "SYSTEM BUDOWANIA AUTORYTETU",
-    desc: "Zamiast postów 'dla algorytmu' - materiały, które ustawiają Cię jako oczywisty wybór w branży.",
+    desc: "Projektujemy unikalny kod wizualny Twojej firmy. Od kompleksowego rebrandingu, przez fotorealistyczne rendery 3D i grafikę AI, aż po sprzedażowe Pitch Decki i infografiki. Tworzymy spójne materiały, które budują autorytet, podnoszą postrzeganą wartość usług i bezpośrednio przyspieszają zamykanie transakcji.",
     extendedDesc: "Algorytmy faworyzują regularność. Klienci faworyzują wiarygodność.\n\nTworzymy statyczne treści wizualne, które robią jedno i drugie jednocześnie - budują Twoją pozycję eksperta i są projektowane pod konkretne formaty dystrybucji.\n\nNie produkujemy contentu dla samego contentu. Każdy materiał ma cel: zaufanie, zasięg albo sprzedaż.",
-    features: ["Content projektowany pod cel - nie pod algorytm", "Spójna estetyka eksperta we wszystkich kanałach"],
+    features: ["Identyfikacja Wizualna i Rebranding", "Wizualizacje Produktów i Architektury", "Grafika Wspierana przez AI", "Design Sprzedażowy i Materiały", "Infografiki i Wizualizacja Danych"],
     metricContent: "Pozycja eksperta budowana regularnym contentem opartym na danych.",
     icon: "/SEKCJA_USLUGI/IKONA_STATYCZNE_TRESCI_WIZ.svg"
   },
@@ -45,7 +45,7 @@ const servicesList = [
     areaLabel: "TWÓJ BEZOSOBOWY BACK-OFFICE",
     desc: "Zamiast 5 aplikacji, które ze sobą nie gadają - jeden system, który działa bez Twojego udziału.",
     extendedDesc: "Większość firm traci codziennie godziny na ręczne przepisywanie danych między aplikacjami, które nigdy nie były zaprojektowane do współpracy.\n\nAudytujemy Twoje procesy, identyfikujemy punkty tarcia i budujemy system, który łączy CRM, fakturowanie i raportowanie w jeden sprawnie działający przepływ.\n\nBez programistów, bez chaosu, od pierwszego tygodnia.",
-    features: ["CRM, faktury i raporty w jednym automatycznym przepływie", "Zero ręcznej pracy przy powtarzalnych procesach"],
+    features: ["Automatyzacja procesów operacyjnych", "Konfiguracja i optymalizacja CRM", "Automatyczne fakturowanie", "Automatyzacja komunikacji z klientem", "Zarządzanie zespołem i monitorowanie"],
     metricContent: "Łączymy CRM, faktury, powiadomienia i raporty w jedno.",
     icon: "/SEKCJA_USLUGI/IKONA_AUTOMATYZACJE.svg"
   },
@@ -56,7 +56,7 @@ const servicesList = [
     areaLabel: "PRZEBUDOWA PROCESU ZAMYKANIA",
     desc: "Zamiast ofert, które 'pójdą do akceptacji' - pitch, który zamyka na pierwszym spotkaniu.",
     extendedDesc: "Słaba oferta to nie problem graficzny - to problem struktury argumentacji.\n\nPrzebudowujemy Twój pitch od podstaw: zaczynamy od zrozumienia, dlaczego klienci kupują (albo nie), a kończymy na materiale handlowym i przeszkolonym zespole, który wie jak go używać.\n\nEfekt: wyższy win-rate przy tych samych leadach.",
-    features: ["Oferta przepisana pod psychologię decyzji zakupowych", "Zespół handlowy przeszkolony z mierzalnym efektem"],
+    features: ["Przebudowa oferty handlowej", "Skrypty i scenariusze rozmów", "Szkolenie zespołu sprzedażowego", "Materiały wspierające sprzedaż", "System mierzenia win-rate"],
     metricContent: "Szkolenie + przebudowa oferty pod wyższy win-rate.",
     icon: "/SEKCJA_USLUGI/IKONA_SPRZEDAZ_OFERTA.svg"
   },
@@ -67,7 +67,7 @@ const servicesList = [
     areaLabel: "TWOJA PRZEWAGA TECHNOLOGICZNA",
     desc: "Zamiast 'eksperymentowania z AI' - konkretne narzędzia działające w Twoich procesach od pierwszego tygodnia.",
     extendedDesc: "Dziewięć na dziesięć firm 'eksperymentuje z AI' przez rok i wraca do Excela.\n\nWdrażamy konkretne narzędzia dopasowane do Twoich procesów - od automatyzacji komunikacji z klientami, przez analizę danych, po asystentów dla Twojego zespołu.\n\nBez miesięcy szkoleń, bez przestojów. Twój zespół zaczyna używać AI produktywnie od pierwszego tygodnia.",
-    features: ["Narzędzia AI dopasowane do Twoich procesów - nie szablonowe", "Zespół produktywny z AI od pierwszego tygodnia"],
+    features: ["Audyt gotowości firmy na AI", "Korporacyjna baza wiedzy AI", "Asystenci AI dla zespołu", "Automatyzacja komunikacji z klientami", "Analiza danych i raportowanie AI"],
     metricContent: "Wdrożenie bez chaosu. Twój zespół wie jak używać, nie tylko co to jest.",
     icon: "/SEKCJA_USLUGI/IKONA_AI_FIRMA.svg"
   },
@@ -76,9 +76,9 @@ const servicesList = [
     tag: "Marka",
     slug: "/uslugi/ruchome-tresci",
     areaLabel: "TWOJA FABRYKA UWAGI",
-    desc: "Zamiast materiałów 'do wrzucenia' - wideo, które zatrzymuje kciuk i zostaje w głowie.",
+    desc: "Ożywiamy biznes, tłumacząc skomplikowane idee językiem płynnego ruchu. Produkujemy fotorealistyczne animacje 3D, wideo szkoleniowe, angażujące formaty na Social Media oraz wirtualną rzeczywistość. Tworzymy dynamikę, która odciąża działy obsługi, zatrzymuje kciuk i zostaje w pamięci klientów na dłużej.",
     extendedDesc: "W świecie krótkiej uwagi wideo jest walutą.\n\nTworzymy ruchome treści wizualne - od reelsów i shortów po animacje produktowe - które zatrzymują kciuk w połowie przewijania i sprawiają, że marka zapada w pamięć, zanim klient zdąży pomyśleć 'skip'.\n\nKażdy materiał zoptymalizowany pod konkretny format i cel dystrybucji.",
-    features: ["Reelsy, shorty i animacje zoptymalizowane pod każdą platformę", "Scenariusze pisane pod psychologię zatrzymania uwagi"],
+    features: ["Animacje 2D i 3D", "Explainer Videos (Filmy instruktażowe)", "Social Media & Montaż Dynamiczny", "Wirtualna Rzeczywistość (VR) i Interakcja", "Motion Design w Interfejsach (UI)"],
     metricContent: "Pełna księga znaku + wytyczne dla każdego touchpointu.",
     icon: "/SEKCJA_USLUGI/IKONA_RUCHOME_TRESCI_WIZUALNE.svg"
   },
@@ -89,7 +89,7 @@ const servicesList = [
     areaLabel: "TWOJA LINIA PIERWSZEGO KONTAKTU",
     desc: "Zamiast numeru, który gubi się w historii połączeń — jeden symbol, który klient wpisuje z pamięci.",
     extendedDesc: "Telefon nadal jest najszybszym mostem między klientem a sprzedażą.\n\nZłoty numer to narzędzie sprzedażowe, które klient pamięta bez zapisywania w kontaktach.\n\nPomagamy wybrać, zarejestrować i wdrożyć numer, który wzmacnia rozpoznawalność przy każdym touchpoincie - billboardzie, reklamie, wizytówce.",
-    features: ["Numer, który klient pamięta bez zapisywania w kontaktach", "Rozpoznawalność marki wzmocniona na każdym kroku."],
+    features: ["Spersonalizowany Złoty Numer", "Rejestracja, konfiguracja i przekazanie", "Integracja zaawansowanej centrali", "Wdrożenie we wszystkich kanałach", "System zaawansowanej analityki", "Automatyzacja CRM"],
     metricContent: "Kluczowy punkt styku z marką. Zapada w pamięć, zanim klient zdąży zapisać kontakt.",
     icon: "/SEKCJA_USLUGI/IKONA_ZLOTY_NUMER.svg"
   }
@@ -295,18 +295,19 @@ export default function Services() {
             {/* OVERLAY: POWIĘKSZONY KAFELEK — Proposal B "Command Center" */}
             <AnimatePresence>
               {selectedService !== null && (
-                <motion.div
-                  layoutId={`wrapper-${selectedService}`}
-                  className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 overflow-hidden"
-                  transition={{ layout: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }}
-                  style={{
-                    background: "rgba(12, 12, 12, 0.97)",
-                    backdropFilter: "blur(24px)",
-                    WebkitBackdropFilter: "blur(24px)",
-                    border: "1px solid rgba(255,255,255,0.05)",
-                    boxShadow: "0 0 80px rgba(201,168,76,0.04) inset",
-                  }}
-                >
+                  <motion.div
+                    layoutId={`wrapper-${selectedService}`}
+                    className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 overflow-hidden"
+                    transition={{ layout: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }}
+                    style={{
+                      background: "rgba(12, 12, 12, 0.97)",
+                      backdropFilter: "blur(32px)",
+                      WebkitBackdropFilter: "blur(32px)",
+                      border: "1px solid rgba(255, 255, 255, 0.05)",
+                      borderTop: "1px solid rgba(255, 255, 255, 0.15)",
+                      boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.7)",
+                    }}
+                  >
                   {/* WATERMARK: ta sama ikona serwisu — duża, w tle */}
                   <div
                     className="absolute pointer-events-none"
@@ -368,12 +369,12 @@ export default function Services() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.45 + (fIdx * 0.1) }}
                             key={fIdx}
-                            className="flex items-start gap-3 text-sm font-heading text-ivory/55"
+                            className="flex items-start gap-4 text-sm font-heading text-ivory/60"
                           >
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" className="text-accent shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(201,168,76,0.5)]">
-                              <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span>{feat}</span>
+                            <span className="font-mono text-accent text-[11px] tracking-[0.2em] shrink-0 mt-[3px]">
+                              {String(fIdx + 1).padStart(2, '0')}
+                            </span>
+                            <span className="leading-snug">{feat}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -385,11 +386,8 @@ export default function Services() {
                       animate={{ opacity: 1, x: 0, transition: { delay: 0.45 } }}
                       className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-end"
                     >
-                      {/* Dolna część: label + skrócony opis — przyklejone do dołu */}
-                      <div className="mb-8">
-                        <h4 className="font-heading font-bold text-[11px] uppercase tracking-[0.3em] text-ivory/80 mb-6 pl-4 border-l-2 border-accent">
-                          {servicesList[selectedService].areaLabel}
-                        </h4>
+                      {/* Dolna część: opis — przyklejone do dołu */}
+                      <div className="mb-6 md:mb-8">
                         <p className="font-sans text-ivory/65 text-lg md:text-xl leading-relaxed">
                           {servicesList[selectedService].desc}
                         </p>
