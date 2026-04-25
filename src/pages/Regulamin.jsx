@@ -11,7 +11,7 @@ const sections = [
 Operatorem Strony oraz Usługodawcą jest:
 SCALOVA, z siedzibą przy ul. 11 Listopada 82, 62-030 Luboń, NIP: 7831897634 (zwanym dalej "Usługodawcą").
 
-Kontakt z Usługodawcą możliwy jest pod adresem e-mail: contact@scalova.com lub telefonicznie pod numerem 61 830 00 00.
+Kontakt z Usługodawcą możliwy jest pod adresem e-mail: kontakt@scalova.pl lub telefonicznie pod numerem 61 830 00 00.
 
 Regulamin jest stale i nieodpłatnie udostępniony na Stronie, w sposób umożliwiający jego pozyskanie, odtwarzanie i utrwalanie jego treści poprzez wydrukowanie lub zapisanie na nośniku.`,
   },
@@ -54,7 +54,7 @@ Użytkownik ma prawo w każdej chwili zakończyć korzystanie ze Strony poprzez 
     title: 'Tryb postępowania reklamacyjnego',
     content: `Jeżeli Usługi świadczone przez Stronę funkcjonują nieprawidłowo, Użytkownik ma prawo złożyć reklamację.
 
-Reklamacje można zgłaszać na adres e-mail: contact@scalova.com, z dopiskiem "Reklamacja".
+Reklamacje można zgłaszać na adres e-mail: kontakt@scalova.pl, z dopiskiem "Reklamacja".
 Zgłoszenie powinno zawierać: dane zgłaszającego, krótki opis zaistniałego problemu i okoliczności jego wystąpienia.
 
 Usługodawca rozpatrzy reklamację powiadamiając Użytkownika o swoim stanowisku drogą mailową w terminie nie dłuższym niż 14 dni od jej otrzymania.`,

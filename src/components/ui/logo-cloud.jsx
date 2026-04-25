@@ -25,8 +25,8 @@ const logos = [
 
 export function LogoCloud({ className, ...props }) {
   return (
-    <section className="w-full bg-[#0E0E0E] pt-12 pb-4 border-b border-white/5 relative z-20">
-      <div className="w-full max-w-7xl mx-auto px-6 mb-4">
+    <section className="w-full bg-[#0E0E0E] pt-6 pb-4 border-b border-white/5 relative z-20">
+      <div className="w-full max-w-7xl mx-auto px-6 mb-10">
         <p className="font-heading text-sm uppercase tracking-[0.2em] text-ivory/40 text-center font-semibold">
           Zaufali nam:
         </p>

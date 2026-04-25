@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nowe Zgłoszenie SCALOVA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body style="margin: 0; padding: 0; background-color: #0E0E0E; font-family: 'Inter', Helvetica, Arial, sans-serif; color: #FAF8F5; -webkit-font-smoothing: antialiased;">
+
+  <!-- Wrapper -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #0E0E0E; padding: 40px 20px;">
+    <tr>
+      <td align="center">
+        
+        <!-- Main Container -->
+        <table width="100%" max-width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #141414; border: 1px solid #2A2A35; border-radius: 12px; overflow: hidden; max-width: 600px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+          
+          <!-- Header -->
+          <tr>
+            <td align="center" style="padding: 40px 30px; border-bottom: 1px solid rgba(212, 255, 0, 0.15); background: linear-gradient(135deg, #1A1A24 0%, #0E0E0E 100%);">
+              <!-- Accent Line -->
+              <div style="height: 2px; width: 60px; background-color: #D4FF00; margin-bottom: 20px;"></div>
+              
+              <p style="margin: 0; font-family: monospace; color: #D4FF00; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;">System SCALOVA</p>
+              <h1 style="margin: 10px 0 0 0; font-size: 24px; font-weight: normal; letter-spacing: 1px; color: #FFFFFF;">Nowe Zgłoszenie: {{type}}</h1>
+            </td>
+          </tr>
+
+          <!-- Content / Details -->
+          <tr>
+            <td style="padding: 40px 40px 20px 40px;">
+              <p style="margin: 0 0 25px 0; font-size: 14px; color: #A0A0A0; line-height: 1.6;">
+                Otrzymałeś nowe zapytanie ze strony internetowej. Poniżej znajdują się szczegóły dotyczące klienta i jego zgłoszenia.
+              </p>
+
+              <!-- Data Grid -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                
+                <tr>
+                  <td width="35%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Imię i Nazwisko</span>
+                  </td>
+                  <td width="65%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <strong style="color: #FFFFFF; font-size: 15px;">{{name}}</strong>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td width="35%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Adres E-mail</span>
+                  </td>
+                  <td width="65%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <a href="mailto:{{email}}" style="color: #D4FF00; font-size: 15px; text-decoration: none;">{{email}}</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td width="35%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Telefon</span>
+                  </td>
+                  <td width="65%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: #FFFFFF; font-size: 15px;">{{phone}}</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td width="35%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Firma / Rola</span>
+                  </td>
+                  <td width="65%" style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: #FFFFFF; font-size: 15px;">{{company}}</span>
+                  </td>
+                </tr>
+
+              </table>
+            </td>
+          </tr>
+
+          <!-- Message Block -->
+          <tr>
+            <td style="padding: 0 40px 40px 40px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <p style="margin: 0 0 10px 0; font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Treść Wiadomości / URL:</p>
+                    <p style="margin: 0; font-size: 14px; color: #FFFFFF; line-height: 1.6; white-space: pre-wrap;">{{message}}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="padding: 25px 40px; background-color: #0A0A0A; border-top: 1px solid #1A1A24;">
+              <p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.3);">
+                Ta wiadomość została wygenerowana automatycznie przez formularz na stronie <a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none;">scalova.pl</a>.<br>Nie odpowiadaj na ten e-mail techniczny, skontaktuj się bezpośrednio z nadawcą używając jego adresu e-mail.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

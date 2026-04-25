@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 // Bayer 4×4 ordered dithering matrix, normalized to [-1, 1]
 const BAYER4 = [
@@ -146,6 +147,87 @@ const JOBS = [
 export default function Career() {
   const [activeAccordion, setActiveAccordion] = useState(-1);
   const [applyingJobId, setApplyingJobId] = useState(null);
+  const [isSending, setIsSending] = useState(false);
+
+  const handleJobSubmit = (e, jobTitle) => {
+    e.preventDefault();
+    const form = e.target;
+    setIsSending(true);
+
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (serviceID && serviceID !== 'your_service_id_here') {
+      const templateParams = {
+        name: form.user_name.value,
+        email: form.user_email.value,
+        phone: 'Nie podano',
+        company: 'Aplikacja: ' + jobTitle,
+        type: 'Rekrutacja',
+        message: 'Link do CV: ' + form.cv_url.value + '\n\nWiadomość: ' + form.message.value
+      };
+
+      emailjs.send(serviceID, templateID, templateParams, publicKey)
+        .then(() => {
+          alert('Zgłoszenie wysłane! Dziękujemy.');
+          setApplyingJobId(null);
+          setIsSending(false);
+          form.reset();
+        })
+        .catch((err) => {
+          console.error('EmailJS Error:', err);
+          alert('Wystąpił błąd podczas wysyłania.');
+          setIsSending(false);
+        });
+    } else {
+      setTimeout(() => {
+        alert('Zgłoszenie wysłane! (Tryb testowy)');
+        setApplyingJobId(null);
+        setIsSending(false);
+        form.reset();
+      }, 800);
+    }
+  };
+
+  const handleGeneralSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    setIsSending(true);
+
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (serviceID && serviceID !== 'your_service_id_here') {
+      const templateParams = {
+        name: form.user_name.value,
+        email: form.user_email.value,
+        phone: 'Nie podano',
+        company: 'Aplikacja Ogólna',
+        type: 'Rekrutacja - Ogólna',
+        message: 'Link do CV: ' + form.cv_url.value + '\n\nWiadomość: ' + form.message.value
+      };
+
+      emailjs.send(serviceID, templateID, templateParams, publicKey)
+        .then(() => {
+          alert('Zgłoszenie gotowości wysłane! Dziękujemy.');
+          setIsSending(false);
+          form.reset();
+        })
+        .catch((err) => {
+          console.error('EmailJS Error:', err);
+          alert('Wystąpił błąd podczas wysyłania.');
+          setIsSending(false);
+        });
+    } else {
+      setTimeout(() => {
+        alert('Zgłoszenie gotowości wysłane! (Tryb testowy)');
+        setIsSending(false);
+        form.reset();
+      }, 800);
+    }
+  };
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center">
@@ -263,14 +345,14 @@ export default function Career() {
                   <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] flex flex-col md:flex-row gap-6 md:gap-12 px-2 md:px-6 ${isActive ? 'max-h-[800px] opacity-100 pt-6 md:pt-8 pb-8 md:pb-12' : 'max-h-0 opacity-0 pt-0 pb-0'}`}>
                     {applyingJobId === job.id ? (
                       <div className="w-full flex flex-col transition-all duration-500 opacity-100">
-                        <form className="w-full flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); alert('Zgłoszenie wysłane!'); setApplyingJobId(null); }}>
-                           <input type="text" placeholder="Imię i Nazwisko" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
-                           <input type="email" placeholder="Adres Email" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
-                           <input type="url" placeholder="Link do CV lub Portfolio (LinkedIn / Dysk)" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
-                           <textarea rows="3" placeholder="Wiadomość (dlaczego Ty?)" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none textarea-resize-none font-sans"></textarea>
+                        <form className="w-full flex flex-col gap-4" onSubmit={(e) => handleJobSubmit(e, job.title)}>
+                           <input name="user_name" type="text" placeholder="Imię i Nazwisko" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
+                           <input name="user_email" type="email" placeholder="Adres Email" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
+                           <input name="cv_url" type="url" placeholder="Link do CV lub Portfolio (LinkedIn / Dysk)" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none font-sans" required />
+                           <textarea name="message" rows="3" placeholder="Wiadomość (dlaczego Ty?)" className="w-full bg-transparent border border-white/10 px-4 py-3 text-ivory text-sm focus:border-accent outline-none textarea-resize-none font-sans"></textarea>
                            <div className="flex gap-4 items-center mt-2">
-                             <button type="submit" className="font-heading font-bold uppercase text-xs tracking-widest px-8 py-4 bg-accent text-obsidian hover:scale-[1.03] transition-all shadow-[0_0_20px_rgba(212,255,0,0.15)] flex-1 sm:flex-none">
-                               Wyślij
+                             <button type="submit" disabled={isSending} className="font-heading font-bold uppercase text-xs tracking-widest px-8 py-4 bg-accent text-obsidian hover:scale-[1.03] transition-all shadow-[0_0_20px_rgba(212,255,0,0.15)] flex-1 sm:flex-none disabled:opacity-70 disabled:hover:scale-100">
+                               {isSending ? 'Wysyłanie...' : 'Wyślij'}
                              </button>
                              <button type="button" onClick={() => setApplyingJobId(null)} className="font-heading font-bold uppercase text-xs tracking-widest px-8 py-4 border border-white/20 text-ivory/50 hover:text-ivory hover:border-white/40 transition-all flex-1 sm:flex-none text-center">
                                Anuluj
@@ -311,30 +393,30 @@ export default function Career() {
                </p>
              </div>
              
-             <form className="w-full flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
+             <form className="w-full flex flex-col gap-6" onSubmit={handleGeneralSubmit}>
                <div className="flex flex-col md:flex-row gap-6 w-full">
                   <div className="flex flex-col gap-2 flex-1 relative">
                     <label className="text-[10px] text-ivory/40 uppercase tracking-[0.2em] font-heading ml-4 bg-[#111] absolute -top-2 left-2 px-2 z-10">Imię i Nazwisko</label>
-                    <input type="text" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans" placeholder="Jan Kowalski" />
+                    <input name="user_name" type="text" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans" placeholder="Jan Kowalski" required />
                   </div>
                   <div className="flex flex-col gap-2 flex-1 relative">
                     <label className="text-[10px] text-ivory/40 uppercase tracking-[0.2em] font-heading ml-4 bg-[#111] absolute -top-2 left-2 px-2 z-10">Adres Email</label>
-                    <input type="email" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans" placeholder="twoj@email.com" />
+                    <input name="user_email" type="email" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans" placeholder="twoj@email.com" required />
                   </div>
                </div>
                
                <div className="flex flex-col gap-2 w-full relative mt-2">
                   <label className="text-[10px] text-ivory/40 uppercase tracking-[0.2em] font-heading ml-4 bg-[#111] absolute -top-2 left-2 px-2 z-10">Link do CV lub Portfolio (LinkedIn / Dysk)</label>
-                  <input type="url" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans" placeholder="https://..." />
+                  <input name="cv_url" type="url" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans" placeholder="https://..." required />
                </div>
 
                <div className="flex flex-col gap-2 w-full relative mt-2">
                   <label className="text-[10px] text-ivory/40 uppercase tracking-[0.2em] font-heading ml-4 bg-[#111] absolute -top-2 left-2 px-2 z-10">Wiadomość (opcjonalnie)</label>
-                  <textarea rows="4" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans resize-none" placeholder="Twoja supermoc to..."></textarea>
+                  <textarea name="message" rows="4" className="w-full bg-transparent border border-white/10 rounded-none px-6 py-4 text-ivory focus:outline-none focus:border-accent transition-colors font-sans resize-none" placeholder="Twoja supermoc to..."></textarea>
                </div>
 
-               <button type="submit" className="group relative overflow-hidden font-heading font-bold uppercase tracking-widest text-sm px-10 py-5 bg-ivory text-obsidian transition-all duration-300 hover:bg-accent hover:shadow-[0_0_40px_rgba(212,255,0,0.2)] mt-6 mx-auto rounded-none hover:-translate-y-1">
-                  Zgłoś swoją gotowość
+               <button type="submit" disabled={isSending} className="group relative overflow-hidden font-heading font-bold uppercase tracking-widest text-sm px-10 py-5 bg-ivory text-obsidian transition-all duration-300 hover:bg-accent hover:shadow-[0_0_40px_rgba(212,255,0,0.2)] mt-6 mx-auto rounded-none hover:-translate-y-1 disabled:opacity-70 disabled:hover:scale-100 disabled:hover:translate-y-0">
+                  {isSending ? 'Wysyłanie...' : 'Zgłoś swoją gotowość'}
                </button>
              </form>
 

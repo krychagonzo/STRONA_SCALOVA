@@ -42,7 +42,7 @@ export default function Features() {
             Bariery
           </span>
           <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
-            PIĘĆ LUK, PRZEZ KTÓRE <span className="text-accent">TRACISZ PRZEWAGĘ.</span>
+            5 OBSZARÓW, W KTÓRYCH <span className="text-accent">TRACISZ PRZEWAGĘ.</span>
           </h2>
           <p className="text-ivory/60 mt-6 text-base md:text-lg max-w-2xl mx-auto normal-case tracking-normal leading-relaxed">
             Każda firma osiąga moment, w którym samo dokładanie ludzi i godzin przestaje przynosić efekty. To właśnie wtedy ukryte luki operacyjne i wizerunkowe zaczynają kosztować najwięcej.

@@ -70,14 +70,22 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
       {/* Footer Area */}
       <footer className="w-full bg-[#0E0E0E] rounded-none px-8 pt-16 pb-8 z-10 relative">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="md:col-span-2">
-            <div className="mb-6 md:mb-10">
-              <a href="/" className="block">
-                <img src="/logo.png" alt="Scalova Logo" className="h-20 md:h-24 w-auto object-contain scale-110 md:scale-125 origin-left hover:brightness-110 transition-all" />
-              </a>
+          <div className="md:col-span-2 flex flex-col justify-between">
+            <div>
+              <div className="mb-8">
+                <a href="/" className="block">
+                  <img src="/logo.png" alt="Scalova Logo" className="h-20 md:h-24 w-auto object-contain scale-110 md:scale-125 origin-left hover:brightness-110 transition-all" />
+                </a>
+              </div>
+              <div className="flex gap-6">
+                <a href="https://www.facebook.com/people/Scalova/61563223480934/" target="_blank" rel="noopener noreferrer" className="text-ivory/40 hover:text-accent transition-colors group">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="group-hover:scale-110 transition-transform"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/scalova.pl/" target="_blank" rel="noopener noreferrer" className="text-ivory/40 hover:text-accent transition-colors group">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="group-hover:scale-110 transition-transform"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+              </div>
             </div>
-
-
           </div>
 
           <div>
@@ -95,8 +103,8 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
           <div>
             <h4 className="font-heading font-semibold text-ivory mb-4 opacity-90 uppercase tracking-widest text-xs">Kontakt</h4>
             <ul className="flex flex-col gap-3 font-heading text-sm text-ivory/50">
-              <li><a href="#" className="hover:text-accent transition-colors">contact@scalova.com</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">61 830 00 00</a></li>
+              <li><a href="mailto:kontakt@scalova.pl" className="hover:text-accent transition-colors">kontakt@scalova.pl</a></li>
+              <li><a href="tel:+48618300000" className="hover:text-accent transition-colors">61 830 00 00</a></li>
               <li>Poznań, Polska</li>
             </ul>
           </div>

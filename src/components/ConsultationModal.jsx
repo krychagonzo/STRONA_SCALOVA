@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import emailjs from '@emailjs/browser';
 
 export default function ConsultationModal({ isOpen, onClose }) {
   const overlayRef = useRef(null);
@@ -43,11 +44,45 @@ export default function ConsultationModal({ isOpen, onClose }) {
     return e;
   };
 
+  const [isSending, setIsSending] = useState(false);
+
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
-    setSubmitted(true);
+    
+    setIsSending(true);
+
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (serviceID && serviceID !== 'your_service_id_here') {
+      const templateParams = {
+        name: formState.name,
+        company: formState.company || 'Brak',
+        email: formState.email,
+        phone: formState.phone,
+        type: 'Konsultacja Biznesowa'
+      };
+
+      emailjs.send(serviceID, templateID, templateParams, publicKey)
+        .then(() => {
+          setSubmitted(true);
+          setIsSending(false);
+        })
+        .catch((err) => {
+          console.error('EmailJS Error:', err);
+          alert('Wystąpił błąd serwera. Spróbuj ponownie za chwilę.');
+          setIsSending(false);
+        });
+    } else {
+      console.log('Tryb testowy (brak kluczy EmailJS). Dane:', formState);
+      setTimeout(() => {
+        setSubmitted(true);
+        setIsSending(false);
+      }, 800);
+    }
   };
 
   const formatPhone = (raw) => {
@@ -181,14 +216,17 @@ export default function ConsultationModal({ isOpen, onClose }) {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="group relative overflow-hidden w-full font-heading font-bold uppercase tracking-wider text-sm py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.02] shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:shadow-[0_0_50px_rgba(212,255,0,0.35)]"
+                  disabled={isSending}
+                  className="group relative overflow-hidden w-full font-heading font-bold uppercase tracking-wider text-sm py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.02] shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:shadow-[0_0_50px_rgba(212,255,0,0.35)] disabled:opacity-70 disabled:hover:scale-100"
                 >
                   <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 ease-in-out group-hover:left-[150%] pointer-events-none" />
                   <span className="relative z-10 flex items-center justify-center gap-3">
-                    UMAWIAM KONSULTACJĘ
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
-                      <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                    </svg>
+                    {isSending ? 'WYSYŁANIE...' : 'UMAWIAM KONSULTACJĘ'}
+                    {!isSending && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
+                        <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                      </svg>
+                    )}
                   </span>
                 </button>
                 <p className="text-center text-ivory/25 text-xs font-sans">
