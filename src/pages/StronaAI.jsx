@@ -153,8 +153,9 @@ export default function StronaAI({ onOpenModal }) {
 
       {/* HERO */}
       <section ref={heroRef} className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-40 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(212,255,0,0.05) 0%, transparent 70%)' }} />
-        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,255,0,0.4) 50%, transparent)' }} />
+        <div className="absolute inset-0 pointer-events-none">
+          <ServiceHeroCanvas />
+        </div>
 
         <div className="max-w-[1400px] mx-auto w-full">
           <div className="hero-line flex items-center gap-3 mb-10">

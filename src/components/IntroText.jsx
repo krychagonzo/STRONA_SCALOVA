@@ -32,7 +32,7 @@ export default function IntroText() {
       <div className="max-w-3xl text-center relative z-10 flex flex-col items-center">
         <h2 className="intro-anim font-heading font-light text-sm md:text-base text-accent tracking-[0.2em] uppercase mb-8 border border-accent/30 py-1.5 px-4 rounded-full bg-accent/5">Rozwiązanie</h2>
         <p className="intro-anim font-heading text-3xl md:text-4xl lg:text-5xl text-ivory/90 text-balance leading-tight font-light">
-          Zastępujemy chaos operacyjny <span className="font-medium text-ivory underline decoration-accent decoration-2 underline-offset-8">autonomicznymi ekosystemami</span>, gwarantując niezawodność, ciągłość sprzedaży i 10x wyższą przepustowość.
+          Zastępujemy chaos operacyjny <span className="font-medium text-ivory">autonomicznymi ekosystemami</span>, gwarantując niezawodność, ciągłość sprzedaży i 10x wyższą przepustowość.
         </p>
       </div>
     </section>

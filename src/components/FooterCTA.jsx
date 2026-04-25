@@ -43,7 +43,7 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
         {/* Big CTA Content */}
         <section className="max-w-4xl mx-auto text-center sticky top-[15%] pb-40 z-10">
             <h2 className="title-anim font-heading font-light text-3xl md:text-4xl lg:text-6xl text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
-                Przestań walczyć z rynkiem. Zainstaluj system, który go <span className="text-accent underline decoration-ivory/20 underline-offset-[12px]">zdominuje.</span>
+                Przestań walczyć z rynkiem. Zainstaluj system, który go <span className="text-accent">zdominuje.</span>
             </h2>
             <p className="description-anim font-sans text-base md:text-lg text-ivory/60 mb-12 max-w-2xl mx-auto leading-relaxed">
                 Nie czekaj! Umów bezpłatną konsultację, aby dowiedzieć się, gdzie tracisz czas i uciekają Twoi klienci.

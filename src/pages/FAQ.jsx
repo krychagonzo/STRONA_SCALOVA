@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Bayer 4x4 ordered dithering matrix, normalized to [-1, 1]
+// Bayer 4x4 — identyczne jak ServiceHeroCanvas
 const BAYER4 = [
    0,  8,  2, 10,
   12,  4, 14,  6,
@@ -17,19 +17,19 @@ function FAQCanvas() {
 
     const ctx = canvas.getContext('2d', { colorSpace: 'srgb' });
 
-    const DURATION_MS = 2500;  // smooth transition
-    const GLOW_FINAL  = 0.50;  // resting intensity
+    const DURATION_MS = 2500;
+    const GLOW_FINAL  = 0.50;
 
-    const BR = 14, BG = 14, BB = 14;   // base #0E0E0E
-    const GR = 42, GG = 42, GB = 42;   // glow #2a2a2a (gray)
+    const BR = 14, BG = 14, BB = 14;  // base #0E0E0E
+    const GR = 42, GG = 42, GB = 42;  // glow #2a2a2a
 
     const drawAt = (glowT, w, h) => {
       const imageData = ctx.createImageData(w, h);
       const data = imageData.data;
       const cx = w * 0.5;
-      const cy = 0; // ellipse_at_top
-      const rx = w * 0.75; 
-      const ry = 1200; 
+      const cy = 0; // gradient od góry
+      const rx = w * 0.75;
+      const ry = 1200;
 
       for (let y = 0; y < h; y++) {
         for (let x = 0; x < w; x++) {
@@ -38,7 +38,7 @@ function FAQCanvas() {
           const dx = (x - cx) / rx;
           const dy = (y - cy) / ry;
           const t  = Math.min(Math.sqrt(dx * dx + dy * dy), 1.0);
-          const ss = 1 - t * t * (3 - 2 * t); // smoothstep
+          const ss = 1 - t * t * (3 - 2 * t);
           const alpha = ss * glowT;
           const r = BR + (GR - BR) * alpha;
           const g = BG + (GG - BG) * alpha;
@@ -75,6 +75,7 @@ function FAQCanvas() {
 
     rafId = requestAnimationFrame(animate);
 
+    // ResizeObserver tylko przerysowuje przy zmianie rozmiaru — nie restartuje animacji
     const ro = new ResizeObserver(() => {
       w = canvas.offsetWidth;
       h = canvas.offsetHeight;
@@ -102,19 +103,19 @@ function FAQCanvas() {
 const FAQS = [
   {
     q: "Jak mogę sprawdzić, czy Wasze zaplecza pasują do mojej branży?",
-    a: ""
+    a: "Pierwszym etapem współpracy jest zawsze diagnoza, w której wskazujemy konkretne miejsca, gdzie Twoja firma traci czas i pieniądze, co pozwala nam precyzyjnie dopasować narzędzia do Twojej branży."
   },
   {
     q: "Jak wyceniane są Wasze usługi?",
-    a: "Nie mamy sztywnych, szablonowych cenników, ponieważ każdy biznes wymaga innej dźwigni. Pracujemy w modelu projektowym (np. wdrożenie konkretnego systemu AI) lub w modelu stałego partnerstwa (retajner). Zarezerwuj bezpłatną, sesję strategiczną – po krótkiej rozmowie będziemy w stanie określić widełki budżetowe adekwatne do poziomu, na który zamierzasz wprowadzić swoją markę."
+    a: "W przypadku konkretnych wdrożeń, takich jak budowa nowej strony czy instalacja systemu AI, stosujemy wycenę projektową opartą na zakresie prac."
   },
   {
     q: "Dla jakich firm wasze usługi przynoszą najlepsze efekty?",
-    a: "Największą wartość dostarczamy markom, które osiągnęły już rynkowy sukces, ale czują, że ich dalszy rozwój wyhamował. Często spotykamy się z sytuacją, w której firma ma świetny produkt, jednak jej pracownicy tracą zbyt wiele czasu na żmudne, powtarzalne zadania. Właścicielom brakuje przestrzeni na myślenie strategiczne, a koszty prowadzenia działalności rosną szybciej niż same przychody. Rozumiemy te wyzwania. Nasze rozwiązania tworzymy z myślą o firmach, które chcą rozwijać się mądrze – zwiększając skalę swojego biznesu bez konieczności ciągłego zatrudniania nowych osób. Z powodzeniem wspieramy w tym branżę e-commerce, sektor B2B oraz firmy usługowe."
+    a: "Wspieramy przedsiębiorstwa, które chcą zwiększyć skalę działania bez konieczności proporcjonalnego zwiększania zatrudnienia i kosztów stałych"
   },
   {
     q: "Czy potrzebuję programistów lub eksperckiej wiedzy w zespole?",
-    a: ""
+    a: "Nie musisz posiadać własnego działu IT, my dostarczamy i instalujemy wszystkie technologie, a następnie szkolimy Twój zespół z ich obsługi."
   },
   {
     q: "Czy sztuczna inteligencja nie sprawi, że moja marka straci \"ludzką twarz\"?",
@@ -122,31 +123,23 @@ const FAQS = [
   },
   {
     q: "Czym tak właściwie jest AI-asystent i jaką może pełnić funkcje na mojej stronie?",
-    a: "To zaawansowany duży model językowy (LLM) wytrenowany na procedurach, polityce i cennikach Twojej firmy. To nie jest zwykły bot z prostym drzewem decyzyjnym 'tak/nie'. Utrzymuje on gładką, sprzedażową konwersację z klientem, rozbija drobne obiekcje i zapisuje potencjalne deale prosto w dedykowanym CRM o dowolnej porze."
+    a: "System błyskawicznie odpowiada na pytania o cenniki, usługi i FAQ, rozbijając obiekcje klientów, zanim zdążysz otworzyć skrzynkę mailową."
   },
   {
     q: "Czym jest landing page a czym Witryna firmowa?",
-    a: "Landing Page to Twój najlepszy handlowiec. Ma jeden cel: złapać klienta za rękę, opowiedzieć mu o jednym konkretnym produkcie i doprowadzić do zakupu lub zostawienia kontaktu. Nie ma rozpraszaczy, nie ma menu. Prowadzi prosto do kasy.\n\nRozbudowana witryna firmowa (Cyfrowa centrala) to główna siedziba Twojej firmy. To biuro, w którym klient może pospacerować, wejść do działu „O nas”, zajrzeć do gabloty z „Case study”, przeczytać firmowego bloga i poznać całą historię marki. Tu budujesz relację i zaufanie na lata."
-  },
-  {
-    q: "Jakiego rodzaju materiały wizualne tworzycie?",
-    a: "Zajmujemy się pełnym spektrum kreacji konwertującej:\n• Wideo sprzedażowe i rolki (Reels/TikTok) zoptymalizowane pod algorytmy.\n• Wysokiej klasy fotografia produktowa i wizerunkowa.\n• Zasoby graficzne do kampanii reklamowych, w których wykorzystujemy również AI do błyskawicznego testowania setek wariantów (A/B testing) dla maksymalnej konwersji."
-  },
-  {
-    q: "Czym jest VR i jak może mi pomóc?",
-    a: ""
+    a: "Landing page to Twój najlepszy handlowiec nastawiony na jeden cel (zakup lub kontakt), podczas gdy witryna firmowa to cyfrowa centrala budująca zaufanie i markę na lata."
   },
   {
     q: "Co realnie zyskuję dzięki profesjonalnej identyfikacji wizualnej? Czy to tylko \"ładne logo\"?",
-    a: ""
+    a: "Profesjonalny wizerunek jest sygnałem jakości – klienci chętniej płacą więcej firmom, które wyglądają na liderów swojej branży."
   },
   {
-    q: "Jak animacja może wpłynąc na moją firmę?",
-    a: ""
+    q: "Jak animacja może wpłynąć na moją firmę?",
+    a: "Wysokiej klasy motion design wyróżnia Cię na tle konkurencji i sprawia, że Twój przekaz jest lepiej zapamiętywany oraz pozwala w 60 sekund wytłumaczyć procesy, które na piśmie zajęłyby kilka stron, co zwiększa szansę na zainteresowanie ofertą."
   },
   {
     q: "Czy animacja to rozwiązanie tylko do pozyskiwania klientów, czy pomoże mi również zoptymalizować procesy wewnątrz firmy?",
-    a: "Traktowanie animacji wyłącznie jako \"ładnego obrazka do reklamy\" to marnowanie jej największego potencjału biznesowego. Jako agencja wdrażająca automatyzacje, patrzymy na motion design i explainer video dwutorowo: to narzędzie, które na zewnątrz generuje przychody, a wewnątrz firmy drastycznie tnie koszty operacyjne.\n\nNasi klienci wykorzystują tworzone przez nas materiały na trzech kluczowych frontach:\n\nNa zewnątrz (Skalowanie Sprzedaży): Jeśli Twój produkt lub usługa są skomplikowane, ściana tekstu natychmiast odstraszy potencjalnego klienta. Animacja w 30-60 sekund przekłada zawiłe procesy na język prostych korzyści. Zatrzymuje uwagę w social mediach, buduje wizerunek marki premium i płynnie wprowadza ruch do Twojego lejka sprzedażowego.\n\nWewnątrz (Automatyzacja Onboardingu i HR): Zamiast odrywać kluczowych managerów od pracy, by po raz setny tłumaczyli nowemu pracownikowi procedury, korzystasz z wewnętrznych wideo instrukcji. Nowy członek zespołu szybciej przyswaja wiedzę, informacje są zawsze zestandaryzowane, a Twoja firma oszczędza setki godzin pracy najdroższych specjalistów.\n\nObsługa Klienta i FAQ (Redukcja Kosztów Wsparcia): Krótkie animacje produktowe i tzw. wideo-instrukcje zdejmują ciężar z Twojego działu obsługi klienta. Kiedy użytkownik ma problem, nasz zautomatyzowany system wysyła mu przystępny explainer, rozwiązując sprawę bez angażowania człowieka."
+    a: "Wideo-instrukcje i explainer video odciążają działy obsługi klienta, rozwiązując typowe problemy użytkowników bez udziału człowieka."
   }
 ];
 
@@ -155,17 +148,11 @@ export default function FAQ() {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center pb-32">
-      {/* AMBIENT GRADIENT & ANTI-BANDING NOISE */}
+      {/* AMBIENT GRADIENT z anti-banding dithering */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0" style={{ height: '120vh' }}>
           <FAQCanvas />
         </div>
-        <svg className="absolute inset-0 w-full h-full opacity-[0.05] mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
-          <filter id="faqNoise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
-          </filter>
-          <rect width="100%" height="100%" filter="url(#faqNoise)"/>
-        </svg>
       </div>
       
       {/* HEADER SECTION */}

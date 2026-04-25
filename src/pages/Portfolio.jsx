@@ -1,7 +1,101 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
+
+// Bayer 4x4 dithering — eliminuje banding na ciemnych gradientach
+const BAYER4 = [
+   0,  8,  2, 10,
+  12,  4, 14,  6,
+   3, 11,  1,  9,
+  15,  7, 13,  5,
+].map(v => (v / 16 - 0.5) * 2);
+
+function PortfolioCanvas() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d', { colorSpace: 'srgb' });
+    const DURATION_MS = 2500;
+    const GLOW_FINAL  = 0.50;
+    const BR = 14, BG = 14, BB = 14;
+    const GR = 42, GG = 42, GB = 42;
+
+    const drawAt = (glowT, w, h) => {
+      const imageData = ctx.createImageData(w, h);
+      const data = imageData.data;
+      const cx = w * 0.5;
+      const cy = 0;
+      const rx = w * 0.75;
+      const ry = 1200;
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const i = (y * w + x) * 4;
+          const dither = BAYER4[(y & 3) * 4 + (x & 3)];
+          const dx = (x - cx) / rx;
+          const dy = (y - cy) / ry;
+          const t  = Math.min(Math.sqrt(dx * dx + dy * dy), 1.0);
+          const ss = 1 - t * t * (3 - 2 * t);
+          const alpha = ss * glowT;
+          const r = BR + (GR - BR) * alpha;
+          const g = BG + (GG - BG) * alpha;
+          const b = BB + (GB - BB) * alpha;
+          const n = dither * 2;
+          data[i]     = Math.min(255, Math.max(0, r + n));
+          data[i + 1] = Math.min(255, Math.max(0, g + n));
+          data[i + 2] = Math.min(255, Math.max(0, b + n));
+          data[i + 3] = 255;
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    };
+
+    let w = canvas.offsetWidth;
+    let h = canvas.offsetHeight;
+    canvas.width = w;
+    canvas.height = h;
+
+    let currentGlow = 0;
+    drawAt(currentGlow, w, h);
+
+    let rafId = null;
+    let startTs = null;
+    const animate = (ts) => {
+      if (!startTs) startTs = ts;
+      const p = Math.min((ts - startTs) / DURATION_MS, 1.0);
+      const eased = -(Math.cos(Math.PI * p) - 1) / 2;
+      currentGlow = eased * GLOW_FINAL;
+      drawAt(currentGlow, w, h);
+      if (p < 1.0) rafId = requestAnimationFrame(animate);
+    };
+    rafId = requestAnimationFrame(animate);
+
+    const ro = new ResizeObserver(() => {
+      w = canvas.offsetWidth;
+      h = canvas.offsetHeight;
+      canvas.width = w;
+      canvas.height = h;
+      drawAt(currentGlow, w, h);
+    });
+    ro.observe(canvas);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      ro.disconnect();
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full"
+      style={{ display: 'block' }}
+    />
+  );
+}
 
 const CATEGORIES = [
   "Wszystkie",
@@ -33,15 +127,11 @@ export default function Portfolio() {
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center pb-32">
       
-      {/* AMBIENT GRADIENT & ANTI-BANDING NOISE */}
+      {/* AMBIENT GRADIENT z Bayer diteringiem */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[1200px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06)_0%,transparent_70%)]" />
-        <svg className="absolute inset-0 w-full h-full opacity-[0.05] mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
-          <filter id="portfolioNoise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
-          </filter>
-          <rect width="100%" height="100%" filter="url(#portfolioNoise)"/>
-        </svg>
+        <div className="absolute inset-0" style={{ height: '120vh' }}>
+          <PortfolioCanvas />
+        </div>
       </div>
 
       {/* UNIFIED PORTFOLIO SECTION */}
