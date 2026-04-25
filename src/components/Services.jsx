@@ -308,43 +308,25 @@ export default function Services() {
                       boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.7)",
                     }}
                   >
-                  {/* WATERMARK: ta sama ikona serwisu — duża, w tle */}
-                  <div
-                    className="absolute pointer-events-none"
-                    style={{
-                      top: '-20px',
-                      left: '-20px',
-                      width: '300px',
-                      height: '300px',
-                      background: 'rgba(250,248,245,0.055)',
-                      maskImage: `url(${servicesList[selectedService].icon})`,
-                      WebkitMaskImage: `url(${servicesList[selectedService].icon})`,
-                      maskSize: 'contain',
-                      WebkitMaskSize: 'contain',
-                      maskPosition: 'center',
-                      WebkitMaskPosition: 'center',
-                      maskRepeat: 'no-repeat',
-                      WebkitMaskRepeat: 'no-repeat',
-                    }}
-                  />
+                  {/* Duża ikona w prawym górnym rogu */}
+                  <motion.div 
+                    layoutId={`icon-${selectedService}`} 
+                    className="absolute top-2 right-4 md:top-4 md:right-8 lg:top-4 lg:right-10 z-30 text-white/[0.07] pointer-events-none"
+                  >
+                    <RenderIcon icon={servicesList[selectedService].icon} className="w-32 h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 object-contain" strokeWidth={1} />
+                  </motion.div>
 
 
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.3 } }}
                     exit={{ opacity: 0, transition: { duration: 0 } }}
-                    className="relative z-10 w-full flex flex-col md:flex-row md:min-h-[620px]"
+                    className="relative z-10 w-full flex flex-col min-h-[620px]"
                   >
-                    {/* LEWA KOLUMNA — 1/3 */}
-                    <div className="md:w-[38%] p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative">
-
-                      {/* Mała aktywna ikona */}
-                      <motion.div layoutId={`icon-${selectedService}`} className="mb-8 text-ivory/60">
-                        <RenderIcon icon={servicesList[selectedService].icon} className="w-14 h-14 md:w-16 md:h-16" strokeWidth={1.5} />
-                      </motion.div>
-
+                    {/* WSPÓLNY NAGŁÓWEK NA CAŁĄ SZEROKOŚĆ */}
+                    <div className="w-full p-8 md:p-12 lg:p-16 pb-10 md:pb-14 lg:pb-16 border-b border-white/5 flex flex-col relative z-20">
                       {/* Numer seryjny + tag */}
-                      <div className="flex items-center gap-4 mb-5">
+                      <div className="flex items-center gap-4 mb-4 md:mb-6">
                         <span className="font-mono text-accent text-[11px] tracking-[0.25em]">
                           {String(selectedService + 1).padStart(2, '0')} / 08
                         </span>
@@ -353,78 +335,82 @@ export default function Services() {
                         </span>
                       </div>
 
-                      {/* Tytuł */}
+                      {/* Gigantyczny Tytuł */}
                       <motion.h3
                         layoutId={`title-${selectedService}`}
-                        className="text-ivory font-heading font-bold tracking-tighter text-2xl md:text-3xl lg:text-[2.2rem] uppercase leading-[0.95] text-balance"
+                        className="text-ivory font-heading font-light tracking-tighter text-3xl md:text-5xl lg:text-[4.5rem] xl:text-[5.5rem] uppercase leading-[0.9] w-full text-left text-balance"
                       >
                         {servicesList[selectedService].title}
                       </motion.h3>
-
-                      {/* Checkmarki */}
-                      <div className="flex flex-col gap-4 border-t border-white/5 pt-7 mt-auto">
-                        {servicesList[selectedService].features.map((feat, fIdx) => (
-                          <motion.div
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.45 + (fIdx * 0.1) }}
-                            key={fIdx}
-                            className="flex items-start gap-4 text-sm font-heading text-ivory/60"
-                          >
-                            <span className="font-mono text-accent text-[11px] tracking-[0.2em] shrink-0 mt-[3px]">
-                              {String(fIdx + 1).padStart(2, '0')}
-                            </span>
-                            <span className="leading-snug">{feat}</span>
-                          </motion.div>
-                        ))}
-                      </div>
                     </div>
 
-                    {/* PRAWA KOLUMNA — 2/3 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0, transition: { delay: 0.45 } }}
-                      className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-end"
-                    >
-                      {/* Dolna część: opis — przyklejone do dołu */}
-                      <div className="mb-6 md:mb-8">
-                        <p className="font-sans text-ivory/65 text-lg md:text-xl leading-relaxed">
-                          {servicesList[selectedService].desc}
-                        </p>
+                    <div className="flex flex-col md:flex-row flex-1">
+                      {/* LEWA KOLUMNA: CHECKMARKI */}
+                      <div className="md:w-[40%] xl:w-[35%] p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative z-10">
+                        <div className="flex flex-col gap-4 mt-auto">
+                          {servicesList[selectedService].features.map((feat, fIdx) => (
+                            <motion.div
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.45 + (fIdx * 0.1) }}
+                              key={fIdx}
+                              className="flex items-start gap-4 text-sm font-heading text-ivory/60"
+                            >
+                              <span className="font-mono text-accent text-[11px] tracking-[0.2em] shrink-0 mt-[3px]">
+                                {String(fIdx + 1).padStart(2, '0')}
+                              </span>
+                              <span className="leading-snug">{feat}</span>
+                            </motion.div>
+                          ))}
+                        </div>
                       </div>
 
-                      {/* Przyciski */}
-                      <div className="flex flex-col sm:flex-row gap-3 pt-8 border-t border-white/5">
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setSelectedService(null); }}
-                          className="group py-4 px-8 bg-white/5 border border-white/10 text-[11px] font-heading font-bold uppercase tracking-widest text-ivory/70 transition-all duration-300 hover:border-ivory/20 hover:bg-white/10 flex items-center justify-center gap-3"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
-                          WRÓĆ
-                        </button>
-                        {servicesList[selectedService].slug ? (
-                          <Link
-                            to={servicesList[selectedService].slug}
-                            onClick={(e) => e.stopPropagation()}
-                            className="group relative overflow-hidden py-4 px-10 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:-translate-y-0.5 flex-1 text-center flex items-center justify-center gap-3"
-                          >
-                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
-                            <span className="relative z-10 flex items-center gap-3">
-                              DOWIEDZ SIĘ WIĘCEJ
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                            </span>
-                          </Link>
-                        ) : (
+                      {/* PRAWA KOLUMNA: OPIS I PRZYCISKI */}
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0, transition: { delay: 0.45 } }}
+                        className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-end relative z-10"
+                      >
+                        {/* Dolna część: opis — przyklejone do dołu */}
+                        <div className="mb-6 md:mb-8">
+                          <p className="font-sans text-ivory/65 text-lg md:text-xl leading-relaxed">
+                            {servicesList[selectedService].desc}
+                          </p>
+                        </div>
+
+                        {/* Przyciski */}
+                        <div className="flex flex-col sm:flex-row gap-3 pt-8 border-t border-white/5">
                           <button
-                            onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
-                            className="group relative overflow-hidden py-4 px-10 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:-translate-y-0.5 flex-1 text-center"
+                            onClick={(e) => { e.stopPropagation(); setSelectedService(null); }}
+                            className="group py-4 px-8 bg-white/5 border border-white/10 text-[11px] font-heading font-bold uppercase tracking-widest text-ivory/70 transition-all duration-300 hover:border-ivory/20 hover:bg-white/10 flex items-center justify-center gap-3"
                           >
-                            <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
-                            <span className="relative z-10">ZAREZERWUJ KONSULTACJĘ</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
+                            WRÓĆ
                           </button>
-                        )}
-                      </div>
-                    </motion.div>
+                          {servicesList[selectedService].slug ? (
+                            <Link
+                              to={servicesList[selectedService].slug}
+                              onClick={(e) => e.stopPropagation()}
+                              className="group relative overflow-hidden py-4 px-10 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:-translate-y-0.5 flex-1 text-center flex items-center justify-center gap-3"
+                            >
+                              <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
+                              <span className="relative z-10 flex items-center gap-3">
+                                DOWIEDZ SIĘ WIĘCEJ
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                              </span>
+                            </Link>
+                          ) : (
+                            <button
+                              onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
+                              className="group relative overflow-hidden py-4 px-10 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:-translate-y-0.5 flex-1 text-center"
+                            >
+                              <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
+                              <span className="relative z-10">ZAREZERWUJ KONSULTACJĘ</span>
+                            </button>
+                          )}
+                        </div>
+                      </motion.div>
+                    </div>
                   </motion.div>
                 </motion.div>
               )}
