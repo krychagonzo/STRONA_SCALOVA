@@ -317,9 +317,8 @@ export default function StronaAI({ onOpenModal }) {
 
       {/* CTA */}
       <section className="w-full py-28 px-6 md:px-16 xl:px-32 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <ServiceHeroCanvas />
-        </div>
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(212,255,0,0.04) 0%, transparent 70%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,255,0,0.3) 50%, transparent)' }} />
 
         <div className="max-w-[1400px] mx-auto text-center">
           <p className="font-mono text-ivory/40 text-[10px] tracking-[0.25em] uppercase mb-6">GOTOWY NA ZMIANĘ?</p>
@@ -339,7 +338,7 @@ export default function StronaAI({ onOpenModal }) {
           </button>
         </div>
       </section>
-      <ServicePageNav onOpenModal={onOpenModal} />
+      <ServicePageNav />
     </div>
   );
 }

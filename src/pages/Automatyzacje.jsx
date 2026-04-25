@@ -237,7 +237,7 @@ export default function Automatyzacje({ onOpenModal }) {
           </button>
         </div>
       </section>
-      <ServicePageNav onOpenModal={onOpenModal} />
+      <ServicePageNav />
     </div>
   );
 }

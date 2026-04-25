@@ -220,7 +220,7 @@ export default function SprzedazOferta({ onOpenModal }) {
           </button>
         </div>
       </section>
-      <ServicePageNav onOpenModal={onOpenModal} />
+      <ServicePageNav />
     </div>
   );
 }

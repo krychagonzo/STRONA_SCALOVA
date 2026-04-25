@@ -239,7 +239,7 @@ export default function ZlotyNumer({ onOpenModal }) {
           </button>
         </div>
       </section>
-      <ServicePageNav onOpenModal={onOpenModal} />
+      <ServicePageNav />
     </div>
   );
 }

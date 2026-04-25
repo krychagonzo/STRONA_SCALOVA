@@ -232,7 +232,7 @@ export default function Kampanie({ onOpenModal }) {
           </button>
         </div>
       </section>
-      <ServicePageNav onOpenModal={onOpenModal} />
+      <ServicePageNav />
     </div>
   );
 }
