@@ -12,7 +12,7 @@ const subServices = [
   { title: "YouTube Ads", desc: "Kampanie wideo w ekosystemie Google docierające do precyzyjnie określonych grup odbiorców. Format, który buduje markę i generuje konwersje tam, gdzie uwaga klienta jest najwyższa." },
   { title: "Artykuły sponsorowane i Native Ads", desc: "Dzięki sieci partnerów i agencji mamy bezpośredni dostęp do największych portali branżowych i informacyjnych w Polsce. Twoja marka pojawia się tam, gdzie Twoi klienci czytają - nie jako baner, ale jako wartościowy content." },
   { title: "Content organiczny (Social Media)", desc: "Strategia i produkcja contentu budującego zasięg bez płatnej dystrybucji. Każdy post ma cel - sprzedaż, zasięg lub pozycja eksperta. Regularność zaplanowana na miesiące do przodu." },
-  { title: "Konfiguracja trackingu konwersji", desc: "Pełne wdrożenie pikseli, API konwersji i śledzenia server-side. Wiesz dokładnie która kampania przyniosła przychód, a która tylko kliknięcia - każda złotówka rozliczona." },
+  { title: "Konfiguracja śledzenia konwersji", desc: "Pełne wdrożenie pikseli, API konwersji i śledzenia server-side. Wiesz dokładnie która kampania przyniosła przychód, a która tylko kliknięcia - każda złotówka rozliczona." },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,7 +27,7 @@ const deliverables = [
 ];
 
 const steps = [
-  { num: "01", label: "AUDYT", title: "Analizujemy historię i trackingi", desc: "Zanim wydamy złotówkę, wiemy co działało, co nie i dlaczego. Audyt kampanii, pikseli, ustawień konwersji i struktury konta." },
+  { num: "01", label: "AUDYT", title: "Analizujemy historię i konfigurację śledzenia", desc: "Zanim wydamy złotówkę, wiemy co działało, co nie i dlaczego. Audyt kampanii, pikseli, ustawień konwersji i struktury konta." },
   { num: "02", label: "STRATEGIA", title: "Definiujemy kanały, grupy i cele ROAS", desc: "Dobieramy platformy do Twojego produktu i klienta. Ustalamy budżety, cele i metryki sukcesu - zanim cokolwiek uruchomimy." },
   { num: "03", label: "URUCHOMIENIE", title: "Stawiamy kampanie i konfigurujemy śledzenie", desc: "Piszemy kreacje, ustawiamy grupy docelowe, podpinamy konwersje. Każdy element zatwierdzony przed startem." },
   { num: "04", label: "OPTYMALIZACJA", title: "Tygodniowe iteracje na podstawie danych", desc: "Co tydzień analizujemy wyniki i wprowadzamy zmiany. Budżet idzie tam, gdzie zarabia - nie tam, gdzie kiedyś działało." },
@@ -35,13 +35,13 @@ const steps = [
 
 const stats = [
   { stat: "78%", label: "budżetów reklamowych jest marnowane na złe targetowanie i brak śledzenia konwersji" },
-  { stat: "4,7x", label: "średni ROAS po optymalizacji kampanii w ciągu pierwszych 90 dni współpracy" },
+  { stat: "4,7x", label: "zwrot z każdej złotówki wydanej na reklamy, po optymalizacji w ciągu pierwszych 90 dni" },
   { stat: "3 tyg.", label: "do pierwszych mierzalnych wyników i danych potrzebnych do optymalizacji" },
 ];
 
 const problems = [
   { title: "Budżet się pali, wyników brak", desc: "Wydajesz na reklamy, ale nie wiesz które przynoszą sprzedaż, a które tylko statystyki w panelu. Optymalizujesz w ciemno." },
-  { title: "Organiczny zasięg spada", desc: "Algorytmy zmieniają się co kwartał. Bez strategii Twoje posty docierają do coraz mniejszej części odbiorców." },
+  { title: "Twoje posty widzą głównie ci, którzy już Cię znają", desc: "Algorytmy zmieniają się co kwartał. Bez strategii Twoje posty docierają do coraz mniejszej części odbiorców - i nigdy do nowych klientów." },
   { title: "Agencja raportuje kliknięcia", desc: "Piękne slajdy z zasięgami i wyświetleniami. Zero informacji o tym, ile z tego przełożyło się na realną sprzedaż." },
 ];
 
@@ -100,7 +100,7 @@ export default function Kampanie({ onOpenModal }) {
           </div>
 
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
-            Każda kampania śledzona do sprzedaży, nie do kliknięć. Łączymy płatną dystrybucję z organicznym wzrostem - żeby każda złotówka pracowała na wynik, a nie na slajd w prezentacji.
+            Każda kampania śledzona do sprzedaży, nie do kliknięć. Łączymy reklamy płatne z organicznym contentem - żeby każda złotówka pracowała na wynik, a nie na slajd agencji.
           </p>
 
           <div className="hero-line flex flex-col sm:flex-row gap-4">
@@ -118,13 +118,16 @@ export default function Kampanie({ onOpenModal }) {
 
       {/* STATS */}
       <section ref={statsRef} className="w-full border-t border-b border-ivory/5 py-12 px-6 md:px-16 xl:px-32">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-ivory/5">
+        <div className="max-w-[1400px] mx-auto">
+          <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-8 opacity-80">GDZIE IDZIE TWÓJ BUDŻET REKLAMOWY</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-ivory/5">
           {stats.map((p, i) => (
             <div key={i} className="stat-card flex flex-col gap-2 md:px-12 first:pl-0 last:pr-0">
               <span className="font-heading text-4xl md:text-5xl text-accent font-light">{p.stat}</span>
               <span className="font-sans text-ivory/50 text-sm leading-relaxed max-w-xs">{p.label}</span>
             </div>
           ))}
+          </div>
         </div>
       </section>
 
@@ -153,9 +156,9 @@ export default function Kampanie({ onOpenModal }) {
 
       {/* CO ŚWIADCZYMY */}
       <SubServices
-        eyebrow="Usługi w ramach kategorii"
+        eyebrow="Do wyboru. Do łączenia."
         heading={<>CO <span className="text-accent">WDRAŻAMY.</span></>}
-        description="Każdą usługę możesz uruchomić osobno. Razem tworzą system bez luk."
+        description="Każdą możesz uruchomić osobno. Razem nie zostawiają miejsca dla konkurencji."
         items={subServices}
       />
 
@@ -165,7 +168,7 @@ export default function Kampanie({ onOpenModal }) {
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO ZYSKUJESZ</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Pełny system dystrybucji.<br />Mierzalny od pierwszego dnia.
+              Pełna maszyna reklamowa.<br />Mierzalna od pierwszego dnia.
             </h2>
           </div>
           <div className="deliverables-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ivory/5">
@@ -218,7 +221,7 @@ export default function Kampanie({ onOpenModal }) {
           <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">GOTOWY NA ZMIANĘ?</p>
           <h2 className="font-heading font-light text-3xl md:text-5xl lg:text-6xl text-ivory uppercase tracking-tight leading-tight mb-6">
             Przestań zgadywać.<br />
-            <span className="text-accent">Zacznij optymalizować pod dane.</span>
+            <span className="text-accent">Zacznij zarabiać na reklamach.</span>
           </h2>
           <p className="font-sans text-ivory/50 text-lg max-w-xl mx-auto leading-relaxed mb-12">
             Umów bezpłatną konsultację. Przeanalizujemy Twoje obecne kampanie i pokażemy gdzie tracisz budżet i sprzedaż.

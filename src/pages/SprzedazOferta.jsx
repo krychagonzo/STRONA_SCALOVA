@@ -7,7 +7,7 @@ import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
 
 const subServices = [
-  { title: "Przebudowa oferty handlowej", desc: "Przepisujemy Twoją ofertę pod psychologię decyzji zakupowych. Właściwa kolejność argumentów, właściwa cena, obiekcje rozbroione z góry - zanim klient zdąży je wypowiedzieć." },
+  { title: "Przebudowa oferty handlowej", desc: "Przepisujemy Twoją ofertę pod psychologię decyzji zakupowych. Właściwa kolejność argumentów, właściwa cena, obiekcje rozbrojone z góry - zanim klient zdąży je wypowiedzieć." },
   { title: "Skrypty i scenariusze rozmów", desc: "Handlowiec wie co powiedzieć na każdym etapie - od pierwszego kontaktu po follow-up po odmowie. Ustrukturyzowany proces zamiast improwizacji opartej na talencie jednostek." },
   { title: "Szkolenie zespołu sprzedażowego", desc: "Warsztaty z realnych scenariuszy, nie teorii sprzedaży. Twój zespół ćwiczy na trudnych klientach zanim zetknie się z nimi na żywo - i wie jak reagować w każdej sytuacji." },
   { title: "Materiały wspierające sprzedaż", desc: "Prezentacja, one-pager, case studies - wszystko zaprojektowane pod zamknięcie, nie pod pokazanie się. Klient dostaje to, czego potrzebuje do podjęcia decyzji." },
@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const deliverables = [
   { number: "01", title: "Audyt obecnego procesu sprzedaży", desc: "Analizujemy ścieżkę od leada do zamknięcia. Identyfikujemy gdzie i dlaczego tracisz klientów - zanim zaproponujemy jakiekolwiek zmiany." },
-  { number: "02", title: "Przebudowa oferty handlowej", desc: "Przepisujemy Twoją ofertę pod psychologię decyzji zakupowych. Właściwa kolejność argumentów, właściwa cena, właściwe obiekcje z góry rozbroione." },
+  { number: "02", title: "Przebudowa oferty handlowej", desc: "Przepisujemy Twoją ofertę pod psychologię decyzji zakupowych. Właściwa kolejność argumentów, właściwa cena, właściwe obiekcje z góry rozbrojone." },
   { number: "03", title: "Skrypty i scenariusze rozmów", desc: "Handlowiec wie co powiedzieć na każdym etapie - od pierwszego kontaktu po follow-up po odmowie. Ustrukturyzowany proces zamiast improwizacji." },
   { number: "04", title: "Szkolenie zespołu sprzedażowego", desc: "Warsztaty z realnych scenariuszy, nie teorii. Twój zespół ćwiczy na trudnych klientach zanim zetknie się z nimi na żywo." },
   { number: "05", title: "Materiały wspierające sprzedaż", desc: "Prezentacja, one-pager, case studies - wszystko zaprojektowane pod zamknięcie, nie pod pokazanie się. Klient dostaje to, czego potrzebuje do decyzji." },
@@ -41,7 +41,7 @@ const stats = [
 const problems = [
   { title: "Oferta idzie do 'akceptacji' i ginie", desc: "Klient mówi 'muszę to przemyśleć' i nigdy nie wraca. Oferta nie tworzy poczucia pilności ani oczywistej wartości - czeka na decyzję zamiast ją wywoływać." },
   { title: "Każdy handlowiec sprzedaje inaczej", desc: "Jeden zamyka świetnie, reszta improwizuje. Bez ustrukturyzowanego procesu wyniki zależą od talentu, nie od systemu." },
-  { title: "Nie wiesz gdzie tracisz w lejku", desc: "Mało zamknięć, ale nie wiesz czy problem jest w leadach, rozmowach czy ofercie. Optymalizujesz w ciemno i przepalasz czas." },
+  { title: "Dużo rozmów, mało zamknięć - i nie wiesz czemu", desc: "Mało zamknięć, ale nie wiesz czy problem jest w leadach, rozmowach czy ofercie. Optymalizujesz w ciemno i przepalasz czas." },
 ];
 
 export default function SprzedazOferta({ onOpenModal }) {
@@ -94,7 +94,7 @@ export default function SprzedazOferta({ onOpenModal }) {
             />
           </div>
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
-            Słaba oferta to nie problem graficzny - to problem struktury argumentacji. Przebudowujemy Twój pitch od podstaw i szkolimy zespół, który wie jak go używać. Efekt: wyższy win-rate przy tych samych leadach.
+            Słaba oferta to nie problem graficzny - to problem struktury argumentacji. Przebudowujemy Twoją ofertę od podstaw i szkolimy zespół, który wie jak jej używać. Efekt: wyższy win-rate przy tych samych leadach.
           </p>
           <div className="hero-line flex flex-col sm:flex-row gap-4">
             <button onClick={onOpenModal} className="group relative overflow-hidden font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(212,255,0,0.15)] hover:shadow-[0_0_60px_rgba(212,255,0,0.35)]">
@@ -110,13 +110,16 @@ export default function SprzedazOferta({ onOpenModal }) {
       </section>
 
       <section ref={statsRef} className="w-full border-t border-b border-ivory/5 py-12 px-6 md:px-16 xl:px-32">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-ivory/5">
+        <div className="max-w-[1400px] mx-auto">
+          <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-8 opacity-80">DLACZEGO TWÓJ ZESPÓŁ TRACI ZAMKNIĘCIA</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-ivory/5">
           {stats.map((p, i) => (
             <div key={i} className="stat-card flex flex-col gap-2 md:px-12 first:pl-0 last:pr-0">
               <span className="font-heading text-4xl md:text-5xl text-accent font-light">{p.stat}</span>
               <span className="font-sans text-ivory/50 text-sm leading-relaxed max-w-xs">{p.label}</span>
             </div>
           ))}
+          </div>
         </div>
       </section>
 
@@ -144,9 +147,9 @@ export default function SprzedazOferta({ onOpenModal }) {
 
       {/* CO ŚWIADCZYMY */}
       <SubServices
-        eyebrow="Usługi w ramach kategorii"
+        eyebrow="Do wyboru. Do łączenia."
         heading={<>CO <span className="text-accent">WDRAŻAMY.</span></>}
-        description="Każdą usługę możesz uruchomić osobno. Razem tworzą system bez luk."
+        description="Każdą możesz uruchomić osobno. Razem nie zostawiają miejsca dla konkurencji."
         items={subServices}
       />
 
@@ -175,7 +178,7 @@ export default function SprzedazOferta({ onOpenModal }) {
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Od audytu do przeszkolonego<br />zespołu z wyższym win-rate.
+              Od audytu do zespołu,<br />który zamyka więcej.
             </h2>
           </div>
           <div className="steps-container flex flex-col">
@@ -205,8 +208,8 @@ export default function SprzedazOferta({ onOpenModal }) {
         <div className="max-w-[1400px] mx-auto text-center">
           <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">GOTOWY NA ZMIANĘ?</p>
           <h2 className="font-heading font-light text-3xl md:text-5xl lg:text-6xl text-ivory uppercase tracking-tight leading-tight mb-6">
-            Przestań tracić klientów<br />
-            <span className="text-accent">na etapie oferty.</span>
+            Przestań tracić klientów na etapie oferty.<br />
+            <span className="text-accent">Zacznij je domykać.</span>
           </h2>
           <p className="font-sans text-ivory/50 text-lg max-w-xl mx-auto leading-relaxed mb-12">
             Umów bezpłatną konsultację. Przeanalizujemy Twój obecny proces sprzedaży i pokażemy konkretnie, gdzie i dlaczego tracisz zamknięcia.

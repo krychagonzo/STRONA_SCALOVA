@@ -12,13 +12,13 @@ const subServices = [
   { title: "Automatyczne fakturowanie i księgowość", desc: "Twoja księgowa nie powinna generować faktur ręcznie i przepisywać ich do systemu - powinna zajmować się optymalizacją podatkową. Automatyzujemy wystawianie, wysyłkę i windykację miękką faktur. Wdrażamy systemy OCR, które same odczytują i księgują dokumenty przychodzące." },
   { title: "Zarządzanie zespołem i monitorowanie postępów", desc: "Automatyczne wyznaczanie zadań po zdarzeniach w CRM, alerty o blokadach, tygodniowe raporty generowane bez pytania. Każdy wie co ma robić, Ty widzisz w jednym miejscu co stoi - bez spotkań statusowych i arkuszy Excela." },
   { title: "Automatyzacja komunikacji i follow-upów", desc: "Sekwencje e-mailowe, SMS-owe i follow-upy uruchamiane automatycznie po konkretnych zdarzeniach. Klient dostaje odpowiedź w sekundach - nie w godzinach." },
-  { title: "Automatyzacja umawiania rozmów sprzedażowych SMS", desc: "System, który sam wysyła SMS do leadów, odpowiada na pytania i umawia termin rozmowy z handlowcem - bez ingerencji człowieka. Twój pipeline zapełnia się, kiedy Ty śpisz." },
+  { title: "Automatyczne umawianie rozmów przez SMS", desc: "System, który sam wysyła SMS do leadów, odpowiada na pytania i umawia termin rozmowy z handlowcem - bez ingerencji człowieka. Twój pipeline zapełnia się, kiedy Ty śpisz." },
   { title: "Reaktywacja utraconych leadów", desc: "Automatyczne sekwencje, które odświeżają kontakty, które milczą od 30, 60 lub 90 dni. Spersonalizowane wiadomości na podstawie historii - odzyskujesz leady, które uznałeś za martwe." },
   { title: "Automatyczne oferty i wyceny", desc: "Klient wypełnia formularz - otrzymuje profesjonalną ofertę w ciągu minut, bez angażowania handlowca. Budujemy kalkulatory wycen, generatory PDF i ścieżki akceptacji, które skracają cykl sprzedaży i eliminują ręczną robotę z każdego zapytania." },
   { title: "Automatyzacja postów w social media", desc: "Treści generowane i publikowane automatycznie według harmonogramu. Jeden brief raz w miesiącu - reszta dzieje się sama. Stała obecność w mediach bez angażowania zespołu." },
   { title: "Automatyzacja artykułów i pozycjonowania SEO", desc: "System, który generuje artykuły pod określone słowa kluczowe, formatuje je i publikuje na stronie. Twój blog rośnie i przyciąga ruch organiczny - bez redaktora na etacie." },
   { title: "Asystent skrzynki mailowej", desc: "AI czyta przychodzące maile, klasyfikuje je i przygotowuje spersonalizowane projekty odpowiedzi gotowe do wysyłki jednym kliknięciem. Obsługujesz skrzynkę 5x szybciej, bez utraty jakości." },
-  { title: "Automatyzacje na żądanie", desc: "Masz niestandardowy proces, który chcesz zautomatyzować? Analizujemy Twój przypadek i budujemy system skrojony dokładnie pod Twój workflow - niezależnie od złożoności i narzędzi, których używasz." },
+  { title: "Automatyzacja szyta na miarę", desc: "Masz niestandardowy proces, który chcesz zautomatyzować? Analizujemy Twój przypadek i budujemy system skrojony dokładnie pod Twój workflow - niezależnie od złożoności i narzędzi, których używasz." },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,14 +29,14 @@ const deliverables = [
   { number: "03", title: "Integracja CRM z resztą narzędzi", desc: "Łączymy CRM z formularzami, e-mailem, fakturowaniem i raportowaniem. Dane w jednym miejscu, zawsze aktualne." },
   { number: "04", title: "Automatyczne fakturowanie i przypomnienia", desc: "Faktury wystawiane automatycznie, przypomnienia o płatnościach bez Twojego udziału. Zero przeoczonej należności." },
   { number: "05", title: "System powiadomień i raportowania", desc: "Właściwe osoby dostają właściwe informacje we właściwym czasie. Ty widzisz stan firmy w jednym dashboardzie." },
-  { number: "06", title: "Dokumentacja i przeszkolenie zespołu", desc: "Każda automatyzacja udokumentowana. Twój zespół wie jak z niej korzystać i co zrobić, gdy coś się zmieni." },
+  { number: "06", title: "System, który zostaje z Tobą", desc: "Każda automatyzacja udokumentowana, zespół przeszkolony. Nie jesteś uzależniony od nas - system należy do Ciebie i działa niezależnie od tego, kto go obsługuje." },
 ];
 
 const steps = [
   { num: "01", label: "AUDYT", title: "Mapujemy każdy powtarzalny proces", desc: "Rozmawiamy z Tobą i Twoim zespołem. Śledzimy gdzie czas i dane uciekają przez ręczne działania, które można zautomatyzować." },
   { num: "02", label: "PROJEKT", title: "Projektujemy przepływy i dobieramy narzędzia", desc: "Wybieramy narzędzia dopasowane do Twoich potrzeb i budżetu. Projektujemy logikę każdego przepływu - zatwierdzasz zanim cokolwiek zostanie zbudowane." },
   { num: "03", label: "WDROŻENIE", title: "Budujemy i testujemy automatyzacje", desc: "Implementujemy, integrujemy i testujemy każdy przepływ na realnych danych. Nic nie idzie produkcyjnie bez Twojej akceptacji." },
-  { num: "04", label: "PRZEKAZANIE", title: "Szkolimy zespół i dokumentujemy system", desc: "Twój zespół dostaje szkolenie i dokumentację. System należy do Ciebie - nie jesteś uzależniony od nas, żeby go obsługiwać." },
+  { num: "04", label: "PRZEKAZANIE", title: "Twój zespół przejmuje stery", desc: "Twój zespół dostaje szkolenie i dokumentację. System należy do Ciebie - nie jesteś uzależniony od nas, żeby go obsługiwać." },
 ];
 
 const stats = [
@@ -48,7 +48,7 @@ const stats = [
 const problems = [
   { title: "Twój zespół robi robotę dla maszyn", desc: "Ręczne przepisywanie danych, wystawianie faktur z szablonu, wysyłanie tych samych maili. Godziny dziennie na zadania, które mogą działać same." },
   { title: "5 aplikacji, 0 synchronizacji", desc: "CRM w jednym miejscu, faktury w drugim, zadania w trzecim. Nikt nie wie, który zapis jest aktualny - i błędy kosztują Cię klientów." },
-  { title: "Skalujesz firmę, ale koszty rosną szybciej niż przychody", desc: "Każdy nowy klient to więcej pracy administracyjnej. Bez automatyzacji nie skalujesz przychodu - skalujesz chaos." },
+  { title: "Skalujesz chaos, nie przychód", desc: "Każdy nowy klient to więcej pracy administracyjnej. Bez automatyzacji nie skalujesz przychodu - skalujesz chaos." },
 ];
 
 export default function Automatyzacje({ onOpenModal }) {
@@ -83,14 +83,13 @@ export default function Automatyzacje({ onOpenModal }) {
             <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-accent">Automatyzacje</span>
           </div>
 
-
           <div className="hero-line relative flex items-center justify-between w-full mb-8 md:mb-12">
             <h1 className="relative z-10 w-full md:w-[75%] font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory uppercase">
-              Twój back-office.<br />
-            <span className="text-ivory">Bez Twojego</span><br />
-            udziału.
+              Procesy, które<br />
+              <span className="text-ivory">zjadają Twój czas.</span><br />
+              Już nie.
             </h1>
-            <div 
+            <div
               className="absolute right-[-10%] md:right-0 top-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] bg-white/[0.03] pointer-events-none z-0"
               style={{
                 maskImage: `url('${'/SEKCJA_USLUGI/IKONA_AUTOMATYZACJE.svg'}')`,
@@ -106,7 +105,7 @@ export default function Automatyzacje({ onOpenModal }) {
           </div>
 
           <p className="hero-line font-sans text-ivory/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
-            Audytujemy Twoje procesy, identyfikujemy punkty tarcia i budujemy system, który łączy CRM, fakturowanie i raportowanie w jeden sprawnie działający przepływ - bez programistów, bez chaosu, od pierwszego tygodnia.
+            Audytujemy procesy, usuwamy to co się powtarza i budujemy system, który wykonuje powtarzalną pracę zamiast Twojego zespołu. Od pierwszego tygodnia.
           </p>
 
           <div className="hero-line flex flex-col sm:flex-row gap-4">
@@ -124,13 +123,16 @@ export default function Automatyzacje({ onOpenModal }) {
 
       {/* STATS */}
       <section ref={statsRef} className="w-full border-t border-b border-ivory/5 py-12 px-6 md:px-16 xl:px-32">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-ivory/5">
-          {stats.map((p, i) => (
-            <div key={i} className="stat-card flex flex-col gap-2 md:px-12 first:pl-0 last:pr-0">
-              <span className="font-heading text-4xl md:text-5xl text-accent font-light">{p.stat}</span>
-              <span className="font-sans text-ivory/50 text-sm leading-relaxed max-w-xs">{p.label}</span>
-            </div>
-          ))}
+        <div className="max-w-[1400px] mx-auto">
+          <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-8 opacity-80">CO SIĘ ZMIENIA OD PIERWSZEGO TYGODNIA</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-ivory/5">
+            {stats.map((p, i) => (
+              <div key={i} className="stat-card flex flex-col gap-2 md:px-12 first:pl-0 last:pr-0">
+                <span className="font-heading text-4xl md:text-5xl text-accent font-light">{p.stat}</span>
+                <span className="font-sans text-ivory/50 text-sm leading-relaxed max-w-xs">{p.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -140,9 +142,9 @@ export default function Automatyzacje({ onOpenModal }) {
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">PROBLEM</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight max-w-3xl">
-              Ręczna praca nie skaluje się.<br />
-              <span className="text-ivory/40">Twój zespół robi robotę</span><br />
-              dla maszyn.
+              Twój zespół robi robotę<br />
+              <span className="text-ivory/40">dla maszyn.</span><br />
+              I za to mu płacisz.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ivory/5">
@@ -159,9 +161,9 @@ export default function Automatyzacje({ onOpenModal }) {
 
       {/* CO ŚWIADCZYMY */}
       <SubServices
-        eyebrow="Usługi w ramach kategorii"
+        eyebrow="Do wyboru. Do łączenia."
         heading={<>CO <span className="text-accent">WDRAŻAMY.</span></>}
-        description="Każdą usługę możesz uruchomić osobno. Razem tworzą system bez luk."
+        description="Każdą możesz uruchomić osobno. Razem nie zostawiają miejsca dla konkurencji."
         items={subServices}
       />
 
@@ -171,7 +173,7 @@ export default function Automatyzacje({ onOpenModal }) {
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO ZYSKUJESZ</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Jeden system.<br />Wszystkie procesy pod kontrolą.
+              Jeden system.<br />Zero pracy ręcznej.
             </h2>
           </div>
           <div className="deliverables-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ivory/5">
@@ -192,7 +194,7 @@ export default function Automatyzacje({ onOpenModal }) {
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
             <h2 className="font-heading font-light text-3xl md:text-5xl text-ivory uppercase tracking-tight leading-tight">
-              Od audytu do działającego<br />systemu w czterech krokach.
+              Od audytu do działającego<br />systemu w 4 krokach.
             </h2>
           </div>
           <div className="steps-container flex flex-col">
@@ -224,7 +226,7 @@ export default function Automatyzacje({ onOpenModal }) {
           <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-6 opacity-80">GOTOWY NA ZMIANĘ?</p>
           <h2 className="font-heading font-light text-3xl md:text-5xl lg:text-6xl text-ivory uppercase tracking-tight leading-tight mb-6">
             Odzyskaj czas.<br />
-            <span className="text-accent">Zautomatyzuj resztę.</span>
+            <span className="text-accent">Pozwól systemowi robić resztę.</span>
           </h2>
           <p className="font-sans text-ivory/50 text-lg max-w-xl mx-auto leading-relaxed mb-12">
             Umów bezpłatną konsultację. Zmapujemy Twoje procesy i pokażemy konkretnie, które z nich możesz zautomatyzować w ciągu tygodnia.
