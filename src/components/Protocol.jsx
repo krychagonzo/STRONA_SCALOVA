@@ -1,0 +1,78 @@
+import React, { useState } from 'react';
+
+const steps = [
+  {
+    num: "01",
+    title: "Diagnoza systemu.",
+    desc: "Analizujemy Twój model biznesowy, procesy sprzedażowe i marketing - i wskazujemy dokładnie gdzie firma traci czas i pieniądze."
+  },
+  {
+    num: "02",
+    title: "Plan i strategia.",
+    desc: "Prezentujemy konkretny plan działania. Pokazujemy, jak nowa strona, identyfikacja wizualna, celne reklamy i zautomatyzowana sprzedaż zwiększą Twoje przychody."
+  },
+  {
+    num: "03",
+    title: "Transfer.",
+    desc: "Instalujemy wszystko w Twojej firmie. Technologie, procesy, marketing - uruchamiamy i szkolimy zespół. Wychodzisz z gotowym systemem, który działa od pierwszego dnia."
+  }
+];
+
+export default function Protocol() {
+  const [activeStep, setActiveStep] = useState(-1);
+
+  return (
+    <section id="protocol" className="relative w-full bg-obsidian py-20 md:py-28 px-4 md:px-8 flex flex-col items-center select-none z-10">
+      <div className="w-full max-w-[1100px]">
+
+        {/* NAGŁÓWEK SEKCJI */}
+        <div className="mb-10 md:mb-16 text-center uppercase tracking-widest font-heading px-6 flex flex-col items-center">
+          <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
+            Metodologia
+          </span>
+          <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
+            PROCES TRANSFORMACJI
+          </h2>
+        </div>
+
+        {/* LISTA AKORDEONOWA */}
+        <div className="flex flex-col border-t border-white/10">
+          {steps.map((step, index) => {
+            const isActive = activeStep === index;
+            return (
+              <div key={index} className="border-b border-white/10">
+                <div
+                  onClick={() => setActiveStep(isActive ? -1 : index)}
+                  className={`group flex w-full cursor-pointer items-center gap-4 py-8 md:py-10 px-4 xl:px-8 transition-colors duration-300 ${isActive ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'}`}
+                >
+                  {/* NUMER */}
+                  <div className={`flex-shrink-0 font-heading font-light text-4xl md:text-5xl leading-none w-16 md:w-20 transition-colors duration-500 ${isActive ? 'text-accent' : 'text-ivory/20 group-hover:text-accent/50'}`}>
+                    {step.num}
+                  </div>
+
+                  {/* TYTUŁ */}
+                  <h3 className={`flex-1 text-left font-heading text-2xl lg:text-[28px] tracking-tight uppercase transition-colors duration-500 px-2 md:px-4 ${isActive ? 'text-ivory' : 'text-ivory/70 group-hover:text-ivory'}`}>
+                    {step.title}
+                  </h3>
+
+                  {/* PRZYCISK INTERAKTYWNY */}
+                  <div className={`flex-shrink-0 w-10 h-10 border border-white/10 flex items-center justify-center text-xl font-light transition-all duration-500 ${isActive ? 'border-accent text-accent bg-accent/5' : 'text-ivory/40 group-hover:border-accent/40 group-hover:text-accent'}`}>
+                    {isActive ? '−' : '＋'}
+                  </div>
+                </div>
+
+                {/* ROZWIJANY OPIS */}
+                <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <p className="font-sans text-ivory/60 text-base md:text-[17px] xl:text-[19px] leading-relaxed font-light normal-case pl-16 md:pl-[5.5rem] pr-4 xl:pr-32 pt-6 md:pt-8 pb-10 md:pb-12 text-balance">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
+    </section>
+  );
+}
