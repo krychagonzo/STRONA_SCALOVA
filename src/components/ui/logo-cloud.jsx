@@ -3,24 +3,24 @@ import { InfiniteSlider } from "./infinite-slider";
 import { cn } from "../../lib/utils";
 
 const logos = [
-  { src: "/logo%20partnerzy/ABDUCTCOSMETICS.png", alt: "ABDUCTCOSMETICS" },
-  { src: "/logo%20partnerzy/AENAON-LOGO.png", alt: "AENAON" },
-  { src: "/logo%20partnerzy/BLAURE.png", alt: "BLAURE" },
-  { src: "/logo%20partnerzy/DEAG.png", alt: "DEAG" },
-  { src: "/logo%20partnerzy/GWPA.png", alt: "GWPA" },
-  { src: "/logo%20partnerzy/LOGO.png", alt: "LOGO" },
-  { src: "/logo%20partnerzy/MASAROO.png", alt: "MASAROO" },
-  { src: "/logo%20partnerzy/MICLAIR.png", alt: "MICLAIR" },
-  { src: "/logo%20partnerzy/blyce.png", alt: "Blyce" },
-  { src: "/logo%20partnerzy/cube27.png", alt: "Cube27" },
-  { src: "/logo%20partnerzy/kwartz.png", alt: "Kwartz" },
-  { src: "/logo%20partnerzy/lustremed.png", alt: "Lustremed" },
-  { src: "/logo%20partnerzy/maf%20logo.png", alt: "MAF" },
-  { src: "/logo%20partnerzy/mysmart%20black.png", alt: "MySmart" },
-  { src: "/logo%20partnerzy/nove.png", alt: "Nove" },
-  { src: "/logo%20partnerzy/replicate-prediction-0a8bhgkka1rmy0cxdmpascpd4w.png", alt: "Replicate" },
-  { src: "/logo%20partnerzy/revolt.png", alt: "Revolt" },
-  { src: "/logo%20partnerzy/tell.png", alt: "Tell" },
+  { src: "/ZAUFALI_NAM/LOGO_0000_ABDUCTCOSMETICS.png", alt: "ABDUCTCOSMETICS" },
+  { src: "/ZAUFALI_NAM/LOGO_0001_tell.png", alt: "Tell" },
+  { src: "/ZAUFALI_NAM/LOGO_0002_revolt.png", alt: "Revolt" },
+  { src: "/ZAUFALI_NAM/LOGO_0003_replicate-prediction-0a8bhgkka1rmy0cxdmpascpd4w.png", alt: "Replicate" },
+  { src: "/ZAUFALI_NAM/LOGO_0004_nove.png", alt: "Nove" },
+  { src: "/ZAUFALI_NAM/LOGO_0005_mysmart-black.png", alt: "MySmart" },
+  { src: "/ZAUFALI_NAM/LOGO_0006_MICLAIR.png", alt: "MICLAIR" },
+  { src: "/ZAUFALI_NAM/LOGO_0007_MASAROO.png", alt: "MASAROO", customClass: "h-6 md:h-9" },
+  { src: "/ZAUFALI_NAM/LOGO_0008_maf-logo.png", alt: "MAF" },
+  { src: "/ZAUFALI_NAM/LOGO_0009_lustremed.png", alt: "Lustremed" },
+  { src: "/ZAUFALI_NAM/LOGO_0010_LOGO.png", alt: "LOGO" },
+  { src: "/ZAUFALI_NAM/LOGO_0011_kwartz.png", alt: "Kwartz" },
+  { src: "/ZAUFALI_NAM/LOGO_0012_GWPA.png", alt: "GWPA" },
+  { src: "/ZAUFALI_NAM/LOGO_0013_DEAG.png", alt: "DEAG" },
+  { src: "/ZAUFALI_NAM/LOGO_0014_cube27.png", alt: "Cube27" },
+  { src: "/ZAUFALI_NAM/LOGO_0015_blyce.png", alt: "Blyce" },
+  { src: "/ZAUFALI_NAM/LOGO_0016_BLAURE.png", alt: "BLAURE" },
+  { src: "/ZAUFALI_NAM/LOGO_0017_AENAON-LOGO.png", alt: "AENAON", customClass: "h-6 md:h-9" },
 ];
 
 export function LogoCloud({ className, ...props }) {
@@ -38,13 +38,16 @@ export function LogoCloud({ className, ...props }) {
           className
         )}
       >
-        <InfiniteSlider gap={60} reverse={false} duration={45} durationOnHover={80}>
+        <InfiniteSlider gap={120} reverse={false} duration={45} durationOnHover={80}>
           {logos.map((logo) => (
             <img
               key={`logo-${logo.alt}`}
               src={logo.src}
               alt={logo.alt}
-              className="h-16 md:h-24 w-auto object-contain flex-shrink-0 filter brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300 self-center cursor-default shrink-0"
+              className={cn(
+                "w-auto object-contain flex-shrink-0 filter grayscale brightness-0 invert opacity-40 hover:opacity-70 transition-opacity duration-300 self-center cursor-default shrink-0",
+                logo.customClass || "h-10 md:h-14"
+              )}
               lazy="loading"
             />
           ))}
