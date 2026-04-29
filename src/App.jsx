@@ -40,9 +40,22 @@ const ScrollToTop = () => {
   return null;
 };
 
+const ROUTE_SOURCES = {
+  '/': 'Strona główna',
+  '/uslugi/strona-ai': 'Usługa: Strona & AI-asystent',
+  '/uslugi/kampanie': 'Usługa: Kampanie & Organic',
+  '/uslugi/statyczne-tresci': 'Usługa: Statyczne treści wizualne',
+  '/uslugi/automatyzacje': 'Usługa: Automatyzacje',
+  '/uslugi/sprzedaz': 'Usługa: Sprzedaż & Oferta',
+  '/uslugi/ai-w-firmie': 'Usługa: AI w firmie',
+  '/uslugi/ruchome-tresci': 'Usługa: Ruchome treści wizualne',
+  '/uslugi/zloty-numer': 'Usługa: Złoty numer',
+};
+
 function AppContent() {
   const [modalOpen, setModalOpen] = useState(false);
   const location = useLocation();
+  const modalSource = ROUTE_SOURCES[location.pathname] || location.pathname;
 
   return (
     <main className="relative w-full min-h-screen font-sans bg-obsidian selection:bg-accent selection:text-obsidian flex flex-col items-center">
@@ -77,7 +90,7 @@ function AppContent() {
       })()}
 
       {location.pathname === '/' && <FloatingCTA onOpenModal={() => setModalOpen(true)} />}
-      <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} source={modalSource} />
     </main>
   );
 }

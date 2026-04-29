@@ -1,9 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { CATEGORY_ICONS } from './Portfolio';
+
+function VideoWithPlay({ src, className }) {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  const toggle = () => {
+    if (!videoRef.current) return;
+    if (playing) { videoRef.current.pause(); setPlaying(false); }
+    else { videoRef.current.play(); setPlaying(true); }
+  };
+
+  return (
+    <div className="relative w-full group/vp cursor-pointer" onClick={toggle}>
+      <video ref={videoRef} src={src} loop playsInline className={className} />
+      <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? 'opacity-0 group-hover/vp:opacity-100' : 'opacity-100'}`}>
+        <div className="w-16 h-16 rounded-full bg-black/50 border border-white/20 flex items-center justify-center backdrop-blur-sm">
+          {playing
+            ? <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            : <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          }
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function PortfolioItem() {
   const { id } = useParams();
@@ -57,7 +82,7 @@ export default function PortfolioItem() {
             onClick={() => navigate('/portfolio')}
             className="group flex flex-row items-center gap-3 text-ivory/50 hover:text-accent transition-colors font-heading text-[10px] md:text-xs tracking-[0.2em] uppercase"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+            <ArrowLeft className="w-4 h-4" />
             Powrót do prac
           </button>
 
@@ -172,10 +197,9 @@ export default function PortfolioItem() {
               <div className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
                 <div className="lg:w-1/2 w-full flex justify-center group relative break-inside-avoid">
                   {project.media[0].type === 'video' ? (
-                    <video 
-                      src={project.media[0].src} 
-                      autoPlay loop muted playsInline 
-                      className="w-full max-h-[85vh] h-auto object-contain transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-y-2"
+                    <VideoWithPlay
+                      src={project.media[0].src}
+                      className="w-full max-h-[85vh] h-auto object-contain"
                     />
                   ) : project.media[0].type === 'website' ? (
                     <div className="relative w-full overflow-hidden border border-white/10">
@@ -275,13 +299,9 @@ export default function PortfolioItem() {
                   className="relative w-full break-inside-avoid flex items-center justify-center group"
                 >                
                   {isVideo ? (
-                    <video 
-                      src={item.src} 
-                      autoPlay 
-                      loop 
-                      muted 
-                      playsInline 
-                      className="w-full max-h-[85vh] h-auto object-contain transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-y-2"
+                    <VideoWithPlay
+                      src={item.src}
+                      className="w-full max-h-[85vh] h-auto object-contain"
                     />
                   ) : item.type === 'website' ? (
                     <div className="relative w-full overflow-hidden border border-white/10">

@@ -101,3 +101,12 @@
 .hero-glow-layer {
   animation: hero-glow-pulse 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
+
+@keyframes infinite-slide-fwd {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes infinite-slide-rev {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}

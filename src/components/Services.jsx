@@ -144,6 +144,21 @@ const item = {
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
   const containerRef = useRef(null);
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const touchStartX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) setMobileSlide(prev => Math.min(prev + 1, servicesList.length - 1));
+      else setMobileSlide(prev => Math.max(prev - 1, 0));
+    }
+    touchStartX.current = null;
+  };
 
   useEffect(() => {
     if (selectedService !== null && containerRef.current) {
@@ -235,8 +250,50 @@ export default function Services() {
         <div ref={containerRef} className="relative w-full flex-1 flex flex-col justify-center items-center">
           <div className="relative w-full">
             
+            {/* MOBILE CAROUSEL */}
+            <div
+              className="md:hidden w-full relative overflow-hidden"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${mobileSlide * 100}%)` }}
+              >
+                {servicesList.map((service, idx) => (
+                  <div
+                    key={idx}
+                    className="w-full flex-shrink-0 border border-white/5 bg-[#0c0c0c] flex flex-col items-center justify-center gap-6 cursor-pointer select-none"
+                    style={{ minHeight: '72vw', padding: '8vw' }}
+                    onClick={() => { setMobileSlide(idx); setSelectedService(idx); }}
+                  >
+                    <RenderIcon icon={service.icon} className="w-16 h-16 text-ivory/50" />
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <span className="font-mono text-accent text-[10px] tracking-[0.25em]">
+                        {String(idx + 1).padStart(2, '0')} / {String(servicesList.length).padStart(2, '0')}
+                      </span>
+                      <h3 className="text-ivory font-heading font-light tracking-tight text-[6vw] uppercase leading-tight text-center">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <span className="font-mono text-ivory/25 text-[9px] tracking-[0.25em] uppercase">dotknij aby rozwinąć</span>
+                  </div>
+                ))}
+              </div>
+              {/* Navigation dots */}
+              <div className="flex justify-center items-center gap-1.5 mt-5 pb-2">
+                {servicesList.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setMobileSlide(idx)}
+                    className={`rounded-full transition-all duration-300 ${idx === mobileSlide ? 'w-5 h-1.5 bg-accent' : 'w-1.5 h-1.5 bg-white/20'}`}
+                  />
+                ))}
+              </div>
+            </div>
+
             {/* BAZOWA SIATKA (W TLE) */}
-            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
+            <div className={`hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
               {servicesList.map((service, idx) => {
                 const isSelected = selectedService === idx;
                 const isHidden = selectedService !== null && !isSelected;
@@ -259,13 +316,13 @@ export default function Services() {
                       <motion.div layoutId={`icon-${idx}`} className="mb-8 text-ivory/50 group-hover:text-obsidian transition-all duration-500">
                         <RenderIcon icon={service.icon} className="w-16 h-16 xl:w-20 xl:h-20" strokeWidth={1.5} />
                       </motion.div>
-                      <motion.h3 layoutId={`title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-xl md:text-2xl xl:text-[28px] uppercase leading-tight relative z-10">
+                      <motion.h3 layoutId={`title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-base lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-tight relative z-10">
                         {service.title}
                       </motion.h3>
                     </div>
 
                     <div className="flex items-center justify-between w-full mt-auto pt-6 border-t border-white/5 group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
-                      <div className="flex items-center gap-3 text-ivory/40 group-hover:text-obsidian transition-all duration-500 transition-transform group-hover:translate-x-1">
+                      <div className="flex items-center gap-3 text-ivory/40 group-hover:text-obsidian transition-all duration-500">
                         <span className="font-heading text-[10px] tracking-[0.3em] uppercase">WIĘCEJ</span>
                         <div className="w-8 h-[1px] bg-current"></div>
                       </div>
@@ -380,12 +437,12 @@ export default function Services() {
                         </div>
 
                         {/* Przyciski */}
-                        <div className="flex flex-col sm:flex-row gap-3 pt-8 border-t border-white/5">
+                        <div className="hidden md:flex flex-col sm:flex-row gap-3 pt-8 border-t border-white/5">
                           <button
                             onClick={(e) => { e.stopPropagation(); setSelectedService(null); }}
                             className="group py-4 px-8 bg-white/5 border border-white/10 text-[11px] font-heading font-bold uppercase tracking-widest text-ivory/70 transition-all duration-300 hover:border-ivory/20 hover:bg-white/10 flex items-center justify-center gap-3"
                           >
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6" /></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="m15 18-6-6 6-6" /></svg>
                             WRÓĆ
                           </button>
                           {servicesList[selectedService].slug ? (
@@ -397,7 +454,7 @@ export default function Services() {
                               <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
                               <span className="relative z-10 flex items-center gap-3">
                                 DOWIEDZ SIĘ WIĘCEJ
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                               </span>
                             </Link>
                           ) : (

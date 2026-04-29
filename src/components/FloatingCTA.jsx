@@ -64,7 +64,7 @@ export default function FloatingCTA({ onOpenModal }) {
         <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none"></div>
         <span className="relative z-10 flex items-center gap-4 md:gap-8 whitespace-nowrap">
           <span className="translate-y-[1px]">Zarezerwuj konsultację</span>
-          <img src="/LOGO_BLACK.png" alt="Arrow" className="h-6 md:h-8 scale-110 md:scale-125 w-auto object-contain transition-transform duration-300 group-hover:translate-x-1" />
+          <img src="/LOGO_BLACK.png" alt="Arrow" className="h-6 md:h-8 scale-110 md:scale-125 w-auto object-contain" />
         </span>
       </button>
     </div>
