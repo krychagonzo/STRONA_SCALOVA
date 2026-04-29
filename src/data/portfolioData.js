@@ -1,5 +1,62 @@
 export const PORTFOLIO_DATA = [
   {
+    "id": "hocomo-holding",
+    "title": "Hocomo Holding",
+    "client": "HOCOMO HOLDING",
+    "categories": [
+      "STRONA & AI ASYSTENT"
+    ],
+    "desc": "Strona internetowa dla Hocomo Holding — producenta polskich domów modułowych zgodnych ze standardami europejskimi.",
+    "fullDesc": "Hocomo Holding to polski producent domów modułowych, stawiający na jakość wykonania na poziomie europejskim. Dla tej marki zaprojektowaliśmy i wdrożyliśmy nowoczesną stronę internetową, której celem jest budowanie zaufania potencjalnych klientów i generowanie leadów poprzez formularz bezpłatnej wyceny.\r\nStrona łączy minimalistyczną estetykę z konkretnymi danymi: 300+ zrealizowanych projektów, 3 dni montażu, 6 lat doświadczenia i klasa energetyczna A+. Interaktywne modele domów, przejrzysty proces budowy i sekcja opinii klientów tworzą spójną narrację, która prowadzi użytkownika wprost do konwersji.",
+    "thumbnail": "/PORTFOLIO/STRONY/HOCOMO_THUMBNAIL.png",
+    "liveUrl": "https://hocomoholding.eu/",
+    "media": [
+      {
+        "type": "website",
+        "src": "/PORTFOLIO/STRONY/HOCOMO_FULL.png",
+        "url": "https://hocomoholding.eu/"
+      }
+    ]
+  },
+  {
+    "id": "geo-arch",
+    "title": "Geo-Arch Paweł Pawelec",
+    "client": "GEO-ARCH",
+    "categories": [
+      "STRONA & AI ASYSTENT"
+    ],
+    "desc": "Strona internetowa dla biura geodezyjno-architektonicznego Geo-Arch — indywidualne projekty domów i usługi geodezyjne.",
+    "fullDesc": "Geo-Arch Paweł Pawelec to pracownia specjalizująca się w indywidualnych projektach domów jednorodzinnych oraz profesjonalnych usługach geodezyjnych. Dla tej marki zaprojektowaliśmy i wdrożyliśmy stronę internetową, której celem jest budowanie zaufania inwestorów i generowanie zapytań ofertowych.\r\nStrona prowadzi użytkownika przez cały proces — od rezerwacji konsultacji, przez projekt i formalności, aż po gotowy dom. Sekcja z zaletami akcentuje indywidualne podejście, kompleksową opiekę i spokój ducha klienta. Opinie zadowolonych klientów oraz podpis architekta wzmacniają autentyczność i profesjonalizm marki.",
+    "thumbnail": "/PORTFOLIO/STRONY/GEOARCH_THUMBNAIL.png",
+    "liveUrl": "https://www.geo-arch.com.pl/",
+    "media": [
+      {
+        "type": "website",
+        "src": "/PORTFOLIO/STRONY/GEOARCH_FULL.png",
+        "url": "https://www.geo-arch.com.pl/"
+      }
+    ]
+  },
+  {
+    "id": "renata-rogalska",
+    "title": "Renata Rogalska",
+    "client": "RENATA ROGALSKA",
+    "categories": [
+      "STRONA & AI ASYSTENT"
+    ],
+    "desc": "Strona internetowa dla coacha i trenera Renaty Rogalskiej — coaching, przywodztwo i rozwoj osobisty.",
+    "fullDesc": "Renata Rogalska to certyfikowany coach i trener efektywnego przywodztwa, ktura towarzyszy ludziom w odkrywaniu ich potencjalu i wprowadzaniu trwalej zmiany. Dla jej marki osobistej zaprojektowalismy i wdrozylismy strone internetowa, ktora w sposob ciepły i autentyczny komunikuje wartosc jej pracy.\r\nStrona prezentuje pelna oferte uslug — od coachingu indywidualnego po szkolenia przywodcze. Czytelna nawigacja, sekcja opinii klientow i formularz rezerwacji konsultacji tworza spojne doswiadczenie, ktore buduje zaufanie i zacheca do dzialania.",
+    "thumbnail": "/PORTFOLIO/STRONY/RENATA_THUMBNAIL.png",
+    "liveUrl": "https://renatarogalska.pl/",
+    "media": [
+      {
+        "type": "website",
+        "src": "/PORTFOLIO/STRONY/RENATA_FULL.png",
+        "url": "https://renatarogalska.pl/"
+      }
+    ]
+  },
+  {
     "id": "airbrushed",
     "title": "Abduct Cosmetics Airbrushed",
     "client": "AIRBRUSHED",

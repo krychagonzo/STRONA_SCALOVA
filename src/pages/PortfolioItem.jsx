@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { CATEGORY_ICONS } from './Portfolio';
 
@@ -52,13 +52,27 @@ export default function PortfolioItem() {
       </div>
 
       <section className="w-full max-w-[1400px] pt-32 md:pt-48 pb-12 px-4 md:px-8 relative z-10 flex flex-col items-start">
-        <button 
-          onClick={() => navigate('/portfolio')}
-          className="group flex flex-row items-center gap-3 text-ivory/50 hover:text-accent transition-colors mb-12 md:mb-20 font-heading text-[10px] md:text-xs tracking-[0.2em] uppercase"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
-          Powrót do prac
-        </button>
+        <div className="w-full flex flex-row items-center justify-between mb-12 md:mb-20">
+          <button 
+            onClick={() => navigate('/portfolio')}
+            className="group flex flex-row items-center gap-3 text-ivory/50 hover:text-accent transition-colors font-heading text-[10px] md:text-xs tracking-[0.2em] uppercase"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
+            Powrót do prac
+          </button>
+
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center gap-2.5 py-2.5 px-5 border border-accent/50 hover:border-accent text-accent font-heading text-[10px] md:text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-accent/10 overflow-hidden"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Odwiedź stronę</span>
+            </a>
+          )}
+        </div>
 
         {/* HEADER SECTION & DYNAMIC LAYOUT */}
         <motion.div 
@@ -101,6 +115,26 @@ export default function PortfolioItem() {
                       autoPlay loop muted playsInline 
                       className="w-full max-h-[85vh] h-auto object-contain transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-y-2"
                     />
+                  ) : project.media[0].type === 'website' ? (
+                    <div className="relative w-full overflow-hidden border border-white/10">
+                      <img
+                        src={project.media[0].src}
+                        alt={project.title}
+                        className="w-full h-auto object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-10">
+                        <a
+                          href={project.media[0].url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2.5 py-3 px-8 bg-accent text-obsidian font-heading font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Odwiedź stronę
+                        </a>
+                      </div>
+                    </div>
                   ) : (
                     <img 
                       src={project.media[0].src} 
@@ -187,6 +221,27 @@ export default function PortfolioItem() {
                       playsInline 
                       className="w-full max-h-[85vh] h-auto object-contain transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-y-2"
                     />
+                  ) : item.type === 'website' ? (
+                    <div className="relative w-full overflow-hidden border border-white/10">
+                      <img
+                        src={item.src}
+                        alt={`${project.title} - podgląd strony`}
+                        className="w-full h-auto object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-10">
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={e => e.stopPropagation()}
+                          className="flex items-center gap-2.5 py-3 px-8 bg-accent text-obsidian font-heading font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Odwiedź stronę
+                        </a>
+                      </div>
+                    </div>
                   ) : (
                     <img 
                       src={item.src} 
