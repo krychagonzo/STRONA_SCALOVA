@@ -192,7 +192,7 @@ export default function Hero() {
           autoPlay
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain scale-[1.6]"
         >
           <source src="/ANIM_05_LOGO_1.webm" type="video/webm" />
         </video>

@@ -66,7 +66,7 @@ export default function StatyczneTresci({ onOpenModal }) {
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
 
       {/* HERO */}
-      <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-40 overflow-hidden">
+      <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ServiceHeroCanvas />
         </div>

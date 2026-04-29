@@ -148,7 +148,8 @@ export default function Services() {
   useEffect(() => {
     if (selectedService !== null && containerRef.current) {
       setTimeout(() => {
-        containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
       }, 200);
     }
   }, [selectedService]);

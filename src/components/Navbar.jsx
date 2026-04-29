@@ -147,7 +147,7 @@ export default function Navbar() {
 
       {/* Side Drawer Menu */}
       <div 
-        className={`fixed top-0 right-0 z-[55] w-[85%] sm:w-[450px] h-[100dvh] bg-[#0c0c0c]/40 backdrop-blur-2xl border-l border-white/5 flex flex-col overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 z-[55] w-full sm:w-[450px] h-[100dvh] bg-[#0c0c0c]/40 backdrop-blur-2xl border-l border-white/5 flex flex-col overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <svg className="absolute inset-0 w-full h-full opacity-[0.06] mix-blend-overlay pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
           <filter id="menuNoise">
