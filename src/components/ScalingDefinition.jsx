@@ -38,7 +38,7 @@ export default function ScalingDefinition() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-2xl md:text-3xl lg:text-4xl font-sans font-medium leading-relaxed md:leading-snug text-balance text-ivory/80 pointer-events-auto">
+            <p className="text-2xl md:text-3xl lg:text-4xl font-sans font-light leading-relaxed md:leading-snug text-balance text-ivory/80 pointer-events-auto">
               Skalowanie to inwestycja, która pracuje bez końca. Wdrażasz technologię raz, aby obsługiwać <span className="font-extrabold text-accent tracking-tight drop-shadow-[0_0_15px_rgba(212,255,0,0.5)]">10x więcej klientów</span> bez powiększania zespołu i stałych kosztów.
             </p>
           </motion.div>

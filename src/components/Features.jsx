@@ -41,7 +41,7 @@ export default function Features() {
           <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
             Bariery
           </span>
-          <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
+          <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-normal tracking-tighter text-center leading-[0.9] uppercase">
             5 OBSZARÓW, W KTÓRYCH <span className="text-accent">TRACISZ PRZEWAGĘ.</span>
           </h2>
           <p className="text-ivory/60 mt-6 text-base md:text-lg max-w-2xl mx-auto normal-case tracking-normal leading-relaxed">

@@ -13,6 +13,7 @@ export default function Home() {
     <>
       <Hero />
       <LogoCloud />
+      <div className="h-16 md:h-24 w-full" />
       <Features />
       <ScalingDefinition />
       <div className="h-10 md:h-16 w-full" />

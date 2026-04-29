@@ -34,7 +34,7 @@ export default function Team() {
       className="relative w-full py-16 md:py-20 bg-obsidian overflow-hidden"
     >
       {/* Background elements to match the site's dark aesthetic */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
       
       <div className="max-w-[900px] mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center">
@@ -44,7 +44,7 @@ export default function Team() {
           <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
             Zespół
           </span>
-          <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
+          <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-normal tracking-tighter text-center leading-[0.9] uppercase">
             Zespół, dla którego Twój wynik jest jedyną miarą sukcesu.
           </h2>
           <p className="text-ivory/60 mt-4 text-base md:text-lg max-w-2xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">

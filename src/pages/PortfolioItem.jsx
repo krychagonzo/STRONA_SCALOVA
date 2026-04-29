@@ -81,7 +81,69 @@ export default function PortfolioItem() {
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="w-full mb-16 md:mb-24"
         >
-          {project.media.length === 1 ? (
+          {project.media[0]?.type === 'website' ? (
+            <div className="flex flex-col gap-16 lg:gap-24">
+              <div className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24">
+                <div className="lg:w-5/12">
+                  <div className="flex flex-row flex-wrap items-center gap-2 mb-4 opacity-90">
+                     {project.categories?.map((c, idx) => (
+                       <React.Fragment key={c}>
+                         {idx > 0 && <span className="font-heading font-light text-ivory/40 text-[10px] md:text-[11px] tracking-[0.2em] uppercase">//</span>}
+                         <div className="flex flex-row items-center gap-2">
+                            {CATEGORY_ICONS[c] && (
+                              <div 
+                                className="w-3.5 h-3.5 bg-accent" 
+                                style={{ WebkitMask: `url(${CATEGORY_ICONS[c]}) no-repeat center`, mask: `url(${CATEGORY_ICONS[c]}) no-repeat center`, WebkitMaskSize: 'contain', maskSize: 'contain' }}
+                              />
+                            )}
+                            <span className="font-heading font-light text-accent text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
+                              {c}
+                            </span>
+                         </div>
+                       </React.Fragment>
+                     ))}
+                  </div>
+                  <h1 className="text-ivory text-4xl sm:text-5xl md:text-6xl font-heading font-bold tracking-tighter uppercase leading-[0.9]">
+                    {project.title}
+                  </h1>
+                </div>
+
+                <div className="lg:w-7/12 flex flex-col justify-end">
+                  <div className="border-l-2 border-accent/30 pl-6 lg:pl-10 relative">
+                    <div className="absolute top-0 -left-[2px] w-[2px] h-8 bg-accent" />
+                    {project.fullDesc.split('\n').map((paragraph, idx) => (
+                      <p key={idx} className="font-sans text-ivory/70 text-sm md:text-base leading-relaxed mb-6 last:mb-0">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Scrollable Container Wrapper */}
+              <div className="w-full relative group border border-white/10">
+                <div className="w-full h-[60vh] md:h-[80vh] overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-accent scrollbar-track-transparent bg-obsidian">
+                   <img
+                     src={project.media[0].src}
+                     alt={`${project.title} - podgląd strony`}
+                     className="w-full h-auto object-cover block"
+                     loading="lazy"
+                   />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent pt-24 pb-8 px-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex justify-center pointer-events-none">
+                   <a
+                     href={project.media[0].url}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="flex items-center gap-2.5 py-3 px-8 bg-accent text-obsidian font-heading font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors pointer-events-auto shadow-lg"
+                   >
+                     <ExternalLink className="w-4 h-4" />
+                     Odwiedź stronę
+                   </a>
+                </div>
+              </div>
+            </div>
+          ) : project.media.length === 1 ? (
             <div className="flex flex-col gap-20 lg:gap-32">
               <div className="w-full">
                 <div className="flex flex-row flex-wrap items-center gap-2 mb-4 opacity-90">

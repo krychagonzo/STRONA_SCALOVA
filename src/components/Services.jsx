@@ -214,7 +214,7 @@ export default function Services() {
           <div className="w-full relative flex flex-col justify-center items-center min-h-[100px] lg:min-h-[140px] mb-3 lg:mb-4">
             <div className="relative z-30 flex flex-col items-center isolate">
               <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Usługi</span>
-              <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
+              <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-normal tracking-tighter text-center leading-[0.9] uppercase">
                 Co wdrażamy w Twojej firmie.
               </h2>
             </div>

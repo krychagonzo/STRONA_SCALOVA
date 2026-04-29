@@ -157,6 +157,7 @@ export default function Hero() {
   }, []);
 
   return (
+    <>
     <section ref={comp} className="relative w-full h-[100dvh] overflow-hidden flex items-end">
 
       {/* Canvas background — Bayer-dithered gradient, zero banding */}
@@ -181,9 +182,6 @@ export default function Hero() {
             <span className="hero-anim-right gpu-accelerated self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right mt-4 md:mt-0">
               odzyskaj czas.
             </span>
-            <p className="hero-anim-left gpu-accelerated self-start mt-8 md:mt-12 text-left text-ivory/80 text-lg md:text-xl lg:text-2xl font-sans max-w-[320px] sm:max-w-sm md:max-w-[500px] lg:max-w-[600px]">
-              Przeprowadzamy audyt, usprawniamy firmy od środka, budujemy ich pozycję na&nbsp;zewnątrz.
-            </p>
           </div>
         </div>
       </div>
@@ -201,5 +199,15 @@ export default function Hero() {
       </div>
 
     </section>
+
+    {/* Subtext Section (moved from Hero) */}
+    <section className="w-full bg-obsidian py-16 px-4 sm:px-8 xl:px-16 flex justify-center relative z-10">
+      <div className="w-full max-w-[1920px] flex justify-center">
+        <p className="text-center text-ivory/80 text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] tracking-tight font-sans w-full leading-relaxed mx-auto">
+          Przeprowadzamy audyt, usprawniamy firmy od środka, budujemy ich pozycję na&nbsp;zewnątrz.
+        </p>
+      </div>
+    </section>
+    </>
   );
 }

@@ -12,7 +12,7 @@ export default function SubServices({ eyebrow, heading, description, items }) {
           <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
             {eyebrow}
           </span>
-          <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
+          <h2 className="text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-medium tracking-tighter text-center leading-[0.9] uppercase">
             {heading}
           </h2>
           {description && (

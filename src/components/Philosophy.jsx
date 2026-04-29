@@ -36,7 +36,7 @@ export default function Philosophy() {
                <span className="fade-up-element font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">
                   Podejście
                </span>
-               <h2 className="fade-up-element text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-bold tracking-tighter text-center leading-[0.9] uppercase">
+               <h2 className="fade-up-element text-ivory text-3xl sm:text-4xl md:text-5xl lg:text-[4.5vw] 2xl:text-[68px] font-heading font-normal tracking-tighter text-center leading-[0.9] uppercase">
                   JEDEN SYSTEM. CZTERY FILARY.
                </h2>
             </div>

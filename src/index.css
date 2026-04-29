@@ -29,10 +29,6 @@
     line-height: 1.6;
   }
 
-  h1, h2 {
-    font-weight: 900 !important;
-  }
-
   /* Global interaction glow effect */
   a, button, [role="button"] {
     transition: filter 0.3s ease-in-out;
