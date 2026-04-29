@@ -33,19 +33,19 @@ export default function PortfolioItem() {
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center pb-32">
       {/* AMBIENT GRADIENT & ANTI-BANDING NOISE */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden h-full">
-        {/* Full-bleed subtle base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1f]/40 via-[#0D0D12]/80 to-[#0D0D12]" />
+        {/* Full-bleed subtle base gradient (neutral gray to obsidian) */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#1a1a1a_0%,#0E0E0E_100%)]" />
         
-        {/* Main wide subtle glow - ensuring it fully fades well before height ends */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200vw] h-[150vh] min-h-[1200px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_50%)] mix-blend-screen" />
+        {/* Main wide subtle glow - purely white/grayish to avoid any tint */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200vw] h-[150vh] min-h-[1200px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03)_0%,rgba(255,255,255,0)_50%)] mix-blend-screen" />
         
         {/* Additional concentrated horizontal glow from the top */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] md:w-[160vw] h-[800px] md:h-[1000px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_50%)] mix-blend-screen" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] md:w-[160vw] h-[800px] md:h-[1000px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05)_0%,rgba(255,255,255,0)_50%)] mix-blend-screen" />
 
         {/* SVG NOISE to completely destroy banding */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.06] mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute inset-0 w-full h-full opacity-[0.05] mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
           <filter id="portfolioNoiseItem">
-            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
           </filter>
           <rect width="100%" height="100%" filter="url(#portfolioNoiseItem)"/>
         </svg>

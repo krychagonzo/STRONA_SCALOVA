@@ -18,6 +18,21 @@ import puppeteer from 'puppeteer';
     console.log(`Navigating to ${site.url}...`);
     await page.goto(site.url, { waitUntil: 'networkidle2', timeout: 60000 });
     
+    // Hide cookie banners
+    await page.addStyleTag({ content: `
+      [id*="cookie" i], 
+      [class*="cookie" i],
+      [id*="gdpr" i],
+      [class*="gdpr" i],
+      #cmplz-cookiebanner-container,
+      .cli-modal-dialog,
+      #moove_gdpr_cookie_info_bar {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+    `});
+    
     // Slow scroll to bottom to trigger ALL animations
     await page.evaluate(async () => {
         await new Promise((resolve) => {
@@ -40,8 +55,12 @@ import puppeteer from 'puppeteer';
     console.log('Waiting 3 seconds for bottom animations to finish...');
     await new Promise(r => setTimeout(r, 3000));
     
+    // Scroll back to top so the fixed navbar stays at the top of the screenshot!
+    // Most GSAP animations are 'play once' so they shouldn't disappear.
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await new Promise(r => setTimeout(r, 1000));
+    
     console.log(`Taking full page screenshot for ${site.out}...`);
-    // Important: we do NOT scroll back to top. We let Puppeteer's fullPage take over.
     await page.screenshot({ path: site.out, fullPage: true });
   }
 
