@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -167,7 +167,7 @@ export default function StronaAI({ onOpenModal }) {
           </div>
 
           <div className="hero-line relative flex items-center justify-between w-full mb-8 md:mb-12">
-            <h1 className="relative z-10 w-full md:w-[75%] font-heading font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory uppercase">
+            <h1 className="relative z-10 w-full md:w-[75%] font-heading font-light text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[6rem] tracking-tight leading-[0.9] text-ivory uppercase">
               Twoja strona.<br />
               <span className="text-ivory">Najlepszy handlowiec,</span><br />
               jakiego zatrudnisz.
@@ -226,7 +226,7 @@ export default function StronaAI({ onOpenModal }) {
       </section>
 
       {/* PROBLEM */}
-      <section className="w-full py-28 px-6 md:px-16 xl:px-32">
+      <section className="w-full py-16 md:py-28 px-6 md:px-16 xl:px-32">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">PROBLEM</p>
@@ -262,7 +262,7 @@ export default function StronaAI({ onOpenModal }) {
       />
 
       {/* DELIVERABLES */}
-      <section className="w-full py-28 px-6 md:px-16 xl:px-32 bg-[#0a0a0a]">
+      <section className="w-full py-16 md:py-28 px-6 md:px-16 xl:px-32 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">CO ZYSKUJESZ</p>
@@ -284,7 +284,7 @@ export default function StronaAI({ onOpenModal }) {
       </section>
 
       {/* PROCESS */}
-      <section id="jak-dzialamy" className="w-full py-28 px-6 md:px-16 xl:px-32">
+      <section id="jak-dzialamy" className="w-full py-16 md:py-28 px-6 md:px-16 xl:px-32">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <p className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase mb-4 opacity-80">JAK DZIAŁAMY</p>
@@ -317,7 +317,7 @@ export default function StronaAI({ onOpenModal }) {
       </section>
 
       {/* CTA */}
-      <section className="w-full py-28 px-6 md:px-16 xl:px-32 relative overflow-hidden">
+      <section className="w-full py-16 md:py-28 px-6 md:px-16 xl:px-32 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(212,255,0,0.04) 0%, transparent 70%)' }} />
         <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,255,0,0.3) 50%, transparent)' }} />
 

@@ -321,10 +321,10 @@ export default function Services() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.3 } }}
                     exit={{ opacity: 0, transition: { duration: 0 } }}
-                    className="relative z-10 w-full flex flex-col min-h-[620px]"
+                    className="relative z-10 w-full flex flex-col md:min-h-[620px]"
                   >
                     {/* WSPÓLNY NAGŁÓWEK NA CAŁĄ SZEROKOŚĆ */}
-                    <div className="w-full p-8 md:p-12 lg:p-16 pb-10 md:pb-14 lg:pb-16 border-b border-white/5 flex flex-col relative z-20">
+                    <div className="w-full p-5 sm:p-8 md:p-12 lg:p-16 pb-8 sm:pb-10 md:pb-14 lg:pb-16 border-b border-white/5 flex flex-col relative z-20">
                       {/* Numer seryjny + tag */}
                       <div className="flex items-center gap-4 mb-4 md:mb-6">
                         <span className="font-mono text-accent text-[11px] tracking-[0.25em]">
@@ -346,7 +346,7 @@ export default function Services() {
 
                     <div className="flex flex-col md:flex-row flex-1">
                       {/* LEWA KOLUMNA: CHECKMARKI */}
-                      <div className="md:w-[40%] xl:w-[35%] p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative z-10">
+                      <div className="md:w-[40%] xl:w-[35%] p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative z-10">
                         <div className="flex flex-col gap-4 mt-auto">
                           {servicesList[selectedService].features.map((feat, fIdx) => (
                             <motion.div
@@ -369,11 +369,11 @@ export default function Services() {
                       <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0, transition: { delay: 0.45 } }}
-                        className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-end relative z-10"
+                        className="flex-1 p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-end relative z-10"
                       >
                         {/* Dolna część: opis — przyklejone do dołu */}
                         <div className="mb-6 md:mb-8">
-                          <p className="font-sans text-ivory/65 text-lg md:text-xl leading-relaxed">
+                          <p className="font-sans text-ivory/65 text-base md:text-lg xl:text-xl leading-relaxed">
                             {servicesList[selectedService].desc}
                           </p>
                         </div>

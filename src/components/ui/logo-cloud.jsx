@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { InfiniteSlider } from "./infinite-slider";
 import { cn } from "../../lib/utils";
 
@@ -24,6 +24,14 @@ const logos = [
 ];
 
 export function LogoCloud({ className, ...props }) {
+  const [sliderGap, setSliderGap] = useState(window.innerWidth < 640 ? 60 : 120);
+
+  useEffect(() => {
+    const update = () => setSliderGap(window.innerWidth < 640 ? 60 : 120);
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   return (
     <section className="w-full bg-[#0E0E0E] pt-6 pb-4 border-b border-white/5 relative z-20">
       <div className="w-full max-w-7xl mx-auto px-6 mb-10">
@@ -38,7 +46,7 @@ export function LogoCloud({ className, ...props }) {
           className
         )}
       >
-        <InfiniteSlider gap={120} reverse={false} duration={45} durationOnHover={80}>
+        <InfiniteSlider gap={sliderGap} reverse={false} duration={45} durationOnHover={80}>
           {logos.map((logo) => (
             <img
               key={`logo-${logo.alt}`}

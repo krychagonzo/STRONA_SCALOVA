@@ -6,7 +6,7 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
     <div id="footer-cta" className="w-full bg-[#0E0E0E] flex flex-col items-center">
 
       {!hideCta && (
-      <div className="relative w-full flex flex-col items-center justify-center pt-24 min-h-[500px]">
+      <div className="relative w-full flex flex-col items-center justify-center pt-16 md:pt-24 min-h-[400px] md:min-h-[500px]">
 
         {/* Background Dot Matrix Wrapper */}
         <div className="absolute inset-0 pointer-events-none opacity-40 flex justify-center w-full h-[calc(100%+2rem)] mt-[-2rem]">
@@ -41,23 +41,23 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
         </div>
 
         {/* Big CTA Content */}
-        <section className="max-w-4xl mx-auto text-center sticky top-[15%] pb-40 z-10">
-            <h2 className="title-anim font-heading font-light text-3xl md:text-4xl lg:text-6xl text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
+        <section className="max-w-4xl mx-auto px-6 text-center sticky top-[15%] pb-24 md:pb-40 z-10">
+            <h2 className="title-anim font-heading font-light text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
                 Przestań walczyć z rynkiem. Zainstaluj system, który go <span className="text-accent">zdominuje.</span>
             </h2>
-            <p className="description-anim font-sans text-base md:text-lg text-ivory/60 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="description-anim font-sans text-base md:text-lg text-ivory/60 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed">
                 Nie czekaj! Umów bezpłatną konsultację, aby dowiedzieć się, gdzie tracisz czas i uciekają Twoi klienci.
             </p>
 
           <button
             onClick={onOpenModal}
-            className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-xl px-12 py-5 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.05] shadow-[0_0_40px_rgba(212,255,0,0.2)] hover:shadow-[0_0_60px_rgba(212,255,0,0.5)] mx-auto"
+            className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-base md:text-xl px-8 md:px-12 py-4 md:py-5 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.05] shadow-[0_0_40px_rgba(212,255,0,0.2)] hover:shadow-[0_0_60px_rgba(212,255,0,0.5)] mx-auto"
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
           >
             <div className="absolute inset-0 w-full h-full bg-white/20 origin-left -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></div>
-            <span className="relative z-10 flex items-center justify-center gap-4">
+            <span className="relative z-10 flex items-center justify-center gap-3 md:gap-4">
               ODBIERZ BEZPŁATNY PLAN DZIAŁANIA
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
             </span>
           </button>
         </section>

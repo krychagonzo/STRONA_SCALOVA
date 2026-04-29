@@ -62,14 +62,14 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
   return (
     <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10 lg:gap-14 select-none w-full max-w-5xl mx-auto py-8 font-sans relative z-10 px-4">
       {/* ── Left: photo grid ── */}
-      <div className="flex gap-2 md:gap-3 flex-shrink-0 overflow-x-auto pb-1 md:pb-0 scrollbar-hide">
+      <div className="flex gap-2 md:gap-3 flex-shrink-0">
         {/* Column 1 */}
         <div className="flex flex-col gap-2 md:gap-3">
           {col1.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] md:w-[155px] md:h-[155px]"
+              className="w-[88px] h-[88px] sm:w-[110px] sm:h-[110px] md:w-[155px] md:h-[155px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -77,12 +77,12 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
         </div>
 
         {/* Column 2 */}
-        <div className="flex flex-col gap-2 md:gap-3 mt-[48px] sm:mt-[56px] md:mt-[68px]">
+        <div className="flex flex-col gap-2 md:gap-3 mt-[36px] sm:mt-[48px] md:mt-[68px]">
           {col2.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[122px] h-[122px] sm:w-[145px] sm:h-[145px] md:w-[172px] md:h-[172px]"
+              className="w-[98px] h-[98px] sm:w-[122px] sm:h-[122px] md:w-[172px] md:h-[172px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />
@@ -90,12 +90,12 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
         </div>
 
         {/* Column 3 */}
-        <div className="flex flex-col gap-2 md:gap-3 mt-[22px] sm:mt-[26px] md:mt-[32px]">
+        <div className="flex flex-col gap-2 md:gap-3 mt-[18px] sm:mt-[22px] md:mt-[32px]">
           {col3.map((member) => (
             <PhotoCard
               key={member.id}
               member={member}
-              className="w-[115px] h-[115px] sm:w-[136px] sm:h-[136px] md:w-[162px] md:h-[162px]"
+              className="w-[92px] h-[92px] sm:w-[115px] sm:h-[115px] md:w-[162px] md:h-[162px]"
               hoveredId={hoveredId}
               onHover={setHoveredId}
             />

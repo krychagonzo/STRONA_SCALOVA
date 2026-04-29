@@ -382,7 +382,7 @@ export default function Career() {
       </section>
 
       {/* CTA / FORMULARZ */}
-      <section className="w-full py-32 px-6 flex justify-center bg-[linear-gradient(to_bottom,#0c0c0c_0%,#111_100%)] relative z-10">
+      <section className="w-full py-16 md:py-32 px-6 flex justify-center bg-[linear-gradient(to_bottom,#0c0c0c_0%,#111_100%)] relative z-10">
          <div className="max-w-[700px] w-full flex flex-col items-center">
              <div className="text-center mb-12">
                <h3 className="text-ivory text-3xl font-heading font-light tracking-widest uppercase mb-4">

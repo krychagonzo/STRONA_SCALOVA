@@ -53,10 +53,28 @@ const InteractiveDotGrid = () => {
       isActive = false;
     };
 
+    const handleTouchMove = (e) => {
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      targetMouseX = touch.clientX - rect.left;
+      targetMouseY = touch.clientY - rect.top;
+      if (!isActive) {
+        currentMouseX = targetMouseX;
+        currentMouseY = targetMouseY;
+        isActive = true;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isActive = false;
+    };
+
     const section = canvas.closest('section');
     if (section) {
       section.addEventListener('mousemove', handleMouseMove);
       section.addEventListener('mouseleave', handleMouseLeave);
+      section.addEventListener('touchmove', handleTouchMove, { passive: true });
+      section.addEventListener('touchend', handleTouchEnd);
     }
 
     const draw = () => {
@@ -113,6 +131,8 @@ const InteractiveDotGrid = () => {
       if (section) {
         section.removeEventListener('mousemove', handleMouseMove);
         section.removeEventListener('mouseleave', handleMouseLeave);
+        section.removeEventListener('touchmove', handleTouchMove);
+        section.removeEventListener('touchend', handleTouchEnd);
       }
       cancelAnimationFrame(animationFrameId);
     };

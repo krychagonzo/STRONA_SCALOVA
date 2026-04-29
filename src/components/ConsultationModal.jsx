@@ -107,7 +107,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
     >
       <div
         ref={panelRef}
-        className="relative w-full max-w-[920px]"
+        className="relative w-full max-w-[920px] max-h-[90vh] overflow-y-auto"
         style={{
           background: 'linear-gradient(135deg, #141414 0%, #0E0E0E 40%, #111116 100%)',
           border: '1px solid rgba(212,255,0,0.15)',
@@ -133,7 +133,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
 
             {/* LEFT - value prop */}
             <div
-              className="md:w-[42%] p-10 md:p-12 flex flex-col gap-8"
+              className="md:w-[42%] p-6 sm:p-8 md:p-12 flex flex-col gap-6 md:gap-8"
               style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', borderRight: 'none' }}
             >
               <div className="block md:hidden w-full h-[1px]" />
@@ -142,7 +142,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
                 <span className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase opacity-80">
                   // BEZPŁATNA KONSULTACJA
                 </span>
-                <h2 className="font-heading font-light text-ivory text-3xl md:text-4xl leading-tight tracking-tight">
+                <h2 className="font-heading font-light text-ivory text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
                   Porozmawiajmy<br />o Twoim<br />biznesie.
                 </h2>
                 <p className="text-ivory/50 text-sm leading-relaxed font-sans max-w-xs">
@@ -173,7 +173,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
             <div className="hidden md:block w-[1px] self-stretch" style={{ background: 'rgba(255,255,255,0.05)' }} />
 
             {/* RIGHT - form */}
-            <div className="md:w-[58%] p-10 md:p-12 flex flex-col gap-6">
+            <div className="md:w-[58%] p-6 sm:p-8 md:p-12 flex flex-col gap-6">
               <div className="flex flex-col gap-5">
                 <Field
                   label="Imię i nazwisko"
