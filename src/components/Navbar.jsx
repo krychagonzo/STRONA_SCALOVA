@@ -75,7 +75,8 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-500 text-ivory flex items-center justify-between px-8 py-3 ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        className={`fixed top-0 left-0 right-0 z-[60] w-full text-ivory flex items-center justify-between px-8 py-3 ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        style={{ transform: 'translateZ(0)', willChange: 'transform' }}
       >
         {/* Dispersion Blur Layers */}
         <div className="absolute inset-0 z-[-1] pointer-events-none bg-obsidian/10 backdrop-blur-[4px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
@@ -181,9 +182,9 @@ export default function Navbar() {
            <div className="mt-auto pt-16 flex flex-col gap-6 text-ivory/40">
               <span className="font-heading text-[10px] tracking-[0.2em] uppercase text-ivory/30">Szybki Kontakt</span>
               <div className="flex gap-6 font-sans text-xs uppercase tracking-widest text-ivory/60">
-                 <a href="#" className="hover:text-accent transition-colors">Instagram</a>
-                 <a href="#" className="hover:text-accent transition-colors">LinkedIn</a>
-                 <a href="#" className="hover:text-accent transition-colors">Facebook</a>
+                 <a href="https://www.instagram.com/scalova.pl/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Instagram</a>
+                 <a href="https://www.linkedin.com/company/scalova/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">LinkedIn</a>
+                 <a href="https://www.facebook.com/people/Scalova/61563223480934/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Facebook</a>
               </div>
            </div>
         </div>

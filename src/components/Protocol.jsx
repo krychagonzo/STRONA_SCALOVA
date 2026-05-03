@@ -62,10 +62,12 @@ export default function Protocol() {
                 </div>
 
                 {/* ROZWIJANY OPIS */}
-                <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="font-sans text-ivory/60 text-base md:text-[17px] xl:text-[19px] leading-relaxed font-light normal-case pl-10 sm:pl-16 md:pl-[5.5rem] pr-4 sm:pr-8 xl:pr-32 pt-6 md:pt-8 pb-10 md:pb-12 text-balance">
-                    {step.desc}
-                  </p>
+                <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className={`overflow-hidden transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
+                    <p className="font-sans text-ivory/60 text-base md:text-[17px] xl:text-[19px] leading-relaxed font-light normal-case pl-10 sm:pl-16 md:pl-[5.5rem] pr-4 sm:pr-8 xl:pr-32 pt-6 md:pt-8 pb-10 md:pb-12 text-balance">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

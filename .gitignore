@@ -7,3 +7,6 @@ dist-ssr
 !.env.example
 .DS_Store
 Website builder.rar
+
+# Local Netlify folder
+.netlify

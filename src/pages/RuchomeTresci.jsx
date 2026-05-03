@@ -122,7 +122,7 @@ export default function RuchomeTresci({ onOpenModal }) {
             </div>
             <Link to="/portfolio?category=RUCHOME TREŚCI WIZUALNE" className="group sm:ml-auto font-heading font-bold uppercase tracking-wider text-sm px-10 py-4 border border-ivory/10 text-ivory/60 hover:border-ivory/30 hover:text-ivory transition-all duration-300 flex items-center justify-center gap-3">
               PORTFOLIO
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
             </Link>
           </div>
         </div>

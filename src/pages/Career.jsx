@@ -342,7 +342,9 @@ export default function Career() {
                     </div>
                   </div>
 
-                  <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] flex flex-col md:flex-row gap-6 md:gap-12 px-2 md:px-6 ${isActive ? 'max-h-[800px] opacity-100 pt-6 md:pt-8 pb-8 md:pb-12' : 'max-h-0 opacity-0 pt-0 pb-0'}`}>
+                  <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className={`overflow-hidden transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-12 px-2 md:px-6 pt-6 md:pt-8 pb-8 md:pb-12">
                     {applyingJobId === job.id ? (
                       <div className="w-full flex flex-col transition-all duration-500 opacity-100">
                         <form className="w-full flex flex-col gap-4" onSubmit={(e) => handleJobSubmit(e, job.title)}>
@@ -372,6 +374,8 @@ export default function Career() {
                         </div>
                       </>
                     )}
+                  </div>
+                  </div>
                   </div>
 
                 </div>

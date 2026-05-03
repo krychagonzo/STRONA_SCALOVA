@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import emailjs from '@emailjs/browser';
 
-export default function ConsultationModal({ isOpen, onClose }) {
+export default function ConsultationModal({ isOpen, onClose, source = 'Strona główna' }) {
   const overlayRef = useRef(null);
   const panelRef = useRef(null);
   const [formState, setFormState] = useState({ name: '', company: '', email: '', phone: '' });
@@ -63,7 +63,8 @@ export default function ConsultationModal({ isOpen, onClose }) {
         company: formState.company || 'Brak',
         email: formState.email,
         phone: formState.phone,
-        type: 'Konsultacja Biznesowa'
+        type: 'Konsultacja Biznesowa',
+        source: source
       };
 
       emailjs.send(serviceID, templateID, templateParams, publicKey)

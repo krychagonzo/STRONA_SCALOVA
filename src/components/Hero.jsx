@@ -116,22 +116,20 @@ export default function Hero() {
   useEffect(() => {
     let ctx = gsap.context(() => {
       gsap.from('.hero-anim-left', {
-        x: '20vw',
-        y: '10vh',
+        x: '15vw',
+        y: '8vh',
         opacity: 0,
-        filter: 'blur(10px)',
-        duration: 3,
+        duration: 2.5,
         stagger: 0.1,
         ease: 'power3.out',
         delay: 2,
         force3D: true
       });
       gsap.from('.hero-anim-right', {
-        x: '-20vw',
-        y: '-10vh',
+        x: '-15vw',
+        y: '-8vh',
         opacity: 0,
-        filter: 'blur(10px)',
-        duration: 3,
+        duration: 2.5,
         ease: 'power3.out',
         delay: 2.2,
         force3D: true
@@ -188,11 +186,18 @@ export default function Hero() {
 
       {/* Front logo animation layer */}
       <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
+        {/* Static image on mobile */}
+        <img
+          src="/logo.png"
+          alt=""
+          className="md:hidden absolute inset-0 w-full h-full object-contain scale-[1.1] opacity-80"
+        />
+        {/* Video animation on desktop */}
         <video
           autoPlay
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-contain scale-[1.6]"
+          className="hidden md:block absolute inset-0 w-full h-full object-contain scale-[1.6]"
         >
           <source src="/ANIM_05_LOGO_1.webm" type="video/webm" />
         </video>
