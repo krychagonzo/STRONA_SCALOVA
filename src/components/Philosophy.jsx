@@ -53,7 +53,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
-                  <img src="/SPRZEDAZ.png" alt="Sprzedaż" className="w-full max-w-xs relative z-10" />
+                  <img src="/SEKCJA_PODEJSCIE/SPRZEDAZ.png" alt="Sprzedaż" className="w-full max-w-xs relative z-10" />
                </div>
             </div>
 
@@ -69,7 +69,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
-                  <img src="/WIDOCZNOSC.png" alt="Widoczność w Sieci" className="w-full max-w-xs relative z-10" />
+                  <img src="/SEKCJA_PODEJSCIE/WIDOCZNOSC_W_SIECI.png" alt="Widoczność w Sieci" className="w-full max-w-xs relative z-10" />
                </div>
             </div>
 
@@ -85,7 +85,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
-                  <img src="/AUTOMATYZACJA.png" alt="Automatyzacje" className="w-full max-w-xs relative z-10" />
+                  <img src="/SEKCJA_PODEJSCIE/AUTOMATYZACJA.png" alt="Automatyzacje" className="w-full max-w-xs relative z-10 translate-x-4 md:translate-x-8" />
                </div>
             </div>
 
@@ -112,7 +112,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full bg-white/[0.04] blur-3xl pointer-events-none"></div>
-                  <img src="/MARKETING.png" alt="Marketing" className="w-full max-w-xs relative z-10" />
+                  <img src="/SEKCJA_PODEJSCIE/MARKETING.png" alt="Marketing" className="w-full max-w-xs relative z-10" />
                </div>
             </div>
 
