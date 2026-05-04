@@ -47,17 +47,17 @@ export default function Protocol() {
                   className={`group flex w-full cursor-pointer items-center gap-4 py-8 md:py-10 px-4 xl:px-8 transition-colors duration-300 ${isActive ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'}`}
                 >
                   {/* NUMER */}
-                  <div className={`flex-shrink-0 font-heading font-light text-4xl md:text-5xl leading-none w-16 md:w-20 transition-colors duration-500 ${isActive ? 'text-accent' : 'text-ivory/20 group-hover:text-accent/50'}`}>
+                  <div className={`flex-shrink-0 font-heading font-light text-4xl md:text-5xl leading-none w-16 md:w-20 transition-colors duration-300 ${isActive ? 'text-accent' : 'text-ivory/20 group-hover:text-accent/50'}`}>
                     {step.num}
                   </div>
 
                   {/* TYTUŁ */}
-                  <h3 className={`flex-1 text-left font-heading text-2xl lg:text-[28px] tracking-tight uppercase transition-colors duration-500 px-2 md:px-4 ${isActive ? 'text-ivory' : 'text-ivory/70 group-hover:text-ivory'}`}>
+                  <h3 className={`flex-1 text-left font-heading text-2xl lg:text-[28px] tracking-tight uppercase transition-colors duration-300 px-2 md:px-4 ${isActive ? 'text-ivory' : 'text-ivory/70 group-hover:text-ivory'}`}>
                     {step.title}
                   </h3>
 
                   {/* PRZYCISK INTERAKTYWNY */}
-                  <div className={`flex-shrink-0 w-10 h-10 border border-white/10 flex items-center justify-center text-xl font-light transition-all duration-500 ${isActive ? 'border-accent text-accent bg-accent/5' : 'text-ivory/40 group-hover:border-accent/40 group-hover:text-accent'}`}>
+                  <div className={`flex-shrink-0 w-10 h-10 border border-white/10 flex items-center justify-center text-xl font-light transition-[background-color,border-color,color] duration-300 ${isActive ? 'border-accent text-accent bg-accent/5' : 'text-ivory/40 group-hover:border-accent/40 group-hover:text-accent'}`}>
                     {isActive ? '−' : '＋'}
                   </div>
                 </div>

@@ -35,7 +35,7 @@ export default function Team() {
     >
       {/* Background elements to match the site's dark aesthetic */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)' }} />
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+      <div className="hidden md:block absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
       
       <div className="max-w-[900px] mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center">
         

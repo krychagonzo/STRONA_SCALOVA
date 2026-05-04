@@ -62,7 +62,7 @@ export default function Features() {
                 >
                   {/* IKONA MASKOWANA */}
                   <div
-                    className={`flex-shrink-0 w-7 h-7 md:w-9 md:h-9 transition-colors duration-500 mr-2 md:mr-4 ${isActive ? 'bg-accent' : 'bg-ivory/30 group-hover:bg-accent/60'}`}
+                    className={`flex-shrink-0 w-7 h-7 md:w-9 md:h-9 transition-colors duration-300 mr-2 md:mr-4 ${isActive ? 'bg-accent' : 'bg-ivory/30 group-hover:bg-accent/60'}`}
                     style={{
                       maskImage: `url('${problem.icon}')`,
                       WebkitMaskImage: `url('${problem.icon}')`,
@@ -76,12 +76,12 @@ export default function Features() {
                   />
 
                   {/* TYTUŁ */}
-                  <h3 className={`flex-1 text-left font-heading text-2xl lg:text-[28px] tracking-tight uppercase transition-colors duration-500 px-2 md:px-4 ${isActive ? 'text-ivory' : 'text-ivory/70 group-hover:text-ivory'}`}>
+                  <h3 className={`flex-1 text-left font-heading text-2xl lg:text-[28px] tracking-tight uppercase transition-colors duration-300 px-2 md:px-4 ${isActive ? 'text-ivory' : 'text-ivory/70 group-hover:text-ivory'}`}>
                     {problem.title}
                   </h3>
 
                   {/* PRZYCISK INTERAKTYWNY */}
-                  <div className={`flex-shrink-0 w-10 h-10 border border-white/10 flex items-center justify-center text-xl font-light transition-all duration-500 ${isActive ? 'border-accent text-accent bg-accent/5' : 'text-ivory/40 group-hover:border-accent/40 group-hover:text-accent'}`}>
+                  <div className={`flex-shrink-0 w-10 h-10 border border-white/10 flex items-center justify-center text-xl font-light transition-[background-color,border-color,color] duration-300 ${isActive ? 'border-accent text-accent bg-accent/5' : 'text-ivory/40 group-hover:border-accent/40 group-hover:text-accent'}`}>
                     {isActive ? '−' : '＋'}
                   </div>
                 </div>

@@ -62,7 +62,8 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
   return (
     <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10 lg:gap-14 select-none w-full max-w-5xl mx-auto py-8 font-sans relative z-10 px-4">
       {/* ── Left: photo grid ── */}
-      <div className="flex gap-2 md:gap-3 flex-shrink-0">
+      {/* On non-hover (mobile): single filter layer for entire grid, not per-image */}
+      <div className={`flex gap-2 md:gap-3 flex-shrink-0 ${!canHoverDevice ? 'grayscale brightness-[0.77]' : ''}`}>
         {/* Column 1 */}
         <div className="flex flex-col gap-2 md:gap-3">
           {col1.map((member) => (
@@ -122,6 +123,8 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
    Photo card 
 ───────────────────────────────────────── */
 
+const canHoverDevice = typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
+
 function PhotoCard({ member, className, hoveredId, onHover }) {
   const isActive = hoveredId === member.id;
   const isDimmed = hoveredId !== null && !isActive;
@@ -133,16 +136,17 @@ function PhotoCard({ member, className, hoveredId, onHover }) {
         className,
         isDimmed ? 'opacity-40' : 'opacity-100',
       )}
-      onMouseEnter={() => onHover(member.id)}
-      onMouseLeave={() => onHover(null)}
+      onMouseEnter={canHoverDevice ? () => onHover(member.id) : undefined}
+      onMouseLeave={canHoverDevice ? () => onHover(null) : undefined}
     >
       <img
         src={member.image}
         alt={member.name}
-        className="w-full h-full object-cover transition-all duration-700 ease-in-out hover:scale-105"
-        style={{
+        loading="lazy"
+        className="w-full h-full object-cover transition-[filter] duration-700 ease-in-out"
+        style={canHoverDevice ? {
           filter: isActive ? 'grayscale(0) brightness(1)' : 'grayscale(1) brightness(0.77)',
-        }}
+        } : undefined}
       />
     </div>
   );
