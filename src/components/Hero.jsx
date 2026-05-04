@@ -115,6 +115,7 @@ export default function Hero() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
+      // Desktop animations
       gsap.from('.hero-anim-left', {
         x: '15vw',
         y: '8vh',
@@ -133,6 +134,30 @@ export default function Hero() {
         ease: 'power3.out',
         delay: 2.2,
         force3D: true
+      });
+
+      // Mobile animations
+      gsap.from('.hero-logo-mobile', {
+        scale: 0.85,
+        opacity: 0,
+        duration: 2.5,
+        ease: 'power2.out',
+        delay: 0.5
+      });
+      gsap.from('.hero-anim-mobile', {
+        y: 40,
+        opacity: 0,
+        duration: 2,
+        stagger: 0.2,
+        ease: 'power3.out',
+        delay: 2.2,
+        force3D: true
+      });
+      gsap.to('.hero-glow-mobile', {
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.out',
+        delay: 2.1
       });
       // Scroll animation only on desktop — on mobile arrow is static
       if (window.innerWidth >= 768) {
@@ -184,35 +209,30 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile text — framing the arrow with calc(50vh ± 25vw) for consistent gap on all devices */}
-      <div className="md:hidden absolute inset-0 z-40 pointer-events-none select-none">
-        <div
-          className="absolute left-4 flex flex-col gap-2"
-          style={{ bottom: 'calc(50vh + 20vw + 10px)' }}
-        >
-          <span className="hero-anim-left font-heading font-light text-accent tracking-[0.2em] uppercase opacity-90" style={{ fontSize: '2.8vw', lineHeight: 1 }}>
+      {/* Mobile text — centered below the logo */}
+      <div className="md:hidden absolute inset-0 z-40 pointer-events-none select-none flex flex-col items-center justify-end pb-28 px-4">
+        <div className="flex flex-col items-center text-center">
+          <span className="hero-anim-mobile font-heading font-light text-accent text-[11px] tracking-[0.25em] uppercase opacity-90 mb-5">
             // AGENCJA SKALOWANIA BIZNESU
           </span>
-          <span className="hero-anim-left font-heading font-light tracking-tight text-ivory/90" style={{ fontSize: '12vw', lineHeight: 0.9 }}>
-            Skaluj biznes,
-          </span>
+          <h1 className="hero-anim-mobile font-heading font-light tracking-tight text-ivory/90 text-[12vw] leading-[1.05] flex flex-col gap-1">
+            <span>Skaluj biznes,</span>
+            <span className="text-ivory">odzyskaj czas.</span>
+          </h1>
         </div>
-        <span
-          className="hero-anim-right absolute right-4 font-heading font-light tracking-tight text-ivory text-right"
-          style={{ top: 'calc(50vh + 20vw + 10px)', fontSize: '12vw', lineHeight: 0.9 }}
-        >
-          odzyskaj czas.
-        </span>
       </div>
 
       {/* Front logo animation layer */}
       <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
-        {/* Mobile: 40vw icon, calc uses 20vw (half) */}
-        <img
-          src="/LOGO_AKCENT.png"
-          alt=""
-          className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] object-contain opacity-80"
-        />
+        {/* Mobile: centered icon with glow */}
+        <div className="hero-logo-mobile md:hidden absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+          <div className="hero-glow-mobile absolute w-[35vw] h-[35vw] bg-white/10 blur-[30px] rounded-full mix-blend-screen" />
+          <img
+            src="/LOGO_AKCENT.png"
+            alt=""
+            className="w-[45vw] h-[45vw] object-contain relative z-10"
+          />
+        </div>
         {/* Desktop only — video not mounted on mobile to avoid decode overhead */}
         {typeof window !== 'undefined' && window.innerWidth >= 768 && (
           <video

@@ -15,5 +15,13 @@
     
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Global prevention of right-clicking images
+      document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') {
+          e.preventDefault();
+        }
+      });
+    </script>
   </body>
 </html>

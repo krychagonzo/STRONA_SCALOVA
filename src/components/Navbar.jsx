@@ -10,6 +10,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 export default function Navbar() {
   const navRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
   const handleScrollTo = (e, targetId) => {
@@ -52,8 +54,10 @@ export default function Navbar() {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open');
     } else {
       document.body.style.overflow = 'auto';
+      document.body.classList.remove('menu-open');
     }
   }, [isMenuOpen]);
 
@@ -63,6 +67,26 @@ export default function Navbar() {
       setIsMenuOpen(false);
     }, 100);
   }, [location.pathname]);
+
+  // Hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (isMenuOpen) return;
+      
+      if (currentScrollY < lastScrollY || currentScrollY < 50) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, isMenuOpen]);
 
   const navLinks = [
     { name: "Strona Główna", path: "/" },
@@ -75,11 +99,11 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-[60] w-full text-ivory flex items-center justify-between px-8 py-3 ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
-        style={{ transform: 'translateZ(0)', willChange: 'transform' }}
+        className={`fixed top-0 left-0 right-0 z-[60] w-full text-ivory flex items-center justify-between px-5 md:px-8 pb-1.5 md:pb-3 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'} ${isVisible ? 'translate-y-0' : '-translate-y-40'}`}
+        style={{ transform: 'translateZ(0)', willChange: 'transform', paddingTop: 'calc(env(safe-area-inset-top) + 0.375rem)' }}
       >
-        {/* Mobile: single solid bg (5× backdrop-blur stacked is too expensive) */}
-        <div className="md:hidden absolute inset-0 z-[-1] pointer-events-none bg-obsidian/90" />
+        {/* Mobile: single solid bg with blur, stretched upwards to prevent top gaps */}
+        <div className="md:hidden absolute -top-16 bottom-0 left-0 right-0 z-[-1] pointer-events-none bg-[#0c0c0c]/95 backdrop-blur-md border-b border-white/5" />
         {/* Desktop: dispersion blur layers */}
         <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/10 backdrop-blur-[4px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
         <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/15 backdrop-blur-[8px] [mask-image:linear-gradient(to_bottom,black,transparent_90%)]" />
@@ -131,7 +155,7 @@ export default function Navbar() {
         <div className="flex items-center pointer-events-auto">
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-ivory/80 hover:text-accent transition-colors duration-300 p-2 flex items-center justify-center rounded-full hover:bg-white/5"
+            className="text-ivory/80 hover:text-accent transition-colors duration-300 p-1 md:p-2 flex items-center justify-center rounded-full hover:bg-white/5"
             aria-label="Toggle menu"
           >
              <div className="relative w-7 h-7 flex items-center justify-center">

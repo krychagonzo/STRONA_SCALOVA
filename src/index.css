@@ -37,12 +37,31 @@
   a:hover, button:hover, [role="button"]:hover {
     filter: drop-shadow(0 0 8px rgba(212, 255, 0, 0.6));
   }
+
+  /* Prevent image saving, dragging and selection */
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+body.menu-open #floating-cta {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translate(-50%, 50px) !important;
 }
 
 /* Scroll offset for nav links */

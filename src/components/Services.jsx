@@ -174,7 +174,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="w-full bg-[linear-gradient(to_bottom,#1a1a1a_0%,#0c0c0c_100%)] py-32 px-6 flex justify-center relative overflow-x-hidden"
+      className="w-full bg-[linear-gradient(to_bottom,#1a1a1a_0%,#0c0c0c_100%)] py-20 md:py-32 px-2 md:px-6 flex justify-center relative overflow-x-hidden"
       style={{
         maskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)'
@@ -207,7 +207,7 @@ export default function Services() {
 
         {/* Header */}
         <motion.div
-          className="w-full px-6 md:px-12 mb-16 uppercase tracking-widest font-heading flex flex-col items-center text-center"
+          className="w-full px-2 md:px-12 mb-12 md:mb-16 uppercase tracking-widest font-heading flex flex-col items-center text-center"
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
@@ -235,7 +235,7 @@ export default function Services() {
           <div className="relative w-full">
 
             {/* GRID — 2 cols mobile, 2 cols md, 4 cols lg */}
-            <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 w-full px-3 sm:px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? 'pointer-events-none' : ''}`}>
+            <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-1.5 md:gap-4 w-full px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? 'pointer-events-none' : ''}`}>
               {servicesList.map((service, idx) => {
                 const isSelected = selectedService === idx;
                 const isHidden = selectedService !== null && !isSelected;
@@ -251,24 +251,24 @@ export default function Services() {
                       delay: isDesktop && isHidden ? idx * 0.04 : 0,
                       layout: { duration: isSelected ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }
                     }}
-                    className="group aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between hover:bg-accent hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
+                    className="group aspect-[4/5] sm:aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between md:hover:bg-accent md:hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
                     onClick={() => openService(idx)}
                   >
                     <div className="flex flex-col">
-                      <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-2 sm:mb-6 text-ivory/50 group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <RenderIcon icon={service.icon} className="w-8 h-8 sm:w-14 sm:h-14 xl:w-20 xl:h-20" />
+                      <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-3 sm:mb-6 text-ivory/50 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                        <RenderIcon icon={service.icon} className="w-20 h-20 md:w-24 md:h-24 xl:w-28 xl:h-28" />
                       </motion.div>
-                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[11px] sm:text-sm lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-tight relative z-10">
+                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[18px] sm:text-lg lg:text-[28px] xl:text-[32px] 2xl:text-[36px] uppercase leading-tight relative z-10">
                         {service.title}
                       </motion.h3>
                     </div>
 
-                    <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
-                      <div className="flex items-center gap-2 sm:gap-3 text-ivory/40 group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <span className="font-heading text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
+                    <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 md:group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
+                      <div className="flex items-center gap-2 sm:gap-3 text-ivory/40 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                        <span className="font-heading text-[12px] sm:text-[14px] tracking-[0.2em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
                         <div className="w-5 sm:w-8 h-[1px] bg-current"></div>
                       </div>
-                      <div className="w-7 h-7 sm:w-9 sm:h-9 border border-white/10 group-hover:border-obsidian/30 flex items-center justify-center text-base sm:text-lg font-light text-ivory/30 group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center text-lg sm:text-xl font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
                         ＋
                       </div>
                     </div>
