@@ -185,7 +185,7 @@ export default function Hero() {
 
   return (
     <>
-    <section ref={comp} className="relative w-full h-[100dvh] overflow-hidden flex items-end">
+    <section ref={comp} className="relative w-full h-[100svh] overflow-hidden flex items-end">
 
       {/* Canvas background — Bayer-dithered gradient, zero banding */}
       <div className="absolute inset-0 z-0 pointer-events-none">
