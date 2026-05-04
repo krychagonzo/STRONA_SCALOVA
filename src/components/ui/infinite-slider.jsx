@@ -1,9 +1,7 @@
 'use client';
 import { cn } from '../../lib/utils';
-import { useMotionValue, animate } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useMeasure from 'react-use-measure';
-import { motion } from 'framer-motion';
 
 export function InfiniteSlider({
   children,
@@ -14,98 +12,68 @@ export function InfiniteSlider({
   reverse = false,
   className,
 }) {
-  const [ref, { width, height }] = useMeasure();
-  const translation = useMotionValue(0);
-  const isHovered = useRef(false);
-  const controlsRef = useRef(null);
+  const [measureRef, { width, height }] = useMeasure();
+  const innerRef = useRef(null);
+  const durationRef = useRef(duration);
+  // Hover speed change only fires on real pointer devices — touch simulates enter/leave
+  const canHover = typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
 
   const size = direction === 'horizontal' ? width : height;
   const halfSize = size / 2;
+  const isH = direction === 'horizontal';
+  // Stable animation name based on direction + reverse; doesn't change on resize
+  const animName = `inf-${isH ? 'x' : 'y'}${reverse ? 'r' : 'f'}`;
+  const fromVal = reverse ? -halfSize : 0;
+  const toVal = reverse ? 0 : -halfSize;
 
+  const setRef = (el) => {
+    measureRef(el);
+    innerRef.current = el;
+  };
+
+  // Start or restart the CSS animation, reading current position for seamless speed changes
+  const startAnim = (dur) => {
+    const el = innerRef.current;
+    if (!el || !halfSize) return;
+    durationRef.current = dur;
+    const raw = window.getComputedStyle(el).transform;
+    const matrix = new DOMMatrix(raw === 'none' ? undefined : raw);
+    const currentPos = isH ? matrix.m41 : matrix.m42;
+    const traveled = Math.abs(currentPos - fromVal);
+    const progress = Math.min(traveled / halfSize, 1);
+    const delay = -progress * dur;
+    el.style.animation = 'none';
+    el.offsetHeight; // force reflow so 'none' takes effect before re-applying
+    el.style.animation = `${animName} ${dur}s linear ${delay}s infinite`;
+  };
+
+  // Start / restart when halfSize becomes available or changes (window resize)
   useEffect(() => {
-    if (!halfSize) return;
-
-    const from = reverse ? -halfSize : 0;
-    const to = reverse ? 0 : -halfSize;
-
-    const startAnimation = (dur) => {
-      if (controlsRef.current) controlsRef.current.stop();
-      controlsRef.current = animate(translation, [translation.get(), to], {
-        ease: 'linear',
-        duration: dur * (Math.abs(translation.get() - to) / halfSize),
-        onComplete: () => {
-          translation.set(from);
-          controlsRef.current = animate(translation, [from, to], {
-            ease: 'linear',
-            duration: dur,
-            repeat: Infinity,
-            repeatType: 'loop',
-          });
-        },
-      });
-    };
-
-    startAnimation(duration);
-    return () => { controlsRef.current?.stop(); };
+    if (halfSize) startAnim(durationRef.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [halfSize, direction, reverse]);
-
-  const handleMouseEnter = () => {
-    if (!durationOnHover) return;
-    isHovered.current = true;
-    if (controlsRef.current) controlsRef.current.stop();
-    controlsRef.current = animate(translation, [translation.get(), reverse ? 0 : -halfSize], {
-      ease: 'linear',
-      duration: durationOnHover * (Math.abs(translation.get() - (reverse ? 0 : -halfSize)) / halfSize),
-      onComplete: () => {
-        translation.set(reverse ? -halfSize : 0);
-        if (isHovered.current) {
-          controlsRef.current = animate(translation, [reverse ? -halfSize : 0, reverse ? 0 : -halfSize], {
-            ease: 'linear',
-            duration: durationOnHover,
-            repeat: Infinity,
-            repeatType: 'loop',
-          });
-        }
-      },
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (!durationOnHover) return;
-    isHovered.current = false;
-    if (controlsRef.current) controlsRef.current.stop();
-    controlsRef.current = animate(translation, [translation.get(), reverse ? 0 : -halfSize], {
-      ease: 'linear',
-      duration: duration * (Math.abs(translation.get() - (reverse ? 0 : -halfSize)) / halfSize),
-      onComplete: () => {
-        translation.set(reverse ? -halfSize : 0);
-        controlsRef.current = animate(translation, [reverse ? -halfSize : 0, reverse ? 0 : -halfSize], {
-          ease: 'linear',
-          duration: duration,
-          repeat: Infinity,
-          repeatType: 'loop',
-        });
-      },
-    });
-  };
+  }, [halfSize]);
 
   return (
     <div className={cn('overflow-hidden', className)}>
-      <motion.div
-        ref={ref}
-        className='flex w-max'
-        style={{
-          ...(direction === 'horizontal' ? { x: translation } : { y: translation }),
-          gap: `${gap}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-        }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+      {/* Keyframe values depend on halfSize — re-injected on resize */}
+      {halfSize > 0 && (
+        <style>{`
+          @keyframes ${animName} {
+            from { transform: ${isH ? `translateX(${fromVal}px)` : `translateY(${fromVal}px)`}; }
+            to   { transform: ${isH ? `translateX(${toVal}px)` : `translateY(${toVal}px)`}; }
+          }
+        `}</style>
+      )}
+      <div
+        ref={setRef}
+        className="flex w-max"
+        style={{ gap: `${gap}px`, flexDirection: isH ? 'row' : 'column' }}
+        onMouseEnter={durationOnHover && canHover ? () => startAnim(durationOnHover) : undefined}
+        onMouseLeave={durationOnHover && canHover ? () => startAnim(duration) : undefined}
       >
         {children}
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -41,16 +41,17 @@ const InteractiveDotGrid = () => {
       const rect = canvas.getBoundingClientRect();
       targetMouseX = e.clientX - rect.left;
       targetMouseY = e.clientY - rect.top;
-      
       if (!isActive) {
         currentMouseX = targetMouseX;
         currentMouseY = targetMouseY;
         isActive = true;
       }
+      startDrawLoop();
     };
 
     const handleMouseLeave = () => {
       isActive = false;
+      startDrawLoop(); // let glowOffset decay to 0
     };
 
     const handleTouchMove = (e) => {
@@ -63,10 +64,12 @@ const InteractiveDotGrid = () => {
         currentMouseY = targetMouseY;
         isActive = true;
       }
+      startDrawLoop();
     };
 
     const handleTouchEnd = () => {
       isActive = false;
+      startDrawLoop();
     };
 
     const section = canvas.closest('section');
@@ -77,12 +80,20 @@ const InteractiveDotGrid = () => {
       section.addEventListener('touchend', handleTouchEnd);
     }
 
+    const startDrawLoop = () => {
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(draw);
+      }
+    };
+
     const draw = () => {
+      animationFrameId = null;
+
       if (isActive) {
         currentMouseX += (targetMouseX - currentMouseX) * 0.15;
         currentMouseY += (targetMouseY - currentMouseY) * 0.15;
       }
-      
+
       glowOffset += ((isActive ? 1 : 0) - glowOffset) * 0.15;
 
       ctx.clearRect(0, 0, width, height);
@@ -93,38 +104,50 @@ const InteractiveDotGrid = () => {
       const offsetX = (width - cols * spacing) / 2;
       const offsetY = (height - rows * spacing) / 2;
 
-      ctx.fillStyle = 'rgb(212, 255, 0)'; // Accent color
+      ctx.fillStyle = 'rgb(212, 255, 0)';
 
+      // Base pass: all dots at constant opacity (no globalAlpha switch per dot)
+      ctx.globalAlpha = 0.3;
       for (let r = 0; r <= rows; r++) {
         for (let c = 0; c <= cols; c++) {
           const x = offsetX + c * spacing + spacing / 2;
           const y = offsetY + r * spacing + spacing / 2;
-          
-          const dx = currentMouseX - x;
-          const dy = currentMouseY - y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          let rScale = baseRadius;
-          let opacity = 0.3;
-          
-          if (distance < activeRadius && glowOffset > 0.01) {
-            const intensity = 1 - (distance / activeRadius);
-            const easeIntensity = Math.pow(intensity, 1.4) * glowOffset;
-            rScale = baseRadius * (1 + easeIntensity * 1.5);
-            opacity = 0.3 + (easeIntensity * 0.35);
-          }
-          
-          ctx.globalAlpha = opacity;
           ctx.beginPath();
-          ctx.arc(x, y, rScale, 0, Math.PI * 2);
+          ctx.arc(x, y, baseRadius, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      animationFrameId = requestAnimationFrame(draw);
+      // Active pass: only dots near cursor, drawn on top
+      if (glowOffset > 0.005) {
+        for (let r = 0; r <= rows; r++) {
+          for (let c = 0; c <= cols; c++) {
+            const x = offsetX + c * spacing + spacing / 2;
+            const y = offsetY + r * spacing + spacing / 2;
+            const dx = currentMouseX - x;
+            const dy = currentMouseY - y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < activeRadius) {
+              const intensity = 1 - (distance / activeRadius);
+              const easeIntensity = Math.pow(intensity, 1.4) * glowOffset;
+              const rScale = baseRadius * (1 + easeIntensity * 1.5);
+              ctx.globalAlpha = 0.3 + (easeIntensity * 0.35);
+              ctx.beginPath();
+              ctx.arc(x, y, rScale, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+      }
+
+      // Only keep the loop alive if something is still animating
+      if (isActive || glowOffset > 0.005) {
+        animationFrameId = requestAnimationFrame(draw);
+      }
     };
 
-    draw();
+    // Draw once (idle state — loop stops immediately since !isActive && glowOffset=0)
+    animationFrameId = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener('resize', updateSize);

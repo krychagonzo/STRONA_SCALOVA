@@ -132,18 +132,16 @@ export default function ConsultationModal({ isOpen, onClose, source = 'Strona g≈
         {!submitted ? (
           <div className="flex flex-col md:flex-row">
 
-            {/* LEFT - value prop */}
+            {/* LEFT - value prop (desktop only) */}
             <div
-              className="md:w-[42%] p-6 sm:p-8 md:p-12 flex flex-col gap-6 md:gap-8"
-              style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', borderRight: 'none' }}
+              className="hidden md:flex md:w-[42%] p-12 flex-col gap-8"
+              style={{ borderRight: '1px solid rgba(255,255,255,0.05)' }}
             >
-              <div className="block md:hidden w-full h-[1px]" />
-
               <div className="flex flex-col gap-5">
                 <span className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase opacity-80">
                   // BEZP≈ÅATNA KONSULTACJA
                 </span>
-                <h2 className="font-heading font-light text-ivory text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
+                <h2 className="font-heading font-light text-ivory text-4xl leading-tight tracking-tight">
                   Porozmawiajmy<br />o Twoim<br />biznesie.
                 </h2>
                 <p className="text-ivory/50 text-sm leading-relaxed font-sans max-w-xs">
@@ -174,8 +172,19 @@ export default function ConsultationModal({ isOpen, onClose, source = 'Strona g≈
             <div className="hidden md:block w-[1px] self-stretch" style={{ background: 'rgba(255,255,255,0.05)' }} />
 
             {/* RIGHT - form */}
-            <div className="md:w-[58%] p-6 sm:p-8 md:p-12 flex flex-col gap-6">
-              <div className="flex flex-col gap-5">
+            <div className="w-full md:w-[58%] p-4 sm:p-6 md:p-12 flex flex-col gap-4 md:gap-6">
+
+              {/* Mobile-only compact header */}
+              <div className="md:hidden flex flex-col gap-1 pb-1">
+                <span className="font-mono text-accent text-[10px] tracking-[0.25em] uppercase opacity-80">
+                  // BEZP≈ÅATNA KONSULTACJA
+                </span>
+                <h2 className="font-heading font-light text-ivory text-xl leading-tight tracking-tight">
+                  Um√≥w konsultacjƒô.
+                </h2>
+              </div>
+
+              <div className="flex flex-col gap-3 md:gap-5">
                 <Field
                   label="Imiƒô i nazwisko"
                   required
@@ -213,12 +222,12 @@ export default function ConsultationModal({ isOpen, onClose, source = 'Strona g≈
 
               <div className="w-full h-[1px] bg-ivory/5" />
 
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2 md:gap-3">
                 <button
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSending}
-                  className="group relative overflow-hidden w-full font-heading font-bold uppercase tracking-wider text-sm py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.02] shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:shadow-[0_0_50px_rgba(212,255,0,0.35)] disabled:opacity-70 disabled:hover:scale-100"
+                  className="group relative overflow-hidden w-full font-heading font-bold uppercase tracking-wider text-sm py-3.5 md:py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.02] shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:shadow-[0_0_50px_rgba(212,255,0,0.35)] disabled:opacity-70 disabled:hover:scale-100"
                 >
                   <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 ease-in-out group-hover:left-[150%] pointer-events-none" />
                   <span className="relative z-10 flex items-center justify-center gap-3">
@@ -262,7 +271,7 @@ function Field({ label, required, value, onChange, placeholder, type = 'text', e
       <div className="flex w-full font-sans text-sm transition-all duration-200" style={{ border, background: bg }}>
         {prefix && (
           <span
-            className="px-4 py-3.5 text-ivory/40 shrink-0 select-none"
+            className="px-3 py-3 md:px-4 md:py-3.5 text-ivory/40 shrink-0 select-none"
             style={{ borderRight: '1px solid rgba(255,255,255,0.08)' }}
           >
             {prefix}
@@ -273,7 +282,7 @@ function Field({ label, required, value, onChange, placeholder, type = 'text', e
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="flex-1 bg-transparent text-ivory placeholder:text-ivory/20 px-4 py-3.5 outline-none min-w-0"
+          className="flex-1 bg-transparent text-ivory placeholder:text-ivory/20 px-3 py-3 md:px-4 md:py-3.5 outline-none min-w-0"
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />

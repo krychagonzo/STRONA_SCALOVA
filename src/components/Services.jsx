@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import InteractiveDotGrid from './ui/InteractiveDotGrid';
-import { Globe, Megaphone, MonitorPlay, Settings, TrendingUp, Cpu, Palette, Phone } from 'lucide-react';
 
 const servicesList = [
   {
@@ -11,9 +11,7 @@ const servicesList = [
     slug: "/uslugi/strona-ai",
     areaLabel: "INFRASTRUKTURA POZYSKIWANIA LEADÓW",
     desc: "Większość stron firmowych to wizytówki, które czekają aż ktoś sam zadzwoni. Twoja będzie działać inaczej: ładuje się w mniej niż 1,5 sekundy, odpowiada na pytania klientów o 3 w nocy i kwalifikuje zapytania zanim Ty zdążysz otworzyć skrzynkę. Budujemy platformę, która zamienia ruch w realne leady - każdego dnia, bez Twojego udziału.",
-    extendedDesc: "Większość stron firmowych istnieje tylko po to, żeby istnieć.\n\nTwoja będzie pracować - kwalifikować zapytania, zbierać dane kontaktowe i odpowiadać na pytania klientów o 3 w nocy.\n\nProjektujemy platformy, które ładują się w mniej niż 1,5 sekundy i zamieniają ruch w realne leady, zanim Ty zdążysz otworzyć skrzynkę mailową.",
     features: ["Landing page", "Rozbudowana witryna firmowa", "AI-asystent na stronie", "Integracja z CRM i narzędziami", "Optymalizacja wydajności i SEO"],
-    metricContent: "Chatbot kwalifikuje zapytania zanim Ty je zobaczysz. Ładowanie <1,5s.",
     icon: "/SEKCJA_USLUGI/IKONA_STRONA_AI.svg"
   },
   {
@@ -22,9 +20,7 @@ const servicesList = [
     slug: "/uslugi/kampanie",
     areaLabel: "TWÓJ SILNIK WZROSTU",
     desc: "Większość agencji optymalizuje kampanie pod kliknięcia i zasięg. My optymalizujemy pod sprzedaż. Łączymy płatne reklamy w Google i Meta z treściami organicznymi, żeby każda złotówka budżetu była śledzona do konkretnej transakcji, a nie do wykresu, którym można się pochwalić na spotkaniu.",
-    extendedDesc: "Większość agencji optymalizuje pod kliknięcia. My optymalizujemy pod pieniądze.\n\nKażda kampania jest śledzona do sprzedaży, nie do zasięgu.\n\nŁączymy płatną dystrybucję z organicznym wzrostem - żeby każda złotówka pracowała na wynik, a nie na wykres, którym można się pochwalić na spotkaniu.",
     features: ["Meta Ads (Facebook & Instagram)", "Google Ads (Search & Display)", "YouTube Ads", "Artykuły sponsorowane i Native Ads", "Content organiczny"],
-    metricContent: "Optymalizacja pod ROAS, nie pod kliknięcia. Raporty co tydzień.",
     icon: "/SEKCJA_USLUGI/IKONA_KAMPANIE_ORGANIC.svg"
   },
   {
@@ -33,9 +29,7 @@ const servicesList = [
     slug: "/uslugi/statyczne-tresci",
     areaLabel: "SYSTEM BUDOWANIA AUTORYTETU",
     desc: "Projektujemy unikalny kod wizualny Twojej firmy. Od kompleksowego rebrandingu, przez fotorealistyczne rendery 3D i grafikę AI, aż po sprzedażowe Pitch Decki i infografiki. Tworzymy spójne materiały, które budują autorytet, podnoszą postrzeganą wartość usług i bezpośrednio przyspieszają zamykanie transakcji.",
-    extendedDesc: "Algorytmy faworyzują regularność. Klienci faworyzują wiarygodność.\n\nTworzymy statyczne treści wizualne, które robią jedno i drugie jednocześnie - budują Twoją pozycję eksperta i są projektowane pod konkretne formaty dystrybucji.\n\nNie produkujemy contentu dla samego contentu. Każdy materiał ma cel: zaufanie, zasięg albo sprzedaż.",
     features: ["Identyfikacja Wizualna i Rebranding", "Wizualizacje Produktów i Architektury", "Grafika Wspierana przez AI", "Design Sprzedażowy i Materiały", "Infografiki i Wizualizacja Danych"],
-    metricContent: "Pozycja eksperta budowana regularnym contentem opartym na danych.",
     icon: "/SEKCJA_USLUGI/IKONA_STATYCZNE_TRESCI_WIZ.svg"
   },
   {
@@ -44,9 +38,7 @@ const servicesList = [
     slug: "/uslugi/automatyzacje",
     areaLabel: "TWÓJ BEZOSOBOWY BACK-OFFICE",
     desc: "Twój zespół codziennie traci godziny na ręczne przepisywanie danych, powiadomienia, które można wysyłać automatycznie, i zadania, które nie wymagają człowieka - tylko nikt jeszcze tego nie ustawił. Audytujemy procesy, usuwamy powtarzalną pracę i budujemy system, który wykonuje ją zamiast Twojego zespołu. Od pierwszego tygodnia.",
-    extendedDesc: "Większość firm traci codziennie godziny na ręczne przepisywanie danych między aplikacjami, które nigdy nie były zaprojektowane do współpracy.\n\nAudytujemy Twoje procesy, identyfikujemy punkty tarcia i budujemy system, który łączy CRM, fakturowanie i raportowanie w jeden sprawnie działający przepływ.\n\nBez programistów, bez chaosu, od pierwszego tygodnia.",
     features: ["Automatyzacja procesów operacyjnych", "Konfiguracja i optymalizacja CRM", "Automatyczne fakturowanie", "Automatyzacja komunikacji z klientem", "Zarządzanie zespołem i monitorowanie"],
-    metricContent: "Łączymy CRM, faktury, powiadomienia i raporty w jedno.",
     icon: "/SEKCJA_USLUGI/IKONA_AUTOMATYZACJE.svg"
   },
   {
@@ -55,9 +47,7 @@ const servicesList = [
     slug: "/uslugi/sprzedaz",
     areaLabel: "PRZEBUDOWA PROCESU ZAMYKANIA",
     desc: "Słaba oferta to nie problem graficzny. To zły układ argumentów i brak odpowiedzi na pytania, które klient ma w głowie zanim je zada. Przebudowujemy Twój proces sprzedaży od podstaw: analiza dlaczego klienci odchodzą, nowa struktura oferty i przeszkolony zespół, który wie jak jej używać - więcej zamkniętych transakcji przy tych samych leadach.",
-    extendedDesc: "Słaba oferta to nie problem graficzny - to problem struktury argumentacji.\n\nPrzebudowujemy Twój pitch od podstaw: zaczynamy od zrozumienia, dlaczego klienci kupują (albo nie), a kończymy na materiale handlowym i przeszkolonym zespole, który wie jak go używać.\n\nEfekt: wyższy win-rate przy tych samych leadach.",
     features: ["Przebudowa oferty handlowej", "Skrypty i scenariusze rozmów", "Szkolenie zespołu sprzedażowego", "Materiały wspierające sprzedaż", "System mierzenia win-rate"],
-    metricContent: "Szkolenie + przebudowa oferty pod wyższy win-rate.",
     icon: "/SEKCJA_USLUGI/IKONA_SPRZEDAZ_OFERTA.svg"
   },
   {
@@ -66,9 +56,7 @@ const servicesList = [
     slug: "/uslugi/ai-w-firmie",
     areaLabel: "TWOJA PRZEWAGA TECHNOLOGICZNA",
     desc: "Dziewięć na dziesięć firm testuje AI przez rok i wraca do Excela. My nie wdrażamy eksperymentów - wdrażamy konkretne narzędzia dopasowane do Twoich procesów: asystentów dla zespołu, automatyzację komunikacji z klientami i analizę danych, która zastępuje ręczne raporty. Twój zespół zaczyna używać AI produktywnie od pierwszego tygodnia, bez miesięcy szkoleń.",
-    extendedDesc: "Dziewięć na dziesięć firm 'eksperymentuje z AI' przez rok i wraca do Excela.\n\nWdrażamy konkretne narzędzia dopasowane do Twoich procesów - od automatyzacji komunikacji z klientami, przez analizę danych, po asystentów dla Twojego zespołu.\n\nBez miesięcy szkoleń, bez przestojów. Twój zespół zaczyna używać AI produktywnie od pierwszego tygodnia.",
     features: ["Audyt gotowości firmy na AI", "Korporacyjna baza wiedzy AI", "Asystenci AI dla zespołu", "Automatyzacja komunikacji z klientami", "Analiza danych i raportowanie AI"],
-    metricContent: "Wdrożenie bez chaosu. Twój zespół wie jak używać, nie tylko co to jest.",
     icon: "/SEKCJA_USLUGI/IKONA_AI_FIRMA.svg"
   },
   {
@@ -77,9 +65,7 @@ const servicesList = [
     slug: "/uslugi/ruchome-tresci",
     areaLabel: "TWOJA FABRYKA UWAGI",
     desc: "Ożywiamy biznes, tłumacząc skomplikowane idee językiem płynnego ruchu. Produkujemy fotorealistyczne animacje 3D, wideo szkoleniowe, angażujące formaty na Social Media oraz wirtualną rzeczywistość. Tworzymy dynamikę, która odciąża działy obsługi, zatrzymuje kciuk i zostaje w pamięci klientów na dłużej.",
-    extendedDesc: "W świecie krótkiej uwagi wideo jest walutą.\n\nTworzymy ruchome treści wizualne - od reelsów i shortów po animacje produktowe - które zatrzymują kciuk w połowie przewijania i sprawiają, że marka zapada w pamięć, zanim klient zdąży pomyśleć 'skip'.\n\nKażdy materiał zoptymalizowany pod konkretny format i cel dystrybucji.",
     features: ["Animacje 2D i 3D", "Explainer Videos (Filmy instruktażowe)", "Social Media & Montaż Dynamiczny", "Wirtualna Rzeczywistość (VR) i Interakcja", "Motion Design w Interfejsach (UI)"],
-    metricContent: "Pełna księga znaku + wytyczne dla każdego touchpointu.",
     icon: "/SEKCJA_USLUGI/IKONA_RUCHOME_TRESCI_WIZUALNE.svg"
   },
   {
@@ -88,20 +74,18 @@ const servicesList = [
     slug: "/uslugi/zloty-numer",
     areaLabel: "TWOJA LINIA PIERWSZEGO KONTAKTU",
     desc: "Numer telefonu to najkrótszy most między klientem a sprzedażą - pod warunkiem, że klient go pamięta. Złoty numer to narzędzie sprzedażowe, które wpisuje się z głowy, bez szukania w kontaktach. Pomagamy wybrać, zarejestrować i wdrożyć numer, który wzmacnia rozpoznawalność przy każdym kontakcie z marką - billboardzie, reklamie, wizytówce.",
-    extendedDesc: "Telefon nadal jest najszybszym mostem między klientem a sprzedażą.\n\nZłoty numer to narzędzie sprzedażowe, które klient pamięta bez zapisywania w kontaktach.\n\nPomagamy wybrać, zarejestrować i wdrożyć numer, który wzmacnia rozpoznawalność przy każdym touchpoincie - billboardzie, reklamie, wizytówce.",
     features: ["Spersonalizowany Złoty Numer", "Rejestracja, konfiguracja i przekazanie", "Integracja zaawansowanej centrali", "Wdrożenie we wszystkich kanałach", "System zaawansowanej analityki", "Automatyzacja CRM"],
-    metricContent: "Kluczowy punkt styku z marką. Zapada w pamięć, zanim klient zdąży zapisać kontakt.",
     icon: "/SEKCJA_USLUGI/IKONA_ZLOTY_NUMER.svg"
   }
 ];
 
-const RenderIcon = ({ icon, className, strokeWidth = 1.5 }) => {
+const RenderIcon = ({ icon, className }) => {
   if (typeof icon === 'string') {
     return (
-      <div 
-        className={`${className} bg-current`} 
-        style={{ 
-          maskImage: `url(${icon})`, 
+      <div
+        className={`${className} bg-current`}
+        style={{
+          maskImage: `url(${icon})`,
           WebkitMaskImage: `url(${icon})`,
           maskSize: 'contain',
           WebkitMaskSize: 'contain',
@@ -109,59 +93,49 @@ const RenderIcon = ({ icon, className, strokeWidth = 1.5 }) => {
           WebkitMaskPosition: 'center',
           maskRepeat: 'no-repeat',
           WebkitMaskRepeat: 'no-repeat'
-        }} 
+        }}
       />
     );
   }
-  
   const IconComponent = icon;
-  return <IconComponent className={className} strokeWidth={strokeWidth} />;
+  return <IconComponent className={className} strokeWidth={1.5} />;
 };
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  },
-  exit: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-      staggerDirection: 1
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.3 } }
-};
+const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
+  const [overlayIndex, setOverlayIndex] = useState(null);
   const containerRef = useRef(null);
-  const [mobileSlide, setMobileSlide] = useState(0);
-  const touchStartX = useRef(null);
+  const overlayTouchStart = useRef(null);
 
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
+  const openService = (idx) => {
+    setSelectedService(idx);
+    setOverlayIndex(idx);
   };
-  const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) setMobileSlide(prev => Math.min(prev + 1, servicesList.length - 1));
-      else setMobileSlide(prev => Math.max(prev - 1, 0));
+
+  const closeService = () => {
+    setSelectedService(null);
+    setOverlayIndex(null);
+  };
+
+  const handleOverlayTouchStart = (e) => {
+    overlayTouchStart.current = e.touches[0].clientX;
+  };
+
+  const handleOverlayTouchEnd = (e) => {
+    if (overlayTouchStart.current === null) return;
+    const diff = overlayTouchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) setOverlayIndex(prev => Math.min(prev + 1, servicesList.length - 1));
+      else setOverlayIndex(prev => Math.max(prev - 1, 0));
     }
-    touchStartX.current = null;
+    overlayTouchStart.current = null;
   };
 
+  // Scroll into view only on desktop — on mobile the overlay covers the whole screen
   useEffect(() => {
-    if (selectedService !== null && containerRef.current) {
+    if (selectedService !== null && containerRef.current && isDesktop) {
       setTimeout(() => {
         const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 80;
         window.scrollTo({ top, behavior: 'smooth' });
@@ -169,35 +143,46 @@ export default function Services() {
     }
   }, [selectedService]);
 
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
+  // Lock body scroll when mobile overlay is open
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (selectedService !== null && isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [selectedService]);
 
-  const logoY = useTransform(scrollYProgress, [0, 1], [-150, -850]);
-  const logoRotate = useTransform(scrollYProgress, [0, 1], [-5, 15]);
+  const sectionRef = useRef(null);
+  // useScroll creates a scroll listener — only wire it up on desktop where it's used
+  const { scrollYProgress } = useScroll(
+    isDesktop ? { target: sectionRef, offset: ['start end', 'end start'] } : {}
+  );
+  const _deadValue = useMotionValue(0); // stable no-op for mobile
+  const logoY = useTransform(isDesktop ? scrollYProgress : _deadValue, [0, 1], isDesktop ? [-150, -850] : [0, 0]);
+  const logoRotate = useTransform(isDesktop ? scrollYProgress : _deadValue, [0, 1], isDesktop ? [-5, 15] : [0, 0]);
 
   const scrollToCTA = () => {
     const ctaSection = document.getElementById('footer-cta');
-    if (ctaSection) {
-      ctaSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (ctaSection) ctaSection.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const activeService = overlayIndex !== null ? servicesList[overlayIndex] : null;
+
   return (
-    <section 
-      id="services" 
-      ref={sectionRef} 
+    <section
+      id="services"
+      ref={sectionRef}
       className="w-full bg-[linear-gradient(to_bottom,#1a1a1a_0%,#0c0c0c_100%)] py-32 px-6 flex justify-center relative overflow-x-hidden"
-      style={{ 
+      style={{
         maskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)'
       }}
     >
-      {/* Interactive Radial Dot Matrix Background */}
-      <div className="absolute inset-0 flex justify-center w-full h-full z-0 opacity-40">
-        <div 
+      {/* Dot grid — desktop only (never mounted on mobile — constant RAF loop) */}
+      {isDesktop && <div className="absolute inset-0 hidden md:flex justify-center w-full h-full z-0 opacity-40">
+        <div
           className="w-full h-full"
           style={{
             maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent), linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
@@ -216,12 +201,11 @@ export default function Services() {
             <InteractiveDotGrid />
           </div>
         </div>
-      </div>
-
+      </div>}
 
       <div className="max-w-[1640px] w-full flex flex-col items-center flex-1 relative z-[2]">
 
-        {/* Header - ukrywa się powoli gdy jesteśmy w detalach */}
+        {/* Header */}
         <motion.div
           className="w-full px-6 md:px-12 mb-16 uppercase tracking-widest font-heading flex flex-col items-center text-center"
           animate={{ opacity: 1 }}
@@ -234,11 +218,12 @@ export default function Services() {
                 Co wdrażamy w Twojej firmie.
               </h2>
             </div>
-            <motion.img 
-              src="/LOGO_3D_2.png" 
-              alt="" 
+            {/* Parallax logo — desktop only */}
+            <motion.img
+              src="/LOGO_3D_2.png"
+              alt=""
               style={{ y: logoY, rotate: logoRotate }}
-              className="absolute -right-20 md:-right-32 lg:-right-48 top-[75%] -translate-y-1/2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] h-auto z-0 pointer-events-none opacity-20 md:opacity-40 lg:opacity-100 object-contain" 
+              className="hidden md:block absolute -right-20 md:-right-32 lg:-right-48 top-[75%] -translate-y-1/2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] h-auto z-0 pointer-events-none md:opacity-40 lg:opacity-100 object-contain"
             />
           </div>
           <p className="text-ivory/60 mt-4 text-base md:text-lg max-w-3xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
@@ -246,96 +231,53 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Dynamiczny Kontener - Animacja Przejścia */}
         <div ref={containerRef} className="relative w-full flex-1 flex flex-col justify-center items-center">
           <div className="relative w-full">
-            
-            {/* MOBILE CAROUSEL */}
-            <div
-              className="md:hidden w-full relative overflow-hidden"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              <div
-                className="flex transition-transform duration-300 ease-out"
-                style={{ transform: `translateX(-${mobileSlide * 100}%)` }}
-              >
-                {servicesList.map((service, idx) => (
-                  <div
-                    key={idx}
-                    className="w-full flex-shrink-0 border border-white/5 bg-[#0c0c0c] flex flex-col items-center justify-center gap-6 cursor-pointer select-none"
-                    style={{ minHeight: '72vw', padding: '8vw' }}
-                    onClick={() => { setMobileSlide(idx); setSelectedService(idx); }}
-                  >
-                    <RenderIcon icon={service.icon} className="w-16 h-16 text-ivory/50" />
-                    <div className="flex flex-col items-center gap-2 text-center">
-                      <span className="font-mono text-accent text-[10px] tracking-[0.25em]">
-                        {String(idx + 1).padStart(2, '0')} / {String(servicesList.length).padStart(2, '0')}
-                      </span>
-                      <h3 className="text-ivory font-heading font-light tracking-tight text-[6vw] uppercase leading-tight text-center">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <span className="font-mono text-ivory/25 text-[9px] tracking-[0.25em] uppercase">dotknij aby rozwinąć</span>
-                  </div>
-                ))}
-              </div>
-              {/* Navigation dots */}
-              <div className="flex justify-center items-center gap-1.5 mt-5 pb-2">
-                {servicesList.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setMobileSlide(idx)}
-                    className={`rounded-full transition-all duration-300 ${idx === mobileSlide ? 'w-5 h-1.5 bg-accent' : 'w-1.5 h-1.5 bg-white/20'}`}
-                  />
-                ))}
-              </div>
-            </div>
 
-            {/* BAZOWA SIATKA (W TLE) */}
-            <div className={`hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? "pointer-events-none" : ""}`}>
+            {/* GRID — 2 cols mobile, 2 cols md, 4 cols lg */}
+            <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 w-full px-3 sm:px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? 'pointer-events-none' : ''}`}>
               {servicesList.map((service, idx) => {
                 const isSelected = selectedService === idx;
                 const isHidden = selectedService !== null && !isSelected;
 
                 return (
                   <motion.div
-                    layoutId={`wrapper-${idx}`}
+                    layoutId={isDesktop ? `wrapper-${idx}` : undefined}
                     key={`base-card-${idx}`}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: isDesktop ? 30 : 0 }}
                     animate={{ opacity: isHidden ? 0 : isSelected ? 0 : 1, y: 0 }}
-                    transition={{ 
-                      duration: isHidden ? 0.2 : 0.4, 
-                      delay: isHidden ? idx * 0.04 : 0,
+                    transition={{
+                      duration: isDesktop ? (isHidden ? 0.2 : 0.4) : 0,
+                      delay: isDesktop && isHidden ? idx * 0.04 : 0,
                       layout: { duration: isSelected ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }
                     }}
-                    className="group aspect-square w-full rounded-none border border-white/5 bg-[#0c0c0c] p-6 xl:p-8 flex flex-col justify-between hover:bg-accent hover:border-accent hover:-translate-y-2 cursor-pointer transition-all duration-500 overflow-hidden relative"
-                    onClick={() => setSelectedService(idx)}
+                    className="group aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between hover:bg-accent hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
+                    onClick={() => openService(idx)}
                   >
                     <div className="flex flex-col">
-                      <motion.div layoutId={`icon-${idx}`} className="mb-8 text-ivory/50 group-hover:text-obsidian transition-all duration-500">
-                        <RenderIcon icon={service.icon} className="w-16 h-16 xl:w-20 xl:h-20" strokeWidth={1.5} />
+                      <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-2 sm:mb-6 text-ivory/50 group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                        <RenderIcon icon={service.icon} className="w-8 h-8 sm:w-14 sm:h-14 xl:w-20 xl:h-20" />
                       </motion.div>
-                      <motion.h3 layoutId={`title-${idx}`} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-base lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-tight relative z-10">
+                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[11px] sm:text-sm lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-tight relative z-10">
                         {service.title}
                       </motion.h3>
                     </div>
 
-                    <div className="flex items-center justify-between w-full mt-auto pt-6 border-t border-white/5 group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
-                      <div className="flex items-center gap-3 text-ivory/40 group-hover:text-obsidian transition-all duration-500">
-                        <span className="font-heading text-[10px] tracking-[0.3em] uppercase">WIĘCEJ</span>
-                        <div className="w-8 h-[1px] bg-current"></div>
+                    <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
+                      <div className="flex items-center gap-2 sm:gap-3 text-ivory/40 group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                        <span className="font-heading text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
+                        <div className="w-5 sm:w-8 h-[1px] bg-current"></div>
                       </div>
-                      <div className="w-9 h-9 border border-white/10 group-hover:border-obsidian/30 flex items-center justify-center text-lg font-light text-ivory/30 group-hover:text-obsidian transition-all duration-500">
+                      <div className="w-7 h-7 sm:w-9 sm:h-9 border border-white/10 group-hover:border-obsidian/30 flex items-center justify-center text-base sm:text-lg font-light text-ivory/30 group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
                         ＋
                       </div>
                     </div>
                   </motion.div>
-                )
+                );
               })}
             </div>
 
-            {/* CLICK OUTSIDE BACKDROP */}
+            {/* BACKDROP — desktop only */}
             <AnimatePresence>
               {selectedService !== null && (
                 <motion.div
@@ -344,36 +286,151 @@ export default function Services() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="fixed inset-0 z-40"
-                  onClick={() => setSelectedService(null)}
+                  className="fixed inset-0 z-40 hidden md:block"
+                  onClick={closeService}
                 />
               )}
             </AnimatePresence>
 
-            {/* OVERLAY: POWIĘKSZONY KAFELEK — Proposal B "Command Center" */}
+            {/* MOBILE OVERLAY — portal to body, escapes mask-image stacking context */}
+            {createPortal(
+              <AnimatePresence>
+              {selectedService !== null && activeService && (
+                <motion.div
+                  className="fixed top-[68px] left-0 right-0 bottom-0 z-[200] md:hidden flex flex-col"
+                  style={{ background: '#0c0c0c', borderTop: '2px solid rgba(212,255,0,0.25)' }}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 24 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                  onTouchStart={handleOverlayTouchStart}
+                  onTouchEnd={handleOverlayTouchEnd}
+                >
+                  {/* Top bar */}
+                  <div className="flex items-center justify-between px-5 pt-6 pb-4 border-b border-white/5 shrink-0">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-accent text-[11px] tracking-[0.25em]">
+                        {String((overlayIndex ?? 0) + 1).padStart(2, '0')} / {String(servicesList.length).padStart(2, '0')}
+                      </span>
+                      <span className="font-mono text-ivory/30 text-[10px] border border-white/10 px-2 py-0.5 uppercase tracking-widest">
+                        {activeService.tag}
+                      </span>
+                    </div>
+                    <button onClick={closeService} className="text-ivory/40 hover:text-ivory p-2 -mr-2">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Scrollable content */}
+                  <div className="flex-1 overflow-y-auto pb-24">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={overlayIndex}
+                        initial={{ opacity: 0, x: 16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -16 }}
+                        transition={{ duration: 0.18 }}
+                        className="px-5 pt-6"
+                      >
+                        {/* Icon + Title */}
+                        <div className="flex items-center gap-4 mb-5">
+                          <RenderIcon icon={activeService.icon} className="w-10 h-10 text-ivory/40 shrink-0" />
+                          <h3 className="text-ivory font-heading font-light tracking-tight text-2xl uppercase leading-tight">
+                            {activeService.title}
+                          </h3>
+                        </div>
+
+                        {/* Description */}
+                        <p className="font-sans text-ivory/60 text-sm leading-relaxed mb-7">
+                          {activeService.desc}
+                        </p>
+
+                        {/* Features */}
+                        <div className="flex flex-col gap-3 mb-8">
+                          {activeService.features.map((feat, fIdx) => (
+                            <div key={fIdx} className="flex items-start gap-3 text-sm font-heading text-ivory/60">
+                              <span className="font-mono text-accent text-[11px] shrink-0 mt-[2px] tracking-[0.2em]">
+                                {String(fIdx + 1).padStart(2, '0')}
+                              </span>
+                              <span className="leading-snug">{feat}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* CTA */}
+                        {activeService.slug && (
+                          <Link
+                            to={activeService.slug}
+                            onClick={closeService}
+                            className="w-full py-4 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest flex items-center justify-center gap-3 mb-2"
+                          >
+                            DOWIEDZ SIĘ WIĘCEJ
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                          </Link>
+                        )}
+
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Bottom navigation bar */}
+                  <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-5 py-4 border-t border-white/10" style={{ background: '#0c0c0c' }}>
+                    <button
+                      onClick={() => setOverlayIndex(prev => Math.max(prev - 1, 0))}
+                      disabled={overlayIndex === 0}
+                      className="flex items-center gap-2 font-mono text-[10px] text-ivory/40 uppercase tracking-widest disabled:opacity-20 py-1"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="m15 18-6-6 6-6" /></svg>
+                      Poprzednia
+                    </button>
+                    <div className="flex gap-1.5 items-center">
+                      {servicesList.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setOverlayIndex(i)}
+                          className={`rounded-full transition-all duration-300 ${i === overlayIndex ? 'w-5 h-1.5 bg-accent' : 'w-1.5 h-1.5 bg-white/20'}`}
+                        />
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => setOverlayIndex(prev => Math.min(prev + 1, servicesList.length - 1))}
+                      disabled={overlayIndex === servicesList.length - 1}
+                      className="flex items-center gap-2 font-mono text-[10px] text-ivory/40 uppercase tracking-widest disabled:opacity-20 py-1"
+                    >
+                      Następna
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+              </AnimatePresence>,
+              document.body
+            )}
+
+            {/* DESKTOP OVERLAY — layoutId expand */}
             <AnimatePresence>
               {selectedService !== null && (
+                <motion.div
+                  layoutId={`wrapper-${selectedService}`}
+                  className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 overflow-hidden hidden md:block"
+                  transition={{ layout: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }}
+                  style={{
+                    background: "rgba(12, 12, 12, 0.97)",
+                    backdropFilter: "blur(32px)",
+                    WebkitBackdropFilter: "blur(32px)",
+                    border: "1px solid rgba(255, 255, 255, 0.05)",
+                    borderTop: "1px solid rgba(255, 255, 255, 0.15)",
+                    boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.7)",
+                  }}
+                >
                   <motion.div
-                    layoutId={`wrapper-${selectedService}`}
-                    className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 overflow-hidden"
-                    transition={{ layout: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }}
-                    style={{
-                      background: "rgba(12, 12, 12, 0.97)",
-                      backdropFilter: "blur(32px)",
-                      WebkitBackdropFilter: "blur(32px)",
-                      border: "1px solid rgba(255, 255, 255, 0.05)",
-                      borderTop: "1px solid rgba(255, 255, 255, 0.15)",
-                      boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.7)",
-                    }}
-                  >
-                  {/* Duża ikona w prawym górnym rogu */}
-                  <motion.div 
-                    layoutId={`icon-${selectedService}`} 
+                    layoutId={`icon-${selectedService}`}
                     className="absolute top-2 right-4 md:top-4 md:right-8 lg:top-4 lg:right-10 z-30 text-white/[0.07] pointer-events-none"
                   >
-                    <RenderIcon icon={servicesList[selectedService].icon} className="w-32 h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 object-contain" strokeWidth={1} />
+                    <RenderIcon icon={servicesList[selectedService].icon} className="w-32 h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 object-contain" />
                   </motion.div>
-
 
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -381,9 +438,8 @@ export default function Services() {
                     exit={{ opacity: 0, transition: { duration: 0 } }}
                     className="relative z-10 w-full flex flex-col md:min-h-[620px]"
                   >
-                    {/* WSPÓLNY NAGŁÓWEK NA CAŁĄ SZEROKOŚĆ */}
-                    <div className="w-full p-5 sm:p-8 md:p-12 lg:p-16 pb-8 sm:pb-10 md:pb-14 lg:pb-16 border-b border-white/5 flex flex-col relative z-20">
-                      {/* Numer seryjny + tag */}
+                    {/* Header */}
+                    <div className="w-full p-8 md:p-12 lg:p-16 pb-10 md:pb-14 lg:pb-16 border-b border-white/5 flex flex-col relative z-20">
                       <div className="flex items-center gap-4 mb-4 md:mb-6">
                         <span className="font-mono text-accent text-[11px] tracking-[0.25em]">
                           {String(selectedService + 1).padStart(2, '0')} / 08
@@ -392,19 +448,17 @@ export default function Services() {
                           {servicesList[selectedService].tag}
                         </span>
                       </div>
-
-                      {/* Gigantyczny Tytuł */}
                       <motion.h3
                         layoutId={`title-${selectedService}`}
-                        className="text-ivory font-heading font-light tracking-tighter text-3xl md:text-5xl lg:text-[4.5rem] xl:text-[5.5rem] uppercase leading-[0.9] w-full text-left text-balance"
+                        className="text-ivory font-heading font-light tracking-tighter text-5xl lg:text-[4.5rem] xl:text-[5.5rem] uppercase leading-[0.9] w-full text-left"
                       >
                         {servicesList[selectedService].title}
                       </motion.h3>
                     </div>
 
                     <div className="flex flex-col md:flex-row flex-1">
-                      {/* LEWA KOLUMNA: CHECKMARKI */}
-                      <div className="md:w-[40%] xl:w-[35%] p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative z-10">
+                      {/* Left: features */}
+                      <div className="md:w-[40%] xl:w-[35%] p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative z-10">
                         <div className="flex flex-col gap-4 mt-auto">
                           {servicesList[selectedService].features.map((feat, fIdx) => (
                             <motion.div
@@ -423,23 +477,21 @@ export default function Services() {
                         </div>
                       </div>
 
-                      {/* PRAWA KOLUMNA: OPIS I PRZYCISKI */}
+                      {/* Right: desc + buttons */}
                       <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0, transition: { delay: 0.45 } }}
-                        className="flex-1 p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-end relative z-10"
+                        className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-end relative z-10"
                       >
-                        {/* Dolna część: opis — przyklejone do dołu */}
                         <div className="mb-6 md:mb-8">
                           <p className="font-sans text-ivory/65 text-base md:text-lg xl:text-xl leading-relaxed">
                             {servicesList[selectedService].desc}
                           </p>
                         </div>
 
-                        {/* Przyciski */}
                         <div className="hidden md:flex flex-col sm:flex-row gap-3 pt-8 border-t border-white/5">
                           <button
-                            onClick={(e) => { e.stopPropagation(); setSelectedService(null); }}
+                            onClick={(e) => { e.stopPropagation(); closeService(); }}
                             className="group py-4 px-8 bg-white/5 border border-white/10 text-[11px] font-heading font-bold uppercase tracking-widest text-ivory/70 transition-all duration-300 hover:border-ivory/20 hover:bg-white/10 flex items-center justify-center gap-3"
                           >
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="m15 18-6-6 6-6" /></svg>
@@ -454,7 +506,7 @@ export default function Services() {
                               <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
                               <span className="relative z-10 flex items-center gap-3">
                                 DOWIEDZ SIĘ WIĘCEJ
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                               </span>
                             </Link>
                           ) : (
@@ -473,6 +525,7 @@ export default function Services() {
                 </motion.div>
               )}
             </AnimatePresence>
+
           </div>
         </div>
 

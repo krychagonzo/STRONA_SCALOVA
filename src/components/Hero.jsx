@@ -134,22 +134,25 @@ export default function Hero() {
         delay: 2.2,
         force3D: true
       });
-      gsap.to('.front-logo-wrapper', {
-        x: '50vw',
-        y: '-50vh',
-        scale: 0.8,
-        opacity: 0,
-        ease: 'none',
-        force3D: true,
-        scrollTrigger: {
-          trigger: comp.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1,
-          fastScrollEnd: true,
-          preventOverlaps: true
-        }
-      });
+      // Scroll animation only on desktop — on mobile arrow is static
+      if (window.innerWidth >= 768) {
+        gsap.to('.front-logo-wrapper', {
+          x: '50vw',
+          y: '-50vh',
+          scale: 0.8,
+          opacity: 0,
+          ease: 'none',
+          force3D: true,
+          scrollTrigger: {
+            trigger: comp.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1,
+            fastScrollEnd: true,
+            preventOverlaps: true
+          }
+        });
+      }
     }, comp);
     return () => ctx.revert();
   }, []);
@@ -163,44 +166,64 @@ export default function Hero() {
         <HeroCanvas />
       </div>
 
-      {/* Content */}
-      <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full flex flex-col items-center justify-center pt-10 md:pt-20">
+      {/* Desktop content */}
+      <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full hidden md:flex flex-col items-center justify-center md:pt-20">
         <div className="w-full max-w-[1920px] flex flex-col items-center">
           <div id="hero-content-wrapper" className="w-full flex flex-col select-none relative z-40">
-            <span className="hero-anim-left gpu-accelerated self-start inline-block font-heading font-light text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase mb-6 md:mb-8 opacity-90">
+            <span className="hero-anim-left gpu-accelerated self-start inline-block font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-8 opacity-90">
                // AGENCJA SKALOWANIA BIZNESU
             </span>
-
-            <span className="hero-anim-left gpu-accelerated self-start font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight">
+            <span className="hero-anim-left gpu-accelerated self-start font-heading font-light md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight">
               Skaluj biznes,
             </span>
-
-            <div className="h-8 sm:h-12 md:h-20 lg:h-[4rem] xl:h-[6rem] w-full"></div>
-
-            <span className="hero-anim-right gpu-accelerated self-end font-heading font-light text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right mt-4 md:mt-0">
+            <div className="h-20 lg:h-[4rem] xl:h-[6rem] w-full"></div>
+            <span className="hero-anim-right gpu-accelerated self-end font-heading font-light md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right">
               odzyskaj czas.
             </span>
           </div>
         </div>
       </div>
 
+      {/* Mobile text — framing the arrow with calc(50vh ± 25vw) for consistent gap on all devices */}
+      <div className="md:hidden absolute inset-0 z-40 pointer-events-none select-none">
+        <div
+          className="absolute left-4 flex flex-col gap-2"
+          style={{ bottom: 'calc(50vh + 20vw + 10px)' }}
+        >
+          <span className="hero-anim-left font-heading font-light text-accent tracking-[0.2em] uppercase opacity-90" style={{ fontSize: '2.8vw', lineHeight: 1 }}>
+            // AGENCJA SKALOWANIA BIZNESU
+          </span>
+          <span className="hero-anim-left font-heading font-light tracking-tight text-ivory/90" style={{ fontSize: '12vw', lineHeight: 0.9 }}>
+            Skaluj biznes,
+          </span>
+        </div>
+        <span
+          className="hero-anim-right absolute right-4 font-heading font-light tracking-tight text-ivory text-right"
+          style={{ top: 'calc(50vh + 20vw + 10px)', fontSize: '12vw', lineHeight: 0.9 }}
+        >
+          odzyskaj czas.
+        </span>
+      </div>
+
       {/* Front logo animation layer */}
       <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
-        {/* Static image on mobile */}
+        {/* Mobile: 40vw icon, calc uses 20vw (half) */}
         <img
-          src="/logo.png"
+          src="/LOGO_AKCENT.png"
           alt=""
-          className="md:hidden absolute inset-0 w-full h-full object-contain scale-[1.1] opacity-80"
+          className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] object-contain opacity-80"
         />
-        {/* Video animation on desktop */}
-        <video
-          autoPlay
-          muted
-          playsInline
-          className="hidden md:block absolute inset-0 w-full h-full object-contain scale-[1.6]"
-        >
-          <source src="/ANIM_05_LOGO_1.webm" type="video/webm" />
-        </video>
+        {/* Desktop only — video not mounted on mobile to avoid decode overhead */}
+        {typeof window !== 'undefined' && window.innerWidth >= 768 && (
+          <video
+            autoPlay
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-contain scale-[1.6]"
+          >
+            <source src="/ANIM_05_LOGO_1.webm" type="video/webm" />
+          </video>
+        )}
       </div>
 
     </section>

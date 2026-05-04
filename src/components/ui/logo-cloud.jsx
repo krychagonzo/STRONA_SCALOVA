@@ -39,6 +39,7 @@ export function LogoCloud({ className, ...props }) {
           Zaufali nam:
         </p>
       </div>
+      {/* Single compositing layer for all logos — filter on container, not per-image */}
       <div
         {...props}
         className={cn(
@@ -46,20 +47,22 @@ export function LogoCloud({ className, ...props }) {
           className
         )}
       >
-        <InfiniteSlider gap={sliderGap} reverse={false} duration={45} durationOnHover={80}>
-          {logos.map((logo) => (
-            <img
-              key={`logo-${logo.alt}`}
-              src={logo.src}
-              alt={logo.alt}
-              className={cn(
-                "w-auto object-contain flex-shrink-0 filter grayscale brightness-0 invert opacity-40 hover:opacity-70 transition-opacity duration-300 self-center cursor-default shrink-0",
-                logo.customClass || "h-10 md:h-14"
-              )}
-              lazy="loading"
-            />
-          ))}
-        </InfiniteSlider>
+        <div className="filter grayscale brightness-0 invert">
+          <InfiniteSlider gap={sliderGap} reverse={false} duration={45}>
+            {logos.map((logo) => (
+              <img
+                key={`logo-${logo.alt}`}
+                src={logo.src}
+                alt={logo.alt}
+                className={cn(
+                  "w-auto object-contain flex-shrink-0 opacity-40 self-center cursor-default shrink-0",
+                  logo.customClass || "h-10 md:h-14"
+                )}
+                loading="lazy"
+              />
+            ))}
+          </InfiniteSlider>
+        </div>
       </div>
     </section>
   );

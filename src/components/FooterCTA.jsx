@@ -41,7 +41,7 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
         </div>
 
         {/* Big CTA Content */}
-        <section className="max-w-4xl mx-auto px-6 text-center sticky top-[15%] pb-24 md:pb-40 z-10">
+        <section className="max-w-4xl mx-auto px-6 text-center pb-24 md:pb-40 z-10 relative">
             <h2 className="title-anim font-heading font-light text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-ivory mb-6 tracking-tight leading-[0.9] uppercase text-balance">
                 Przestań walczyć z rynkiem. Zainstaluj system, który go <span className="text-accent">zdominuje.</span>
             </h2>
