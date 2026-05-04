@@ -256,19 +256,19 @@ export default function Services() {
                   >
                     <div className="flex flex-col">
                       <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-3 sm:mb-6 text-ivory/50 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <RenderIcon icon={service.icon} className="w-20 h-20 md:w-24 md:h-24 xl:w-28 xl:h-28" />
+                        <RenderIcon icon={service.icon} className="w-20 h-20 sm:w-24 sm:h-24 md:w-14 md:h-14 xl:w-20 xl:h-20" />
                       </motion.div>
-                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[18px] sm:text-lg lg:text-[28px] xl:text-[32px] 2xl:text-[36px] uppercase leading-tight relative z-10">
+                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[18px] sm:text-lg md:text-sm lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-tight relative z-10">
                         {service.title}
                       </motion.h3>
                     </div>
 
                     <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 md:group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
                       <div className="flex items-center gap-2 sm:gap-3 text-ivory/40 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <span className="font-heading text-[12px] sm:text-[14px] tracking-[0.2em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
+                        <span className="font-heading text-[12px] sm:text-[14px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
                         <div className="w-5 sm:w-8 h-[1px] bg-current"></div>
                       </div>
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center text-lg sm:text-xl font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-9 md:h-9 border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center text-lg sm:text-xl md:text-lg font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
                         ＋
                       </div>
                     </div>
