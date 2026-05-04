@@ -184,9 +184,9 @@ export default function Navbar() {
            <div className="mt-auto pt-16 flex flex-col gap-6 text-ivory/40">
               <span className="font-heading text-[10px] tracking-[0.2em] uppercase text-ivory/30">Szybki Kontakt</span>
               <div className="flex gap-6 font-sans text-xs uppercase tracking-widest text-ivory/60">
-                 <a href="#" className="hover:text-accent transition-colors">Instagram</a>
-                 <a href="#" className="hover:text-accent transition-colors">LinkedIn</a>
-                 <a href="#" className="hover:text-accent transition-colors">Facebook</a>
+                 <a href="https://www.instagram.com/scalova.pl/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Instagram</a>
+                 <a href="https://www.linkedin.com/company/scalova/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">LinkedIn</a>
+                 <a href="https://www.facebook.com/people/Scalova/61563223480934/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Facebook</a>
               </div>
            </div>
         </div>
