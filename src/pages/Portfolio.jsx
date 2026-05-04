@@ -206,12 +206,15 @@ export default function Portfolio() {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
                     />
                   ) : (
-                    <img 
-                      src={project.thumbnail} 
-                      alt={project.title} 
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
-                      loading="lazy"
-                    />
+                    <picture>
+                      <source media="(max-width: 768px)" srcSet={project.thumbnail.replace(/\.[^/.]+$/, '_mobile.webp')} type="image/webp" />
+                      <img 
+                        src={project.thumbnail} 
+                        alt={project.title} 
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
+                        loading="lazy"
+                      />
+                    </picture>
                   )}
                   
                   {/* DARK OVERLAY (Shows only on hover to let image pop initially) */}
