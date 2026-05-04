@@ -227,11 +227,11 @@ export default function Hero() {
       <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
         {/* Mobile: centered icon with glow */}
         <div className="hero-logo-mobile md:hidden absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
-          <div className="hero-glow-mobile absolute w-[35vw] h-[35vw] bg-white/10 blur-[30px] rounded-full mix-blend-screen" />
+          <div className="hero-glow-mobile absolute w-[55vw] h-[55vw] bg-white/10 blur-[40px] rounded-full mix-blend-screen" />
           <img
             src="/LOGO_AKCENT.png"
             alt=""
-            className="w-[45vw] h-[45vw] object-contain relative z-10"
+            className="w-[70vw] h-[70vw] object-contain relative z-10"
           />
         </div>
         {/* Desktop only — video not mounted on mobile to avoid decode overhead */}

@@ -11,7 +11,7 @@ export default function Navbar() {
   const navRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const location = useLocation();
 
   const handleScrollTo = (e, targetId) => {
@@ -71,22 +71,24 @@ export default function Navbar() {
   // Hide on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
       if (isMenuOpen) return;
       
-      if (currentScrollY < lastScrollY || currentScrollY < 50) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setIsVisible(false);
-      }
+      const currentScrollY = window.scrollY;
+      const scrollDiff = currentScrollY - lastScrollY.current;
       
-      setLastScrollY(currentScrollY);
+      if (Math.abs(scrollDiff) > 5) {
+        if (currentScrollY < lastScrollY.current || currentScrollY < 50) {
+          setIsVisible(prev => prev ? prev : true);
+        } else if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+          setIsVisible(prev => !prev ? prev : false);
+        }
+        lastScrollY.current = currentScrollY;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, isMenuOpen]);
+  }, [isMenuOpen]);
 
   const navLinks = [
     { name: "Strona Główna", path: "/" },

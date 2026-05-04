@@ -324,7 +324,7 @@ export default function Services() {
                   </div>
 
                   {/* Scrollable content */}
-                  <div className="flex-1 overflow-y-auto pb-24">
+                  <div className="flex-1 overflow-y-auto pb-8 no-scrollbar">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={overlayIndex}
@@ -375,34 +375,7 @@ export default function Services() {
                     </AnimatePresence>
                   </div>
 
-                  {/* Bottom navigation bar */}
-                  <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-5 py-4 border-t border-white/10" style={{ background: '#0c0c0c' }}>
-                    <button
-                      onClick={() => setOverlayIndex(prev => Math.max(prev - 1, 0))}
-                      disabled={overlayIndex === 0}
-                      className="flex items-center gap-2 font-mono text-[10px] text-ivory/40 uppercase tracking-widest disabled:opacity-20 py-1"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="m15 18-6-6 6-6" /></svg>
-                      Poprzednia
-                    </button>
-                    <div className="flex gap-1.5 items-center">
-                      {servicesList.map((_, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setOverlayIndex(i)}
-                          className={`rounded-full transition-all duration-300 ${i === overlayIndex ? 'w-5 h-1.5 bg-accent' : 'w-1.5 h-1.5 bg-white/20'}`}
-                        />
-                      ))}
-                    </div>
-                    <button
-                      onClick={() => setOverlayIndex(prev => Math.min(prev + 1, servicesList.length - 1))}
-                      disabled={overlayIndex === servicesList.length - 1}
-                      className="flex items-center gap-2 font-mono text-[10px] text-ivory/40 uppercase tracking-widest disabled:opacity-20 py-1"
-                    >
-                      Następna
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                    </button>
-                  </div>
+
                 </motion.div>
               )}
               </AnimatePresence>,

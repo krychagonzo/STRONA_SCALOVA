@@ -75,7 +75,7 @@ export default function FloatingCTA({ onOpenModal }) {
     <div ref={comp} id="floating-cta" className="fixed bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-[60] pointer-events-auto">
       <button
         onClick={onOpenModal}
-        className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-sm md:text-base pl-8 pr-6 py-3 md:pl-10 md:pr-8 md:py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.1] shadow-2xl shadow-accent/20 border border-accent/50"
+        className="group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-sm md:text-base px-8 py-3 md:px-10 md:py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.1] shadow-2xl shadow-accent/20 border border-accent/50"
         style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
       >
         <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] transition-all duration-1000 ease-in-out group-hover:left-[150%] z-0 pointer-events-none"></div>
