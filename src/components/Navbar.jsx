@@ -68,6 +68,13 @@ export default function Navbar() {
     }, 100);
   }, [location.pathname]);
 
+  // Force show when service overlay opens on mobile
+  useEffect(() => {
+    const show = () => setIsVisible(true);
+    window.addEventListener('force-navbar-show', show);
+    return () => window.removeEventListener('force-navbar-show', show);
+  }, []);
+
   // Hide on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {

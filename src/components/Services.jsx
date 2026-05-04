@@ -112,6 +112,9 @@ export default function Services() {
   const openService = (idx) => {
     setSelectedService(idx);
     setOverlayIndex(idx);
+    if (window.innerWidth < 768) {
+      window.dispatchEvent(new CustomEvent('force-navbar-show'));
+    }
   };
 
   const closeService = () => {
@@ -143,15 +146,24 @@ export default function Services() {
     }
   }, [selectedService]);
 
-  // Lock body scroll when mobile overlay is open
+  // Lock body scroll when mobile overlay is open — iOS Safari requires position:fixed
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
     if (selectedService !== null && isMobile) {
+      const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      return () => {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {};
   }, [selectedService]);
 
   const sectionRef = useRef(null);
@@ -251,7 +263,7 @@ export default function Services() {
                       delay: isDesktop && isHidden ? idx * 0.04 : 0,
                       layout: { duration: isSelected ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }
                     }}
-                    className="group aspect-[4/5] sm:aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between md:hover:bg-accent md:hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
+                    className="group aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between md:hover:bg-accent md:hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
                     onClick={() => openService(idx)}
                   >
                     <div className="flex flex-col">
@@ -297,8 +309,8 @@ export default function Services() {
               <AnimatePresence>
               {selectedService !== null && activeService && (
                 <motion.div
-                  className="fixed top-[68px] left-0 right-0 bottom-0 z-[200] md:hidden flex flex-col"
-                  style={{ background: '#0c0c0c', borderTop: '2px solid rgba(212,255,0,0.25)' }}
+                  className="fixed top-0 left-0 right-0 bottom-0 z-[59] md:hidden flex flex-col"
+                  style={{ background: '#0c0c0c' }}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 24 }}
@@ -306,8 +318,11 @@ export default function Services() {
                   onTouchStart={handleOverlayTouchStart}
                   onTouchEnd={handleOverlayTouchEnd}
                 >
+                  {/* Spacer matching navbar height — navbar (z-60) renders on top */}
+                  <div className="h-[68px] shrink-0 border-b-2 border-accent/25" />
+
                   {/* Top bar */}
-                  <div className="flex items-center justify-between px-5 pt-6 pb-4 border-b border-white/5 shrink-0">
+                  <div className="flex items-center justify-between px-5 pt-4 pb-4 border-b border-white/5 shrink-0">
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-accent text-[11px] tracking-[0.25em]">
                         {String((overlayIndex ?? 0) + 1).padStart(2, '0')} / {String(servicesList.length).padStart(2, '0')}
