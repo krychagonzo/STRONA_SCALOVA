@@ -154,10 +154,11 @@ export default function Hero() {
         force3D: true
       });
       gsap.to('.hero-glow-mobile', {
+        scale: 0.5,
         opacity: 0,
-        duration: 0.3,
-        ease: 'power2.out',
-        delay: 2.1
+        duration: 1.2,
+        ease: 'power2.inOut',
+        delay: 2.0
       });
       // Scroll animation only on desktop — on mobile arrow is static
       if (window.innerWidth >= 768) {
