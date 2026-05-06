@@ -247,8 +247,8 @@ export default function Services() {
         <div ref={containerRef} className="relative w-full flex-1 flex flex-col justify-center items-center">
           <div className="relative w-full">
 
-            {/* GRID — 2 cols mobile, 2 cols md, 4 cols lg */}
-            <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-1.5 md:gap-4 w-full px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? 'pointer-events-none' : ''}`}>
+            {/* GRID: phone portrait=2cols, tablet portrait=2cols, tablet landscape=4cols */}
+            <div className={`grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-1.5 md:gap-4 w-full px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? 'pointer-events-none' : ''}`}>
               {servicesList.map((service, idx) => {
                 const isSelected = selectedService === idx;
                 const isHidden = selectedService !== null && !isSelected;
@@ -291,7 +291,7 @@ export default function Services() {
               })}
             </div>
 
-            {/* BACKDROP — desktop & tablet */}
+            {/* BACKDROP — tablet (sm): blur bg, telefony: brak */}
             <AnimatePresence>
               {selectedService !== null && (
                 <motion.div
@@ -300,7 +300,7 @@ export default function Services() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="fixed inset-0 z-40 hidden sm:block sm:bg-black/80 sm:backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
+                  className="fixed inset-0 z-40 hidden sm:block sm:bg-black/75 sm:backdrop-blur-md md:bg-transparent md:backdrop-blur-none"
                   onClick={closeService}
                 />
               )}
@@ -311,7 +311,7 @@ export default function Services() {
               <AnimatePresence>
               {selectedService !== null && activeService && (
                 <motion.div
-                  className="fixed inset-0 sm:m-auto z-[59] md:hidden flex flex-col w-full h-full sm:w-[90vw] sm:max-w-[500px] sm:h-[80vh] sm:rounded-[2rem] sm:border sm:border-white/10 sm:shadow-2xl sm:overflow-hidden"
+                  className="fixed inset-0 sm:m-auto z-[59] md:hidden flex flex-col w-full h-full sm:w-auto sm:max-w-[520px] sm:min-w-[380px] sm:h-auto sm:max-h-[85vh] sm:border sm:border-white/10 sm:shadow-2xl sm:overflow-hidden"
                   style={{ background: '#0c0c0c' }}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
