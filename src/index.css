@@ -100,7 +100,7 @@ body.menu-open #floating-cta {
   mix-blend-mode: overlay;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
   .noise-overlay {
     display: none;
   }

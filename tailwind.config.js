@@ -7,7 +7,7 @@ export default {
   theme: {
     screens: {
       'sm': '640px',
-      'md': '1024px', // Przesunięcie breakpointu, by tablety (np. iPad Portrait) widziały wersję mobilną
+      'md': '1200px', // Przesunięcie breakpointu, by tablety (nawet horyzontalnie) widziały wersję mobilną
       'lg': '1280px',
       'xl': '1536px',
       '2xl': '1536px',

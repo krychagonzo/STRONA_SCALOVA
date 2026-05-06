@@ -10,7 +10,7 @@
   transform: rotateX(-20deg) rotateY(-20deg);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .cube {
     width: 160px;
     height: 160px;
@@ -39,7 +39,7 @@
 .cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
 
 /* Face transforms for tablet+ (160px / 2 = 80px) */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .cube-face.front  { transform: rotateY(  0deg) translateZ(80px); }
   .cube-face.back   { transform: rotateY(180deg) translateZ(80px); }
   .cube-face.right  { transform: rotateY( 90deg) translateZ(80px); }

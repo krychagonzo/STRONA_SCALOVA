@@ -101,7 +101,7 @@ const RenderIcon = ({ icon, className }) => {
   return <IconComponent className={className} strokeWidth={1.5} />;
 };
 
-const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1200;
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
@@ -112,7 +112,7 @@ export default function Services() {
   const openService = (idx) => {
     setSelectedService(idx);
     setOverlayIndex(idx);
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 1200) {
       window.dispatchEvent(new CustomEvent('force-navbar-show'));
     }
   };
@@ -148,7 +148,7 @@ export default function Services() {
 
   // Lock body scroll when mobile overlay is open — iOS Safari requires position:fixed
   useEffect(() => {
-    const isMobile = window.innerWidth < 1024;
+    const isMobile = window.innerWidth < 1200;
     if (selectedService !== null && isMobile) {
       const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
@@ -289,7 +289,7 @@ export default function Services() {
               })}
             </div>
 
-            {/* BACKDROP — desktop only */}
+            {/* BACKDROP — desktop & tablet */}
             <AnimatePresence>
               {selectedService !== null && (
                 <motion.div
@@ -298,7 +298,7 @@ export default function Services() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="fixed inset-0 z-40 hidden md:block"
+                  className="fixed inset-0 z-40 hidden sm:block sm:bg-black/80 sm:backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
                   onClick={closeService}
                 />
               )}
@@ -309,7 +309,7 @@ export default function Services() {
               <AnimatePresence>
               {selectedService !== null && activeService && (
                 <motion.div
-                  className="fixed top-0 left-0 right-0 bottom-0 z-[59] md:hidden flex flex-col"
+                  className="fixed top-0 left-0 right-0 bottom-0 z-[59] md:hidden flex flex-col sm:top-auto sm:bottom-auto sm:inset-y-[8vh] sm:inset-x-0 sm:mx-auto sm:w-[90vw] sm:max-w-[500px] sm:h-[84vh] sm:rounded-[2rem] sm:border sm:border-white/10 sm:shadow-2xl sm:overflow-hidden"
                   style={{ background: '#0c0c0c' }}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -319,7 +319,7 @@ export default function Services() {
                   onTouchEnd={handleOverlayTouchEnd}
                 >
                   {/* Spacer matching navbar height — navbar (z-60) renders on top */}
-                  <div className="h-[68px] shrink-0 border-b-2 border-accent/25" />
+                  <div className="h-[68px] sm:hidden shrink-0 border-b-2 border-accent/25" />
 
                   {/* Top bar */}
                   <div className="flex items-center justify-between px-5 pt-4 pb-4 border-b border-white/5 shrink-0">
@@ -391,7 +391,7 @@ export default function Services() {
                   </div>
 
                   {/* Wskaźnik stron (Slider Indicators) na dole */}
-                  <div className="pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 shrink-0 bg-[#0c0c0c] border-t border-white/5 flex items-center justify-center">
+                  <div className="pb-[calc(1rem+env(safe-area-inset-bottom))] sm:pb-5 pt-4 shrink-0 bg-[#0c0c0c] border-t border-white/5 flex items-center justify-center">
                     <div className="flex items-center justify-center gap-1.5">
                       {servicesList.map((_, i) => (
                         <div 

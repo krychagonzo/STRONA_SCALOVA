@@ -161,7 +161,7 @@ export default function Hero() {
         delay: 2.0
       });
       // Scroll animation only on desktop — on mobile arrow is static
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 1200) {
         gsap.to('.front-logo-wrapper', {
           x: '50vw',
           y: '-50vh',
@@ -235,7 +235,7 @@ export default function Hero() {
           />
         </div>
         {/* Desktop only — video not mounted on mobile to avoid decode overhead */}
-        {typeof window !== 'undefined' && window.innerWidth >= 1024 && (
+        {typeof window !== 'undefined' && window.innerWidth >= 1200 && (
           <video
             autoPlay
             muted

@@ -69,8 +69,8 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
 
       {/* Footer Area */}
       <footer className="w-full bg-[#0E0E0E] rounded-none px-8 pt-16 pb-8 z-10 relative">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="md:col-span-2 flex flex-col justify-between">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+          <div className="sm:col-span-2 flex flex-col justify-between">
             <div>
               <div className="mb-8">
                 <a href="/" className="block">
