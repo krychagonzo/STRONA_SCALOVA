@@ -101,7 +101,7 @@ const RenderIcon = ({ icon, className }) => {
   return <IconComponent className={className} strokeWidth={1.5} />;
 };
 
-const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
+const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
@@ -112,7 +112,7 @@ export default function Services() {
   const openService = (idx) => {
     setSelectedService(idx);
     setOverlayIndex(idx);
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 1024) {
       window.dispatchEvent(new CustomEvent('force-navbar-show'));
     }
   };
@@ -148,7 +148,7 @@ export default function Services() {
 
   // Lock body scroll when mobile overlay is open — iOS Safari requires position:fixed
   useEffect(() => {
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.innerWidth < 1024;
     if (selectedService !== null && isMobile) {
       const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
@@ -263,24 +263,24 @@ export default function Services() {
                       delay: isDesktop && isHidden ? idx * 0.04 : 0,
                       layout: { duration: isSelected ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }
                     }}
-                    className="group aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between md:hover:bg-accent md:hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
+                    className="group aspect-[4/5] sm:aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between md:hover:bg-accent md:hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
                     onClick={() => openService(idx)}
                   >
                     <div className="flex flex-col">
                       <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-3 sm:mb-6 text-ivory/50 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <RenderIcon icon={service.icon} className="w-20 h-20 sm:w-24 sm:h-24 md:w-14 md:h-14 xl:w-20 xl:h-20" />
+                        <RenderIcon icon={service.icon} className="w-14 h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 xl:w-20 xl:h-20" />
                       </motion.div>
-                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[18px] sm:text-lg md:text-sm lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-tight relative z-10">
+                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[17px] xs:text-[18px] sm:text-[20px] md:text-sm lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-[1.1] relative z-10 break-words">
                         {service.title}
                       </motion.h3>
                     </div>
 
                     <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 md:group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
-                      <div className="flex items-center gap-2 sm:gap-3 text-ivory/40 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <span className="font-heading text-[12px] sm:text-[14px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
-                        <div className="w-5 sm:w-8 h-[1px] bg-current"></div>
+                      <div className="flex items-center gap-1.5 sm:gap-3 text-ivory/40 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                        <span className="font-heading text-[12px] sm:text-[14px] md:text-[10px] tracking-[0.15em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
+                        <div className="w-4 sm:w-8 h-[1px] bg-current"></div>
                       </div>
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-9 md:h-9 border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center text-lg sm:text-xl md:text-lg font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-9 md:h-9 border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center text-base sm:text-xl md:text-lg font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300 shrink-0">
                         ＋
                       </div>
                     </div>
@@ -390,6 +390,17 @@ export default function Services() {
                     </AnimatePresence>
                   </div>
 
+                  {/* Wskaźnik stron (Slider Indicators) na dole */}
+                  <div className="pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 shrink-0 bg-[#0c0c0c] border-t border-white/5 flex items-center justify-center">
+                    <div className="flex items-center justify-center gap-1.5">
+                      {servicesList.map((_, i) => (
+                        <div 
+                          key={i} 
+                          className={`h-1 transition-all duration-500 rounded-full ${i === overlayIndex ? 'w-8 bg-accent' : 'w-2 bg-white/20'}`} 
+                        />
+                      ))}
+                    </div>
+                  </div>
 
                 </motion.div>
               )}

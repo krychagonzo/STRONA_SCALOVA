@@ -207,7 +207,7 @@ export default function Portfolio() {
                     />
                   ) : (
                     <picture>
-                      <source media="(max-width: 768px)" srcSet={project.thumbnail.replace(/\.[^/.]+$/, '_mobile.webp')} type="image/webp" />
+                      <source media="(max-width: 1023px)" srcSet={project.thumbnail.replace(/\.[^/.]+$/, '_mobile.webp')} type="image/webp" />
                       <img 
                         src={project.thumbnail} 
                         alt={project.title} 

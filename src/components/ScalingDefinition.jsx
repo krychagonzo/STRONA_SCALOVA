@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import InteractiveDotGrid from './ui/InteractiveDotGrid';
 
-const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
+const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
 
 export default function ScalingDefinition() {
   return (

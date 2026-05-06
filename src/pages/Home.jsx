@@ -20,7 +20,7 @@ export default function Home() {
       <Philosophy />
       <Services />
       <Protocol />
-      <Team />
+      {/* <Team /> */} {/* Tymczasowo schowane: czeka na zdjęcia zespołu */ }
     </>
   );
 }

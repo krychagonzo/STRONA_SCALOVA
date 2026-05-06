@@ -5,6 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '1024px', // Przesunięcie breakpointu, by tablety (np. iPad Portrait) widziały wersję mobilną
+      'lg': '1280px',
+      'xl': '1536px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         obsidian: '#0E0E0E',
