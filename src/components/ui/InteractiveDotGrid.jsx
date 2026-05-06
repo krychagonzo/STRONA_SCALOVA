@@ -25,16 +25,28 @@ const InteractiveDotGrid = () => {
     const activeRadius = 150; 
 
     const updateSize = () => {
+      if (!canvas) return;
       const parent = canvas.parentElement;
+      if (!parent) return;
       width = parent.clientWidth;
       height = parent.clientHeight;
       const dpr = window.devicePixelRatio || 1;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.scale(dpr, dpr);
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(() => draw());
+      }
     };
 
     updateSize();
+    
+    const resizeObserver = new ResizeObserver(() => {
+      updateSize();
+    });
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
     window.addEventListener('resize', updateSize);
 
     const handleMouseMove = (e) => {
@@ -54,31 +66,40 @@ const InteractiveDotGrid = () => {
       startDrawLoop(); // let glowOffset decay to 0
     };
 
-    const handleTouchMove = (e) => {
-      const touch = e.touches[0];
-      const rect = canvas.getBoundingClientRect();
-      targetMouseX = touch.clientX - rect.left;
-      targetMouseY = touch.clientY - rect.top;
-      if (!isActive) {
-        currentMouseX = targetMouseX;
-        currentMouseY = targetMouseY;
-        isActive = true;
-      }
-      startDrawLoop();
-    };
+    const handleScroll = () => {
+      // Aktywacja na urządzeniach dotykowych lub małych ekranach
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth < 1200;
+      if (!isTouch) return;
 
-    const handleTouchEnd = () => {
-      isActive = false;
-      startDrawLoop();
+      const rect = canvas.getBoundingClientRect();
+      const viewportCenterY = window.innerHeight / 2;
+      const localY = viewportCenterY - rect.top;
+      
+      // Jeśli środek ekranu (viewportu) jest w obszarze canvasa
+      if (localY > -activeRadius && localY < height + activeRadius) {
+        targetMouseX = width / 2;
+        targetMouseY = localY;
+        if (!isActive) {
+          currentMouseX = targetMouseX;
+          currentMouseY = targetMouseY;
+          isActive = true;
+        }
+        startDrawLoop();
+      } else {
+        if (isActive) {
+          isActive = false;
+          startDrawLoop();
+        }
+      }
     };
 
     const section = canvas.closest('section');
     if (section) {
       section.addEventListener('mousemove', handleMouseMove);
       section.addEventListener('mouseleave', handleMouseLeave);
-      section.addEventListener('touchmove', handleTouchMove, { passive: true });
-      section.addEventListener('touchend', handleTouchEnd);
     }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    setTimeout(handleScroll, 100); // Sprawdzenie początkowej pozycji
 
     const startDrawLoop = () => {
       if (!animationFrameId) {
@@ -147,16 +168,16 @@ const InteractiveDotGrid = () => {
     };
 
     // Draw once (idle state — loop stops immediately since !isActive && glowOffset=0)
-    animationFrameId = requestAnimationFrame(draw);
+    animationFrameId = requestAnimationFrame(() => draw());
 
     return () => {
       window.removeEventListener('resize', updateSize);
+      resizeObserver.disconnect();
       if (section) {
         section.removeEventListener('mousemove', handleMouseMove);
         section.removeEventListener('mouseleave', handleMouseLeave);
-        section.removeEventListener('touchmove', handleTouchMove);
-        section.removeEventListener('touchend', handleTouchEnd);
       }
+      window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
