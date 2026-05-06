@@ -3,15 +3,12 @@ import { motion } from 'framer-motion';
 
 import InteractiveDotGrid from './ui/InteractiveDotGrid';
 
-const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1200;
-
 export default function ScalingDefinition() {
   return (
     <section className="relative w-full bg-obsidian flex flex-col justify-center items-center z-10 border-y border-slate/20">
       <div className="w-full bg-obsidian text-ivory py-16 md:py-20 px-6 flex flex-col items-center justify-center relative overflow-hidden">
 
-        {/* Interactive Radial Dot Matrix Wrapper — desktop only */}
-        {isDesktop && (
+        {/* Interactive Radial Dot Matrix Wrapper */}
         <div className="absolute inset-0 flex justify-center w-full h-[calc(100%+2rem)] mt-[-1rem] z-0">
           <div
             className="w-full h-full"
@@ -33,7 +30,6 @@ export default function ScalingDefinition() {
             </div>
           </div>
         </div>
-        )}
         
         <div className="w-full max-w-3xl mx-auto relative z-10 flex flex-col items-center text-center pointer-events-none">
           <motion.div

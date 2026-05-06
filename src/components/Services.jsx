@@ -79,7 +79,7 @@ const servicesList = [
   }
 ];
 
-const RenderIcon = ({ icon, className }) => {
+const RenderIcon = ({ icon, className, style }) => {
   if (typeof icon === 'string') {
     return (
       <div
@@ -92,13 +92,14 @@ const RenderIcon = ({ icon, className }) => {
           maskPosition: 'center',
           WebkitMaskPosition: 'center',
           maskRepeat: 'no-repeat',
-          WebkitMaskRepeat: 'no-repeat'
+          WebkitMaskRepeat: 'no-repeat',
+          ...(style || {})
         }}
       />
     );
   }
   const IconComponent = icon;
-  return <IconComponent className={className} strokeWidth={1.5} />;
+  return <IconComponent className={className} strokeWidth={1.5} style={style} />;
 };
 
 const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1200;
@@ -269,19 +270,19 @@ export default function Services() {
                   >
                     <div className="flex flex-col">
                       <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-3 sm:mb-6 text-ivory/50 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <RenderIcon icon={service.icon} className="" style={{ width: 'clamp(40px, 20cqi, 96px)', height: 'clamp(40px, 20cqi, 96px)' }} />
+                        <RenderIcon icon={service.icon} className="" style={{ width: 'clamp(55px, 25cqi, 100px)', height: 'clamp(55px, 25cqi, 100px)' }} />
                       </motion.div>
-                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight uppercase leading-[1.1] relative z-10 break-words" style={{ fontSize: 'clamp(15px, 8.5cqi, 32px)' }}>
+                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight uppercase leading-[1.05] relative z-10 break-words" style={{ fontSize: 'clamp(18px, 11cqi, 32px)' }}>
                         {service.title}
                       </motion.h3>
                     </div>
 
                     <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 md:group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
                       <div className="flex items-center gap-1.5 sm:gap-3 text-ivory/40 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <span className="font-heading tracking-[0.15em] sm:tracking-[0.3em] uppercase" style={{ fontSize: 'clamp(10px, 4cqi, 15px)' }}>WIĘCEJ</span>
+                        <span className="font-heading tracking-[0.15em] sm:tracking-[0.3em] uppercase" style={{ fontSize: 'clamp(11px, 5cqi, 15px)' }}>WIĘCEJ</span>
                         <div className="w-4 sm:w-8 h-[1px] bg-current"></div>
                       </div>
-                      <div className="border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300 shrink-0" style={{ width: 'clamp(32px, 12cqi, 48px)', height: 'clamp(32px, 12cqi, 48px)', fontSize: 'clamp(16px, 6cqi, 24px)' }}>
+                      <div className="border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300 shrink-0" style={{ width: 'clamp(36px, 15cqi, 52px)', height: 'clamp(36px, 15cqi, 52px)', fontSize: 'clamp(18px, 7cqi, 26px)' }}>
                         ＋
                       </div>
                     </div>
