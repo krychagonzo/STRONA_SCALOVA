@@ -264,23 +264,24 @@ export default function Services() {
                       layout: { duration: isSelected ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }
                     }}
                     className="group aspect-[4/5] sm:aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between md:hover:bg-accent md:hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
+                    style={{ containerType: 'inline-size' }}
                     onClick={() => openService(idx)}
                   >
                     <div className="flex flex-col">
                       <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-3 sm:mb-6 text-ivory/50 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <RenderIcon icon={service.icon} className="w-14 h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 xl:w-20 xl:h-20" />
+                        <RenderIcon icon={service.icon} className="" style={{ width: 'clamp(40px, 20cqi, 96px)', height: 'clamp(40px, 20cqi, 96px)' }} />
                       </motion.div>
-                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight text-[17px] xs:text-[18px] sm:text-[20px] md:text-sm lg:text-xl xl:text-[22px] 2xl:text-[26px] uppercase leading-[1.1] relative z-10 break-words">
+                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight uppercase leading-[1.1] relative z-10 break-words" style={{ fontSize: 'clamp(15px, 8.5cqi, 32px)' }}>
                         {service.title}
                       </motion.h3>
                     </div>
 
                     <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 md:group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
                       <div className="flex items-center gap-1.5 sm:gap-3 text-ivory/40 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
-                        <span className="font-heading text-[12px] sm:text-[14px] md:text-[10px] tracking-[0.15em] sm:tracking-[0.3em] uppercase">WIĘCEJ</span>
+                        <span className="font-heading tracking-[0.15em] sm:tracking-[0.3em] uppercase" style={{ fontSize: 'clamp(10px, 4cqi, 15px)' }}>WIĘCEJ</span>
                         <div className="w-4 sm:w-8 h-[1px] bg-current"></div>
                       </div>
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-9 md:h-9 border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center text-base sm:text-xl md:text-lg font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300 shrink-0">
+                      <div className="border border-white/10 md:group-hover:border-obsidian/30 flex items-center justify-center font-light text-ivory/30 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300 shrink-0" style={{ width: 'clamp(32px, 12cqi, 48px)', height: 'clamp(32px, 12cqi, 48px)', fontSize: 'clamp(16px, 6cqi, 24px)' }}>
                         ＋
                       </div>
                     </div>
@@ -309,7 +310,7 @@ export default function Services() {
               <AnimatePresence>
               {selectedService !== null && activeService && (
                 <motion.div
-                  className="fixed top-0 left-0 right-0 bottom-0 z-[59] md:hidden flex flex-col sm:top-auto sm:bottom-auto sm:inset-y-[8vh] sm:inset-x-0 sm:mx-auto sm:w-[90vw] sm:max-w-[500px] sm:h-[84vh] sm:rounded-[2rem] sm:border sm:border-white/10 sm:shadow-2xl sm:overflow-hidden"
+                  className="fixed inset-0 sm:m-auto z-[59] md:hidden flex flex-col w-full h-full sm:w-[90vw] sm:max-w-[500px] sm:h-[80vh] sm:rounded-[2rem] sm:border sm:border-white/10 sm:shadow-2xl sm:overflow-hidden"
                   style={{ background: '#0c0c0c' }}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}

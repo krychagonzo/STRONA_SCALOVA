@@ -211,7 +211,7 @@ export default function Hero() {
       </div>
 
       {/* Mobile text — centered below the logo */}
-      <div className="md:hidden absolute inset-0 z-40 pointer-events-none select-none flex flex-col items-center justify-end pb-28 px-4">
+      <div className="md:hidden absolute inset-0 z-40 pointer-events-none select-none flex flex-col items-center justify-end pb-12 sm:pb-20 px-4">
         <div className="flex flex-col items-center text-center">
           <span className="hero-anim-mobile font-heading font-light text-accent text-[11px] tracking-[0.25em] uppercase opacity-90 mb-5">
             // AGENCJA SKALOWANIA BIZNESU
@@ -226,12 +226,12 @@ export default function Hero() {
       {/* Front logo animation layer */}
       <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
         {/* Mobile: centered icon with glow */}
-        <div className="hero-logo-mobile md:hidden absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
-          <div className="hero-glow-mobile absolute w-[55vw] h-[55vw] bg-white/10 blur-[40px] rounded-full mix-blend-screen" />
+        <div className="hero-logo-mobile md:hidden absolute left-1/2 top-[40%] sm:top-[45%] landscape:top-[40%] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+          <div className="hero-glow-mobile absolute w-[55vw] h-[55vw] max-w-[35vh] max-h-[35vh] bg-white/10 blur-[40px] rounded-full mix-blend-screen" />
           <img
             src="/LOGO_AKCENT.png"
             alt=""
-            className="w-[70vw] h-[70vw] object-contain relative z-10"
+            className="w-[70vw] h-[70vw] max-w-[45vh] max-h-[45vh] object-contain relative z-10"
           />
         </div>
         {/* Desktop only — video not mounted on mobile to avoid decode overhead */}
