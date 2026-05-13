@@ -57,6 +57,27 @@ function AppContent() {
   const location = useLocation();
   const modalSource = ROUTE_SOURCES[location.pathname] || location.pathname;
 
+  useEffect(() => {
+    // Generate lightweight static noise background once to replace heavy SVG filter
+    if (typeof document !== 'undefined' && !document.documentElement.style.getPropertyValue('--noise-bg')) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 128;
+      canvas.height = 128;
+      const ctx = canvas.getContext('2d', { alpha: true });
+      const imgData = ctx.createImageData(128, 128);
+      const data = imgData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const val = Math.random() * 255;
+        data[i] = val;
+        data[i + 1] = val;
+        data[i + 2] = val;
+        data[i + 3] = 10; // Bardzo niska przezroczystość (ok 4%)
+      }
+      ctx.putImageData(imgData, 0, 0);
+      document.documentElement.style.setProperty('--noise-bg', `url(${canvas.toDataURL('image/png')})`);
+    }
+  }, []);
+
   return (
     <main className="relative w-full min-h-screen font-sans bg-obsidian selection:bg-accent selection:text-obsidian flex flex-col items-center">
       <ScrollToTop />

@@ -113,12 +113,9 @@ export default function Navbar() {
       >
         {/* Mobile: single solid bg with blur, stretched upwards to prevent top gaps */}
         <div className="md:hidden absolute -top-16 bottom-0 left-0 right-0 z-[-1] pointer-events-none bg-[#0c0c0c]/95 backdrop-blur-md border-b border-white/5" />
-        {/* Desktop: dispersion blur layers */}
-        <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/10 backdrop-blur-[4px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
-        <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/15 backdrop-blur-[8px] [mask-image:linear-gradient(to_bottom,black,transparent_90%)]" />
-        <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/25 backdrop-blur-[16px] [mask-image:linear-gradient(to_bottom,black,transparent_80%)]" />
-        <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/40 backdrop-blur-[32px] [mask-image:linear-gradient(to_bottom,black,transparent_70%)]" />
-        <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/70 backdrop-blur-[80px] [mask-image:linear-gradient(to_bottom,black,transparent_60%)]" />
+        {/* Desktop: optimized blur layer */}
+        <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/40 backdrop-blur-[12px] [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)]" />
+        <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/60 [mask-image:linear-gradient(to_bottom,black_20%,transparent_80%)]" />
 
         <Link to="/" className="group/logo font-heading font-bold text-xl tracking-widest cursor-pointer flex items-center relative h-full pointer-events-auto hover:filter-none">
           <img src="/logo.png" alt="Scalova Logo" className="h-16 md:h-20 absolute top-1/2 -translate-y-1/2 left-0 w-auto object-contain origin-left scale-110 md:scale-125" style={{ maxWidth: 'none' }} />
@@ -185,12 +182,7 @@ export default function Navbar() {
       <div 
         className={`fixed top-0 right-0 z-[55] w-full sm:w-[450px] h-[100dvh] bg-[#0c0c0c]/40 backdrop-blur-2xl border-l border-white/5 flex flex-col overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
-        <svg className="absolute inset-0 w-full h-full opacity-[0.06] mix-blend-overlay pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
-          <filter id="menuNoise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
-          </filter>
-          <rect width="100%" height="100%" filter="url(#menuNoise)"/>
-        </svg>
+        <div className="absolute inset-0 w-full h-full opacity-50 mix-blend-overlay pointer-events-none z-0" style={{ backgroundImage: 'var(--noise-bg)', backgroundRepeat: 'repeat' }} />
 
         <div className="flex-1 flex flex-col px-8 sm:px-14 pt-32 pb-12 relative z-10 overflow-y-auto w-full">
            <span className="font-heading text-[10px] text-ivory/30 tracking-[0.3em] uppercase mb-12 block border-l-2 border-accent/30 pl-4">

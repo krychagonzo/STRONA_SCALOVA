@@ -35,7 +35,8 @@
   }
 
   a:hover, button:hover, [role="button"]:hover {
-    filter: drop-shadow(0 0 8px rgba(212, 255, 0, 0.6));
+    filter: drop-shadow(0 0 6px rgba(212, 255, 0, 0.4));
+    will-change: filter;
   }
 
   /* Prevent image saving, dragging and selection */
@@ -95,9 +96,10 @@ body.menu-open #floating-cta {
   height: 100%;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: var(--noise-bg);
+  background-repeat: repeat;
   mix-blend-mode: overlay;
+  opacity: 0.5; /* Opacity is mostly controlled in the generation loop now */
 }
 
 @media (max-width: 1199px) {

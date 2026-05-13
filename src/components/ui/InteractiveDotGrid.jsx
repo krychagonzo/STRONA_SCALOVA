@@ -69,7 +69,7 @@ const InteractiveDotGrid = () => {
     const handleScroll = () => {
       // Aktywacja na urządzeniach dotykowych lub małych ekranach
       const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth < 1200;
-      if (!isTouch) return;
+      if (isTouch) return; // Zablokuj rysowanie podczas przewijania na telefonach/tabletach aby nie rwać scrolla
 
       const rect = canvas.getBoundingClientRect();
       const viewportCenterY = window.innerHeight / 2;

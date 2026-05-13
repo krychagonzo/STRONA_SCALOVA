@@ -4,13 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Bayer 4×4 ordered dithering matrix, normalized to [-1, 1]
-const BAYER4 = [
-   0,  8,  2, 10,
-  12,  4, 14,  6,
-   3, 11,  1,  9,
-  15,  7, 13,  5,
-].map(v => (v / 16 - 0.5) * 2);
+// (Dithering matrix removed as it is now handled by CSS global noise)
 
 function HeroCanvas() {
   const canvasRef = useRef(null);
@@ -29,33 +23,29 @@ function HeroCanvas() {
     const GR = 42, GG = 42, GB = 54;   // glow #2A2A36 — slightly lighter/cooler
 
     const drawAt = (glowT, w, h) => {
-      const imageData = ctx.createImageData(w, h);
-      const data = imageData.data;
-      const cx = w * 0.5;
-      const cy = h;
-      const rx = w * 0.80;
-      const ry = h * 0.58;
-
-      for (let y = 0; y < h; y++) {
-        for (let x = 0; x < w; x++) {
-          const i = (y * w + x) * 4;
-          const dither = BAYER4[(y & 3) * 4 + (x & 3)];
-          const dx = (x - cx) / rx;
-          const dy = (y - cy) / ry;
-          const t  = Math.min(Math.sqrt(dx * dx + dy * dy), 1.0);
-          const ss = 1 - t * t * (3 - 2 * t); // smoothstep
-          const alpha = ss * glowT;
-          const r = BR + (GR - BR) * alpha;
-          const g = BG + (GG - BG) * alpha;
-          const b = BB + (GB - BB) * alpha;
-          const n = dither * 2;
-          data[i]     = Math.min(255, Math.max(0, r + n));
-          data[i + 1] = Math.min(255, Math.max(0, g + n));
-          data[i + 2] = Math.min(255, Math.max(0, b + n));
-          data[i + 3] = 255;
-        }
+      ctx.clearRect(0, 0, w, h);
+      
+      ctx.fillStyle = `rgb(${BR}, ${BG}, ${BB})`;
+      ctx.fillRect(0, 0, w, h);
+      
+      if (glowT > 0) {
+        const cx = w * 0.5;
+        const cy = h;
+        const rx = w * 0.80;
+        const ry = h * 0.58;
+        
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(rx, ry);
+        
+        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+        grad.addColorStop(0, `rgba(${GR}, ${GG}, ${GB}, ${glowT})`);
+        grad.addColorStop(1, `rgba(${GR}, ${GG}, ${GB}, 0)`);
+        
+        ctx.fillStyle = grad;
+        ctx.fillRect(-cx / rx, -cy / ry, w / rx, (h * 2) / ry);
+        ctx.restore();
       }
-      ctx.putImageData(imageData, 0, 0);
     };
 
     let w = canvas.offsetWidth;
@@ -227,7 +217,7 @@ export default function Hero() {
       <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
         {/* Mobile: centered icon with glow */}
         <div className="hero-logo-mobile md:hidden absolute left-1/2 top-[38%] sm:top-[42%] landscape:top-[35%] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
-          <div className="hero-glow-mobile absolute w-[55vw] h-[55vw] max-w-[30vh] max-h-[30vh] bg-white/10 blur-[40px] rounded-full mix-blend-screen" />
+          <div className="hero-glow-mobile absolute w-[55vw] h-[55vw] max-w-[30vh] max-h-[30vh] rounded-full mix-blend-screen" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%)' }} />
           <img
             src="/LOGO_AKCENT.png"
             alt=""
