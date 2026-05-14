@@ -234,15 +234,10 @@ export default function Career() {
 
       {/* AMBIENT GRADIENT & ANTI-BANDING NOISE */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[1200px]">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[2400px] md:h-[1200px]">
           <CareerCanvas />
         </div>
-        <svg className="absolute inset-0 w-full h-full opacity-[0.05] mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
-          <filter id="careerNoise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
-          </filter>
-          <rect width="100%" height="100%" filter="url(#careerNoise)"/>
-        </svg>
+        <div className="absolute inset-0 w-full h-full opacity-50 mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'var(--noise-bg)', backgroundRepeat: 'repeat' }} />
       </div>
       
       {/* UNIFIED CAREER SECTION */}
@@ -342,8 +337,13 @@ export default function Career() {
                     </div>
                   </div>
 
-                  <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] ${isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-                  <div className={`overflow-hidden transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
+                  <div 
+                    className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]"
+                    style={{ 
+                      maxHeight: isActive ? '800px' : '0px',
+                      opacity: isActive ? 1 : 0,
+                    }}
+                  >
                   <div className="flex flex-col md:flex-row gap-6 md:gap-12 px-2 md:px-6 pt-6 md:pt-8 pb-8 md:pb-12">
                     {applyingJobId === job.id ? (
                       <div className="w-full flex flex-col transition-all duration-500 opacity-100">
@@ -374,7 +374,6 @@ export default function Career() {
                         </div>
                       </>
                     )}
-                  </div>
                   </div>
                   </div>
 
