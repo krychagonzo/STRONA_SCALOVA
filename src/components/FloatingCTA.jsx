@@ -73,7 +73,7 @@ export default function FloatingCTA({ onOpenModal }) {
   }, []);
 
   return (
-    <div ref={comp} id="floating-cta" className="fixed bottom-5 md:bottom-12 left-1/2 -translate-x-1/2 z-[60] pointer-events-auto">
+    <div ref={comp} id="floating-cta" className="opacity-0 translate-y-20 fixed bottom-5 md:bottom-12 left-1/2 -translate-x-1/2 z-[60] pointer-events-auto">
       <button
         onClick={onOpenModal}
         className="w-max flex justify-center items-center group relative overflow-hidden rounded-none font-heading font-bold uppercase tracking-wider text-[11px] sm:text-sm md:text-base px-6 py-3 md:px-10 md:py-4 bg-accent text-obsidian transition-all duration-300 hover:scale-[1.05] md:hover:scale-[1.1] shadow-[0_0_25px_rgba(198,211,0,0.35)] md:shadow-[0_0_40px_rgba(198,211,0,0.3)] border border-accent/50"

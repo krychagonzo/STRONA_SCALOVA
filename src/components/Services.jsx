@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue } from 'framer-motion';
-import InteractiveDotGrid from './ui/InteractiveDotGrid';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const servicesList = [
   {
@@ -167,15 +166,6 @@ export default function Services() {
     return () => {};
   }, [selectedService]);
 
-  const sectionRef = useRef(null);
-  // useScroll creates a scroll listener — only wire it up on desktop where it's used
-  const { scrollYProgress } = useScroll(
-    isDesktop ? { target: sectionRef, offset: ['start end', 'end start'] } : {}
-  );
-  const _deadValue = useMotionValue(0); // stable no-op for mobile
-  const logoY = useTransform(isDesktop ? scrollYProgress : _deadValue, [0, 1], isDesktop ? [-150, -850] : [0, 0]);
-  const logoRotate = useTransform(isDesktop ? scrollYProgress : _deadValue, [0, 1], isDesktop ? [-5, 15] : [0, 0]);
-
   const scrollToCTA = () => {
     const ctaSection = document.getElementById('footer-cta');
     if (ctaSection) ctaSection.scrollIntoView({ behavior: 'smooth' });
@@ -186,36 +176,12 @@ export default function Services() {
   return (
     <section
       id="services"
-      ref={sectionRef}
       className="w-full bg-[linear-gradient(to_bottom,#1a1a1a_0%,#0c0c0c_100%)] py-20 md:py-32 px-2 md:px-6 flex justify-center relative overflow-x-hidden"
       style={{
         maskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 80px, black calc(100% - 150px), transparent)'
       }}
     >
-      {/* Dot grid — desktop only (never mounted on mobile — constant RAF loop) */}
-      {isDesktop && <div className="absolute inset-0 hidden md:flex justify-center w-full h-full z-0 opacity-40">
-        <div
-          className="w-full h-full"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent), linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent), linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
-            WebkitMaskComposite: 'source-in',
-            maskComposite: 'intersect'
-          }}
-        >
-          <div
-            className="w-full h-full"
-            style={{
-              maskImage: 'radial-gradient(ellipse 60% 60% at center, transparent 35%, black 65%)',
-              WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at center, transparent 35%, black 65%)'
-            }}
-          >
-            <InteractiveDotGrid />
-          </div>
-        </div>
-      </div>}
-
       <div className="max-w-[1640px] w-full flex flex-col items-center flex-1 relative z-[2]">
 
         {/* Header */}
@@ -231,12 +197,11 @@ export default function Services() {
                 Co wdrażamy w Twojej firmie.
               </h2>
             </div>
-            {/* Parallax logo — desktop only */}
-            <motion.img
+            {/* Static logo — desktop only */}
+            <img
               src="/LOGO_3D_2.png"
               alt=""
-              style={{ y: logoY, rotate: logoRotate }}
-              className="hidden md:block absolute -right-20 md:-right-32 lg:-right-48 top-[75%] -translate-y-1/2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] h-auto z-0 pointer-events-none md:opacity-40 lg:opacity-100 object-contain"
+              className="hidden md:block absolute -right-20 md:-right-32 lg:-right-48 top-[50%] -translate-y-1/2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] h-auto z-0 pointer-events-none md:opacity-40 lg:opacity-100 object-contain rotate-[8deg]"
             />
           </div>
           <p className="text-ivory/60 mt-4 text-base md:text-lg max-w-3xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
@@ -250,31 +215,20 @@ export default function Services() {
             {/* GRID: phone portrait=2cols, tablet portrait=2cols, tablet landscape=4cols */}
             <div className={`grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-1.5 md:gap-4 w-full px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32 auto-rows-max transition-all duration-700 relative z-30 ${selectedService !== null ? 'pointer-events-none' : ''}`}>
               {servicesList.map((service, idx) => {
-                const isSelected = selectedService === idx;
-                const isHidden = selectedService !== null && !isSelected;
-
                 return (
-                  <motion.div
-                    layoutId={isDesktop ? `wrapper-${idx}` : undefined}
+                  <div
                     key={`base-card-${idx}`}
-                    initial={{ opacity: 0, y: isDesktop ? 30 : 0 }}
-                    animate={{ opacity: isHidden ? 0 : isSelected ? 0 : 1, y: 0 }}
-                    transition={{
-                      duration: isDesktop ? (isHidden ? 0.2 : 0.4) : 0,
-                      delay: isDesktop && isHidden ? idx * 0.04 : 0,
-                      layout: { duration: isSelected ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }
-                    }}
                     className="group aspect-[4/5] sm:aspect-square w-full border border-white/5 bg-[#0c0c0c] p-3 sm:p-5 xl:p-8 flex flex-col justify-between md:hover:bg-accent md:hover:border-accent md:hover:-translate-y-2 cursor-pointer transition-[background-color,border-color,color] md:transition-all duration-300 overflow-hidden relative"
                     style={{ containerType: 'inline-size' }}
                     onClick={() => openService(idx)}
                   >
                     <div className="flex flex-col">
-                      <motion.div layoutId={isDesktop ? `icon-${idx}` : undefined} className="mb-3 sm:mb-6 text-ivory/50 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
+                      <div className="mb-3 sm:mb-6 text-ivory/50 md:group-hover:text-obsidian transition-[background-color,border-color,color] duration-300">
                         <RenderIcon icon={service.icon} className="" style={{ width: 'clamp(55px, 25cqi, 100px)', height: 'clamp(55px, 25cqi, 100px)' }} />
-                      </motion.div>
-                      <motion.h3 layoutId={isDesktop ? `title-${idx}` : undefined} className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight uppercase leading-[1.05] relative z-10 break-words" style={{ fontSize: 'clamp(18px, 11cqi, 32px)' }}>
+                      </div>
+                      <h3 className="text-ivory md:group-hover:text-obsidian transition-colors duration-500 font-heading font-light tracking-tight uppercase leading-[1.05] relative z-10 break-words" style={{ fontSize: 'clamp(18px, 11cqi, 32px)' }}>
                         {service.title}
-                      </motion.h3>
+                      </h3>
                     </div>
 
                     <div className="flex items-center justify-between w-full mt-auto pt-3 sm:pt-6 border-t border-white/5 md:group-hover:border-obsidian/10 transition-colors duration-500 relative z-10">
@@ -286,7 +240,7 @@ export default function Services() {
                         ＋
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -410,34 +364,24 @@ export default function Services() {
               document.body
             )}
 
-            {/* DESKTOP OVERLAY — layoutId expand */}
+            {/* DESKTOP OVERLAY — simple, fast fade-in */}
             <AnimatePresence>
               {selectedService !== null && (
                 <motion.div
-                  layoutId={`wrapper-${selectedService}`}
-                  className="absolute top-0 left-2 right-2 lg:left-4 lg:right-4 z-50 overflow-hidden hidden md:block"
-                  transition={{ layout: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }}
-                  style={{
-                    background: "rgba(12, 12, 12, 0.97)",
-                    backdropFilter: "blur(32px)",
-                    WebkitBackdropFilter: "blur(32px)",
-                    border: "1px solid rgba(255, 255, 255, 0.05)",
-                    borderTop: "1px solid rgba(255, 255, 255, 0.15)",
-                    boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.7)",
-                  }}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="absolute inset-y-0 left-2 right-2 lg:left-4 lg:right-4 z-50 overflow-y-auto hidden md:flex flex-col bg-[#0c0c0c] border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)]"
                 >
-                  <motion.div
-                    layoutId={`icon-${selectedService}`}
-                    className="absolute top-2 right-4 md:top-4 md:right-8 lg:top-4 lg:right-10 z-30 text-white/[0.07] pointer-events-none"
+                  <div
+                    className="absolute top-2 right-4 md:top-4 md:right-8 lg:top-4 lg:right-10 z-0 text-white/[0.07] pointer-events-none"
                   >
                     <RenderIcon icon={servicesList[selectedService].icon} className="w-32 h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 object-contain" />
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.3 } }}
-                    exit={{ opacity: 0, transition: { duration: 0 } }}
-                    className="relative z-10 w-full flex flex-col md:min-h-[620px]"
+                  <div
+                    className="relative z-10 w-full flex flex-col flex-1"
                   >
                     {/* Header */}
                     <div className="w-full p-8 md:p-12 lg:p-16 pb-10 md:pb-14 lg:pb-16 border-b border-white/5 flex flex-col relative z-20">
@@ -449,12 +393,11 @@ export default function Services() {
                           {servicesList[selectedService].tag}
                         </span>
                       </div>
-                      <motion.h3
-                        layoutId={`title-${selectedService}`}
+                      <h3
                         className="text-ivory font-heading font-light tracking-tighter text-5xl lg:text-[4.5rem] xl:text-[5.5rem] uppercase leading-[0.9] w-full text-left"
                       >
                         {servicesList[selectedService].title}
-                      </motion.h3>
+                      </h3>
                     </div>
 
                     <div className="flex flex-col md:flex-row flex-1">
@@ -462,10 +405,7 @@ export default function Services() {
                       <div className="md:w-[40%] xl:w-[35%] p-8 md:p-12 lg:p-16 flex flex-col border-b md:border-b-0 md:border-r border-white/5 relative z-10">
                         <div className="flex flex-col gap-4 mt-auto">
                           {servicesList[selectedService].features.map((feat, fIdx) => (
-                            <motion.div
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.45 + (fIdx * 0.1) }}
+                            <div
                               key={fIdx}
                               className="flex items-start gap-4 text-sm font-heading text-ivory/60"
                             >
@@ -473,15 +413,13 @@ export default function Services() {
                                 {String(fIdx + 1).padStart(2, '0')}
                               </span>
                               <span className="leading-snug">{feat}</span>
-                            </motion.div>
+                            </div>
                           ))}
                         </div>
                       </div>
 
                       {/* Right: desc + buttons */}
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0, transition: { delay: 0.45 } }}
+                      <div
                         className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-end relative z-10"
                       >
                         <div className="mb-6 md:mb-8">
@@ -520,9 +458,9 @@ export default function Services() {
                             </button>
                           )}
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

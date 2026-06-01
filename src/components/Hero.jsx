@@ -106,43 +106,69 @@ export default function Hero() {
   useEffect(() => {
     let ctx = gsap.context(() => {
       // Desktop animations
-      gsap.from('.hero-anim-left', {
-        x: '15vw',
-        y: '8vh',
-        opacity: 0,
-        duration: 2.5,
-        stagger: 0.1,
-        ease: 'power3.out',
-        delay: 2,
-        force3D: true
-      });
-      gsap.from('.hero-anim-right', {
-        x: '-15vw',
-        y: '-8vh',
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power3.out',
-        delay: 2.2,
-        force3D: true
-      });
+      gsap.fromTo('.hero-anim-left', 
+        {
+          x: '15vw',
+          y: '8vh',
+          opacity: 0,
+        },
+        {
+          x: 0,
+          y: 0,
+          opacity: (i) => i === 0 ? 0.9 : 1,
+          duration: 2.5,
+          stagger: 0.1,
+          ease: 'power3.out',
+          delay: 2,
+          force3D: true
+        }
+      );
+      gsap.fromTo('.hero-anim-right', 
+        {
+          x: '-15vw',
+          y: '-8vh',
+          opacity: 0,
+        },
+        {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          duration: 2.5,
+          ease: 'power3.out',
+          delay: 2.2,
+          force3D: true
+        }
+      );
 
       // Mobile animations
-      gsap.from('.hero-logo-mobile', {
-        scale: 0.85,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power2.out',
-        delay: 0.5
-      });
-      gsap.from('.hero-anim-mobile', {
-        y: 40,
-        opacity: 0,
-        duration: 2,
-        stagger: 0.2,
-        ease: 'power3.out',
-        delay: 2.2,
-        force3D: true
-      });
+      gsap.fromTo('.hero-logo-mobile', 
+        {
+          scale: 0.85,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 2.5,
+          ease: 'power2.out',
+          delay: 0.5
+        }
+      );
+      gsap.fromTo('.hero-anim-mobile', 
+        {
+          y: 40,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: (i) => i === 0 ? 0.9 : 1,
+          duration: 2,
+          stagger: 0.2,
+          ease: 'power3.out',
+          delay: 2.2,
+          force3D: true
+        }
+      );
       gsap.to('.hero-glow-mobile', {
         scale: 0.5,
         opacity: 0,
@@ -186,14 +212,14 @@ export default function Hero() {
       <div className="relative w-full px-4 sm:px-8 xl:px-16 h-full hidden md:flex flex-col items-center justify-center md:pt-20">
         <div className="w-full max-w-[1920px] flex flex-col items-center">
           <div id="hero-content-wrapper" className="w-full flex flex-col select-none relative z-40">
-            <span className="hero-anim-left gpu-accelerated self-start inline-block font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-8 opacity-90">
+            <span className="hero-anim-left opacity-0 gpu-accelerated self-start inline-block font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-8">
                // AGENCJA SKALOWANIA BIZNESU
             </span>
-            <span className="hero-anim-left gpu-accelerated self-start font-heading font-light md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight">
+            <span className="hero-anim-left opacity-0 gpu-accelerated self-start font-heading font-light md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory/90 leading-tight">
               Skaluj biznes,
             </span>
             <div className="h-20 lg:h-[4rem] xl:h-[6rem] w-full"></div>
-            <span className="hero-anim-right gpu-accelerated self-end font-heading font-light md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right">
+            <span className="hero-anim-right opacity-0 gpu-accelerated self-end font-heading font-light md:text-7xl lg:text-[7rem] xl:text-[8.5rem] tracking-tight text-ivory leading-[0.9] text-right">
               odzyskaj czas.
             </span>
           </div>
@@ -203,10 +229,10 @@ export default function Hero() {
       {/* Mobile text — centered below the logo */}
       <div className="md:hidden absolute inset-0 z-40 pointer-events-none select-none flex flex-col items-center justify-end pb-8 sm:pb-14 px-4 landscape:pb-4">
         <div className="flex flex-col items-center text-center">
-          <span className="hero-anim-mobile font-heading font-light text-accent text-[11px] tracking-[0.25em] uppercase opacity-90 mb-5">
+          <span className="hero-anim-mobile opacity-0 font-heading font-light text-accent text-[11px] tracking-[0.25em] uppercase mb-5">
             // AGENCJA SKALOWANIA BIZNESU
           </span>
-          <h1 className="hero-anim-mobile font-heading font-light tracking-tight text-ivory/90 text-[12vw] leading-[1.05] flex flex-col gap-1">
+          <h1 className="hero-anim-mobile opacity-0 font-heading font-light tracking-tight text-ivory/90 text-[12vw] leading-[1.05] flex flex-col gap-1">
             <span>Skaluj biznes,</span>
             <span className="text-ivory">odzyskaj czas.</span>
           </h1>
@@ -216,7 +242,7 @@ export default function Hero() {
       {/* Front logo animation layer */}
       <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none">
         {/* Mobile: centered icon with glow */}
-        <div className="hero-logo-mobile md:hidden absolute left-1/2 top-[38%] sm:top-[42%] landscape:top-[35%] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+        <div className="hero-logo-mobile opacity-0 md:hidden absolute left-1/2 top-[38%] sm:top-[42%] landscape:top-[35%] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
           <div className="hero-glow-mobile absolute w-[55vw] h-[55vw] max-w-[30vh] max-h-[30vh] rounded-full mix-blend-screen" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%)' }} />
           <img
             src="/LOGO_AKCENT.png"

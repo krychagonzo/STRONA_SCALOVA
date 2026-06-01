@@ -11,6 +11,7 @@ export default function Navbar() {
   const navRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [animationComplete, setAnimationComplete] = useState(false);
   const lastScrollY = useRef(0);
   const location = useLocation();
 
@@ -33,19 +34,27 @@ export default function Navbar() {
     let ctx = gsap.context(() => {
       if (navRef.current) navRef.current.style.transition = 'none';
 
-      gsap.from(navRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 1.5,
-        ease: 'power3.out',
-        delay: 3,
-        onComplete: () => {
-          if (navRef.current) {
-            navRef.current.style.transition = '';
-            gsap.set(navRef.current, { clearProps: 'all' });
+      gsap.fromTo(navRef.current,
+        {
+          y: -100,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: 'power3.out',
+          delay: 3,
+          onComplete: () => {
+            if (navRef.current) {
+              navRef.current.classList.remove('opacity-0', 'pointer-events-none');
+              navRef.current.style.transition = '';
+              gsap.set(navRef.current, { clearProps: 'all' });
+            }
+            setAnimationComplete(true);
           }
         }
-      });
+      );
     }, navRef);
     return () => ctx.revert();
   }, []);
@@ -108,7 +117,7 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-[60] w-full text-ivory flex items-center justify-between px-5 md:px-8 pb-1.5 md:pb-3 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'} ${isVisible ? 'translate-y-0' : '-translate-y-40 md:translate-y-0'}`}
+        className={`fixed top-0 left-0 right-0 z-[60] w-full text-ivory flex items-center justify-between px-5 md:px-8 pb-1.5 md:pb-3 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'} ${isVisible ? 'translate-y-0' : '-translate-y-40 md:translate-y-0'} ${animationComplete ? '' : 'opacity-0 pointer-events-none'}`}
         style={{ transform: 'translateZ(0)', willChange: 'transform', paddingTop: 'calc(env(safe-area-inset-top) + 0.375rem)' }}
       >
         {/* Mobile: single solid bg with blur, stretched upwards to prevent top gaps */}
@@ -137,9 +146,9 @@ export default function Navbar() {
               <a href="#protocol" onClick={(e) => handleScrollTo(e, '#protocol')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
                 Metodologia <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
               </a>
-              {/* <a href="#team" onClick={(e) => handleScrollTo(e, '#team')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
-                Zespół <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
-              </a> */}
+               <a href="#team" onClick={(e) => handleScrollTo(e, '#team')} className="group/nav-link relative hover:text-accent transition-colors duration-300 transform hover:-translate-y-[1px] block">
+                 Zespół <img src="/ROG.png" alt="" className="absolute -top-1 -right-4 w-3 h-3 opacity-0 group-hover/nav-link:opacity-100 transition-opacity duration-300" />
+               </a>
             </>
           ) : (
              <>
