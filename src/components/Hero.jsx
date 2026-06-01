@@ -257,6 +257,7 @@ export default function Hero() {
           <img
             src="/LOGO_AKCENT.png"
             alt=""
+            fetchPriority="high"
             className="w-[70vw] h-[70vw] max-w-[38vh] max-h-[38vh] object-contain relative z-10"
           />
         </div>

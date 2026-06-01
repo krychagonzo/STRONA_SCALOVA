@@ -127,7 +127,7 @@ export default function Navbar() {
         <div className="hidden md:block absolute inset-0 z-[-1] pointer-events-none bg-obsidian/60 [mask-image:linear-gradient(to_bottom,black_20%,transparent_80%)]" />
 
         <Link to="/" className="group/logo font-heading font-bold text-xl tracking-widest cursor-pointer flex items-center relative h-full pointer-events-auto hover:filter-none">
-          <img src="/logo.png" alt="Scalova Logo" className="h-16 md:h-20 absolute top-1/2 -translate-y-1/2 left-0 w-auto object-contain origin-left scale-110 md:scale-125" style={{ maxWidth: 'none' }} />
+          <img src="/logo.png" alt="Scalova Logo" fetchPriority="high" className="h-16 md:h-20 absolute top-1/2 -translate-y-1/2 left-0 w-auto object-contain origin-left scale-110 md:scale-125" style={{ maxWidth: 'none' }} />
           <div className="h-6 w-36 md:w-56 opacity-0 pointer-events-none"></div>
         </Link>
         

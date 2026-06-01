@@ -11,4 +11,15 @@ export default defineConfig({
     },
   },
   base: './',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+          gsap: ['gsap'],
+          three: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing']
+        }
+      }
+    }
+  }
 })
