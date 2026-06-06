@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
+import Seo from '../components/Seo';
 
 const subServices = [
   { title: "Animacje 2D i 3D", desc: "Ożywiamy idee, których nie da się uchwycić tradycyjną kamerą. Od subtelnego ruchu logo, który buduje profesjonalny charakter marki, po fotorealistyczne prezentacje produktów i przekroje techniczne. To idealne rozwiązanie, gdy chcesz pokazać wnętrze mechanizmu lub projekt, który jeszcze nie istnieje." },
@@ -64,6 +65,7 @@ export default function RuchomeTresci({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Ruchome treści wizualne | Scalova" description="Animacje i video, które przekazują emocje i dane lepiej niż tekst. Projektujemy ruch, który ma cel, nie ozdobę." path="/uslugi/ruchome-tresci" />
 
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Seo from '../components/Seo';
 
 // Bayer 4x4 — identyczne jak ServiceHeroCanvas
 const BAYER4 = [
@@ -148,6 +149,7 @@ export default function FAQ() {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center pb-32">
+      <Seo title="FAQ | Scalova" description="Najczęstsze pytania o współpracę ze Scalova - zakres usług, proces, efekty i rozliczenia." path="/faq" />
       {/* AMBIENT GRADIENT z anti-banding dithering */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0" style={{ height: '120vh' }}>

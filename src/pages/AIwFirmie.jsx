@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+import Seo from '../components/Seo';
 
 const subServices = [
   { title: "Audyt gotowości firmy na AI", desc: "Analizujemy procesy, dane i narzędzia w Twojej firmie. Identyfikujemy gdzie AI przyniesie realny zwrot z inwestycji, a gdzie byłby tylko kosztem bez efektu. Konkretna mapa wdrożenia z wyceną ROI." },
@@ -61,6 +62,7 @@ export default function AIwFirmie({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="AI w firmie | Scalova" description="Wdrażamy AI, które od pierwszego tygodnia oszczędza zespołowi godziny. Nie eksperymenty ani slajdy - konkretne narzędzia i liczby." path="/uslugi/ai-w-firmie" />
 
       {/* HERO */}
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">

@@ -1,4 +1,5 @@
 import React from 'react';
+import Seo from '../components/Seo';
 import Hero from '../components/Hero';
 import { LogoCloud } from '../components/ui/logo-cloud';
 import Features from '../components/Features';
@@ -11,6 +12,7 @@ import Team from '../components/Team';
 export default function Home() {
   return (
     <>
+      <Seo title="SCALOVA | Skalowanie biznesu" description="Scalova to agencja skalowania biznesu. Specjalizujemy się w systemach sprzedażowych i automatyzacji, marketingu oraz designie." path="/" />
       <Hero />
       <LogoCloud />
       <div className="h-16 md:h-24 w-full" />

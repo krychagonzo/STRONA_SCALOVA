@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+import Seo from '../components/Seo';
 
 const subServices = [
   { title: "Meta Ads (Facebook & Instagram)", desc: "Kampanie w ekosystemie Meta zoptymalizowane pod ROAS, nie pod zasięg. Precyzyjne targetowanie, testowanie kreacji i skalowanie budżetów na tym co faktycznie generuje sprzedaż." },
@@ -61,6 +62,7 @@ export default function Kampanie({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Kampanie reklamowe i organic | Scalova" description="Kampanie śledzone do sprzedaży, nie do kliknięć. Łączymy reklamy płatne z organicznym contentem, żeby każda złotówka pracowała na wynik." path="/uslugi/kampanie" />
 
       {/* HERO */}
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">

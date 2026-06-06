@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+import Seo from '../components/Seo';
 
 const subServices = [
   {
@@ -80,6 +81,7 @@ export default function ZlotyNumer({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Złoty numer | Scalova" description="Łatwy do zapamiętania numer jako narzędzie sprzedażowe. Wzmacnia rozpoznawalność marki w każdym punkcie styku z klientem." path="/uslugi/zloty-numer" />
 
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

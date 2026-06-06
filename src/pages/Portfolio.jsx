@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
+import Seo from '../components/Seo';
 
 // Bayer 4x4 dithering — eliminuje banding na ciemnych gradientach
 const BAYER4 = [
@@ -126,7 +127,8 @@ export default function Portfolio() {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center pb-32">
-      
+      <Seo title="Portfolio | Scalova" description="Projekty Scalova - treści wizualne, animacje, kampanie i systemy sprzedażowe, które realnie pracują na wynik klientów." path="/portfolio" />
+
       {/* AMBIENT GRADIENT z Bayer diteringiem */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0" style={{ height: '120vh' }}>
