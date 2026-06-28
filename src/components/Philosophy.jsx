@@ -53,7 +53,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)' }}></div>
-                  <img src="/SEKCJA_PODEJSCIE/SPRZEDAZ.png" alt="Sprzedaż" className="w-full max-w-xs relative z-10" loading="lazy" />
+                  <img src="/SEKCJA_PODEJSCIE/SPRZEDAZ.png" alt="Sprzedaż" className="w-full max-w-[200px] md:max-w-xs relative z-10" loading="lazy" />
                </div>
             </div>
 
@@ -69,7 +69,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)' }}></div>
-                  <img src="/SEKCJA_PODEJSCIE/WIDOCZNOSC_W_SIECI.png" alt="Widoczność w Sieci" className="w-full max-w-xs relative z-10" loading="lazy" />
+                  <img src="/SEKCJA_PODEJSCIE/WIDOCZNOSC_W_SIECI.png" alt="Widoczność w Sieci" className="w-full max-w-[200px] md:max-w-xs relative z-10" loading="lazy" />
                </div>
             </div>
 
@@ -85,7 +85,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)' }}></div>
-                  <img src="/SEKCJA_PODEJSCIE/AUTOMATYZACJA.png" alt="Automatyzacje" loading="lazy" className="w-full max-w-xs relative z-10 translate-x-4 md:translate-x-8" />
+                  <img src="/SEKCJA_PODEJSCIE/AUTOMATYZACJA.png" alt="Automatyzacje" loading="lazy" className="w-full max-w-[200px] md:max-w-xs relative z-10 translate-x-4 md:translate-x-8" />
                </div>
             </div>
 
@@ -112,7 +112,7 @@ export default function Philosophy() {
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
                   <div className="absolute w-72 h-72 rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)' }}></div>
-                  <img src="/SEKCJA_PODEJSCIE/MARKETING.png" alt="Marketing" className="w-full max-w-xs relative z-10" loading="lazy" />
+                  <img src="/SEKCJA_PODEJSCIE/MARKETING.png" alt="Marketing" className="w-full max-w-[200px] md:max-w-xs relative z-10" loading="lazy" />
                </div>
             </div>
 
