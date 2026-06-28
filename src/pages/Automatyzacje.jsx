@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+import Seo from '../components/Seo';
 
 const subServices = [
   { title: "Automatyzacja procesów operacyjnych", desc: "Mapujemy każdy powtarzalny proces w firmie i programujemy automatyzacje, które działają w tle - cicho, niezawodnie, bez Twojego udziału. Twój zespół przestaje być maszyną do przepisywania danych i zaczyna robić to, za co naprawdę płacisz." },
@@ -67,6 +68,7 @@ export default function Automatyzacje({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Automatyzacje procesów | Scalova" description="Audytujemy procesy, usuwamy powtarzalną pracę i budujemy system, który wykonuje ją za Twój zespół. Efekt od pierwszego tygodnia." path="/uslugi/automatyzacje" />
 
       {/* HERO */}
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">

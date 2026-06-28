@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import Seo from '../components/Seo';
 
 // Bayer 4×4 ordered dithering matrix, normalized to [-1, 1]
 const BAYER4 = [
@@ -231,6 +232,7 @@ export default function Career() {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center">
+      <Seo title="Dołącz do nas - Kariera | Scalova" description="Budujemy agencję skalowania biznesu. Zobacz kogo szukamy i dołącz do zespołu Scalova." path="/do-lacz-do-nas" />
 
       {/* AMBIENT GRADIENT & ANTI-BANDING NOISE */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

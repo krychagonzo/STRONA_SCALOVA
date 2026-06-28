@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+import Seo from '../components/Seo';
 
 const subServices = [
   { title: "Przebudowa oferty handlowej", desc: "Przepisujemy Twoją ofertę pod psychologię decyzji zakupowych. Właściwa kolejność argumentów, właściwa cena, obiekcje rozbrojone z góry - zanim klient zdąży je wypowiedzieć." },
@@ -60,6 +61,7 @@ export default function SprzedazOferta({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Sprzedaż i oferta | Scalova" description="Przebudowujemy Twoją ofertę od podstaw i szkolimy zespół, który wie jak jej używać. Wyższy win-rate przy tych samych leadach." path="/uslugi/sprzedaz" />
 
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

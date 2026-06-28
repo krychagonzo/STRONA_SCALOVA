@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Seo from '../components/Seo';
 
 const sections = [
   {
@@ -79,6 +80,7 @@ Wszelkie spory będą rozwiązywane w pierwszej kolejności polubownie, a jeśli
 export default function Regulamin() {
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Regulamin | Scalova" description="Regulamin serwisu scalova.pl." path="/regulamin" noindex />
       <Navbar />
 
       {/* HERO */}

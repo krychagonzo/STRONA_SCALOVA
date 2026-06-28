@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+import Seo from '../components/Seo';
 
 const subServices = [
   { title: "Identyfikacja Wizualna i Rebranding", desc: "Tworzymy unikalny kod genetyczny Twojej firmy. Projektujemy logo, dobieramy typografię i kolorystykę, które tworzą spójny wizerunek lidera. Pomagamy też odświeżyć istniejące marki, aby nadążały za dynamicznie zmieniającym się rynkiem." },
@@ -64,6 +65,7 @@ export default function StatyczneTresci({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Statyczne treści wizualne | Scalova" description="Identyfikacje, wizualizacje i materiały, które wygrywają pierwsze wrażenie. Twój wizerunek mówi, zanim zaczniesz." path="/uslugi/statyczne-tresci" />
 
       {/* HERO */}
       <section className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">

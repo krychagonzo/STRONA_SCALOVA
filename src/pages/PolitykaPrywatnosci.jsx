@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Seo from '../components/Seo';
 
 const sections = [
   {
@@ -125,6 +126,7 @@ Ostatnia aktualizacja: 01.01.2026`,
 export default function PolitykaPrywatnosci() {
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Polityka prywatności | Scalova" description="Polityka prywatności serwisu scalova.pl." path="/polityka-prywatnosci" noindex />
       <Navbar />
 
       {/* HERO */}

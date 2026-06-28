@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SubServices from '../components/SubServices';
 import ServicePageNav from '../components/ServicePageNav';
 import ServiceHeroCanvas from '../components/ServiceHeroCanvas';
+import Seo from '../components/Seo';
 
 const subServices = [
   { title: "Landing page", desc: "Jedna strona, jeden cel - konwersja. Projektujemy landing page'e pod konkretną kampanię lub produkt, z precyzyjną ścieżką prowadzącą odwiedzającego prosto do formularza, zakupu lub telefonu. Zero rozpraszaczy." },
@@ -150,6 +151,7 @@ export default function StronaAI({ onOpenModal }) {
 
   return (
     <div className="relative w-full min-h-screen bg-obsidian text-ivory font-sans selection:bg-accent selection:text-obsidian">
+      <Seo title="Strona internetowa AI | Scalova" description="Strony, które same zagadują klientów, kwalifikują leady i zapisują kontakt do CRM. Twoja strona jako najlepszy handlowiec, jakiego zatrudnisz." path="/uslugi/strona-ai" />
 
       {/* HERO */}
       <section ref={heroRef} className="relative w-full min-h-[90vh] flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-32 pt-24 md:pt-40 overflow-hidden">
