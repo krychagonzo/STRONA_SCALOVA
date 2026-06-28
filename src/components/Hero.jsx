@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -107,115 +107,141 @@ function HeroCanvas() {
   );
 }
 
-// Renders the last animation frame (lossless WebP with alpha) onto a canvas,
-// applying the same chromakey to guarantee transparent background.
-function StaticLastFrame() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    canvas.width  = CW;
-    canvas.height = CH;
-
-    const img = new Image();
-    img.src = '/HERO_ANIM_last.webp';
-    img.onload = () => {
-      ctx.clearRect(0, 0, CW, CH);
-      ctx.drawImage(img, 0, 0, CW, CH);
-      const frame = ctx.getImageData(0, 0, CW, CH);
-      const d = frame.data;
-      const LOW = 14, HIGH = 50, RANGE = HIGH - LOW;
-      for (let i = 0; i < d.length; i += 4) {
-        const brightness = d[i] > d[i + 1]
-          ? (d[i] > d[i + 2] ? d[i] : d[i + 2])
-          : (d[i + 1] > d[i + 2] ? d[i + 1] : d[i + 2]);
-        if (brightness < HIGH) {
-          d[i + 3] = brightness <= LOW
-            ? 0
-            : Math.round(((brightness - LOW) / RANGE) * 255);
-        }
-      }
-      ctx.putImageData(frame, 0, 0);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-auto block"
-      style={{ willChange: 'transform' }}
-    />
-  );
-}
-
-// Canvas pixel-chromakey: draws dark-bg MP4 to canvas and keys out
-// near-black background (#0E0E0E), giving true transparency on all browsers.
-// When video autoplay is blocked (battery saver / power mode), falls back
-// to a static transparent WebP of the final frame.
-const CW = 480;
-const CH = 270;
-
-function MobileHeroCanvas() {
+// ─────────────────────────────────────────────────────────────────
+// MobileHeroChromakey — DPR-aware canvas, max jakość na Retina.
+//
+// • Renderuje w natywnej gęstości pikseli (cap 3×):
+//   iPhone 15 Pro (DPR=3): canvas 1440×810 → zero CSS upscale.
+// • imageSmoothingQuality:'high' → bicubic drawImage.
+// • Rampa alpha 10→60 → ostrzejsze krawędzie logo.
+// • BEZ loop: po zakończeniu wideo canvas zostaje z ostatnią klatką.
+// • RVFC: getImageData tylko przy nowej klatce (30×/s nie 60×/s).
+// ─────────────────────────────────────────────────────────────────
+function MobileHeroChromakey() {
   const canvasRef = useRef(null);
   const videoRef  = useRef(null);
-  const [blocked, setBlocked] = useState(false);
+  const rafRef    = useRef(null);
+  const rvfcRef   = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const video  = videoRef.current;
     if (!canvas || !video) return;
 
-    // Attempt playback — catch rejection caused by battery saver / autoplay policy
-    const p = video.play();
-    if (p !== undefined) {
-      p.catch(() => setBlocked(true));
-    }
+    // Natywna rozdzielczość fizyczna — cap 4× (maksymalna jakość Retina)
+    const dpr = Math.min(window.devicePixelRatio || 1, 4);
+    const W = Math.round(480 * dpr);
+    const H = Math.round(270 * dpr);
+
+    canvas.width  = W;
+    canvas.height = H;
 
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    canvas.width  = CW;
-    canvas.height = CH;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';  // bicubic przy drawImage
 
-    let rafId;
-    let lastTs = 0;
-    const FRAME_MS = 1000 / 30;
+    // Rampa alpha: LOW=10 (tło), HIGH=60 (krawędź) → ostrzejsze krawędzie logo
+    const LOW = 10, HIGH = 60, RANGE = HIGH - LOW;
 
-    const drawFrame = (ts) => {
-      rafId = requestAnimationFrame(drawFrame);
-      if (ts - lastTs < FRAME_MS - 2) return;
-      lastTs = ts;
-      if (video.readyState < 2 || video.paused || video.ended) return;
-
-      // Clear to fully transparent before each frame
-      ctx.clearRect(0, 0, CW, CH);
-      ctx.drawImage(video, 0, 0, CW, CH);
-      const frame = ctx.getImageData(0, 0, CW, CH);
+    const processFrame = () => {
+      if (video.readyState < 2) return;
+      ctx.clearRect(0, 0, W, H);
+      ctx.drawImage(video, 0, 0, W, H);
+      const frame = ctx.getImageData(0, 0, W, H);
       const d = frame.data;
-
-      // Smooth alpha ramp: transparent at ≤14 (= bg colour), opaque at ≥50
-      const LOW = 14, HIGH = 50, RANGE = HIGH - LOW;
       for (let i = 0; i < d.length; i += 4) {
-        const brightness = d[i] > d[i + 1]
-          ? (d[i] > d[i + 2] ? d[i] : d[i + 2])
-          : (d[i + 1] > d[i + 2] ? d[i + 1] : d[i + 2]);
-        if (brightness < HIGH) {
-          d[i + 3] = brightness <= LOW
-            ? 0
-            : Math.round(((brightness - LOW) / RANGE) * 255);
+        const b = d[i] > d[i+1]
+          ? (d[i] > d[i+2] ? d[i] : d[i+2])
+          : (d[i+1] > d[i+2] ? d[i+1] : d[i+2]);
+        if (b < HIGH) {
+          d[i+3] = b <= LOW ? 0 : Math.round(((b - LOW) / RANGE) * 255);
         }
       }
       ctx.putImageData(frame, 0, 0);
     };
 
-    rafId = requestAnimationFrame(drawFrame);
-    return () => cancelAnimationFrame(rafId);
-  }, []);
+    // Fallback dla trybu oszczędzania energii (autoplay zablokowany)
+    const renderStaticFallback = () => {
+      const img = new Image();
+      img.src = '/HERO_ANIM_last.webp';
+      img.onload = () => {
+        ctx.clearRect(0, 0, W, H);
+        ctx.drawImage(img, 0, 0, W, H);
+        const frame = ctx.getImageData(0, 0, W, H);
+        const d = frame.data;
+        for (let i = 0; i < d.length; i += 4) {
+          const b = d[i] > d[i+1] ? (d[i] > d[i+2] ? d[i] : d[i+2]) : (d[i+1] > d[i+2] ? d[i+1] : d[i+2]);
+          if (b < HIGH) {
+            d[i+3] = b <= LOW ? 0 : Math.round(((b - LOW) / RANGE) * 255);
+          }
+        }
+        ctx.putImageData(frame, 0, 0);
+      };
+    };
 
-  // Battery saver / autoplay blocked → draw static last frame through canvas chromakey
-  if (blocked) {
-    return <StaticLastFrame />;
-  }
+    const supportsRVFC = typeof video.requestVideoFrameCallback === 'function';
+
+    const startLoop = () => {
+      if (supportsRVFC) {
+        const onFrame = () => {
+          processFrame();
+          if (!video.ended) rvfcRef.current = video.requestVideoFrameCallback(onFrame);
+        };
+        rvfcRef.current = video.requestVideoFrameCallback(onFrame);
+      } else {
+        let lastTs = 0;
+        const FRAME_MS = 1000 / 30;
+        const loop = (ts) => {
+          if (video.ended) return;
+          rafRef.current = requestAnimationFrame(loop);
+          if (ts - lastTs < FRAME_MS - 2) return;
+          lastTs = ts;
+          processFrame();
+        };
+        rafRef.current = requestAnimationFrame(loop);
+      }
+    };
+
+    const tryPlay = () => {
+      const p = video.play();
+      if (p !== undefined) {
+        p.then(() => {
+          startLoop();
+        }).catch(() => {
+          // Play zablokowany (np. tryb oszczędzania energii) -> ładujemy ostatnią klatkę
+          renderStaticFallback();
+        });
+      } else {
+        startLoop();
+      }
+    };
+
+    if (video.readyState >= 1) {
+      tryPlay();
+    } else {
+      video.addEventListener('loadedmetadata', tryPlay, { once: true });
+    }
+
+    // Zatrzymaj pętlę rysowania gdy wideo dobiegnie końca — canvas trzyma ostatnią klatkę
+    const onEnded = () => {
+      cancelAnimationFrame(rafRef.current);
+      if (rvfcRef.current && video.cancelVideoFrameCallback) {
+        video.cancelVideoFrameCallback(rvfcRef.current);
+        rvfcRef.current = null;
+      }
+      processFrame();
+    };
+
+    video.addEventListener('ended', onEnded, { once: true });
+
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      if (rvfcRef.current && video.cancelVideoFrameCallback) {
+        video.cancelVideoFrameCallback(rvfcRef.current);
+      }
+      video.removeEventListener('ended', onEnded);
+    };
+  }, []);
 
   return (
     <>
@@ -234,12 +260,13 @@ function MobileHeroCanvas() {
           left: 0,
         }}
       >
-        <source src="/HERO_ANIM_mobile.mp4" type="video/mp4" />
+        <source src="/HERO_ANIM_mobile.mp4"  type="video/mp4"  />
+        <source src="/HERO_ANIM_mobile.webm" type="video/webm" />
       </video>
       <canvas
         ref={canvasRef}
         className="w-full h-auto block"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
       />
     </>
   );
@@ -252,15 +279,18 @@ export default function Hero() {
   const revealMobileText = useCallback(() => {
     if (textDone.current) return;
     textDone.current = true;
+    // Staggered line-by-line reveal — crisp on 60 Hz mobile screens
     gsap.fromTo('.hero-anim-mobile',
-      { y: 36, opacity: 0 },
+      { y: 48, opacity: 0, rotateX: 8 },
       {
         y: 0,
-        opacity: (i) => i === 0 ? 0.9 : 1,
-        duration: 1.8,
-        stagger: 0.18,
-        ease: 'power3.out',
+        rotateX: 0,
+        opacity: (i) => i === 0 ? 0.85 : 1,
+        duration: 1.4,
+        stagger: 0.22,
+        ease: 'power4.out',
         force3D: true,
+        transformOrigin: 'center bottom',
       }
     );
   }, []);
@@ -298,10 +328,10 @@ export default function Hero() {
       }
     }, comp);
 
-    // Mobile: text always appears after 2 s — animation plays concurrently
+    // Mobile: text always appears after 1.6 s — snappier reveal
     let textTimer;
     if (window.innerWidth < 768) {
-      textTimer = setTimeout(revealMobileText, 2000);
+      textTimer = setTimeout(revealMobileText, 1600);
     }
 
     return () => {
@@ -337,17 +367,15 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile: 3D logo animation — 200 vw wide (clipped), logo edge-to-edge */}
-      {typeof window !== 'undefined' && window.innerWidth < 768 && (
-        <div
-          className="absolute z-30 pointer-events-none overflow-hidden"
-          style={{ top: '4%', left: '-47vw', right: '-53vw' }}
-        >
-          <MobileHeroCanvas />
-        </div>
-      )}
+      {/* Mobile: 3D logo animation — DPR-aware canvas chromakey */}
+      <div
+        className="md:hidden absolute z-30 pointer-events-none overflow-hidden"
+        style={{ top: '4%', left: '-47vw', right: '-53vw' }}
+      >
+        <MobileHeroChromakey />
+      </div>
 
-      {/* Mobile text — fades in after 2 s, sits right below the animation */}
+      {/* Mobile text — fades in after 1.6 s, sits right below the animation */}
       <div
         className="md:hidden absolute inset-x-0 z-40 pointer-events-none select-none px-6 flex flex-col items-center text-center"
         style={{ top: 'calc(4% + 104vw)' }}
