@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(python -m http.server 8080)",
+      "Bash(Start-Sleep -Seconds 2)",
+      "Bash(Invoke-WebRequest -Uri \"http://localhost:8080\" -UseBasicParsing -TimeoutSec 5)",
+      "Bash(Select-Object -ExpandProperty StatusCode)",
+      "PowerShell(Start-Process python -ArgumentList \"-m\", \"http.server\", \"8080\" -WorkingDirectory \"C:\\\\Users\\\\Kryst\\\\Desktop\\\\SCALOVA\\\\STRONA\\\\SCALOVA_FOR_ARCHITECTS_02\\\\SCALOVA_FOR_ARCHITECTS_02-handoff\\\\scalova-for-architects-02\\\\project\" -WindowStyle Hidden; Start-Sleep -Seconds 2; \\(Invoke-WebRequest -Uri \"http://localhost:8080\" -UseBasicParsing -TimeoutSec 5\\).StatusCode)",
+      "PowerShell(Start-Process \"http://localhost:8080\")",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(python -c ' *)",
+      "WebFetch(domain:scalova.pl)",
+      "Bash(curl -s \"https://scalova.pl/\")",
+      "Bash(curl -s \"https://scalova.pl/assets/index-BY5EOlIa.js\" -o /tmp/scalova_live.js)",
+      "Read(//tmp/**)",
+      "Bash(curl -s \"https://scalova.pl/do-lacz-do-nas\")",
+      "Bash(ls \"/mnt/c/Users/Kryst/Desktop/SCALOVA/STRONA/SCALOVA_FOR_ARCHITECTS_02/SCALOVA_FOR_ARCHITECTS_02-handoff/scalova-for-architects-02/project/\")",
+      "Bash(ls \"/mnt/c/Users/Kryst/Desktop/SCALOVA/STRONA/SCALOVA_FOR_ARCHITECTS_02/\")",
+      "Bash(ls /mnt/c/Users/Kryst/Desktop/ 2>&1 | head -20)",
+      "PowerShell(Get-ChildItem -Force -Recurse -Depth 2 \"SCALOVA_FOR_ARCHITECTS_02-handoff\" | ForEach-Object { $_.FullName.Replace\\(\"$PWD\\\\\", \"\"\\) })",
+      "PowerShell(python --version)",
+      "PowerShell(node --version)",
+      "PowerShell(Start-Sleep -Milliseconds 800; \\(Invoke-WebRequest -Uri \"http://localhost:8000/\" -UseBasicParsing\\).StatusCode)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

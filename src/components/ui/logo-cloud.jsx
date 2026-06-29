@@ -15,10 +15,8 @@ const logos = [
   { src: "/ZAUFALI_NAM/LOGO_0009_lustremed.webp", alt: "Lustremed" },
   { src: "/ZAUFALI_NAM/LOGO_0010_LOGO.webp", alt: "LOGO" },
   { src: "/ZAUFALI_NAM/LOGO_0011_kwartz.webp", alt: "Kwartz" },
-  { src: "/ZAUFALI_NAM/LOGO_0012_GWPA.webp", alt: "GWPA" },
   { src: "/ZAUFALI_NAM/LOGO_0013_DEAG.webp", alt: "DEAG" },
   { src: "/ZAUFALI_NAM/LOGO_0014_cube27.webp", alt: "Cube27" },
-  { src: "/ZAUFALI_NAM/LOGO_0015_blyce.webp", alt: "Blyce" },
   { src: "/ZAUFALI_NAM/LOGO_0016_BLAURE.webp", alt: "BLAURE" },
   { src: "/ZAUFALI_NAM/LOGO_0017_AENAON-LOGO.webp", alt: "AENAON", customClass: "h-6 md:h-9" },
 ];
@@ -48,7 +46,7 @@ export function LogoCloud({ className, ...props }) {
         )}
       >
         <div className="filter grayscale brightness-0 invert">
-          <InfiniteSlider gap={sliderGap} reverse={false} duration={45}>
+          <InfiniteSlider gap={sliderGap} reverse={true} duration={45}>
             {logos.map((logo) => (
               <img
                 key={`logo-${logo.alt}`}
@@ -58,7 +56,8 @@ export function LogoCloud({ className, ...props }) {
                   "w-auto object-contain flex-shrink-0 opacity-40 self-center cursor-default shrink-0",
                   logo.customClass || "h-10 md:h-14"
                 )}
-                loading="lazy"
+                loading="eager"
+                decoding="async"
               />
             ))}
           </InfiniteSlider>

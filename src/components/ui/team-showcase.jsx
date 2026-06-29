@@ -6,7 +6,7 @@ const DEFAULT_MEMBERS = [
     id: '1',
     name: 'Kacper Nowinka',
     role: 'CEO & Founder',
-    image: '/zespol/kacper_nowinka.webp',
+    image: '/zespol/kacper_nowinka.jpg',
     social: { linkedin: 'https://www.linkedin.com/company/scalova/' },
   },
   {

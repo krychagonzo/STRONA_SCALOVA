@@ -16,15 +16,18 @@ export function InfiniteSlider({
     <div className={cn('overflow-hidden flex', className)} style={{ gap: `${gap}px`, flexDirection: isH ? 'row' : 'column' }}>
       <style>{`
         @keyframes slide-fwd {
-          0% { transform: ${isH ? 'translateX(0)' : 'translateY(0)'}; }
-          100% { transform: ${isH ? `translateX(calc(-100% - ${gap}px))` : `translateY(calc(-100% - ${gap}px))`}; }
+          0% { transform: ${isH ? 'translate3d(0, 0, 0)' : 'translate3d(0, 0, 0)'}; }
+          100% { transform: ${isH ? `translate3d(calc(-100% - ${gap}px), 0, 0)` : `translate3d(0, calc(-100% - ${gap}px), 0)`}; }
         }
         @keyframes slide-rev {
-          0% { transform: ${isH ? `translateX(calc(-100% - ${gap}px))` : `translateY(calc(-100% - ${gap}px))`}; }
-          100% { transform: ${isH ? 'translateX(0)' : 'translateY(0)'}; }
+          0% { transform: ${isH ? `translate3d(calc(-100% - ${gap}px), 0, 0)` : `translate3d(0, calc(-100% - ${gap}px), 0)`}; }
+          100% { transform: ${isH ? 'translate3d(0, 0, 0)' : 'translate3d(0, 0, 0)'}; }
         }
         .animate-infinite-slider {
           animation: ${animName} ${duration}s linear infinite;
+          will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
       `}</style>
       <div 

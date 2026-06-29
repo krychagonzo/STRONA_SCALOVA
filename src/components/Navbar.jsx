@@ -117,8 +117,8 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-[60] w-full text-ivory flex items-center justify-between px-5 md:px-8 pb-1.5 md:pb-3 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'} ${isVisible ? 'translate-y-0' : '-translate-y-40 md:translate-y-0'} ${animationComplete ? '' : 'opacity-0 pointer-events-none'}`}
-        style={{ transform: 'translateZ(0)', willChange: 'transform', paddingTop: 'calc(env(safe-area-inset-top) + 0.375rem)' }}
+        className={`fixed top-0 left-0 right-0 z-[60] w-full text-ivory flex items-center justify-between px-5 md:px-8 pb-1.5 md:pb-3 transition-all duration-500 ease-in-out transform-gpu ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'} ${isVisible ? 'translate-y-0' : '-translate-y-40 md:translate-y-0'} ${animationComplete ? '' : 'opacity-0 pointer-events-none'}`}
+        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.375rem)' }}
       >
         {/* Mobile: single solid bg with blur, stretched upwards to prevent top gaps */}
         <div className="md:hidden absolute -top-16 bottom-0 left-0 right-0 z-[-1] pointer-events-none bg-[#0c0c0c]/95 backdrop-blur-md border-b border-white/5" />
@@ -189,7 +189,7 @@ export default function Navbar() {
 
       {/* Side Drawer Menu */}
       <div 
-        className={`fixed top-0 right-0 z-[55] w-full sm:w-[450px] h-[100dvh] bg-[#0c0c0c]/40 backdrop-blur-2xl border-l border-white/5 flex flex-col overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 bottom-0 right-0 z-[55] w-full sm:w-[450px] bg-[#0c0c0c]/40 backdrop-blur-2xl border-l border-white/5 flex flex-col overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] transform-gpu ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="absolute inset-0 w-full h-full opacity-50 mix-blend-overlay pointer-events-none z-0" style={{ backgroundImage: 'var(--noise-bg)', backgroundRepeat: 'repeat' }} />
 

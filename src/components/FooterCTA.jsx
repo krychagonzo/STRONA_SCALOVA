@@ -72,9 +72,13 @@ export default function FooterCTA({ onOpenModal, hideCta = false }) {
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           <div className="sm:col-span-2 flex flex-col justify-between">
             <div>
-              <div className="mb-8">
-                <a href="/" className="block">
-                  <img src="/logo.png" alt="Scalova Logo" className="h-20 md:h-24 w-auto object-contain scale-110 md:scale-125 origin-left hover:brightness-110 transition-all" />
+              <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+                <a href="/" className="flex items-center">
+                  <img src="/logo.png" alt="Scalova Logo" className="h-20 md:h-24 w-auto object-contain hover:brightness-110 transition-all" />
+                </a>
+                <div className="hidden sm:block w-[1px] h-10 bg-ivory/20 ml-2"></div>
+                <a href="/scalova_arch/index.html" className="flex items-center" title="Przejdź do Scalova for Architects">
+                  <img src="/scalova_arch/assets/LOGO_ARCH.svg" alt="Scalova Arch Logo" className="h-[14px] md:h-[18px] -translate-y-[3px] md:-translate-y-[4px] w-auto object-contain hover:brightness-110 transition-all" />
                 </a>
               </div>
               <div className="flex gap-6">

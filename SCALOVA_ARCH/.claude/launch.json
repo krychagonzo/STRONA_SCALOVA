@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "scalova-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8800", "--directory", "SCALOVA_FOR_ARCHITECTS_02-handoff/scalova-for-architects-02/project"],
+      "port": 8800,
+      "autoPort": false
+    }
+  ]
+}
