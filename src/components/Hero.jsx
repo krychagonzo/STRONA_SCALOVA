@@ -283,15 +283,15 @@ export default function Hero() {
   const comp     = useRef(null);
   const textDone = useRef(false);
 
-  // Dynamiczne śledzenie szerokości ekranu na podstawie breakpointu md (768px)
+  // Dynamiczne śledzenie szerokości ekranu na podstawie niestandardowego breakpointu md w tailwind.config.js (1200px)
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window === 'undefined') return false;
-    return window.innerWidth < 768;
+    return window.innerWidth < 1200;
   });
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const media = window.matchMedia('(max-width: 767px)');
+    const media = window.matchMedia('(max-width: 1199px)');
     const listener = (e) => setIsMobile(e.matches);
     media.addEventListener('change', listener);
     return () => media.removeEventListener('change', listener);
@@ -315,6 +315,13 @@ export default function Hero() {
       }
     );
   }, []);
+
+  // Uruchomienie animacji tekstu mobilnego natychmiast przy przejściu na widok mobilny (np. po zmianie rozmiaru okna)
+  useEffect(() => {
+    if (isMobile && !textDone.current) {
+      revealMobileText();
+    }
+  }, [isMobile, revealMobileText]);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -351,7 +358,7 @@ export default function Hero() {
 
     // Mobile: text always appears after 1.6 s — snappier reveal
     let textTimer;
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 1200) {
       textTimer = setTimeout(revealMobileText, 1600);
     }
 
