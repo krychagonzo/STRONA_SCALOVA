@@ -397,6 +397,7 @@ export default function Hero() {
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-contain scale-[1.6]"
+            style={{ mixBlendMode: 'screen' }}
           >
             <source src="/ANIM_05_LOGO_1.webm" type="video/webm" />
           </video>

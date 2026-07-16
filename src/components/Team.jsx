@@ -48,7 +48,7 @@ export default function Team() {
             Zespół, dla którego Twój wynik jest jedyną miarą sukcesu.
           </h2>
           <p className="text-ivory/60 mt-4 text-base md:text-lg max-w-2xl normal-case tracking-normal text-center mx-auto leading-relaxed relative z-10">
-            W Scalovie uznajemy tylko jedną miarę sukcesu - czy Twoja firma jest dziś lepsza niż wczoraj.
+            W Scalova uznajemy tylko jedną miarę sukcesu - czy Twoja firma jest dziś lepsza niż wczoraj.
           </p>
         </div>
 

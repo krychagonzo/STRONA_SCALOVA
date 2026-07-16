@@ -454,7 +454,7 @@ export default function Services() {
                               className="group relative overflow-hidden py-4 px-10 bg-accent text-obsidian text-[11px] font-heading font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_40px_rgba(201,168,76,0.35)] hover:-translate-y-0.5 flex-1 text-center"
                             >
                               <div className="absolute inset-y-0 left-[-100%] w-[50%] bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[150%] pointer-events-none" />
-                              <span className="relative z-10">ZAREZERWUJ KONSULTACJĘ</span>
+                              <span className="relative z-10">UMÓW BEZPŁATNY AUDYT</span>
                             </button>
                           )}
                         </div>

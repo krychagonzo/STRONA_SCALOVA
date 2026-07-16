@@ -45,23 +45,21 @@ export function LogoCloud({ className, ...props }) {
           className
         )}
       >
-        <div className="filter grayscale brightness-0 invert">
-          <InfiniteSlider gap={sliderGap} reverse={true} duration={45}>
-            {logos.map((logo) => (
-              <img
-                key={`logo-${logo.alt}`}
-                src={logo.src}
-                alt={logo.alt}
-                className={cn(
-                  "w-auto object-contain flex-shrink-0 opacity-40 self-center cursor-default shrink-0",
-                  logo.customClass || "h-10 md:h-14"
-                )}
-                loading="eager"
-                decoding="async"
-              />
-            ))}
-          </InfiniteSlider>
-        </div>
+        <InfiniteSlider gap={sliderGap} reverse={true} duration={45}>
+          {logos.map((logo) => (
+            <img
+              key={`logo-${logo.alt}`}
+              src={logo.src}
+              alt={logo.alt}
+              className={cn(
+                "w-auto object-contain flex-shrink-0 opacity-40 self-center cursor-default shrink-0 filter grayscale brightness-0 invert",
+                logo.customClass || "h-10 md:h-14"
+              )}
+              loading="eager"
+              decoding="async"
+            />
+          ))}
+        </InfiniteSlider>
       </div>
     </section>
   );
