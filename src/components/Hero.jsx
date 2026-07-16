@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -128,10 +128,17 @@ function MobileHeroChromakey() {
     const video  = videoRef.current;
     if (!canvas || !video) return;
 
-    // Natywna rozdzielczość fizyczna — cap 4× (maksymalna jakość Retina)
-    const dpr = Math.min(window.devicePixelRatio || 1, 4);
-    const W = Math.round(480 * dpr);
-    const H = Math.round(270 * dpr);
+    // Określenie rzeczywistej szerokości layoutu canvasu (zajmuje 200vw, więc np. na telefonie około 800px)
+    const layoutWidth = canvas.offsetWidth || window.innerWidth * 2;
+    const layoutHeight = canvas.offsetHeight || layoutWidth * (270 / 480);
+
+    // Natywna rozdzielczość fizyczna (cap DPR na 3 dla optymalnej wydajności)
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    
+    // Ograniczenie maksymalnej szerokości canvasu do 1080px (dla ostrości i braku lagów GPU)
+    const maxCanvasWidth = 1080;
+    const W = Math.round(Math.min(layoutWidth * dpr, maxCanvasWidth));
+    const H = Math.round(W * (270 / 480));
 
     canvas.width  = W;
     canvas.height = H;
@@ -276,6 +283,20 @@ export default function Hero() {
   const comp     = useRef(null);
   const textDone = useRef(false);
 
+  // Dynamiczne śledzenie szerokości ekranu na podstawie breakpointu md (768px)
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(max-width: 767px)');
+    const listener = (e) => setIsMobile(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, []);
+
   const revealMobileText = useCallback(() => {
     if (textDone.current) return;
     textDone.current = true;
@@ -368,12 +389,14 @@ export default function Hero() {
       </div>
 
       {/* Mobile: 3D logo animation — DPR-aware canvas chromakey */}
-      <div
-        className="md:hidden absolute z-30 pointer-events-none overflow-hidden"
-        style={{ top: '4%', left: '-47vw', right: '-53vw' }}
-      >
-        <MobileHeroChromakey />
-      </div>
+      {isMobile && (
+        <div
+          className="md:hidden absolute z-30 pointer-events-none overflow-hidden"
+          style={{ top: '4%', left: '-47vw', right: '-53vw' }}
+        >
+          <MobileHeroChromakey />
+        </div>
+      )}
 
       {/* Mobile text — fades in after 1.6 s, sits right below the animation */}
       <div
@@ -390,8 +413,8 @@ export default function Hero() {
       </div>
 
       {/* Desktop logo animation layer */}
-      <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none hidden md:block">
-        {typeof window !== 'undefined' && window.innerWidth >= 1200 && (
+      {!isMobile && (
+        <div className="front-logo-wrapper gpu-accelerated absolute inset-0 z-30 pointer-events-none hidden md:block">
           <video
             autoPlay
             muted
@@ -401,8 +424,8 @@ export default function Hero() {
           >
             <source src="/ANIM_05_LOGO_1.webm" type="video/webm" />
           </video>
-        )}
-      </div>
+        </div>
+      )}
 
     </section>
 
