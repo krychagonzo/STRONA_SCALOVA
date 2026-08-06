@@ -266,22 +266,77 @@
   }
 
   /* ---------- Consultation modal ---------- */
+  /* Uzupełnij poniższe 3 wartości danymi z EmailJS (Netlify → Site settings →
+     Environment variables: VITE_EMAILJS_SERVICE_ID / TEMPLATE_ID / PUBLIC_KEY,
+     albo panel emailjs.com). Dopóki EMAILJS_CONFIG.serviceID zostanie
+     "YOUR_SERVICE_ID", formularz działa w trybie testowym (pokazuje "Dziękujemy",
+     ale nic nie wysyła). */
+  const EMAILJS_CONFIG = {
+    serviceID: "service_yakxxdf",
+    templateID: "template_aunau5m",
+    publicKey: "rI76RCa1osQcfUcfT"
+  };
+  const THANKS_HTML = '<div style="text-align:center;padding:30px 0;"><div class="eyebrow plain" style="justify-content:center;color:var(--accent);">// Dziękujemy</div><h3 class="h-card" style="margin-bottom:14px;">Wiadomość wysłana.</h3><p class="dim2" style="font-size:.95rem;">Odezwiemy się w ciągu 48 godzin.</p></div>';
+
   function initModal(){
     const backdrop=document.querySelector(".modal-backdrop");
     if(!backdrop) return;
-    const close=backdrop.querySelector(".modal-close");
+    const modal=backdrop.querySelector(".modal");
+    const pristineHTML=modal.innerHTML; // zapasowa kopia oryginalnego formularza
+
     const open=()=>{ backdrop.classList.add("open"); document.body.style.overflow="hidden"; };
-    const shut=()=>{ backdrop.classList.remove("open"); document.body.style.overflow=""; };
+    const shut=()=>{
+      backdrop.classList.remove("open");
+      document.body.style.overflow="";
+      // po animacji zamknięcia przywróć czysty formularz, żeby przy kolejnym
+      // otwarciu nie zostało pokazane stare "Dziękujemy"
+      setTimeout(()=>{ modal.innerHTML=pristineHTML; wireModal(); }, 300);
+    };
+
+    function wireModal(){
+      const close=modal.querySelector(".modal-close");
+      close&&close.addEventListener("click",shut);
+      const form=modal.querySelector("form");
+      form&&form.addEventListener("submit",e=>{
+        e.preventDefault();
+        const btn=form.querySelector("button[type=submit]");
+
+        if(EMAILJS_CONFIG.serviceID==="YOUR_SERVICE_ID"){
+          modal.innerHTML=THANKS_HTML;
+          return;
+        }
+        if(typeof emailjs==="undefined"){
+          console.error("EmailJS nie jest załadowany — sprawdź, czy skrypt CDN jest dodany w <head>.");
+          alert("Wystąpił błąd wysyłania. Spróbuj ponownie później.");
+          return;
+        }
+
+        const originalBtnHtml=btn ? btn.innerHTML : "";
+        if(btn){
+          btn.disabled=true;
+          btn.innerHTML='<span class="shine"></span>Wysyłanie…';
+        }
+        emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, {
+          name: form.user_name ? form.user_name.value : "",
+          email: form.user_email ? form.user_email.value : "",
+          phone: form.user_phone ? form.user_phone.value : "Nie podano",
+          company: "Scalova Arch",
+          type: "Scalova Arch — Konsultacja",
+          message: form.user_message ? form.user_message.value : ""
+        }, EMAILJS_CONFIG.publicKey)
+          .then(()=>{ modal.innerHTML=THANKS_HTML; })
+          .catch(err=>{
+            console.error("EmailJS error:", err);
+            if(btn){ btn.disabled=false; btn.innerHTML=originalBtnHtml; }
+            alert("Wystąpił błąd wysyłania. Spróbuj ponownie.");
+          });
+      });
+    }
+
     document.querySelectorAll("[data-open-modal]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();open();}));
-    close&&close.addEventListener("click",shut);
     backdrop.addEventListener("click",e=>{ if(e.target===backdrop) shut(); });
     document.addEventListener("keydown",e=>{ if(e.key==="Escape") shut(); });
-    const form=backdrop.querySelector("form");
-    form&&form.addEventListener("submit",e=>{
-      e.preventDefault();
-      const m=backdrop.querySelector(".modal");
-      m.innerHTML='<div style="text-align:center;padding:30px 0;"><div class="eyebrow plain" style="justify-content:center;color:var(--accent);">// Dziękujemy</div><h3 class="h-card" style="margin-bottom:14px;">Wiadomość wysłana.</h3><p class="dim2" style="font-size:.95rem;">Odezwiemy się w ciągu 24 godzin.</p></div>';
-    });
+    wireModal();
   }
 
   /* ---------- Tweaks (host protocol + cross-page localStorage) ---------- */

@@ -259,16 +259,16 @@
       </button>
       <span class="eyebrow plain" style="color:var(--accent);">Bezpłatna konsultacja</span>
       <h3 class="h-card" style="font-size:1.5rem;margin-bottom:8px;">Porozmawiajmy o Twojej marce</h3>
-      <p class="dim2" style="font-size:.9rem;margin:0;">Zostaw kontakt — odezwiemy się w ciągu 24 godzin.</p>
+      <p class="dim2" style="font-size:.9rem;margin:0;">Zostaw kontakt — odezwiemy się w ciągu 48 godzin.</p>
       <form>
         <label>Imię i biuro</label>
-        <input type="text" placeholder="Jan Kowalski — Pracownia XYZ" required />
+        <input type="text" name="user_name" placeholder="Jan Kowalski — Pracownia XYZ" required />
         <label>E-mail</label>
-        <input type="email" placeholder="jan@pracownia.pl" required />
+        <input type="email" name="user_email" placeholder="jan@pracownia.pl" required />
         <label>Telefon</label>
-        <input type="tel" placeholder="+48 000 000 000" />
+        <input type="tel" name="user_phone" placeholder="+48 000 000 000" />
         <label>Czego potrzebujesz?</label>
-        <textarea placeholder="Np. nowa strona z portfolio + wizualizacje pod przetarg"></textarea>
+        <textarea name="user_message" placeholder="Np. nowa strona z portfolio + wizualizacje pod przetarg"></textarea>
         <button type="submit" class="btn btn-accent"><span class="shine"></span>Wyślij zgłoszenie</button>
       </form>
     </div>
@@ -283,6 +283,7 @@
       "density": "comfort"
     }/*EDITMODE-END*/;
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="assets/scalova.js"></script>
   <script>
     document.querySelectorAll('.tenet-toggle').forEach(function(toggle) {
