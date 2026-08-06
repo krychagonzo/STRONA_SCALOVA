@@ -278,6 +278,15 @@
   };
   const THANKS_HTML = '<div style="text-align:center;padding:30px 0;"><div class="eyebrow plain" style="justify-content:center;color:var(--accent);">// Dziękujemy</div><h3 class="h-card" style="margin-bottom:14px;">Wiadomość wysłana.</h3><p class="dim2" style="font-size:.95rem;">Odezwiemy się w ciągu 48 godzin.</p></div>';
 
+  // Rozpoznaje, z której podstrony usługowej Scalova Arch wysłano formularz
+  function getPageLabel(){
+    const path=(location.pathname||"").toLowerCase();
+    if(path.indexOf("marketing")!==-1) return "Marketing";
+    if(path.indexOf("strona-internetowa")!==-1) return "Strona internetowa";
+    if(path.indexOf("wizualizacje-3d")!==-1) return "Wizualizacje 3D";
+    return "Strona główna (Metodologia)";
+  }
+
   function initModal(){
     const backdrop=document.querySelector(".modal-backdrop");
     if(!backdrop) return;
@@ -316,13 +325,14 @@
           btn.disabled=true;
           btn.innerHTML='<span class="shine"></span>Wysyłanie…';
         }
+        const pageLabel=getPageLabel();
         emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, {
           name: form.user_name ? form.user_name.value : "",
           email: form.user_email ? form.user_email.value : "",
           phone: form.user_phone ? form.user_phone.value : "Nie podano",
-          company: "Scalova Arch",
-          type: "Scalova Arch — Konsultacja",
-          message: form.user_message ? form.user_message.value : ""
+          company: "Scalova Arch — " + pageLabel,
+          type: "Scalova Arch — " + pageLabel,
+          message: "Podstrona usługowa: " + pageLabel + "\n\n" + (form.user_message ? form.user_message.value : "")
         }, EMAILJS_CONFIG.publicKey)
           .then(()=>{ modal.innerHTML=THANKS_HTML; })
           .catch(err=>{
