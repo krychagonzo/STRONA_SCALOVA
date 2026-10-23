@@ -94,20 +94,9 @@ export default function Philosophy() {
                <div className="w-full md:w-5/12 max-w-lg">
                   <span className="font-heading font-light text-accent text-xs tracking-[0.2em] uppercase mb-4 block">Filar 04</span>
                   <h3 className="font-heading font-light text-5xl md:text-6xl mb-6 text-ivory drop-shadow-md uppercase tracking-tight">Marketing</h3>
-                  <p className="font-sans text-lg text-ivory/60 mb-8 leading-relaxed">
+                  <p className="font-sans text-lg text-ivory/60 leading-relaxed">
                      Precyzyjne kampanie reklamowe i strategia contentowa zoptymalizowane pod stały napływ kwalifikowanych leadów przy kontrolowanym koszcie pozyskania.
                   </p>
-                  <div className="flex items-center gap-6">
-                     <div className="flex flex-col">
-                        <span className="font-heading text-3xl text-ivory font-light tracking-tight">14<span className="text-accent text-xl">x</span></span>
-                        <span className="font-heading text-xs text-ivory/40 uppercase tracking-widest">Średni ROAS</span>
-                     </div>
-                     <div className="h-10 w-[1px] bg-slate/30"></div>
-                     <div className="flex flex-col">
-                        <span className="font-heading text-3xl text-ivory font-light tracking-tight">&lt;15<span className="text-accent text-xl">%</span></span>
-                        <span className="font-heading text-xs text-ivory/40 uppercase tracking-widest">Spadek CPL</span>
-                     </div>
-                  </div>
                </div>
 
                <div className="w-full md:w-7/12 relative flex items-center justify-center">
