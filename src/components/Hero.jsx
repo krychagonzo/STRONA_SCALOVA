@@ -108,174 +108,28 @@ function HeroCanvas() {
 }
 
 // ─────────────────────────────────────────────────────────────────
-// MobileHeroChromakey — DPR-aware canvas, max jakość na Retina.
+// MobileHeroVideo — animacja logo na telefonach i tabletach.
 //
-// • Renderuje w natywnej gęstości pikseli (cap 3×):
-//   iPhone 15 Pro (DPR=3): canvas 1440×810 → zero CSS upscale.
-// • imageSmoothingQuality:'high' → bicubic drawImage.
-// • Rampa alpha 10→60 → ostrzejsze krawędzie logo.
-// • BEZ loop: po zakończeniu wideo canvas zostaje z ostatnią klatką.
-// • RVFC: getImageData tylko przy nowej klatce (30×/s nie 60×/s).
+// • Zwykły <video> + mix-blend-mode: screen (jak na desktopie): czarne tło
+//   wtapia się w ciemne tło hero, robi to GPU — bez przeliczania pikseli w JS.
+//   Wcześniejszy chromakey na canvasie (getImageData co klatkę z ukrytego
+//   wideo 1×1 px) zacinał się na iOS i słabszych Androidach.
+// • BEZ loop: po zakończeniu wideo zostaje ostatnia klatka.
+// • poster = ostatnia klatka, gdy autoplay jest zablokowany (tryb oszczędzania energii).
 // ─────────────────────────────────────────────────────────────────
-function MobileHeroChromakey() {
-  const canvasRef = useRef(null);
-  const videoRef  = useRef(null);
-  const rafRef    = useRef(null);
-  const rvfcRef   = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const video  = videoRef.current;
-    if (!canvas || !video) return;
-
-    // Określenie rzeczywistej szerokości layoutu canvasu (zajmuje 200vw, więc np. na telefonie około 800px)
-    const layoutWidth = canvas.offsetWidth || window.innerWidth * 2;
-    const layoutHeight = canvas.offsetHeight || layoutWidth * (270 / 480);
-
-    // Natywna rozdzielczość fizyczna (cap DPR na 3 dla optymalnej wydajności)
-    const dpr = Math.min(window.devicePixelRatio || 1, 3);
-    
-    // Ograniczenie maksymalnej szerokości canvasu do 1080px (dla ostrości i braku lagów GPU)
-    const maxCanvasWidth = 1080;
-    const W = Math.round(Math.min(layoutWidth * dpr, maxCanvasWidth));
-    const H = Math.round(W * (270 / 480));
-
-    canvas.width  = W;
-    canvas.height = H;
-
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';  // bicubic przy drawImage
-
-    // Rampa alpha: LOW=10 (tło), HIGH=60 (krawędź) → ostrzejsze krawędzie logo
-    const LOW = 10, HIGH = 60, RANGE = HIGH - LOW;
-
-    const processFrame = () => {
-      if (video.readyState < 2) return;
-      ctx.clearRect(0, 0, W, H);
-      ctx.drawImage(video, 0, 0, W, H);
-      const frame = ctx.getImageData(0, 0, W, H);
-      const d = frame.data;
-      for (let i = 0; i < d.length; i += 4) {
-        const b = d[i] > d[i+1]
-          ? (d[i] > d[i+2] ? d[i] : d[i+2])
-          : (d[i+1] > d[i+2] ? d[i+1] : d[i+2]);
-        if (b < HIGH) {
-          d[i+3] = b <= LOW ? 0 : Math.round(((b - LOW) / RANGE) * 255);
-        }
-      }
-      ctx.putImageData(frame, 0, 0);
-    };
-
-    // Fallback dla trybu oszczędzania energii (autoplay zablokowany)
-    const renderStaticFallback = () => {
-      const img = new Image();
-      img.src = '/HERO_ANIM_last.webp';
-      img.onload = () => {
-        ctx.clearRect(0, 0, W, H);
-        ctx.drawImage(img, 0, 0, W, H);
-        const frame = ctx.getImageData(0, 0, W, H);
-        const d = frame.data;
-        for (let i = 0; i < d.length; i += 4) {
-          const b = d[i] > d[i+1] ? (d[i] > d[i+2] ? d[i] : d[i+2]) : (d[i+1] > d[i+2] ? d[i+1] : d[i+2]);
-          if (b < HIGH) {
-            d[i+3] = b <= LOW ? 0 : Math.round(((b - LOW) / RANGE) * 255);
-          }
-        }
-        ctx.putImageData(frame, 0, 0);
-      };
-    };
-
-    const supportsRVFC = typeof video.requestVideoFrameCallback === 'function';
-
-    const startLoop = () => {
-      if (supportsRVFC) {
-        const onFrame = () => {
-          processFrame();
-          if (!video.ended) rvfcRef.current = video.requestVideoFrameCallback(onFrame);
-        };
-        rvfcRef.current = video.requestVideoFrameCallback(onFrame);
-      } else {
-        let lastTs = 0;
-        const FRAME_MS = 1000 / 30;
-        const loop = (ts) => {
-          if (video.ended) return;
-          rafRef.current = requestAnimationFrame(loop);
-          if (ts - lastTs < FRAME_MS - 2) return;
-          lastTs = ts;
-          processFrame();
-        };
-        rafRef.current = requestAnimationFrame(loop);
-      }
-    };
-
-    const tryPlay = () => {
-      const p = video.play();
-      if (p !== undefined) {
-        p.then(() => {
-          startLoop();
-        }).catch(() => {
-          // Play zablokowany (np. tryb oszczędzania energii) -> ładujemy ostatnią klatkę
-          renderStaticFallback();
-        });
-      } else {
-        startLoop();
-      }
-    };
-
-    if (video.readyState >= 1) {
-      tryPlay();
-    } else {
-      video.addEventListener('loadedmetadata', tryPlay, { once: true });
-    }
-
-    // Zatrzymaj pętlę rysowania gdy wideo dobiegnie końca — canvas trzyma ostatnią klatkę
-    const onEnded = () => {
-      cancelAnimationFrame(rafRef.current);
-      if (rvfcRef.current && video.cancelVideoFrameCallback) {
-        video.cancelVideoFrameCallback(rvfcRef.current);
-        rvfcRef.current = null;
-      }
-      processFrame();
-    };
-
-    video.addEventListener('ended', onEnded, { once: true });
-
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      if (rvfcRef.current && video.cancelVideoFrameCallback) {
-        video.cancelVideoFrameCallback(rvfcRef.current);
-      }
-      video.removeEventListener('ended', onEnded);
-    };
-  }, []);
-
+function MobileHeroVideo() {
   return (
-    <>
-      <video
-        ref={videoRef}
-        muted
-        playsInline
-        preload="auto"
-        style={{
-          position: 'absolute',
-          width: 1,
-          height: 1,
-          opacity: 0,
-          pointerEvents: 'none',
-          top: 0,
-          left: 0,
-        }}
-      >
-        <source src="/HERO_ANIM_mobile.mp4"  type="video/mp4"  />
-        <source src="/HERO_ANIM_mobile.webm" type="video/webm" />
-      </video>
-      <canvas
-        ref={canvasRef}
-        className="w-full h-auto block"
-        style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
-      />
-    </>
+    <video
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      poster="/HERO_ANIM_last.webp"
+      className="w-full h-auto block"
+      style={{ mixBlendMode: 'screen' }}
+    >
+      <source src="/HERO_ANIM_mobile_v2.mp4" type="video/mp4" />
+    </video>
   );
 }
 
@@ -370,7 +224,13 @@ export default function Hero() {
 
   return (
     <>
-    <section ref={comp} className="relative w-full h-[112svh] md:h-[100svh] overflow-hidden flex items-end">
+    {/* --hero-logo: bok „pudełka” animacji logo w układzie mobilnym. Na telefonach w pionie to 100vw;
+        na ekranach szerszych niż wysokich (tablet / telefon poziomo) ogranicza go wysokość, żeby tekst pod logo się mieścił */}
+    <section
+      ref={comp}
+      className="relative w-full h-[112svh] md:h-[100svh] overflow-hidden flex items-end"
+      style={{ '--hero-logo': 'min(100vw, 58svh)' }}
+    >
 
       {/* Canvas background — Bayer-dithered glow, zero banding */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -395,25 +255,31 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile: 3D logo animation — DPR-aware canvas chromakey */}
+      {/* Mobile: animacja logo 3D. Bez z-index — z-index tworzy osobny kontekst warstw
+          i mix-blend-mode: screen nie widziałby tła hero (czarne tło filmu zostałoby widoczne) */}
       {isMobile && (
         <div
-          className="md:hidden absolute z-30 pointer-events-none overflow-hidden"
-          style={{ top: '4%', left: '-47vw', right: '-53vw' }}
+          className="md:hidden absolute pointer-events-none overflow-hidden"
+          style={{
+            top: '4%',
+            // wideo ma 2× szerokość pudełka; logo w klatce jest przesunięte — stąd 0.97 zamiast 1
+            left: 'calc(50% - 0.97 * var(--hero-logo))',
+            width: 'calc(2 * var(--hero-logo))',
+          }}
         >
-          <MobileHeroChromakey />
+          <MobileHeroVideo />
         </div>
       )}
 
       {/* Mobile text — fades in after 1.6 s, sits right below the animation */}
       <div
         className="md:hidden absolute inset-x-0 z-40 pointer-events-none select-none px-6 flex flex-col items-center text-center"
-        style={{ top: 'calc(4% + 104vw)' }}
+        style={{ top: 'calc(4% + 1.04 * var(--hero-logo))' }}
       >
         <span className="hero-anim-mobile opacity-0 font-heading font-light text-accent text-[11px] tracking-[0.25em] uppercase mb-4">
           // AGENCJA SKALOWANIA BIZNESU
         </span>
-        <h1 className="hero-anim-mobile opacity-0 font-heading font-light tracking-tight text-ivory/90 text-[12.5vw] leading-[1.05] flex flex-col gap-[0.1em]">
+        <h1 className="hero-anim-mobile opacity-0 font-heading font-light tracking-tight text-ivory/90 text-[length:min(12.5vw,9svh)] leading-[1.05] flex flex-col gap-[0.1em]">
           <span>Skaluj biznes,</span>
           <span className="text-ivory">odzyskaj czas.</span>
         </h1>

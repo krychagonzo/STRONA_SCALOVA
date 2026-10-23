@@ -42,10 +42,11 @@ const DEFAULT_MEMBERS = [
 export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
   return (
     <div className="w-full flex flex-col items-center">
-      {/* Grid of Team Members */}
-      <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 xl:gap-8 text-left">
+      {/* Team Members: telefon 2 w rzędzie, tablet (sm) 4, desktop (md = 1200px) 5.
+          Flex zamiast grid, żeby niepełny ostatni rząd był wyśrodkowany. Szerokości liczone z odstępem danego breakpointu. */}
+      <div className="w-full flex flex-wrap md:flex-nowrap justify-center gap-x-3 gap-y-8 sm:gap-x-4 md:gap-x-6 xl:gap-x-8 text-left">
         {members.map((member, idx) => (
-          <div key={member.id} className="group/member flex flex-col justify-between">
+          <div key={member.id} className="group/member flex flex-col justify-between w-[calc((100%-0.75rem)/2)] sm:w-[calc((100%-3rem)/4)] md:w-0 md:flex-1">
             <div>
               {/* Individual Portrait Card */}
               <div className="group w-full relative overflow-hidden border border-white/5 group-hover/member:border-accent/40 bg-[#0c0c0c] transition-all duration-700 aspect-[3/4] select-none mb-4">
@@ -82,7 +83,7 @@ export default function TeamShowcase({ members = DEFAULT_MEMBERS }) {
                 )}
               </div>
               
-              <h3 className="text-ivory font-heading font-normal text-base md:text-[17px] tracking-tight uppercase mt-3 group-hover/member:text-white transition-colors duration-300">
+              <h3 className="text-ivory font-heading font-normal text-sm sm:text-[15px] md:text-[17px] tracking-tight uppercase mt-3 group-hover/member:text-white transition-colors duration-300">
                 {member.name}
               </h3>
               
