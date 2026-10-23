@@ -1,5 +1,24 @@
 export const PORTFOLIO_DATA = [
   {
+    "id": "stalloft",
+    "title": "Stalloft",
+    "client": "STALLOFT",
+    "categories": [
+      "STRONA & AI ASYSTENT"
+    ],
+    "desc": "Strona internetowa dla Stalloft — producenta przeszkleń loftowych, bram spawanych, balustrad i mebli stalowych na zamówienie.",
+    "fullDesc": "Stalloft to warsztat spod Poznania, który od 2014 roku projektuje i wykonuje przeszklenia loftowe, bramy i furtki spawane, balustrady oraz meble stalowe na indywidualne zamówienie — od pomiaru, przez spawanie i lakierowanie proszkowe, aż po montaż w całej Polsce i w Niemczech. Dla tej marki zaprojektowaliśmy i wdrożyliśmy trójjęzyczną stronę internetową (PL / EN / DE), której celem jest generowanie zapytań o wycenę.\r\nCiemna, surowa estetyka ze złotymi akcentami oddaje charakter stali i szkła. Strona prowadzi użytkownika przez cztery linie produktowe, konfigurator projektu i portfolio z realnymi cenami wcześniejszych realizacji, a dane takie jak 340+ realizacji, 20 lat gwarancji i bezpłatna wycena w 24 h budują zaufanie i kierują wprost do formularza kontaktowego.",
+    "thumbnail": "/PORTFOLIO/STRONY/STALLOFT_THUMBNAIL.png",
+    "liveUrl": "https://stalloft.pl/",
+    "media": [
+      {
+        "type": "website",
+        "src": "/PORTFOLIO/STRONY/STALLOFT_FULL.png",
+        "url": "https://stalloft.pl/"
+      }
+    ]
+  },
+  {
     "id": "hocomo-holding",
     "title": "Hocomo Holding",
     "client": "HOCOMO HOLDING",
