@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { CATEGORY_ICONS } from './Portfolio';
+import { imageFull, videoWeb, videoPoster } from '../lib/portfolioMedia';
 
 function VideoWithPlay({ src, className }) {
   const videoRef = useRef(null);
@@ -17,7 +18,7 @@ function VideoWithPlay({ src, className }) {
 
   return (
     <div className="relative w-full group/vp cursor-pointer" onClick={toggle}>
-      <video ref={videoRef} src={src} loop playsInline className={className} />
+      <video ref={videoRef} src={videoWeb(src)} poster={videoPoster(src)} preload="none" loop playsInline className={className} />
       <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? 'opacity-0 group-hover/vp:opacity-100' : 'opacity-100'}`}>
         <div className="w-16 h-16 rounded-full bg-black/50 border border-white/20 flex items-center justify-center backdrop-blur-sm">
           {playing
@@ -149,7 +150,7 @@ export default function PortfolioItem() {
               <div className="w-full relative group border border-white/10">
                 <div className="w-full h-[60vh] md:h-[80vh] overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-accent scrollbar-track-transparent bg-obsidian">
                    <img
-                     src={project.media[0].src}
+                     src={imageFull(project.media[0].src)}
                      alt={`${project.title} - podgląd strony`}
                      className="w-full h-auto object-cover block"
                      loading="lazy"
@@ -204,7 +205,7 @@ export default function PortfolioItem() {
                   ) : project.media[0].type === 'website' ? (
                     <div className="relative w-full overflow-hidden border border-white/10">
                       <img
-                        src={project.media[0].src}
+                        src={imageFull(project.media[0].src)}
                         alt={project.title}
                         className="w-full h-auto object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
                         loading="lazy"
@@ -223,7 +224,7 @@ export default function PortfolioItem() {
                     </div>
                   ) : (
                     <img 
-                      src={project.media[0].src} 
+                      src={imageFull(project.media[0].src)} 
                       alt={project.title} 
                       className="w-full max-h-[85vh] h-auto object-contain transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-y-2"
                       loading="lazy"
@@ -306,7 +307,7 @@ export default function PortfolioItem() {
                   ) : item.type === 'website' ? (
                     <div className="relative w-full overflow-hidden border border-white/10">
                       <img
-                        src={item.src}
+                        src={imageFull(item.src)}
                         alt={`${project.title} - podgląd strony`}
                         className="w-full h-auto object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
                         loading="lazy"
@@ -326,7 +327,7 @@ export default function PortfolioItem() {
                     </div>
                   ) : (
                     <img 
-                      src={item.src} 
+                      src={imageFull(item.src)} 
                       alt={`${project.title} - media ${idx + 1}`} 
                       className="w-full max-h-[85vh] h-auto object-contain transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-y-2"
                       loading="lazy"

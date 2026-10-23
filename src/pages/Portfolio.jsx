@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import Seo from '../components/Seo';
+import { isVideo, imageThumb, imageMobile, imageWideThumb, videoThumb, videoPoster } from '../lib/portfolioMedia';
 
 // Bayer 4x4 dithering — eliminuje banding na ciemnych gradientach
 const BAYER4 = [
@@ -125,6 +126,27 @@ export default function Portfolio() {
     activeCategory === "Wszystkie" ? true : project.categories?.includes(activeCategory)
   );
 
+  // Mozaika: strony są poziome, treści wizualne kwadratowe.
+  // Gdy na liście są oba rodzaje, strona zajmuje na desktopie 2 kolumny, naprzemiennie od lewej i od prawej.
+  const isWebsite = (project) => project.media?.[0]?.type === 'website';
+  const isMosaic = filteredProjects.some(isWebsite) && !filteredProjects.every(isWebsite);
+  // Przeplatamy: strona, dwie treści wizualne, strona... żeby przy 1-2 kolumnach strony nie stały w jednym bloku
+  const tiles = (() => {
+    if (!isMosaic) return filteredProjects;
+    const websites = filteredProjects.filter(isWebsite);
+    const visuals = filteredProjects.filter(p => !isWebsite(p));
+    const out = [];
+    websites.forEach((w, i) => out.push(w, ...visuals.slice(i * 2, i * 2 + 2)));
+    return out.concat(visuals.slice(websites.length * 2));
+  })();
+  let websiteIdx = 0;
+  const tileShape = (project) => {
+    if (!isWebsite(project)) return 'aspect-square';
+    if (!isMosaic) return 'aspect-video';
+    const start = websiteIdx++ % 2 ? 'lg:col-start-2' : 'lg:col-start-1';
+    return `md:col-span-2 aspect-video lg:aspect-auto ${start}`;
+  };
+
   return (
     <div className="relative w-full min-h-screen bg-obsidian flex flex-col items-center pb-32">
       <Seo title="Portfolio | Scalova" description="Projekty Scalova - treści wizualne, animacje, kampanie i systemy sprzedażowe, które realnie pracują na wynik klientów." path="/portfolio" />
@@ -184,7 +206,7 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {/* PROJECT TILES (SQUARE & IN 3 COLUMNS MATCHING HEADER WIDTH) */}
+          {/* PROJECT TILES (16:9 & IN 3 COLUMNS MATCHING HEADER WIDTH) */}
           <AnimatePresence mode="wait">
             <motion.div 
               key={activeCategory}
@@ -192,28 +214,33 @@ export default function Portfolio() {
               animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
               exit={{ opacity: 0, filter: 'blur(10px)', y: -20 }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-2 w-full mt-10 md:mt-16"
+              className={`grid grid-cols-1 md:grid-cols-2 ${filteredProjects.every(isWebsite) ? '' : 'lg:grid-cols-3'} grid-flow-row-dense gap-1 md:gap-2 w-full mt-10 md:mt-16`}
             >
-              {filteredProjects.map((project) => (
+              {tiles.map((project) => (
                 <div
                   key={project.id}
                   onClick={() => navigate(`/portfolio/${project.id}`)}
-                  className="group relative w-full aspect-square rounded-none overflow-hidden bg-[#0c0c0c] cursor-pointer isolate transform-gpu border border-white/5 hover:border-accent/40 transition-all duration-500"
+                  className={`group relative w-full ${tileShape(project)} rounded-none overflow-hidden bg-[#0c0c0c] cursor-pointer isolate transform-gpu border border-white/5 hover:border-accent/40 transition-all duration-500`}
                 >
                   {/* INITIAL IMAGE / VIDEO */}
-                  {project.thumbnail.endsWith('.mp4') ? (
-                    <video 
-                      src={project.thumbnail} 
+                  {isVideo(project.thumbnail) ? (
+                    <video
+                      src={videoThumb(project.thumbnail)}
+                      poster={videoPoster(project.thumbnail)}
                       autoPlay loop muted playsInline
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
                     />
                   ) : (
                     <picture>
-                      <source media="(max-width: 1199px)" srcSet={project.thumbnail.replace(/\.[^/.]+$/, '_mobile.webp')} type="image/webp" />
-                      <img 
-                        src={project.thumbnail} 
-                        alt={project.title} 
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
+                      {isMosaic && isWebsite(project) && (
+                        <source media="(min-width: 1280px)" srcSet={imageWideThumb(project.thumbnail)} type="image/webp" />
+                      )}
+                      <source media="(max-width: 1199px)" srcSet={imageMobile(project.thumbnail)} type="image/webp" />
+                      <img
+                        src={imageThumb(project.thumbnail)}
+                        decoding="async"
+                        alt={project.title}
+                        className={`absolute inset-0 w-full h-full object-cover ${isWebsite(project) ? 'object-top' : ''} transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.05] grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100`}
                         loading="lazy"
                       />
                     </picture>
